@@ -125,4 +125,129 @@ return [
 
 
     'domain' => env('APP_BASE_DOMAIN', 'localhost'),
+
+    'packages' => [
+        'filament-users' => [
+            'key' => 'filament-users',
+            'label' => 'User Resource',
+            'permissions' => [
+                'user'
+            ],
+        ],
+        'filament-translations' => [
+            'key' => 'filament-translations',
+            'label' => 'Translation Manager',
+            'permissions' => [
+                'translation'
+            ]
+        ],
+        'filament-notes' => [
+            'key' => 'filament-notes',
+            'label' => 'Sticky Notes',
+            'permissions' => [
+                'note',
+                'page_NotesGroups',
+                'page_NotesStatus'
+            ]
+        ],
+        'filament-types' => [
+            'key' => 'filament-types',
+            'label' => 'Types Manager',
+            'permissions' => [
+                'type'
+            ]
+        ],
+        'filament-accounts' => [
+            'key' => 'filament-accounts',
+            'label' => 'Accounts Builder',
+            'permissions' => [
+                'account',
+                'account::request',
+                'team',
+            ]
+        ],
+        'filament-api' => [
+            'key' => 'filament-api',
+            'label' => 'API Generator',
+            'permissions' => [
+                'api'
+            ]
+        ],
+        'filament-locations' => [
+            'key' => 'filament-locations',
+            'label' => 'Locations Seeder',
+            'permissions' => [
+                'country',
+                'city',
+                'area',
+                'location',
+                'language',
+                'currency',
+                'page_LocationSettings'
+            ]
+        ],
+        'filament-cms' => [
+            'key' => 'filament-cms',
+            'label' => 'CMS Builder',
+            'permissions' => [
+                'post',
+                'category',
+                'form',
+                'page_Themes'
+            ]
+        ],
+        'filament-ecommerce' => [
+            'key' => 'filament-ecommerce',
+            'label' => 'E-commerce Builder',
+            'permissions' => [
+                'product',
+                'order',
+                'coupon',
+                'gift::card',
+                'referral::code',
+                'shipping::vendor',
+                'page_OrderSettingsPage',
+                'page_OrderStatusSettingsPage',
+                'page_OrderReceiptSettingsPage',
+                'widget_OrdersStateWidget',
+                'widget_OrderPaymentMethodChart',
+                'widget_OrderSourceChart',
+                'widget_OrderStateChart'
+            ]
+        ],
+        'filament-alerts' => [
+            'key' => 'filament-alerts',
+            'label' => 'Alerts Sender',
+            'permissions' => [
+                'user::notification',
+                'notifications::logs',
+                'notifications::template',
+                'page_NotificationsSettingsPage',
+                'page_EmailSettingsPage',
+            ]
+        ],
+        'filament-wallet' => [
+            'key' => 'filament-wallet',
+            'label' => 'Wallets Manager',
+            'permissions' => [
+                'wallet',
+                'transaction',
+            ]
+        ],
+        'filament-media-manager' => [
+            'key' => 'filament-manager',
+            'label' => 'Media Manager',
+            'permissions' => [
+                'folder',
+                'media',
+            ]
+        ],
+        'filament-menus' => [
+            'key' => 'filament-menus',
+            'label' => 'Menu Builder',
+            'permissions' => [
+                'menu'
+            ]
+        ],
+    ]
 ];

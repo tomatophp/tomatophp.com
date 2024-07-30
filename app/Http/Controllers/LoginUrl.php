@@ -27,14 +27,13 @@ class LoginUrl extends Controller
             ]);
 
             $permissions = [];
-            if(in_array('filament-users', $user->packages)){
-                $permissions  = array_merge($permissions, $this->generatePermissions('user'));
-            }
-            if(in_array('filament-translations', $user->packages)){
-                $permissions  = array_merge($permissions, $this->generatePermissions('translation'));
-            }
-            if(in_array('filament-notes', $user->packages)){
-                $permissions  = array_merge($permissions, $this->generatePermissions('note'));
+            $packages = config('app.packages');
+            foreach ($packages as $key=>$package){
+                if(in_array($key, $user->packages)){
+                    foreach ($package['permissions'] as $permission){
+                        $permissions  = array_merge($permissions, $this->generatePermissions($permission));
+                    }
+                }
             }
 
             $role = Role::query()->where('name', 'super_admin')->first();
@@ -61,20 +60,28 @@ class LoginUrl extends Controller
 
     public function generatePermissions(string $table)
     {
-        $array = [
-            'view_' . $table,
-            'view_any_' . $table,
-            'create_' . $table,
-            'update_' . $table,
-            'restore_' . $table,
-            'restore_any_' . $table,
-            'replicate_' . $table,
-            'reorder_' . $table,
-            'delete_' . $table,
-            'delete_any_' . $table,
-            'force_delete_' . $table,
-            'force_delete_any_' . $table,
-        ];
+        if(str($table)->contains('page')){
+            $array = [
+                $table
+            ];
+        }
+        else {
+            $array = [
+                'view_' . $table,
+                'view_any_' . $table,
+                'create_' . $table,
+                'update_' . $table,
+                'restore_' . $table,
+                'restore_any_' . $table,
+                'replicate_' . $table,
+                'reorder_' . $table,
+                'delete_' . $table,
+                'delete_any_' . $table,
+                'force_delete_' . $table,
+                'force_delete_any_' . $table,
+            ];
+
+        }
 
         $permissionsIds=[];
         foreach ($array as $value) {

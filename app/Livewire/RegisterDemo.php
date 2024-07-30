@@ -80,10 +80,7 @@ class RegisterDemo extends Component implements HasActions, HasForms
                         ->required()
                         ->default(["filament-users"])
                         ->multiple()
-                        ->options([
-                            "filament-users" => "Users Resource",
-                            "filament-translations" => "Translations Manager"
-                        ]),
+                        ->options(collect(config('app.packages'))->pluck('label', 'key')->toArray()),
                 ])
             ])
             ->action(function (array $data){
@@ -131,7 +128,7 @@ class RegisterDemo extends Component implements HasActions, HasForms
                     ->success()
                     ->send();
 
-                return redirect()->route('otp');
+                return redirect()->route('verify.otp');
             });
     }
 

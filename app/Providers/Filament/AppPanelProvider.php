@@ -4,6 +4,7 @@ namespace App\Providers\Filament;
 
 use App\Http\Middleware\PluginsMiddleware;
 use App\Providers\TenancyServiceProvider;
+use BezhanSalleh\FilamentShield\FilamentShieldPlugin;
 use Filament\Facades\Filament;
 use Filament\FontProviders\GoogleFontProvider;
 use Filament\Http\Middleware\Authenticate;
@@ -24,8 +25,21 @@ use Illuminate\View\Middleware\ShareErrorsFromSession;
 use Modules\Core\Plugins\CorePlugin;
 use Stancl\Tenancy\Middleware\InitializeTenancyBySubdomain;
 use Stancl\Tenancy\Middleware\PreventAccessFromCentralDomains;
+use TomatoPHP\FilamentAccounts\FilamentAccountsPlugin;
+use TomatoPHP\FilamentAlerts\FilamentAlertsPlugin;
+use TomatoPHP\FilamentApi\FilamentAPIPlugin;
+use TomatoPHP\FilamentCms\FilamentCMSPlugin;
+use TomatoPHP\FilamentEcommerce\FilamentEcommercePlugin;
+use TomatoPHP\FilamentLocations\FilamentLocationsPlugin;
+use TomatoPHP\FilamentMediaManager\FilamentMediaManagerPlugin;
+use TomatoPHP\FilamentMenus\FilamentMenusPlugin;
 use TomatoPHP\FilamentNotes\FilamentNotesPlugin;
+use TomatoPHP\FilamentSettingsHub\FilamentSettingsHubPlugin;
+use TomatoPHP\FilamentTranslations\FilamentTranslationsPlugin;
+use TomatoPHP\FilamentTranslations\FilamentTranslationsSwitcherPlugin;
+use TomatoPHP\FilamentTypes\FilamentTypesPlugin;
 use TomatoPHP\FilamentUsers\FilamentUsersPlugin;
+use TomatoPHP\FilamentWallet\FilamentWalletPlugin;
 
 class AppPanelProvider extends PanelProvider
 {
@@ -35,7 +49,8 @@ class AppPanelProvider extends PanelProvider
             ->id('app')
             ->path('app')
             ->login()
-            ->registration()
+            ->profile()
+            ->databaseNotifications()
             ->colors([
                 'danger' => Color::Red,
                 'gray' => Color::Slate,
@@ -81,8 +96,50 @@ class AppPanelProvider extends PanelProvider
                 PluginsMiddleware::class
             ])
             ->plugins([
-                FilamentUsersPlugin::make(),
+                FilamentTranslationsSwitcherPlugin::make(),
+                FilamentAPIPlugin::make(),
+                FilamentSettingsHubPlugin::make(),
+                FilamentTypesPlugin::make(),
+                FilamentMenusPlugin::make(),
                 FilamentNotesPlugin::make()
+                    ->useStatus()
+                    ->useGroups()
+                    ->useUserAccess()
+                    ->useCheckList()
+                    ->useShareLink()
+                    ->useNotification(),
+                FilamentMediaManagerPlugin::make()
+                    ->allowUserAccess()
+                    ->allowSubFolders(),
+                FilamentCMSPlugin::make()
+                    ->useThemeManager()
+                    ->usePageBuilder()
+                    ->useFormBuilder(),
+                FilamentTranslationsPlugin::make()
+                    ->allowGPTScan()
+                    ->allowGoogleTranslateScan()
+                    ->allowCreate()
+                    ->allowCreate(),
+                FilamentEcommercePlugin::make()
+                    ->useWidgets(),
+                FilamentAccountsPlugin::make()
+                    ->useTeams()
+                    ->useTypes()
+                    ->useRequests()
+                    ->useAvatar()
+                    ->useNotifications()
+                    ->useLocations()
+                    ->useLoginBy()
+                    ->canLogin()
+                    ->canBlocked(),
+                FilamentLocationsPlugin::make(),
+                FilamentAlertsPlugin::make()
+                    ->useDiscord()
+                    ->useDatabase()
+                    ->useSettingsHub(),
+                FilamentUsersPlugin::make(),
+                FilamentWalletPlugin::make()
+                    ->useAccounts(),
             ])
             ->plugin(CorePlugin::make()
                 ->registerResources(false)

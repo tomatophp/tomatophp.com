@@ -30,8 +30,19 @@ class CorePlugin implements Plugin
     {
         $panel->navigationGroups([
             NavigationGroup::make(static::getNavigationGroupLabel()),
+            NavigationGroup::make('Accounts')->collapsible()->collapsed(),
+            NavigationGroup::make('Content')->collapsible()->collapsed(),
+            NavigationGroup::make('Ordering')->collapsible()->collapsed(),
+            NavigationGroup::make('Wallet')->collapsible()->collapsed(),
+            NavigationGroup::make('Locations')->collapsible()->collapsed(),
+            NavigationGroup::make('Translations')->collapsible()->collapsed(),
+            NavigationGroup::make('Notifications')->collapsible()->collapsed(),
+            NavigationGroup::make('ALC')->collapsible()->collapsed(),
             NavigationGroup::make('Settings')->collapsible()->collapsed(),
         ])
+            ->navigationItems([
+
+            ])
             ->middleware([
                 RedirectIfInertiaMiddleware::class,
                 ApplyPanelColorsMiddleware::class,

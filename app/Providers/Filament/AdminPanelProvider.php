@@ -19,11 +19,21 @@ use Illuminate\Routing\Middleware\SubstituteBindings;
 use Illuminate\Session\Middleware\AuthenticateSession;
 use Illuminate\Session\Middleware\StartSession;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
+use TomatoPHP\FilamentAccounts\FilamentAccountsPlugin;
+use TomatoPHP\FilamentAlerts\FilamentAlertsPlugin;
+use TomatoPHP\FilamentApi\FilamentAPIPlugin;
+use TomatoPHP\FilamentCms\FilamentCMSPlugin;
+use TomatoPHP\FilamentEcommerce\FilamentEcommercePlugin;
+use TomatoPHP\FilamentLocations\FilamentLocationsPlugin;
+use TomatoPHP\FilamentMediaManager\FilamentMediaManagerPlugin;
+use TomatoPHP\FilamentMenus\FilamentMenusPlugin;
 use TomatoPHP\FilamentNotes\FilamentNotesPlugin;
 use TomatoPHP\FilamentSettingsHub\FilamentSettingsHubPlugin;
 use TomatoPHP\FilamentTranslations\FilamentTranslationsPlugin;
+use TomatoPHP\FilamentTranslations\FilamentTranslationsSwitcherPlugin;
 use TomatoPHP\FilamentTypes\FilamentTypesPlugin;
 use TomatoPHP\FilamentUsers\FilamentUsersPlugin;
+use TomatoPHP\FilamentWallet\FilamentWalletPlugin;
 
 class AdminPanelProvider extends PanelProvider
 {
@@ -74,13 +84,52 @@ class AdminPanelProvider extends PanelProvider
             ])
             ->persistentMiddleware(['universal'])
             ->domains(config('tenancy.central_domains'))
+            ->databaseNotifications()
             ->plugins([
-                FilamentUsersPlugin::make(),
-                FilamentNotesPlugin::make(),
+                FilamentAPIPlugin::make(),
                 FilamentSettingsHubPlugin::make(),
                 FilamentTypesPlugin::make(),
-                FilamentTranslationsPlugin::make(),
-                FilamentShieldPlugin::make()
+                FilamentMenusPlugin::make(),
+                FilamentNotesPlugin::make()
+                    ->useStatus()
+                    ->useGroups()
+                    ->useUserAccess()
+                    ->useCheckList()
+                    ->useShareLink()
+                    ->useNotification(),
+                FilamentMediaManagerPlugin::make()
+                    ->allowUserAccess()
+                    ->allowSubFolders(),
+                FilamentCMSPlugin::make()
+                    ->useThemeManager()
+                    ->usePageBuilder()
+                    ->useFormBuilder(),
+                FilamentTranslationsPlugin::make()
+                    ->allowGPTScan()
+                    ->allowGoogleTranslateScan()
+                    ->allowCreate()
+                    ->allowCreate(),
+                FilamentEcommercePlugin::make()
+                    ->useWidgets(),
+                FilamentAccountsPlugin::make()
+                    ->useTeams()
+                    ->useTypes()
+                    ->useRequests()
+                    ->useAvatar()
+                    ->useNotifications()
+                    ->useLocations()
+                    ->useLoginBy()
+                    ->canLogin()
+                    ->canBlocked(),
+                FilamentLocationsPlugin::make(),
+                FilamentAlertsPlugin::make()
+                    ->useDiscord()
+                    ->useDatabase()
+                    ->useSettingsHub(),
+                FilamentUsersPlugin::make(),
+                FilamentShieldPlugin::make(),
+                FilamentWalletPlugin::make()
+                    ->useAccounts(),
             ])
             ->authMiddleware([
                 Authenticate::class,
