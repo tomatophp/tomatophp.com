@@ -1,0 +1,27 @@
+{
+    "name": "HomeTheme",
+    "alias": "hometheme",
+    "description": {
+        "ar": "Main Theme For Demo",
+        "en": "Main Theme For Demo",
+        "gr": "Main Theme For Demo",
+        "sp": "Main Theme For Demo"
+    },
+    "keywords": [],
+    "priority": 0,
+    "providers": [
+        "Modules\\HomeTheme\\Providers\\HomeThemeServiceProvider"
+    ],
+    "files": [],
+    "title": {
+        "ar": "HomeTheme",
+        "en": "HomeTheme",
+        "gr": "HomeTheme",
+        "sp": "HomeTheme"
+    },
+    "placeholder": "placeholder.webp",
+    "type": "theme",
+    "color": "#F01E19",
+    "icon": "heroicon-s-swatch",
+    "version": "v1.0.0"
+}

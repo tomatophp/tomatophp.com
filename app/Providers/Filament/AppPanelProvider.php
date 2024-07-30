@@ -2,6 +2,7 @@
 
 namespace App\Providers\Filament;
 
+use App\Filament\Pages\TenantLogin;
 use App\Http\Middleware\PluginsMiddleware;
 use App\Providers\TenancyServiceProvider;
 use BezhanSalleh\FilamentShield\FilamentShieldPlugin;
@@ -47,9 +48,10 @@ class AppPanelProvider extends PanelProvider
     public function panel(Panel $panel): Panel
     {
         $panel
+            ->default()
             ->id('app')
             ->path('app')
-            ->login()
+            ->login(TenantLogin::class)
             ->profile()
             ->databaseNotifications()
             ->colors([

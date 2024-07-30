@@ -16,6 +16,10 @@ class Tenant extends \Stancl\Tenancy\Database\Models\Tenant implements TenantWit
         'packages' => 'json',
     ];
 
+    protected $hidden = [
+        'password',
+    ];
+
     public static function getCustomColumns(): array
     {
         return [
