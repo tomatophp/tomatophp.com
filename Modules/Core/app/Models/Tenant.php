@@ -2,6 +2,7 @@
 
 namespace Modules\Core\Models;
 
+use App\Models\SocialAuth;
 use Stancl\Tenancy\Contracts\TenantWithDatabase;
 use Stancl\Tenancy\Database\Concerns\HasDatabase;
 use Stancl\Tenancy\Database\Concerns\HasDomains;
@@ -25,5 +26,10 @@ class Tenant extends \Stancl\Tenancy\Database\Models\Tenant implements TenantWit
             'password',
             'packages',
         ];
+    }
+
+    public function social()
+    {
+        return $this->hasMany(SocialAuth::class, 'tenant_id', 'id');
     }
 }

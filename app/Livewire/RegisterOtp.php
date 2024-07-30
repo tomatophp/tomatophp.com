@@ -3,6 +3,7 @@
 namespace App\Livewire;
 
 use DanHarrin\LivewireRateLimiting\Exceptions\TooManyRequestsException;
+use DanHarrin\LivewireRateLimiting\WithRateLimiting;
 use Filament\Actions\Action;
 use Filament\Facades\Filament;
 use Filament\Forms\Components\TextInput;
@@ -19,6 +20,7 @@ use Modules\Core\Models\Tenant;
 class RegisterOtp extends SimplePage
 {
     use InteractsWithFormActions;
+    use WithRateLimiting;
 
     protected static string $view = 'livewire.register-otp';
 
@@ -67,23 +69,23 @@ class RegisterOtp extends SimplePage
     }
     public function authenticate()
     {
-//        try {
-//            $this->rateLimit(20);
-//        } catch (TooManyRequestsException $exception) {
-//            Notification::make()
-//                ->title(__('filament-panels::pages/auth/login.notifications.throttled.title', [
-//                    'seconds' => $exception->secondsUntilAvailable,
-//                    'minutes' => ceil($exception->secondsUntilAvailable / 60),
-//                ]))
-//                ->body(array_key_exists('body', __('filament-panels::pages/auth/login.notifications.throttled') ?: []) ? __('filament-panels::pages/auth/login.notifications.throttled.body', [
-//                    'seconds' => $exception->secondsUntilAvailable,
-//                    'minutes' => ceil($exception->secondsUntilAvailable / 60),
-//                ]) : null)
-//                ->danger()
-//                ->send();
-//
-//            return null;
-//        }
+        try {
+            $this->rateLimit(5);
+        } catch (TooManyRequestsException $exception) {
+            Notification::make()
+                ->title(__('filament-panels::pages/auth/login.notifications.throttled.title', [
+                    'seconds' => $exception->secondsUntilAvailable,
+                    'minutes' => ceil($exception->secondsUntilAvailable / 60),
+                ]))
+                ->body(array_key_exists('body', __('filament-panels::pages/auth/login.notifications.throttled') ?: []) ? __('filament-panels::pages/auth/login.notifications.throttled.body', [
+                    'seconds' => $exception->secondsUntilAvailable,
+                    'minutes' => ceil($exception->secondsUntilAvailable / 60),
+                ]) : null)
+                ->danger()
+                ->send();
+
+            return null;
+        }
 
         $data = $this->form->getState();
 
@@ -125,47 +127,35 @@ class RegisterOtp extends SimplePage
             ->label('Resend OTP')
             ->color('warning')
             ->action(function (array $data){
-//                try {
-//                    $this->rateLimit(5);
-//                } catch (TooManyRequestsException $exception) {
-//                    Notification::make()
-//                        ->title(__('filament-panels::pages/auth/login.notifications.throttled.title', [
-//                            'seconds' => $exception->secondsUntilAvailable,
-//                            'minutes' => ceil($exception->secondsUntilAvailable / 60),
-//                        ]))
-//                        ->body(array_key_exists('body', __('filament-panels::pages/auth/login.notifications.throttled') ?: []) ? __('filament-panels::pages/auth/login.notifications.throttled.body', [
-//                            'seconds' => $exception->secondsUntilAvailable,
-//                            'minutes' => ceil($exception->secondsUntilAvailable / 60),
-//                        ]) : null)
-//                        ->danger()
-//                        ->send();
-//
-//                    return null;
-//                }
-
-                $findAccountWithEmail = Account::query()
-                    ->where('email', $data['email'])
-                    ->first();
-
-                if(!$findAccountWithEmail){
+                try {
+                    $this->rateLimit(5);
+                } catch (TooManyRequestsException $exception) {
                     Notification::make()
-                        ->title('Email Not Found')
-                        ->body('Email not found in our database.')
+                        ->title(__('filament-panels::pages/auth/login.notifications.throttled.title', [
+                            'seconds' => $exception->secondsUntilAvailable,
+                            'minutes' => ceil($exception->secondsUntilAvailable / 60),
+                        ]))
+                        ->body(array_key_exists('body', __('filament-panels::pages/auth/login.notifications.throttled') ?: []) ? __('filament-panels::pages/auth/login.notifications.throttled.body', [
+                            'seconds' => $exception->secondsUntilAvailable,
+                            'minutes' => ceil($exception->secondsUntilAvailable / 60),
+                        ]) : null)
                         ->danger()
                         ->send();
-                    return;
+
+                    return null;
                 }
 
-                $findAccountWithEmail->otp_code = rand(100000, 999999);
-                $findAccountWithEmail->save();
+                $otp = substr(number_format(time() * rand(), 0, '', ''), 0, 6);
+                session()->put('demo_otp', $otp);
+                $data = json_decode(session()->get('demo_user'));
 
                 try {
                     $embeds = [];
-                    $embeds['description'] = "your OTP is: ". $findAccountWithEmail->otp_code;
+                    $embeds['description'] = "your OTP is: ". $otp;
                     $embeds['url'] = url('/otp');
 
                     $params = [
-                        'content' => "@" . $findAccountWithEmail->username,
+                        'content' => "@" . $data->domain,
                         'embeds' => [
                             $embeds
                         ]
@@ -181,8 +171,8 @@ class RegisterOtp extends SimplePage
                 }
 
                 Notification::make()
-                    ->title('OTP Send')
-                    ->body('OTP code has been sent to your email address.')
+                    ->title('Check discord server')
+                    ->body('We have sent your OTP to our discord server #otp channel')
                     ->success()
                     ->send();
             });

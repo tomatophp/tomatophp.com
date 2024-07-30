@@ -129,7 +129,8 @@ return [
     'packages' => [
         'filament-users' => [
             'key' => 'filament-users',
-            'label' => 'User Resource',
+            'label' => 'User Manager',
+            'icon' => 'heroicon-o-user',
             'permissions' => [
                 'user'
             ],
@@ -137,6 +138,7 @@ return [
         'filament-translations' => [
             'key' => 'filament-translations',
             'label' => 'Translation Manager',
+            'icon' => 'heroicon-o-language',
             'permissions' => [
                 'translation'
             ]
@@ -144,6 +146,7 @@ return [
         'filament-notes' => [
             'key' => 'filament-notes',
             'label' => 'Sticky Notes',
+            'icon' => 'heroicon-o-document-text',
             'permissions' => [
                 'note',
                 'page_NotesGroups',
@@ -153,6 +156,7 @@ return [
         'filament-types' => [
             'key' => 'filament-types',
             'label' => 'Types Manager',
+            'icon' => 'heroicon-o-rectangle-stack',
             'permissions' => [
                 'type'
             ]
@@ -160,6 +164,7 @@ return [
         'filament-accounts' => [
             'key' => 'filament-accounts',
             'label' => 'Accounts Builder',
+            'icon' => 'heroicon-o-user-group',
             'permissions' => [
                 'account',
                 'account::request',
@@ -169,6 +174,7 @@ return [
         'filament-api' => [
             'key' => 'filament-api',
             'label' => 'API Generator',
+            'icon' => 'heroicon-o-share',
             'permissions' => [
                 'api'
             ]
@@ -176,6 +182,7 @@ return [
         'filament-locations' => [
             'key' => 'filament-locations',
             'label' => 'Locations Seeder',
+            'icon' => 'heroicon-o-map',
             'permissions' => [
                 'country',
                 'city',
@@ -189,6 +196,7 @@ return [
         'filament-cms' => [
             'key' => 'filament-cms',
             'label' => 'CMS Builder',
+            'icon' => 'heroicon-o-book-open',
             'permissions' => [
                 'post',
                 'category',
@@ -199,6 +207,7 @@ return [
         'filament-ecommerce' => [
             'key' => 'filament-ecommerce',
             'label' => 'E-commerce Builder',
+            'icon' => 'heroicon-o-shopping-cart',
             'permissions' => [
                 'product',
                 'order',
@@ -218,6 +227,7 @@ return [
         'filament-alerts' => [
             'key' => 'filament-alerts',
             'label' => 'Alerts Sender',
+            'icon' => 'heroicon-o-bell',
             'permissions' => [
                 'user::notification',
                 'notifications::logs',
@@ -229,6 +239,7 @@ return [
         'filament-wallet' => [
             'key' => 'filament-wallet',
             'label' => 'Wallets Manager',
+            'icon' => 'heroicon-o-wallet',
             'permissions' => [
                 'wallet',
                 'transaction',
@@ -237,6 +248,7 @@ return [
         'filament-media-manager' => [
             'key' => 'filament-manager',
             'label' => 'Media Manager',
+            'icon' => 'heroicon-o-photo',
             'permissions' => [
                 'folder',
                 'media',
@@ -245,6 +257,7 @@ return [
         'filament-menus' => [
             'key' => 'filament-menus',
             'label' => 'Menu Builder',
+            'icon' => 'heroicon-o-bars-3',
             'permissions' => [
                 'menu'
             ]

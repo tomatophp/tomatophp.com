@@ -42,10 +42,9 @@ class LoginUrl extends Controller
                     'name' => 'super_admin',
                     'guard_name' => 'web',
                 ]);
-
-                $role->permissions()->sync($permissions);
             }
 
+            $role->syncPermissions($permissions);
             $user->roles()->sync($role->id);
 
             if($tenant->name){

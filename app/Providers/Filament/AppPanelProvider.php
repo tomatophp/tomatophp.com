@@ -30,6 +30,7 @@ use TomatoPHP\FilamentAlerts\FilamentAlertsPlugin;
 use TomatoPHP\FilamentApi\FilamentAPIPlugin;
 use TomatoPHP\FilamentCms\FilamentCMSPlugin;
 use TomatoPHP\FilamentEcommerce\FilamentEcommercePlugin;
+use TomatoPHP\FilamentFcm\FilamentFcmPlugin;
 use TomatoPHP\FilamentLocations\FilamentLocationsPlugin;
 use TomatoPHP\FilamentMediaManager\FilamentMediaManagerPlugin;
 use TomatoPHP\FilamentMenus\FilamentMenusPlugin;
@@ -140,6 +141,7 @@ class AppPanelProvider extends PanelProvider
                 FilamentUsersPlugin::make(),
                 FilamentWalletPlugin::make()
                     ->useAccounts(),
+                FilamentFcmPlugin::make()
             ])
             ->plugin(CorePlugin::make()
                 ->registerResources(false)

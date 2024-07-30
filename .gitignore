@@ -2,6 +2,7 @@
 /node_modules
 /public/build
 /public/hot
+/public/firebase-messaging-sw.js
 /public/storage
 /storage/*.key
 /vendor
@@ -18,3 +19,4 @@ yarn-error.log
 /.fleet
 /.idea
 /.vscode
+/google.json
