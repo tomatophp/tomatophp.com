@@ -21,5 +21,5 @@ return Application::configure(basePath: dirname(__DIR__))
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {
-        //
+        \TomatoPHP\FilamentDiscord\Helpers\DiscordErrorReporter::make($exceptions);
     })->create();
