@@ -35,4 +35,20 @@ return [
         ],
     ],
 
+    'discord' => [
+        'error-webhook' => env('DISCORD_ERROR_WEBHOOK'),
+        'error-webhook-active' => env('DISCORD_ERROR_WEBHOOK_ACTIVE'),
+        'notification-webhook' => env('DISCORD_NOTIFICATION_WEBHOOK'),
+        'otp-webhook' => env('DISCORD_OTP_WEBHOOK'),
+        'client_id' => env('DISCORD_CLIENT_ID'),
+        'client_secret' => env('DISCORD_CLIENT_SECRET'),
+        'redirect' => env('DISCORD_URL')
+    ],
+
+    'github' => [
+        'client_id' => env('GITHUB_CLIENT_ID'),
+        'client_secret' => env('GITHUB_CLIENT_SECRET'),
+        'redirect' => env('GITHUB_URL'),
+    ],
+
 ];

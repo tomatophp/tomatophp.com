@@ -2,6 +2,8 @@
 
 namespace App\Providers\Filament;
 
+use BezhanSalleh\FilamentShield\FilamentShieldPlugin;
+use Filament\FontProviders\GoogleFontProvider;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\DisableBladeIconComponents;
 use Filament\Http\Middleware\DispatchServingFilamentEvent;
@@ -18,6 +20,9 @@ use Illuminate\Session\Middleware\AuthenticateSession;
 use Illuminate\Session\Middleware\StartSession;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
 use TomatoPHP\FilamentNotes\FilamentNotesPlugin;
+use TomatoPHP\FilamentSettingsHub\FilamentSettingsHubPlugin;
+use TomatoPHP\FilamentTranslations\FilamentTranslationsPlugin;
+use TomatoPHP\FilamentTypes\FilamentTypesPlugin;
 use TomatoPHP\FilamentUsers\FilamentUsersPlugin;
 
 class AdminPanelProvider extends PanelProvider
@@ -29,9 +34,23 @@ class AdminPanelProvider extends PanelProvider
             ->id('admin')
             ->path('admin')
             ->login()
+            ->profile()
             ->colors([
-                'primary' => Color::Amber,
+                'danger' => Color::Red,
+                'gray' => Color::Slate,
+                'info' => Color::Blue,
+                'primary' => Color::Rose,
+                'success' => Color::Emerald,
+                'warning' => Color::Orange,
             ])
+            ->favicon(asset('favicon.ico'))
+            ->brandName('TomatoPHP')
+            ->brandLogo(asset('tomato.png'))
+            ->brandLogoHeight('80px')
+            ->font(
+                'IBM Plex Sans Arabic',
+                provider: GoogleFontProvider::class,
+            )
             ->discoverResources(in: app_path('Filament/Resources'), for: 'App\\Filament\\Resources')
             ->discoverPages(in: app_path('Filament/Pages'), for: 'App\\Filament\\Pages')
             ->pages([
@@ -57,7 +76,11 @@ class AdminPanelProvider extends PanelProvider
             ->domains(config('tenancy.central_domains'))
             ->plugins([
                 FilamentUsersPlugin::make(),
-                FilamentNotesPlugin::make()
+                FilamentNotesPlugin::make(),
+                FilamentSettingsHubPlugin::make(),
+                FilamentTypesPlugin::make(),
+                FilamentTranslationsPlugin::make(),
+                FilamentShieldPlugin::make()
             ])
             ->authMiddleware([
                 Authenticate::class,

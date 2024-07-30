@@ -10,17 +10,20 @@ class Tenant extends \Stancl\Tenancy\Database\Models\Tenant implements TenantWit
 {
     use HasDatabase, HasDomains;
 
+
+    protected $casts = [
+        'packages' => 'json',
+    ];
+
     public static function getCustomColumns(): array
     {
         return [
             'id',
             'name',
-            'email_address',
+            'email',
             'phone',
-            'mobile',
-            'address',
-            'primary_color',
-            'secondary_color',
+            'password',
+            'packages',
         ];
     }
 }

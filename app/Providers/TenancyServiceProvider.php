@@ -152,15 +152,18 @@ class TenancyServiceProvider extends ServiceProvider
 
     private function prepareLivewireForTenancy(): void
     {
-        Livewire::setUpdateRoute(function ($handle) {
-            return Route::post('/livewire/update', $handle)
-                ->middleware(
-                    [
-                        'web',
-                        'universal',
-                        static::TENANCY_IDENTIFICATION,
-                    ])->name('livewire.update');
-        });
+        if(request()->host() !== config('app.domain')){
+
+            Livewire::setUpdateRoute(function ($handle) {
+                return Route::post('/livewire/update', $handle)
+                    ->middleware(
+                        [
+                            'web',
+                            'universal',
+                            static::TENANCY_IDENTIFICATION,
+                        ])->name('livewire.update');
+            });
+        }
     }
 
     private function modifyStaticConfigs(): void

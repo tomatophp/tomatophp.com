@@ -2,7 +2,10 @@
 
 namespace App\Providers\Filament;
 
+use App\Http\Middleware\PluginsMiddleware;
 use App\Providers\TenancyServiceProvider;
+use Filament\Facades\Filament;
+use Filament\FontProviders\GoogleFontProvider;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\DisableBladeIconComponents;
 use Filament\Http\Middleware\DispatchServingFilamentEvent;
@@ -34,8 +37,21 @@ class AppPanelProvider extends PanelProvider
             ->login()
             ->registration()
             ->colors([
-                'primary' => Color::Amber,
+                'danger' => Color::Red,
+                'gray' => Color::Slate,
+                'info' => Color::Blue,
+                'primary' => Color::Rose,
+                'success' => Color::Emerald,
+                'warning' => Color::Orange,
             ])
+            ->favicon(asset('favicon.ico'))
+            ->brandName('TomatoPHP')
+            ->brandLogo(asset('tomato.png'))
+            ->brandLogoHeight('80px')
+            ->font(
+                'IBM Plex Sans Arabic',
+                provider: GoogleFontProvider::class,
+            )
             ->discoverResources(in: app_path('Filament/App/Resources'), for: 'App\\Filament\\App\\Resources')
             ->discoverPages(in: app_path('Filament/App/Pages'), for: 'App\\Filament\\App\\Pages')
             ->pages([
@@ -62,6 +78,7 @@ class AppPanelProvider extends PanelProvider
                 SubstituteBindings::class,
                 DisableBladeIconComponents::class,
                 DispatchServingFilamentEvent::class,
+                PluginsMiddleware::class
             ])
             ->plugins([
                 FilamentUsersPlugin::make(),
@@ -79,6 +96,8 @@ class AppPanelProvider extends PanelProvider
         $domains = tenant()?->domains()->pluck('domain') ?? [];
         $panel->domains($domains);
 
+
         return $panel;
     }
+
 }

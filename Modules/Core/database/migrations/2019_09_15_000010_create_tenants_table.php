@@ -21,10 +21,8 @@ class CreateTenantsTable extends Migration
             $table->string('name')->nullable();
             $table->string('email')->nullable();
             $table->string('phone')->nullable();
-            $table->string('mobile')->nullable();
-            $table->string('address')->nullable();
-            $table->string('primary_color')->nullable();
-            $table->string('secondary_color')->nullable();
+            $table->string('password')->nullable();
+            $table->json('packages')->nullable();
             $table->timestamps();
             $table->json('data')->nullable();
         });

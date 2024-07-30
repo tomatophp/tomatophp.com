@@ -9,13 +9,21 @@
     "license": "MIT",
     "require": {
         "php": "^8.2",
+        "bezhansalleh/filament-shield": "^3.2",
         "filament/filament": "^3.2",
         "laravel/framework": "^11.9",
         "laravel/sanctum": "^4.0",
+        "laravel/socialite": "^5.15",
         "laravel/tinker": "^2.9",
+        "livewire/livewire": "^3.5",
+        "mallardduck/blade-boxicons": "^2.4",
         "nwidart/laravel-modules": "^11.0",
+        "revolution/socialite-discord": "^1.4",
         "stancl/tenancy": "^3.8",
+        "tomatophp/filament-discord": "^1.0",
         "tomatophp/filament-notes": "^1.0",
+        "tomatophp/filament-settings-hub": "^1.0",
+        "tomatophp/filament-translations": "^1.0",
         "tomatophp/filament-users": "^1.0"
     },
     "require-dev": {

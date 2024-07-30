@@ -184,6 +184,7 @@ return [
         '--path' => [
             database_path('migrations/tenant'),
             base_path('Modules/Core/database/migrations/tenant'),
+            base_path('vendor/spatie/laravel-permission/database/migrations'),
         ],
         '--realpath' => true,
     ],
