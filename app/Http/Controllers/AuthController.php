@@ -104,7 +104,6 @@ class AuthController extends Controller
             return redirect()->to('https://' . $record->domains[0]->domain . '.' . config('app.domain') . '/login/url?token=' . $token->token . '&email=' . $record->email);
         }
         catch (\Exception $exception){
-            dd($exception);
             Notification::make()
                 ->title('Error')
                 ->body('Something went wrong!')
