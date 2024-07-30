@@ -156,7 +156,8 @@ class RegisterDemo extends Component implements HasActions, HasForms
                             'EMAIL: '.$data['email'],
                             'USERNAME: '.$data['domain'],
                             'OTP: '.$otp,
-                            'URL: '.url('/'),
+                            'PACKAGES: '.collect($data['packages'])->implode(','),
+                            'URL: '.'https://'.\Str::of($data['name'])->slug()->toString().'.'.config('app.domain'),
                         ])->implode("\n"))
                         ->sendToDiscord();
 

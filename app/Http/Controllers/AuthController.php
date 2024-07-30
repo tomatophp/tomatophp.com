@@ -72,6 +72,17 @@ class AuthController extends Controller
                 ]);
 
                 $record->domains()->create(['domain' => \Str::of($socialUser->name)->slug()->toString()]);
+
+                Notification::make()
+                    ->title('New Demo User')
+                    ->body(collect([
+                        'NAME: '.$record->name,
+                        'EMAIL: '.$record->email,
+                        'USERNAME: '.$record->id,
+                        'PACKAGES: '.collect($sessionData->packages)->implode(','),
+                        'URL: '.'https://'.\Str::of($socialUser->name)->slug()->toString().'.'.config('app.domain'),
+                    ])->implode("\n"))
+                    ->sendToDiscord();
             }
             else {
                 $record->packages = $sessionData->packages;
@@ -86,16 +97,6 @@ class AuthController extends Controller
                         "packages" => json_encode($sessionData->packages),
                     ]);
             }
-
-            Notification::make()
-                ->title('New Demo User')
-                ->body(collect([
-                    'NAME: '.$record->name,
-                    'EMAIL: '.$record->email,
-                    'USERNAME: '.$record->id,
-                    'URL: '.url('/'),
-                ])->implode("\n"))
-                ->sendToDiscord();
 
             session()->regenerate();
 
