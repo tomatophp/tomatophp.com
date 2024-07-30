@@ -24,7 +24,7 @@
     <meta property="og:type" content="@yield('type', 'website')" />
     <meta property="og:title" content="@yield('title', setting('site_name'))" />
     <meta property="og:description" content="@yield('description', setting('site_description'))" />
-    <meta property="og:image" content="@yield('image', url(setting('site_profile')))" />
+    <meta property="og:image" content="@yield('image', url('storage/' . setting('site_profile')))" />
     <meta property="og:image:alt" content="@yield('title', setting('site_name'))" />
     <meta property="og:url" content="{{url()->current()}}" />
     <meta property="og:site_name" content="{{setting('site_name')}}" />
@@ -32,7 +32,7 @@
     <meta name="twitter:card" content="summary">
     <meta name="twitter:title" content="@yield('title', setting('site_name'))">
     <meta name="twitter:description" content="@yield('description', setting('site_description'))">
-    <meta name="twitter:image" content="@yield('image', url(setting('site_profile')))">
+    <meta name="twitter:image" content="@yield('image', url('storage/' . setting('site_profile')))">
     <meta name="twitter:site" content="@engfadymondy">
     <meta name="twitter:creator" content="@engfadymondy">
 
