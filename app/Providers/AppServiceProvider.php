@@ -33,7 +33,10 @@ use App\Policies\TranslationPolicy;
 use App\Policies\TypePolicy;
 use App\Policies\UserNotificationPolicy;
 use App\Policies\WalletPolicy;
+use Filament\Support\Facades\FilamentView;
+use Filament\View\PanelsRenderHook;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Gate;
@@ -151,5 +154,11 @@ class AppServiceProvider extends ServiceProvider
         Gate::policy(UserNotification::class, UserNotificationPolicy::class);
         Gate::policy(NotificationsTemplate::class, NotificationsTemplatePolicy::class);
         Gate::policy(NotificationsLogs::class, NotificationsLogsPolicy::class);
+
+
+        FilamentView::registerRenderHook(
+            PanelsRenderHook::USER_MENU_AFTER,
+            fn (): string => Blade::render('@livewire(\'quick-menu\')')
+        );
     }
 }
