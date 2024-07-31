@@ -95,21 +95,6 @@ class AppServiceProvider extends ServiceProvider
     {
         URL::forceScheme('https');
 
-        Event::listen(DatabaseMigrated::class, function ($data){
-            config(['database.connections.dynamic.database' => config('tenancy.database.prefix').$data->tenant->id. config('tenancy.database.suffix')]);
-            DB::connection('dynamic')
-                ->table('users')
-                ->insert([
-                    "name" => $data->tenant->name,
-                    "email" => $data->tenant->email,
-                    "password" => $data->tenant->password,
-                    "packages" => json_encode($data->tenant->packages),
-                    "email_verified_at" => Carbon::now(),
-                    "created_at" => Carbon::now(),
-                    "updated_at" => Carbon::now(),
-                ]);
-        });
-
         Event::listen(SyncedResourceChangedInForeignDatabase::class, function ($data){
             config(['database.connections.dynamic.database' => $data->tenant->tenancy_db_name]);
             DB::connection('dynamic')
