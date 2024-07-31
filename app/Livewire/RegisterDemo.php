@@ -240,6 +240,7 @@ class RegisterDemo extends Component implements HasActions, HasForms
                         ->required()
                         ->email(),
                     Forms\Components\TextInput::make('password')
+                        ->required()
                         ->hidden(fn(Get $get) => $get('loginBy') !== 'register')
                         ->label('Password')
                         ->password()
