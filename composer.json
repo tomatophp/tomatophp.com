@@ -34,6 +34,7 @@
         "tomatophp/filament-media-manager": "^1.1",
         "tomatophp/filament-menus": "^1.0",
         "tomatophp/filament-notes": "^1.0",
+        "tomatophp/filament-pwa": "^1.0",
         "tomatophp/filament-settings-hub": "^1.0",
         "tomatophp/filament-translations": "^1.0",
         "tomatophp/filament-users": "^1.0",

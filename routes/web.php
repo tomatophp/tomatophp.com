@@ -14,4 +14,10 @@ Route::domain(config('app.domain'))->middleware(['web'])->group(function () {
         Route::get('/login/{provider}', [AuthController::class, 'provider'])->name('login.provider');
         Route::get('/login/{provider}/callback', [AuthController::class, 'callback'])->name('login.provider.callback');
     });
+
+    Route::as('pwa.')->group(function()
+    {
+        Route::get('/manifest.json', [\TomatoPHP\FilamentPWA\Http\Controllers\PWAController::class, 'index'])->name('manifest');
+        Route::get('/offline/', [\TomatoPHP\FilamentPWA\Http\Controllers\PWAController::class, 'offline'])->name('offline');
+    });
 });

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "6e235ce250c5b1269e166bb40e0ca6a2",
+    "content-hash": "a08287aa64aa442c89fc094a94a87849",
     "packages": [
         {
             "name": "anourvalar/eloquent-serialize",
@@ -14297,6 +14297,72 @@
                 }
             ],
             "time": "2024-07-29T08:17:17+00:00"
+        },
+        {
+            "name": "tomatophp/filament-pwa",
+            "version": "v1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/tomatophp/filament-pwa.git",
+                "reference": "f9773d76e46e732bc470962ccfb7a3310964f0ce"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/tomatophp/filament-pwa/zipball/f9773d76e46e732bc470962ccfb7a3310964f0ce",
+                "reference": "f9773d76e46e732bc470962ccfb7a3310964f0ce",
+                "shasum": ""
+            },
+            "require": {
+                "filament/filament": "^3.0",
+                "filament/notifications": "^3.0",
+                "filament/spatie-laravel-settings-plugin": "^3.0",
+                "php": "^8.1|^8.2",
+                "tomatophp/console-helpers": "^1.1",
+                "tomatophp/filament-settings-hub": "^1.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "TomatoPHP\\FilamentPWA\\FilamentPwaServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "TomatoPHP\\FilamentPWA\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Fady Mondy",
+                    "email": "info@3x1.io"
+                }
+            ],
+            "description": "get a PWA feature on your FilamentPHP app with settings from panel",
+            "keywords": [
+                "filament",
+                "filament-plugin",
+                "laravel",
+                "php",
+                "pwa",
+                "tomatophp"
+            ],
+            "support": {
+                "issues": "https://github.com/tomatophp/filament-pwa/issues",
+                "source": "https://github.com/tomatophp/filament-pwa/tree/v1.0.0"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/3x1io",
+                    "type": "github"
+                }
+            ],
+            "time": "2024-07-31T15:00:26+00:00"
         },
         {
             "name": "tomatophp/filament-settings-hub",

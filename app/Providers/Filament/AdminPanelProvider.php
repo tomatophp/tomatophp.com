@@ -29,6 +29,7 @@ use TomatoPHP\FilamentLocations\FilamentLocationsPlugin;
 use TomatoPHP\FilamentMediaManager\FilamentMediaManagerPlugin;
 use TomatoPHP\FilamentMenus\FilamentMenusPlugin;
 use TomatoPHP\FilamentNotes\FilamentNotesPlugin;
+use TomatoPHP\FilamentPWA\FilamentPWAPlugin;
 use TomatoPHP\FilamentSettingsHub\FilamentSettingsHubPlugin;
 use TomatoPHP\FilamentTranslations\FilamentTranslationsPlugin;
 use TomatoPHP\FilamentTranslations\FilamentTranslationsSwitcherPlugin;
@@ -131,7 +132,8 @@ class AdminPanelProvider extends PanelProvider
                 FilamentShieldPlugin::make(),
                 FilamentWalletPlugin::make()
                     ->useAccounts(),
-                FilamentFcmPlugin::make()
+                FilamentFcmPlugin::make(),
+                FilamentPWAPlugin::make()
             ])
             ->authMiddleware([
                 Authenticate::class,

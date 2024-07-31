@@ -26,4 +26,10 @@ Route::middleware([
     TenancyServiceProvider::TENANCY_IDENTIFICATION,
 ])->group(function () {
     Route::get('/login/url', [\App\Http\Controllers\LoginUrl::class, 'index']);
+
+    Route::as('pwa.')->group(function()
+    {
+        Route::get('/manifest.json', [\TomatoPHP\FilamentPWA\Http\Controllers\PWAController::class, 'index'])->name('manifest');
+        Route::get('/offline/', [\TomatoPHP\FilamentPWA\Http\Controllers\PWAController::class, 'offline'])->name('offline');
+    });
 });
