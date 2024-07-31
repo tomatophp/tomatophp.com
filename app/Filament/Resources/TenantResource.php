@@ -7,6 +7,7 @@ use App\Filament\Resources\TenantResource\RelationManagers;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Forms\Get;
+use Filament\Notifications\Notification;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
@@ -94,6 +95,33 @@ class TenantResource extends Resource
             ->actions([
                 Tables\Actions\ViewAction::make(),
                 Tables\Actions\EditAction::make(),
+                Tables\Actions\Action::make('password')
+                    ->label(trans('filament-accounts::messages.accounts.actions.password'))
+                    ->icon('heroicon-s-lock-closed')
+                    ->color('danger')
+                    ->form([
+                        Forms\Components\TextInput::make('password')
+                            ->label(trans('filament-accounts::messages.accounts.coulmns.password'))
+                            ->password()
+                            ->required()
+                            ->confirmed()
+                            ->maxLength(255),
+                        Forms\Components\TextInput::make('password_confirmation')
+                            ->label(trans('filament-accounts::messages.accounts.coulmns.password_confirmation'))
+                            ->password()
+                            ->required()
+                            ->maxLength(255),
+                    ])
+                    ->action(function (array $data, $record) {
+                        $record->password = bcrypt($data['password']);
+                        $record->save();
+
+                        Notification::make()
+                            ->title('Account Password Changed')
+                            ->body('Account password changed successfully')
+                            ->success()
+                            ->send();
+                    })
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([

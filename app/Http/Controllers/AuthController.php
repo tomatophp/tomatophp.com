@@ -55,8 +55,10 @@ class AuthController extends Controller
             })->first();
 
 
-
-            $sessionData = json_decode(session()->get('demo_user'));
+            $sessionData = null;
+            if(session()->has('demo_user') && isset(json_decode(session()->get('demo_user'))->packages)){
+                $sessionData = json_decode(session()->get('demo_user'));
+            }
             if(!$record){
                 $record = new Tenant();
                 $record->name = $socialUser->name;
@@ -85,17 +87,19 @@ class AuthController extends Controller
                     ->sendToDiscord();
             }
             else {
-                $record->packages = $sessionData->packages;
-                $record->save();
+                if($sessionData){
+                    $record->packages = $sessionData->packages;
+                    $record->save();
 
 
-                config(['database.connections.dynamic.database' => config('tenancy.database.prefix').$record->id. config('tenancy.database.suffix')]);
-                DB::connection('dynamic')
-                    ->table('users')
-                    ->where('email', $record->email)
-                    ->update([
-                        "packages" => json_encode($sessionData->packages),
-                    ]);
+                    config(['database.connections.dynamic.database' => config('tenancy.database.prefix').$record->id. config('tenancy.database.suffix')]);
+                    DB::connection('dynamic')
+                        ->table('users')
+                        ->where('email', $record->email)
+                        ->update([
+                            "packages" => json_encode($sessionData->packages),
+                        ]);
+                }
             }
 
             session()->regenerate();

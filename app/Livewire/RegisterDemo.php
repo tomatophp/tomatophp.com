@@ -18,6 +18,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Validation\Rules\Password;
 use Livewire\Component;
+use Modules\Core\Models\Tenant;
 
 class RegisterDemo extends Component implements HasActions, HasForms
 {
@@ -34,6 +35,7 @@ class RegisterDemo extends Component implements HasActions, HasForms
             ->label('Get Started')
             ->modalHeading('Welcome to TomatoPHP community Demo')
             ->modalDescription('you will start a SaaS for you with sub-domain to test our plugins')
+            ->modalSubmitActionLabel('Register')
             ->form([
                 Forms\Components\Grid::make([
                     'sm' => 1,
@@ -111,16 +113,15 @@ class RegisterDemo extends Component implements HasActions, HasForms
                         ->revealable(filament()->arePasswordsRevealable())
                         ->required()
                         ->dehydrated(false),
-                    Forms\Components\ToggleButtons::make('packages')
+                    Forms\Components\CheckboxList::make('packages')
+                        ->searchable()
                         ->label('Plugins')
-                        ->multiple()
-                        ->inline()
                         ->hint('Select the plugins you want to install')
-                        ->icons(collect(config('app.packages'))->pluck('icon', 'key')->toArray())
-                        ->view('components.packages')
                         ->columnSpanFull()
                         ->required()
                         ->default(["filament-users"])
+                        ->view('components.packages')
+                        ->descriptions(collect(config('app.packages'))->pluck('description', 'key')->toArray())
                         ->options(collect(config('app.packages'))->pluck('label', 'key')->toArray()),
                 ])
             ])
@@ -195,6 +196,96 @@ class RegisterDemo extends Component implements HasActions, HasForms
                 else {
                     session()->put('demo_user', json_encode($data));
 
+                    return redirect()->route('login.provider', ['provider' => $data['loginBy']]);
+                }
+            });
+    }
+
+    public function getLoginAction(): Action
+    {
+        return Action::make('getLoginAction')
+            ->color('info')
+            ->label('Demo Login')
+            ->modalHeading('Welcome to TomatoPHP community Demo')
+            ->modalDescription('please use username or password to login or use social login')
+            ->modalSubmitActionLabel('Login')
+            ->form([
+                Forms\Components\Grid::make([
+                    'sm' => 1,
+                    'lg' => 2
+                ])->schema([
+                    Forms\Components\ToggleButtons::make('loginBy')
+                        ->label('Sign In By')
+                        ->inline()
+                        ->default('github')
+                        ->live()
+                        ->columnSpanFull()
+                        ->colors([
+                            'github' => 'warning',
+                            'discord' => 'info',
+                            'register' => 'danger',
+                        ])
+                        ->icons([
+                            'github' => 'bxl-github',
+                            'discord' => 'bxl-discord',
+                            'register' => 'bxl-discord-alt',
+                        ])
+                        ->options([
+                            'github' => 'Github Account',
+                            'discord' => 'Discord Account',
+                            'register' => 'Discord Username',
+                        ]),
+                    Forms\Components\TextInput::make('email')
+                        ->hidden(fn(Get $get) => $get('loginBy') !== 'register')
+                        ->required()
+                        ->email(),
+                    Forms\Components\TextInput::make('password')
+                        ->hidden(fn(Get $get) => $get('loginBy') !== 'register')
+                        ->label('Password')
+                        ->password()
+                        ->revealable(filament()->arePasswordsRevealable())
+                        ->rule(Password::default())
+                        ->autocomplete('new-password'),
+                ])
+            ])
+            ->action(function (array $data){
+                try {
+                    $this->rateLimit(5);
+                } catch (TooManyRequestsException $exception) {
+                    Notification::make()
+                        ->title(__('filament-panels::pages/auth/login.notifications.throttled.title', [
+                            'seconds' => $exception->secondsUntilAvailable,
+                            'minutes' => ceil($exception->secondsUntilAvailable / 60),
+                        ]))
+                        ->body(array_key_exists('body', __('filament-panels::pages/auth/login.notifications.throttled') ?: []) ? __('filament-panels::pages/auth/login.notifications.throttled.body', [
+                            'seconds' => $exception->secondsUntilAvailable,
+                            'minutes' => ceil($exception->secondsUntilAvailable / 60),
+                        ]) : null)
+                        ->danger()
+                        ->send();
+
+                    return null;
+                }
+                if($data['loginBy'] === 'register'){
+                    $record = Tenant::query()
+                        ->where('email', $data['email'])
+                        ->first();
+                    if(Hash::check($data['password'], $record->password)){
+                        session()->regenerate();
+
+                        $token = tenancy()->impersonate($record, 1, '/app', 'web');
+
+                        return redirect()->to('https://' . $record->domains[0]->domain . '.' . config('app.domain') . '/login/url?token=' . $token->token . '&email=' . $record->email);
+                    }
+                    else {
+                        Notification::make()
+                            ->title('Invalid Credentials')
+                            ->body('Please check your email and password')
+                            ->danger()
+                            ->send();
+                    }
+                }
+                else {
                     return redirect()->route('login.provider', ['provider' => $data['loginBy']]);
                 }
             });

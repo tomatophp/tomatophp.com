@@ -6,9 +6,9 @@
         <p class="w-1/2 text-gray-400">
             TomatoPHP is a community for PHP developers to share their knowledge and experience.
         </p>
-        <div class="my-4">
+        <div class="my-4 flex justify-center items-center gap-4">
             {{ $this->getRegisterAction }}
-
+            {{ $this->getLoginAction }}
         </div>
         <div class="flex justify-center gap-4 my-2">
             <x-filament::link href="https://docs.tomatophp.com" target="_blank">Docs</x-filament::link>

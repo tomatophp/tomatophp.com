@@ -128,6 +128,8 @@ return [
 
     'packages' => [
         'filament-users' => [
+            'description' => 'User Table Resource with a lot of packages integrations',
+            'url' => 'https://docs.tomatophp.com/filament/filament-users',
             'key' => 'filament-users',
             'label' => 'User Manager',
             'icon' => 'heroicon-o-user',
@@ -136,17 +138,21 @@ return [
             ],
         ],
         'filament-translations' => [
+            'description' => 'Manage your translation with DB and cache, you can scan your language tags like trans(), __(), and get the string inside and translate them using UI.',
+            'url' => 'https://docs.tomatophp.com/filament/filament-translations',
             'key' => 'filament-translations',
             'label' => 'Translation Manager',
-            'icon' => 'heroicon-o-language',
+            'icon' => 'heroicon-o-globe-alt',
             'permissions' => [
                 'translation'
             ]
         ],
         'filament-notes' => [
+            'description' => 'Add Sticky Notes to your FilamentPHP dashboard with tons of options and style',
+            'url' => 'https://docs.tomatophp.com/filament/filament-notes',
             'key' => 'filament-notes',
             'label' => 'Sticky Notes',
-            'icon' => 'heroicon-o-document-text',
+            'icon' => 'heroicon-o-bookmark',
             'permissions' => [
                 'note',
                 'page_NotesGroups',
@@ -154,14 +160,18 @@ return [
             ]
         ],
         'filament-types' => [
+            'description' => 'Manage any type on your app in the Database with easy Resources for FilamentPHP',
+            'url' => 'https://docs.tomatophp.com/filament/filament-types',
             'key' => 'filament-types',
             'label' => 'Types Manager',
-            'icon' => 'heroicon-o-rectangle-stack',
+            'icon' => 'heroicon-o-puzzle-piece',
             'permissions' => [
                 'type'
             ]
         ],
         'filament-accounts' => [
+            'description' => 'full accounts manager with API/Notifications/Contacts to manage your contacts and accounts',
+            'url' => 'https://docs.tomatophp.com/filament/filament-accounts',
             'key' => 'filament-accounts',
             'label' => 'Accounts Builder',
             'icon' => 'heroicon-o-user-group',
@@ -171,15 +181,30 @@ return [
                 'team',
             ]
         ],
+        'filament-wallet' => [
+            'description' => 'Account Balance / Wallets Manager For FilamentPHP and Filament Account Builder',
+            'url' => 'https://docs.tomatophp.com/filament/filament-wallet',
+            'key' => 'filament-wallet',
+            'label' => 'Wallets Manager',
+            'icon' => 'heroicon-o-arrows-up-down',
+            'permissions' => [
+                'wallet',
+                'transaction',
+            ]
+        ],
         'filament-api' => [
+            'description' => 'Generate APIs from your filament resource using a single line of code',
+            'url' => 'https://docs.tomatophp.com/filament/filament-api',
             'key' => 'filament-api',
             'label' => 'API Generator',
-            'icon' => 'heroicon-o-share',
+            'icon' => 'heroicon-o-rectangle-stack',
             'permissions' => [
                 'api'
             ]
         ],
         'filament-locations' => [
+            'description' => 'Database Seeds for Locations for FilamentPHP',
+            'url' => 'https://docs.tomatophp.com/filament/filament-locations',
             'key' => 'filament-locations',
             'label' => 'Locations Seeder',
             'icon' => 'heroicon-o-map',
@@ -194,9 +219,11 @@ return [
             ]
         ],
         'filament-cms' => [
+            'description' => 'Full CMS System with easy-to-use page builder & theme manager for FilamentPHP',
+            'url' => 'https://docs.tomatophp.com/filament/filament-cms',
             'key' => 'filament-cms',
             'label' => 'CMS Builder',
-            'icon' => 'heroicon-o-book-open',
+            'icon' => 'heroicon-o-pencil',
             'permissions' => [
                 'post',
                 'category',
@@ -205,9 +232,11 @@ return [
             ]
         ],
         'filament-ecommerce' => [
+            'description' => 'Build your e-commerce store with FilamentPHP with the Power of Tomato CMS Builder',
+            'url' => 'https://docs.tomatophp.com/filament/filament-ecommerce',
             'key' => 'filament-ecommerce',
             'label' => 'E-commerce Builder',
-            'icon' => 'heroicon-o-shopping-cart',
+            'icon' => 'heroicon-o-shopping-bag',
             'permissions' => [
                 'product',
                 'order',
@@ -225,9 +254,11 @@ return [
             ]
         ],
         'filament-alerts' => [
+            'description' => 'Send notifications to users using notification templates and multi-notification channels',
+            'url' => 'https://docs.tomatophp.com/filament/filament-alerts',
             'key' => 'filament-alerts',
             'label' => 'Alerts Sender',
-            'icon' => 'heroicon-o-bell',
+            'icon' => 'heroicon-o-fire',
             'permissions' => [
                 'user::notification',
                 'notifications::logs',
@@ -236,16 +267,9 @@ return [
                 'page_EmailSettingsPage',
             ]
         ],
-        'filament-wallet' => [
-            'key' => 'filament-wallet',
-            'label' => 'Wallets Manager',
-            'icon' => 'heroicon-o-wallet',
-            'permissions' => [
-                'wallet',
-                'transaction',
-            ]
-        ],
         'filament-media-manager' => [
+            'description' => 'Manage your media files using spatie media library with easy-to-use GUI for FilamentPHP',
+            'url' => 'https://docs.tomatophp.com/filament/filament-media-manager',
             'key' => 'filament-manager',
             'label' => 'Media Manager',
             'icon' => 'heroicon-o-photo',
@@ -255,6 +279,8 @@ return [
             ]
         ],
         'filament-menus' => [
+            'description' => 'Menu Database builder to use it as a navigation on Filament Panel or as a Livewire Component',
+            'url' => 'https://docs.tomatophp.com/filament/filament-menus',
             'key' => 'filament-menus',
             'label' => 'Menu Builder',
             'icon' => 'heroicon-o-bars-3',
