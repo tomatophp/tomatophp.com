@@ -36,7 +36,7 @@
     <meta name="twitter:site" content="@engfadymondy">
     <meta name="twitter:creator" content="@engfadymondy">
 
-
+    @filamentPWA
 
 
     @if ($favicon = filament()->getFavicon())
