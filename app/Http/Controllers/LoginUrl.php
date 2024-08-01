@@ -16,41 +16,43 @@ class LoginUrl extends Controller
             'email' => "required|string|email|max:255",
         ]);
 
-        $tenant = \Modules\Core\Models\Tenant::where('email', $request->get('email'))->first();
+        $tenant = \Modules\Core\Models\Tenant::query()->where('email', $request->get('email'))->first();
         if($tenant){
-            $user =  \App\Models\User::find(1);
-            $user->update([
-                'name' => $tenant->name,
-                'email' => $tenant->email,
-                'packages' => $tenant->packages,
-                'password' => $tenant->password,
-            ]);
+            $user =  \App\Models\User::query()->where('email', $tenant->email)->first();
+            if($user){
+                $user->update([
+                    'name' => $tenant->name,
+                    'email' => $tenant->email,
+                    'packages' => $tenant->packages,
+                    'password' => $tenant->password,
+                ]);
 
-            $permissions = [];
-            $packages = config('app.packages');
-            foreach ($packages as $key=>$package){
-                if(in_array($key, $user->packages)){
-                    foreach ($package['permissions'] as $permission){
-                        $permissions  = array_merge($permissions, $this->generatePermissions($permission));
+                $permissions = [];
+                $packages = config('app.packages');
+                foreach ($packages as $key=>$package){
+                    if(in_array($key, $user->packages)){
+                        foreach ($package['permissions'] as $permission){
+                            $permissions  = array_merge($permissions, $this->generatePermissions($permission));
+                        }
                     }
                 }
-            }
 
-            $role = Role::query()->where('name', 'super_admin')->first();
-            if(!$role){
-                $role = Role::query()->create([
-                    'name' => 'super_admin',
-                    'guard_name' => 'web',
-                ]);
-            }
+                $role = Role::query()->where('name', 'super_admin')->first();
+                if(!$role){
+                    $role = Role::query()->create([
+                        'name' => 'super_admin',
+                        'guard_name' => 'web',
+                    ]);
+                }
 
-            $role->syncPermissions($permissions);
-            $user->roles()->sync($role->id);
+                $role->syncPermissions($permissions);
+                $user->roles()->sync($role->id);
 
-            if($tenant->name){
-                $site = new \TomatoPHP\FilamentSettingsHub\Settings\SitesSettings();
-                $site->site_name = $tenant->name;
-                $site->save();
+                if($tenant->name){
+                    $site = new \TomatoPHP\FilamentSettingsHub\Settings\SitesSettings();
+                    $site->site_name = $tenant->name;
+                    $site->save();
+                }
             }
         }
 

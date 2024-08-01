@@ -271,12 +271,22 @@ class RegisterDemo extends Component implements HasActions, HasForms
                     $record = Tenant::query()
                         ->where('email', $data['email'])
                         ->first();
-                    if(Hash::check($data['password'], $record->password)){
-                        session()->regenerate();
 
-                        $token = tenancy()->impersonate($record, 1, '/app', 'web');
+                    if($record){
+                        if(Hash::check($data['password'], $record->password)){
+                            session()->regenerate();
 
-                        return redirect()->to('https://' . $record->domains[0]->domain . '.' . config('app.domain') . '/login/url?token=' . $token->token . '&email=' . $record->email);
+                            $token = tenancy()->impersonate($record, 1, '/app', 'web');
+
+                            return redirect()->to('https://' . $record->domains[0]->domain . '.' . config('app.domain') . '/login/url?token=' . $token->token . '&email=' . $record->email);
+                        }
+                        else {
+                            Notification::make()
+                                ->title('Invalid Credentials')
+                                ->body('Please check your email and password')
+                                ->danger()
+                                ->send();
+                        }
                     }
                     else {
                         Notification::make()
@@ -285,6 +295,7 @@ class RegisterDemo extends Component implements HasActions, HasForms
                             ->danger()
                             ->send();
                     }
+
                 }
                 else {
                     return redirect()->route('login.provider', ['provider' => $data['loginBy']]);
