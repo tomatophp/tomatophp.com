@@ -53,6 +53,8 @@ use TomatoPHP\FilamentAlerts\Models\NotificationsLogs;
 use TomatoPHP\FilamentAlerts\Models\NotificationsTemplate;
 use TomatoPHP\FilamentAlerts\Models\UserNotification;
 use TomatoPHP\FilamentApi\Models\APIResource;
+use TomatoPHP\FilamentBookmarksMenu\Facades\FilamentBookmarksMenu;
+use TomatoPHP\FilamentBookmarksMenu\Services\Contracts\BookmarkType;
 use TomatoPHP\FilamentCms\Models\Category;
 use TomatoPHP\FilamentCms\Models\Form;
 use TomatoPHP\FilamentCms\Models\Post;
@@ -63,6 +65,9 @@ use TomatoPHP\FilamentEcommerce\Models\Order;
 use TomatoPHP\FilamentEcommerce\Models\Product;
 use TomatoPHP\FilamentEcommerce\Models\ReferralCode;
 use TomatoPHP\FilamentEcommerce\Models\ShippingVendor;
+use TomatoPHP\FilamentInvoices\Facades\FilamentInvoices;
+use TomatoPHP\FilamentInvoices\Services\Contracts\InvoiceFor;
+use TomatoPHP\FilamentInvoices\Services\Contracts\InvoiceFrom;
 use TomatoPHP\FilamentLocations\Models\City;
 use TomatoPHP\FilamentLocations\Models\Country;
 use TomatoPHP\FilamentLocations\Models\Currency;
@@ -94,20 +99,6 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         URL::forceScheme('https');
-
-        Event::listen(SyncedResourceChangedInForeignDatabase::class, function ($data){
-            config(['database.connections.dynamic.database' => $data->tenant->tenancy_db_name]);
-            DB::connection('dynamic')
-                ->table('users')
-                ->where('email', $data->model->email)
-                ->update([
-                    "name" => $data->model->name,
-                    "email" => $data->model->email,
-                    "packages" => json_encode($data->model->packages),
-                    "password" => $data->model->password,
-                ]);
-        });
-
 
         Gate::policy(Note::class, NotePolicy::class);
         Gate::policy(Translation::class, TranslationPolicy::class);
@@ -145,5 +136,16 @@ class AppServiceProvider extends ServiceProvider
             PanelsRenderHook::USER_MENU_AFTER,
             fn (): string => Blade::render('@livewire(\'quick-menu\')')
         );
+
+
+        FilamentInvoices::registerFor([
+            InvoiceFor::make(Account::class)
+                ->label('For Account')
+        ]);
+
+        FilamentInvoices::registerFrom([
+            InvoiceFrom::make(Account::class)
+                ->label('From Account')
+        ]);
     }
 }

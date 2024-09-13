@@ -38,6 +38,7 @@ use TomatoPHP\FilamentMenus\FilamentMenusPlugin;
 use TomatoPHP\FilamentNotes\FilamentNotesPlugin;
 use TomatoPHP\FilamentPWA\FilamentPWAPlugin;
 use TomatoPHP\FilamentSettingsHub\FilamentSettingsHubPlugin;
+use TomatoPHP\FilamentTenancy\FilamentTenancyAppPlugin;
 use TomatoPHP\FilamentTranslations\FilamentTranslationsPlugin;
 use TomatoPHP\FilamentTranslations\FilamentTranslationsSwitcherPlugin;
 use TomatoPHP\FilamentTypes\FilamentTypesPlugin;
@@ -52,7 +53,6 @@ class AppPanelProvider extends PanelProvider
             ->default()
             ->id('app')
             ->path('app')
-            ->login(TenantLogin::class)
             ->profile()
             ->databaseNotifications()
             ->colors([
@@ -82,11 +82,6 @@ class AppPanelProvider extends PanelProvider
                 Widgets\FilamentInfoWidget::class,
             ])
             ->middleware([
-                'universal',
-                TenancyServiceProvider::TENANCY_IDENTIFICATION,
-                PreventAccessFromCentralDomains::class,
-            ], isPersistent: true)
-            ->middleware([
                 PreventAccessFromCentralDomains::class,
                 EncryptCookies::class,
                 AddQueuedCookiesToResponse::class,
@@ -97,7 +92,6 @@ class AppPanelProvider extends PanelProvider
                 SubstituteBindings::class,
                 DisableBladeIconComponents::class,
                 DispatchServingFilamentEvent::class,
-                PluginsMiddleware::class
             ])
             ->plugins([
                 FilamentTranslationsSwitcherPlugin::make(),
@@ -147,10 +141,8 @@ class AppPanelProvider extends PanelProvider
                 FilamentFcmPlugin::make(),
                 FilamentPWAPlugin::make()
             ])
-            ->plugin(CorePlugin::make()
-                ->registerResources(false)
-                ->registerPages(false)
-                ->registerWidgets(false)
+            ->plugin(
+                FilamentTenancyAppPlugin::make()
             )
             ->authMiddleware([
                 Authenticate::class,

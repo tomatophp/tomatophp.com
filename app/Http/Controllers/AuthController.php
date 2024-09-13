@@ -9,9 +9,9 @@ use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 use Laravel\Socialite\Facades\Socialite;
-use Modules\Core\Models\Tenant;
 use TomatoPHP\FilamentAccounts\Models\AccountsMeta;
 use TomatoPHP\FilamentAlerts\Services\SendNotification;
+use App\Models\Tenant;
 
 class AuthController extends Controller
 {

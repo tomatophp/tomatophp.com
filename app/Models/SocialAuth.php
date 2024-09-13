@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Modules\Core\Models\Tenant;
+use App\Models\Tenant;
 
 class SocialAuth extends Model
 {

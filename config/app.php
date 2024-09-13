@@ -124,7 +124,7 @@ return [
     ],
 
 
-    'domain' => env('APP_BASE_DOMAIN', 'localhost'),
+    'domain' => env('CENTRAL_DOMAIN', 'localhost'),
 
     'packages' => [
         'filament-users' => [

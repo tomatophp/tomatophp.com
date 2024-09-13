@@ -18,9 +18,9 @@ use Modules\HomeTheme\Http\Controllers\HomeThemeController;
 Route::middleware([
     'web',
     'universal',
-    TenancyServiceProvider::TENANCY_IDENTIFICATION,
+    \TomatoPHP\FilamentTenancy\FilamentTenancyServiceProvider::TENANCY_IDENTIFICATION,
 ])->group(function () {
     Route::get('/', [HomeThemeController::class, 'index']);
 
-    Route::get('/login/url', [\App\Http\Controllers\LoginUrl::class, 'index']);
+    Route::get('/login/url', [\TomatoPHP\FilamentTenancy\Http\Controllers\LoginUrl::class, 'index']);
 });

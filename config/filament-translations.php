@@ -166,6 +166,6 @@ return [
     'language_switcher_middlewares' => [
         'web',
         'universal',
-        TenancyServiceProvider::TENANCY_IDENTIFICATION,
+        \TomatoPHP\FilamentTenancy\FilamentTenancyServiceProvider::TENANCY_IDENTIFICATION,
     ]
 ];

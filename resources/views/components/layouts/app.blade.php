@@ -15,29 +15,23 @@
     <meta charset="utf-8" />
     <meta name="csrf-token" content="{{ csrf_token() }}" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content="@yield('description', setting('site_description'))">
-    <meta name="author" content="@yield('author', setting('site_author'))">
+    <meta name="description" content="@yield('description')">
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="{{url()->current()}}" />
-    <title>@yield('title', setting('site_name'))</title>
+    <title>@yield('title')</title>
 
     <meta property="og:type" content="@yield('type', 'website')" />
-    <meta property="og:title" content="@yield('title', setting('site_name'))" />
-    <meta property="og:description" content="@yield('description', setting('site_description'))" />
-    <meta property="og:image" content="@yield('image', url('storage/' . setting('site_profile')))" />
-    <meta property="og:image:alt" content="@yield('title', setting('site_name'))" />
+    <meta property="og:title" content="@yield('title')" />
+    <meta property="og:description" content="@yield('description')" />
+    <meta property="og:image" content="@yield('image')" />
+    <meta property="og:image:alt" content="@yield('title')" />
     <meta property="og:url" content="{{url()->current()}}" />
-    <meta property="og:site_name" content="{{setting('site_name')}}" />
+    <meta property="og:site_name" content="{{config('app.name')}}" />
 
     <meta name="twitter:card" content="summary">
-    <meta name="twitter:title" content="@yield('title', setting('site_name'))">
-    <meta name="twitter:description" content="@yield('description', setting('site_description'))">
-    <meta name="twitter:image" content="@yield('image', url('storage/' . setting('site_profile')))">
-    <meta name="twitter:site" content="@engfadymondy">
-    <meta name="twitter:creator" content="@engfadymondy">
-
-    @filamentPWA
-
+    <meta name="twitter:title" content="@yield('title')">
+    <meta name="twitter:description" content="@yield('description')">
+    <meta name="twitter:image" content="@yield('image')">
 
     @if ($favicon = filament()->getFavicon())
         <link rel="icon" href="{{ $favicon }}" />
@@ -84,8 +78,6 @@
     </style>
 
     @stack('styles')
-
-    @vite(['resources/js/app.js'])
 
     @livewireStyles
 </head>

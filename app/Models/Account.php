@@ -19,7 +19,10 @@ use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 use TomatoPHP\FilamentAccounts\Traits\InteractsWithTenant;
 use TomatoPHP\FilamentAlerts\Traits\InteractsWithNotifications;
+use TomatoPHP\FilamentEmployees\Traits\IsEmployee;
 use TomatoPHP\FilamentFcm\Traits\InteractsWithFCM;
+use TomatoPHP\FilamentInvoices\Traits\BilledFor;
+use TomatoPHP\FilamentInvoices\Traits\BilledTo;
 use TomatoPHP\FilamentLocations\Models\Location;
 
 /**
@@ -55,6 +58,8 @@ class Account extends Authenticatable implements HasMedia, HasAvatar, HasTenants
     use HasWallet;
     use InteractsWithNotifications;
     use InteractsWithFCM;
+    use BilledFor;
+    use IsEmployee;
 
     /**
      * @var array

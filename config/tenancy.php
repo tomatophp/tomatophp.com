@@ -5,7 +5,7 @@ declare(strict_types=1);
 use Stancl\Tenancy\Database\Models\Domain;
 
 return [
-    'tenant_model' => \Modules\Core\Models\Tenant::class,
+    'tenant_model' => \TomatoPHP\FilamentTenancy\Models\Tenant::class,
     'id_generator' => Stancl\Tenancy\UUIDGenerator::class,
 
     'domain_model' => Domain::class,
@@ -15,7 +15,7 @@ return [
      *
      * Only relevant if you're using the domain or subdomain identification middleware.
      */
-    'central_domains' => array_filter(array_merge([env('APP_BASE_DOMAIN','')], explode(',',env('CENTRAL_DOMAINS','')))),
+    'central_domains' => array_filter(array_merge([env('CENTRAL_DOMAIN','')], explode(',',env('CENTRAL_DOMAINS','')))),
 
     /**
      * Tenancy bootstrappers are executed when tenancy is initialized.
@@ -183,19 +183,7 @@ return [
         '--force' => true, // This needs to be true to run migrations in production.
         '--path' => [
             database_path('migrations/tenant'),
-            base_path('Modules/Core/database/migrations/tenant'),
-            base_path('vendor/spatie/laravel-permission/database/migrations'),
-            base_path('vendor/tomatophp/filament-types/database/migrations'),
-            base_path('vendor/tomatophp/filament-alerts/database/migrations'),
-            base_path('vendor/tomatophp/filament-cms/database/migrations'),
-            base_path('vendor/tomatophp/filament-ecommerce/database/migrations'),
-            base_path('vendor/tomatophp/filament-media-manager/database/migrations'),
-            base_path('vendor/tomatophp/filament-translations/database/migrations'),
-            base_path('vendor/tomatophp/filament-notes/database/migrations'),
-            base_path('vendor/tomatophp/filament-menus/database/migrations'),
-            base_path('vendor/tomatophp/filament-locations/database/migrations'),
-            base_path('vendor/tomatophp/filament-accounts/database/migrations'),
-            base_path('vendor/bavix/laravel-wallet/database'),
+            base_path('/vendor/tomatophp/tomato-tenancy/database/migrations'),
         ],
         '--realpath' => true,
     ],
@@ -204,7 +192,7 @@ return [
      * Parameters used by the tenants:seed command.
      */
     'seeder_parameters' => [
-        '--class' => 'Modules\\Core\\database\\seeders\\TenantsSeeder', // root seeder class
+        // '--class' => '', // your seeder here
         // '--force' => true,
     ],
 ];

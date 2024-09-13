@@ -16,7 +16,7 @@ class LoginUrl extends Controller
             'email' => "required|string|email|max:255",
         ]);
 
-        $tenant = \Modules\Core\Models\Tenant::query()->where('email', $request->get('email'))->first();
+        $tenant = \App\Models\Tenant::query()->where('email', $request->get('email'))->first();
         if($tenant){
             $user =  \App\Models\User::query()->where('email', $tenant->email)->first();
             if($user){
@@ -86,18 +86,18 @@ class LoginUrl extends Controller
 
         $permissionsIds=[];
         foreach ($array as $value) {
-           $check = Permission::query()->where('name', $value)->first();
-           if(!$check){
+            $check = Permission::query()->where('name', $value)->first();
+            if(!$check){
                 $getId = Permission::query()->create([
                     'name' => $value,
                     'guard_name' => 'web',
                 ]);
 
-               $permissionsIds[] = $getId->id;
-           }
-           else {
-               $permissionsIds[] = $check->id;
-           }
+                $permissionsIds[] = $getId->id;
+            }
+            else {
+                $permissionsIds[] = $check->id;
+            }
         }
 
         return $permissionsIds;

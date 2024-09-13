@@ -6,6 +6,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Laravelcm\Subscriptions\Traits\HasPlanSubscriptions;
 use Spatie\Permission\Traits\HasRoles;
 use TomatoPHP\FilamentAlerts\Traits\InteractsWithNotifications;
 use TomatoPHP\FilamentFcm\Traits\InteractsWithFCM;
@@ -16,6 +17,7 @@ class User extends Authenticatable
     use HasRoles;
     use InteractsWithNotifications;
     use InteractsWithFCM;
+    use HasPlanSubscriptions;
 
     /**
      * The attributes that are mass assignable.

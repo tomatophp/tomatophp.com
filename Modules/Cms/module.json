@@ -1,0 +1,27 @@
+{
+    "name": "Cms",
+    "alias": "cms",
+    "description": {
+        "ar": "CMS Theme for build a blog or persional website",
+        "en": "CMS Theme for build a blog or persional website",
+        "gr": "CMS Theme for build a blog or persional website",
+        "sp": "CMS Theme for build a blog or persional website"
+    },
+    "keywords": [],
+    "priority": 0,
+    "providers": [
+        "Modules\\Cms\\Providers\\CmsServiceProvider"
+    ],
+    "files": [],
+    "title": {
+        "ar": "Cms",
+        "en": "Cms",
+        "gr": "Cms",
+        "sp": "Cms"
+    },
+    "placeholder": "placeholder.webp",
+    "type": "theme",
+    "color": "#F01E19",
+    "icon": "heroicon-s-swatch",
+    "version": "v1.0.0"
+}

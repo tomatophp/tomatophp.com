@@ -5,8 +5,12 @@ namespace App\Livewire;
 use DanHarrin\LivewireRateLimiting\Exceptions\TooManyRequestsException;
 use DanHarrin\LivewireRateLimiting\WithRateLimiting;
 use Filament\Actions\Action;
+use Filament\Actions\Concerns\InteractsWithActions;
+use Filament\Actions\Contracts\HasActions;
 use Filament\Facades\Filament;
 use Filament\Forms\Components\TextInput;
+use Filament\Forms\Concerns\InteractsWithForms;
+use Filament\Forms\Contracts\HasForms;
 use Filament\Forms\Form;
 use Filament\Notifications\Notification;
 use Filament\Pages\Concerns\InteractsWithFormActions;
@@ -15,14 +19,13 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Validation\ValidationException;
 use Livewire\Component;
-use Modules\Core\Models\Tenant;
 
-class RegisterOtp extends SimplePage
+class RegisterOtp extends Component implements HasActions, HasForms
 {
     use InteractsWithFormActions;
+    use InteractsWithForms;
+    use InteractsWithActions;
     use WithRateLimiting;
-
-    protected static string $view = 'livewire.register-otp';
 
     public array $data;
     public \stdClass $user;
@@ -176,6 +179,11 @@ class RegisterOtp extends SimplePage
                     ->success()
                     ->send();
             });
+    }
+
+    public function render()
+    {
+        return view('livewire.register-otp');
     }
 
 }
