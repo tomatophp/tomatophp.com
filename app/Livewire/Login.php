@@ -39,21 +39,19 @@ class Login extends Component implements HasForms, HasActions
     public function form(Form $form): Form
     {
         return $form->schema([
-            Forms\Components\Section::make("Login To Your SaaS Demo")
-                ->description('Please use your email and password to login to your account.')
+            Forms\Components\Section::make(trans('cms::messages.login.title'))
+                ->description(trans('cms::messages.login.description'))
                 ->schema([
                     Forms\Components\TextInput::make('email')
-                        ->hidden(fn(Get $get) => $get('loginBy') !== 'register')
+                        ->label(trans('cms::messages.login.form.email'))
                         ->required()
                         ->email(),
                     Forms\Components\TextInput::make('password')
+                        ->label(trans('cms::messages.login.form.password'))
                         ->required()
-                        ->hidden(fn(Get $get) => $get('loginBy') !== 'register')
-                        ->label('Password')
                         ->password()
                         ->revealable(filament()->arePasswordsRevealable())
                         ->rule(Password::default())
-                        ->autocomplete('new-password')
                 ])
         ])->statePath('data');
     }
@@ -101,16 +99,16 @@ class Login extends Component implements HasForms, HasActions
             }
             else {
                 Notification::make()
-                    ->title('Invalid Credentials')
-                    ->body('Please check your email and password')
+                    ->title(trans('cms::messages.login.notifications.error.title'))
+                    ->body(trans('cms::messages.login.notifications.error.body'))
                     ->danger()
                     ->send();
             }
         }
         else {
             Notification::make()
-                ->title('Invalid Credentials')
-                ->body('Please check your email and password')
+                ->title(trans('cms::messages.login.notifications.error.title'))
+                ->body(trans('cms::messages.login.notifications.error.body'))
                 ->danger()
                 ->send();
         }

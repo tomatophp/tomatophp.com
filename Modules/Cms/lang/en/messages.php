@@ -74,5 +74,57 @@ return [
         "no" => "No",
         "found" => "Found",
         "description" => "Sorry Your Filter Did Not Match Any"
-    ]
+    ],
+    "register" => [
+        'title' => 'Register Your SaaS Demo',
+        'description' => 'Please use your email and password to register your account.',
+        'form' => [
+            'loginBy' => 'Sign Up By',
+            'social' => [
+                'github' => 'Github Account',
+                'discord' => 'Discord Account',
+                'register' => 'Discord Username',
+            ],
+            'name' => 'Discord username',
+            'id' => 'Unique ID',
+            'domain' => 'Sub-Domain',
+            'email' => 'Email',
+            'phone' => 'Phone',
+            'password' => 'Password',
+            'passwordConfirmation' => 'Password Confirmation',
+            'packages' => 'Plugins',
+            'packages_hint' =>  'Select the plugins you want to install',
+            'notifications' => [
+                'error' => [
+                    'title' => 'Error',
+                    'body' => 'There was an error registering your account. Please try again.',
+                ],
+                'success' => [
+                    'title' => 'Check discord server',
+                    'body' => 'We have sent your OTP to our discord server #otp channel',
+                ]
+            ]
+        ],
+        'submit' => 'Register',
+        'already' => 'Already have an account?',
+        'login' => 'Login',
+    ],
+    "login" => [
+        'title' => 'Login to Your SaaS Demo',
+        'description' => 'Please use your email and password to login to your account.',
+        'form' => [
+            'email' => 'Email',
+            'password' => 'Password',
+        ],
+        'dont' => "Don't have account? please",
+        'register' => 'Register',
+        'login' => 'Login',
+        'or' => 'OR',
+        'notifications' => [
+            'error' => [
+                'title' => 'Invalid Credentials',
+                'body' => 'Please check your email and password',
+            ],
+        ]
+    ],
 ];

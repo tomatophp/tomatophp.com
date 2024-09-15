@@ -41,11 +41,11 @@ class Register extends Component implements HasForms, HasActions
     public function form(Form $form): Form
     {
         return $form->schema([
-            Forms\Components\Section::make('Register Your SaaS Demo')
-                ->description('Please use your email and password to register your account.')
-            ->schema([
+            Forms\Components\Section::make(trans('cms::messages.register.title'))
+                ->description(trans('cms::messages.register.description'))
+                ->schema([
                 Forms\Components\ToggleButtons::make('loginBy')
-                    ->label('Sign Up By')
+                    ->label(trans('cms::messages.register.form.loginBy'))
                     ->inline()
                     ->default('github')
                     ->live()
@@ -61,12 +61,12 @@ class Register extends Component implements HasForms, HasActions
                         'register' => 'bxl-discord-alt',
                     ])
                     ->options([
-                        'github' => 'Github Account',
-                        'discord' => 'Discord Account',
-                        'register' => 'Discord Username',
+                        'github' => trans('cms::messages.register.form.social.github'),
+                        'discord' => trans('cms::messages.register.form.social.discord'),
+                        'register' => trans('cms::messages.register.form.social.register'),
                     ]),
                 Forms\Components\TextInput::make('name')
-                    ->label('Discord username')
+                    ->label(trans('cms::messages.register.form.name'))
                     ->hidden(fn(Get $get) => $get('loginBy') !== 'register')
                     ->required()
                     ->unique(table:'tenants', ignoreRecord: true)->live(onBlur: true)
@@ -76,31 +76,33 @@ class Register extends Component implements HasForms, HasActions
                         $set('domain', \Str::of($state)->slug()->toString());
                     }),
                 Forms\Components\TextInput::make('id')
+                    ->label(trans('cms::messages.register.form.id'))
                     ->hidden(fn(Get $get) => $get('loginBy') !== 'register')
                     ->disabled()
-                    ->label('Unique ID')
                     ->required()
                     ->unique(table: 'tenants', ignoreRecord: true),
                 Forms\Components\TextInput::make('domain')
+                    ->label(trans('cms::messages.register.form.domain'))
                     ->disabled()
                     ->hidden(fn(Get $get) => $get('loginBy') !== 'register')
-                    ->label('Sub-Domain')
                     ->required()
                     ->unique(table: 'domains',ignoreRecord: true)
                     ->prefix('https://')
                     ->suffix(".".request()->getHost())
                 ,
                 Forms\Components\TextInput::make('email')
+                    ->label(trans('cms::messages.register.form.email'))
                     ->hidden(fn(Get $get) => $get('loginBy') !== 'register')
                     ->required()
                     ->email(),
                 Forms\Components\TextInput::make('phone')
+                    ->label(trans('cms::messages.register.form.phone'))
                     ->hidden(fn(Get $get) => $get('loginBy') !== 'register')
                     ->required()
                     ->tel(),
                 Forms\Components\TextInput::make('password')
+                    ->label(trans('cms::messages.register.form.password'))
                     ->hidden(fn(Get $get) => $get('loginBy') !== 'register')
-                    ->label('Password')
                     ->password()
                     ->revealable(filament()->arePasswordsRevealable())
                     ->rule(Password::default())
@@ -110,17 +112,17 @@ class Register extends Component implements HasForms, HasActions
                     ->live(debounce: 500)
                     ->same('passwordConfirmation'),
                 Forms\Components\TextInput::make('passwordConfirmation')
+                    ->label(trans('cms::messages.register.form.passwordConfirmation'))
                     ->hidden(fn(Get $get) => $get('loginBy') !== 'register')
-                    ->label('Password Confirmation')
                     ->password()
                     ->revealable(filament()->arePasswordsRevealable())
                     ->required()
                     ->dehydrated(false),
                 Forms\Components\CheckboxList::make('packages')
+                    ->label(trans('cms::messages.register.form.packages'))
+                    ->hint(trans('cms::messages.register.form.packages_hint'))
                     ->bulkToggleable()
                     ->searchable()
-                    ->label('Plugins')
-                    ->hint('Select the plugins you want to install')
                     ->columnSpanFull()
                     ->required()
                     ->view('components.packages')
@@ -188,14 +190,15 @@ class Register extends Component implements HasForms, HasActions
 
             }catch (\Exception $e){
                 Notification::make()
-                    ->title('Something went wrong')
+                    ->title(trans('cms::messages.register.form.notifications.error.title'))
+                    ->body(trans('cms::messages.register.form.notifications.error.body'))
                     ->danger()
                     ->send();
             }
 
             Notification::make()
-                ->title('Check discord server')
-                ->body('We have sent your OTP to our discord server #otp channel')
+                ->title(trans('cms::messages.register.form.notifications.success.title'))
+                ->body(trans('cms::messages.register.form.notifications.success.body'))
                 ->success()
                 ->send();
 

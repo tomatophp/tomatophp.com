@@ -3,9 +3,9 @@
         {{ $this->form }}
 
         <div class="my-4 flex flex-col justify-center gap-4">
-            <x-cms-main-button type="button" wire:click="submit()" :label="__('Login')" icon="bxs-log-in" />
+            <x-cms-main-button type="button" wire:click="submit()" :label="trans('cms::messages.login.login')" icon="bxs-log-in" />
             <div class="text-center">
-                OR
+                {{ trans('cms::messages.login.or') }}
             </div>
             <div class="flex justify-center gap-4">
                 <a x-tooltip="{'content': 'Login With Github', theme: $store.theme}" href="{{ route('login.provider', ['provider' => 'github']) }}">
@@ -16,7 +16,7 @@
                 </a>
             </div>
             <div class="text-center">
-                Don't have account? please <a href="{{ url(app()->getLocale() . '/register') }}" class="text-primary-600 hover:text-primary-800">Register</a>
+                 {{ trans('cms::messages.login.dont') }} <a href="{{ url(app()->getLocale() . '/register') }}" class="text-primary-600 hover:text-primary-800">{{ trans('cms::messages.login.register') }}</a>
             </div>
         </div>
     </div>
