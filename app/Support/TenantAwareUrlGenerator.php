@@ -8,7 +8,7 @@ class TenantAwareUrlGenerator extends DefaultUrlGenerator
 {
     public function getUrl(): string
     {
-        $url = asset($this->getPathRelativeToRoot());
+        $url = asset('storage/'.$this->getPathRelativeToRoot());
 
         $url = $this->versionUrl($url);
 
