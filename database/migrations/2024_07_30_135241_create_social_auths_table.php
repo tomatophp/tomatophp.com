@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('social_auths', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(\Modules\Core\Models\Tenant::class);
+            $table->foreignIdFor(\App\Models\Tenant::class);
 
             $table->string('provider');
             $table->string('provider_id');

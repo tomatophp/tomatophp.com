@@ -2,8 +2,6 @@
 
 namespace App\Providers\Filament;
 
-use App\Filament\Pages\TenantLogin;
-use App\Http\Middleware\PluginsMiddleware;
 use App\Providers\TenancyServiceProvider;
 use BezhanSalleh\FilamentShield\FilamentShieldPlugin;
 use Filament\Facades\Filament;
@@ -32,18 +30,26 @@ use TomatoPHP\FilamentApi\FilamentAPIPlugin;
 use TomatoPHP\FilamentCms\FilamentCMSPlugin;
 use TomatoPHP\FilamentEcommerce\FilamentEcommercePlugin;
 use TomatoPHP\FilamentFcm\FilamentFcmPlugin;
+use TomatoPHP\FilamentInvoices\FilamentInvoicesPlugin;
 use TomatoPHP\FilamentLocations\FilamentLocationsPlugin;
 use TomatoPHP\FilamentMediaManager\FilamentMediaManagerPlugin;
 use TomatoPHP\FilamentMenus\FilamentMenusPlugin;
 use TomatoPHP\FilamentNotes\FilamentNotesPlugin;
+use TomatoPHP\FilamentPayments\FilamentPaymentsPlugin;
+use TomatoPHP\FilamentPos\FilamentPOSPlugin;
 use TomatoPHP\FilamentPWA\FilamentPWAPlugin;
 use TomatoPHP\FilamentSettingsHub\FilamentSettingsHubPlugin;
+use TomatoPHP\FilamentSimpleTheme\FilamentSimpleThemePlugin;
+use TomatoPHP\FilamentSubscriptions\Filament\Pages\Billing;
+use TomatoPHP\FilamentSubscriptions\FilamentSubscriptionsPlugin;
+use TomatoPHP\FilamentSubscriptions\FilamentSubscriptionsProvider;
 use TomatoPHP\FilamentTenancy\FilamentTenancyAppPlugin;
 use TomatoPHP\FilamentTranslations\FilamentTranslationsPlugin;
 use TomatoPHP\FilamentTranslations\FilamentTranslationsSwitcherPlugin;
 use TomatoPHP\FilamentTypes\FilamentTypesPlugin;
 use TomatoPHP\FilamentUsers\FilamentUsersPlugin;
 use TomatoPHP\FilamentWallet\FilamentWalletPlugin;
+use TomatoPHP\FilamentWithdrawals\FilamentWithdrawalsPlugin;
 
 class AppPanelProvider extends PanelProvider
 {
@@ -75,6 +81,7 @@ class AppPanelProvider extends PanelProvider
             ->discoverPages(in: app_path('Filament/App/Pages'), for: 'App\\Filament\\App\\Pages')
             ->pages([
                 Pages\Dashboard::class,
+                Billing::class
             ])
             ->discoverWidgets(in: app_path('Filament/App/Widgets'), for: 'App\\Filament\\App\\Widgets')
             ->widgets([
@@ -139,11 +146,19 @@ class AppPanelProvider extends PanelProvider
                 FilamentWalletPlugin::make()
                     ->useAccounts(),
                 FilamentFcmPlugin::make(),
-                FilamentPWAPlugin::make()
+                FilamentPWAPlugin::make(),
+                FilamentWithdrawalsPlugin::make(),
+                FilamentPOSPlugin::make(),
+                FilamentInvoicesPlugin::make(),
+                FilamentPaymentsPlugin::make(),
             ])
             ->plugin(
                 FilamentTenancyAppPlugin::make()
             )
+            ->plugin(
+                FilamentSubscriptionsPlugin::make(),
+            )
+            ->plugin(FilamentSimpleThemePlugin::make())
             ->authMiddleware([
                 Authenticate::class,
             ]);

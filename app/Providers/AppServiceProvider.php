@@ -15,6 +15,7 @@ use App\Policies\CurrencyPolicy;
 use App\Policies\FolderPolicy;
 use App\Policies\FormPolicy;
 use App\Policies\GiftCardPolicy;
+use App\Policies\InvoicePolicy;
 use App\Policies\LanguagePolicy;
 use App\Policies\LocationPolicy;
 use App\Policies\MediaPolicy;
@@ -23,16 +24,21 @@ use App\Policies\NotePolicy;
 use App\Policies\NotificationsLogsPolicy;
 use App\Policies\NotificationsTemplatePolicy;
 use App\Policies\OrderPolicy;
+use App\Policies\PaymentPolicy;
+use App\Policies\PlanPolicy;
 use App\Policies\PostPolicy;
 use App\Policies\ProductPolicy;
 use App\Policies\ReferralCodePolicy;
 use App\Policies\ShippingVendorPolicy;
+use App\Policies\SubscriptionPolicy;
 use App\Policies\TeamPolicy;
 use App\Policies\TransactionPolicy;
 use App\Policies\TranslationPolicy;
 use App\Policies\TypePolicy;
 use App\Policies\UserNotificationPolicy;
 use App\Policies\WalletPolicy;
+use App\Policies\WithdrawalMethodPolicy;
+use App\Policies\WithdrawalRequestPolicy;
 use Filament\Support\Facades\FilamentView;
 use Filament\View\PanelsRenderHook;
 use Illuminate\Support\Carbon;
@@ -42,6 +48,8 @@ use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\ServiceProvider;
+use Laravelcm\Subscriptions\Models\Plan;
+use Laravelcm\Subscriptions\Models\Subscription;
 use Stancl\Tenancy\Events\DatabaseCreated;
 use Stancl\Tenancy\Events\DatabaseMigrated;
 use Stancl\Tenancy\Events\SyncedResourceChangedInForeignDatabase;
@@ -66,6 +74,7 @@ use TomatoPHP\FilamentEcommerce\Models\Product;
 use TomatoPHP\FilamentEcommerce\Models\ReferralCode;
 use TomatoPHP\FilamentEcommerce\Models\ShippingVendor;
 use TomatoPHP\FilamentInvoices\Facades\FilamentInvoices;
+use TomatoPHP\FilamentInvoices\Models\Invoice;
 use TomatoPHP\FilamentInvoices\Services\Contracts\InvoiceFor;
 use TomatoPHP\FilamentInvoices\Services\Contracts\InvoiceFrom;
 use TomatoPHP\FilamentLocations\Models\City;
@@ -77,10 +86,13 @@ use TomatoPHP\FilamentMediaManager\Models\Folder;
 use TomatoPHP\FilamentMediaManager\Models\Media;
 use TomatoPHP\FilamentMenus\Models\Menu;
 use TomatoPHP\FilamentNotes\Models\Note;
+use TomatoPHP\FilamentPayments\Models\Payment;
 use TomatoPHP\FilamentTranslations\Models\Translation;
 use TomatoPHP\FilamentTypes\Models\Type;
 use TomatoPHP\FilamentWallet\Models\Transaction;
 use TomatoPHP\FilamentWallet\Models\Wallet;
+use TomatoPHP\FilamentWithdrawals\Models\WithdrawalMethod;
+use TomatoPHP\FilamentWithdrawals\Models\WithdrawalRequest;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -99,6 +111,19 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         URL::forceScheme('https');
+
+        Event::listen(SyncedResourceChangedInForeignDatabase::class, function ($data){
+            config(['database.connections.dynamic.database' => $data->tenant->tenancy_db_name]);
+            DB::connection('dynamic')
+                ->table('users')
+                ->where('email', $data->model->email)
+                ->update([
+                    "name" => $data->model->name,
+                    "email" => $data->model->email,
+                    "packages" => json_encode($data->model->packages),
+                    "password" => $data->model->password,
+                ]);
+        });
 
         Gate::policy(Note::class, NotePolicy::class);
         Gate::policy(Translation::class, TranslationPolicy::class);
@@ -130,6 +155,12 @@ class AppServiceProvider extends ServiceProvider
         Gate::policy(UserNotification::class, UserNotificationPolicy::class);
         Gate::policy(NotificationsTemplate::class, NotificationsTemplatePolicy::class);
         Gate::policy(NotificationsLogs::class, NotificationsLogsPolicy::class);
+        Gate::policy(Invoice::class, InvoicePolicy::class);
+        Gate::policy(Payment::class, PaymentPolicy::class);
+        Gate::policy(Plan::class, PlanPolicy::class);
+        Gate::policy(Subscription::class, SubscriptionPolicy::class);
+        Gate::policy(WithdrawalMethod::class, WithdrawalMethodPolicy::class);
+        Gate::policy(WithdrawalRequest::class, WithdrawalRequestPolicy::class);
 
 
         FilamentView::registerRenderHook(

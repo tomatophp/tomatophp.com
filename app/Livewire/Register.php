@@ -6,6 +6,7 @@ use DanHarrin\LivewireRateLimiting\Exceptions\TooManyRequestsException;
 use DanHarrin\LivewireRateLimiting\WithRateLimiting;
 use Filament\Actions\Concerns\InteractsWithActions;
 use Filament\Actions\Contracts\HasActions;
+use Filament\Forms\Components\Actions\Action;
 use Filament\Forms\Concerns\InteractsWithForms;
 use Filament\Forms\Contracts\HasForms;
 use Filament\Forms\Form;
@@ -25,7 +26,10 @@ class Register extends Component implements HasForms, HasActions
     use InteractsWithForms;
     use WithRateLimiting;
 
-    public array $data = [];
+    public array $data = [
+        'packages' => ["filament-users"],
+        'loginBy' => 'register',
+    ];
 
     public function mount()
     {
@@ -40,8 +44,30 @@ class Register extends Component implements HasForms, HasActions
             Forms\Components\Section::make('Register Your SaaS Demo')
                 ->description('Please use your email and password to register your account.')
             ->schema([
+                Forms\Components\ToggleButtons::make('loginBy')
+                    ->label('Sign Up By')
+                    ->inline()
+                    ->default('github')
+                    ->live()
+                    ->columnSpanFull()
+                    ->colors([
+                        'github' => 'warning',
+                        'discord' => 'info',
+                        'register' => 'danger',
+                    ])
+                    ->icons([
+                        'github' => 'bxl-github',
+                        'discord' => 'bxl-discord',
+                        'register' => 'bxl-discord-alt',
+                    ])
+                    ->options([
+                        'github' => 'Github Account',
+                        'discord' => 'Discord Account',
+                        'register' => 'Discord Username',
+                    ]),
                 Forms\Components\TextInput::make('name')
                     ->label('Discord username')
+                    ->hidden(fn(Get $get) => $get('loginBy') !== 'register')
                     ->required()
                     ->unique(table:'tenants', ignoreRecord: true)->live(onBlur: true)
                     ->columnSpanFull()
@@ -50,12 +76,14 @@ class Register extends Component implements HasForms, HasActions
                         $set('domain', \Str::of($state)->slug()->toString());
                     }),
                 Forms\Components\TextInput::make('id')
+                    ->hidden(fn(Get $get) => $get('loginBy') !== 'register')
                     ->disabled()
                     ->label('Unique ID')
                     ->required()
                     ->unique(table: 'tenants', ignoreRecord: true),
                 Forms\Components\TextInput::make('domain')
                     ->disabled()
+                    ->hidden(fn(Get $get) => $get('loginBy') !== 'register')
                     ->label('Sub-Domain')
                     ->required()
                     ->unique(table: 'domains',ignoreRecord: true)
@@ -63,12 +91,15 @@ class Register extends Component implements HasForms, HasActions
                     ->suffix(".".request()->getHost())
                 ,
                 Forms\Components\TextInput::make('email')
+                    ->hidden(fn(Get $get) => $get('loginBy') !== 'register')
                     ->required()
                     ->email(),
                 Forms\Components\TextInput::make('phone')
+                    ->hidden(fn(Get $get) => $get('loginBy') !== 'register')
                     ->required()
                     ->tel(),
                 Forms\Components\TextInput::make('password')
+                    ->hidden(fn(Get $get) => $get('loginBy') !== 'register')
                     ->label('Password')
                     ->password()
                     ->revealable(filament()->arePasswordsRevealable())
@@ -79,18 +110,19 @@ class Register extends Component implements HasForms, HasActions
                     ->live(debounce: 500)
                     ->same('passwordConfirmation'),
                 Forms\Components\TextInput::make('passwordConfirmation')
+                    ->hidden(fn(Get $get) => $get('loginBy') !== 'register')
                     ->label('Password Confirmation')
                     ->password()
                     ->revealable(filament()->arePasswordsRevealable())
                     ->required()
                     ->dehydrated(false),
                 Forms\Components\CheckboxList::make('packages')
+                    ->bulkToggleable()
                     ->searchable()
                     ->label('Plugins')
                     ->hint('Select the plugins you want to install')
                     ->columnSpanFull()
                     ->required()
-                    ->default(["filament-users"])
                     ->view('components.packages')
                     ->descriptions(collect(config('app.packages'))->pluck('description', 'key')->toArray())
                     ->options(collect(config('app.packages'))->pluck('label', 'key')->toArray()),
@@ -121,54 +153,59 @@ class Register extends Component implements HasForms, HasActions
 
             return null;
         }
+        if($data['loginBy'] === 'register'){
+            $otp = substr(number_format(time() * rand(), 0, '', ''), 0, 6);
+            $data['id'] = \Str::of($data['name'])->slug('_')->toString();
+            $data['domain'] =  \Str::of($data['name'])->slug()->toString();
+            session()->put('demo_user', json_encode($data));
+            session()->put('demo_otp', $otp);
 
-        $otp = substr(number_format(time() * rand(), 0, '', ''), 0, 6);
-        $data['id'] = \Str::of($data['name'])->slug('_')->toString();
-        $data['domain'] =  \Str::of($data['name'])->slug()->toString();
-        session()->put('demo_user', json_encode($data));
-        session()->put('demo_otp', $otp);
-
-        Notification::make()
-            ->title('New Demo User')
-            ->body(collect([
-                'NAME: '.$data['name'],
-                'EMAIL: '.$data['email'],
-                'USERNAME: '.$data['domain'],
-                'OTP: '.$otp,
-                'PACKAGES: '.collect($data['packages'])->implode(','),
-                'URL: '.'https://'.\Str::of($data['name'])->slug()->toString().'.'.config('app.domain'),
-            ])->implode("\n"))
-            ->sendToDiscord();
-
-        try {
-            $embeds = [];
-            $embeds['description'] = "your OTP is: ". $otp;
-            $embeds['url'] = url('/otp');
-
-            $params = [
-                'content' => "@" . $data['domain'],
-                'embeds' => [
-                    $embeds
-                ]
-            ];
-
-            Http::post(config('services.discord.otp-webhook'), $params)->json();
-
-        }catch (\Exception $e){
             Notification::make()
-                ->title('Something went wrong')
-                ->danger()
+                ->title('New Demo User')
+                ->body(collect([
+                    'NAME: '.$data['name'],
+                    'EMAIL: '.$data['email'],
+                    'USERNAME: '.$data['domain'],
+                    'OTP: '.$otp,
+                    'PACKAGES: '.collect($data['packages'])->implode(','),
+                    'URL: '.'https://'.\Str::of($data['name'])->slug()->toString().'.'.config('app.domain'),
+                ])->implode("\n"))
+                ->sendToDiscord();
+
+            try {
+                $embeds = [];
+                $embeds['description'] = "your OTP is: ". $otp;
+                $embeds['url'] = url('/otp');
+
+                $params = [
+                    'content' => "@" . $data['domain'],
+                    'embeds' => [
+                        $embeds
+                    ]
+                ];
+
+                Http::post(config('services.discord.otp-webhook'), $params)->json();
+
+            }catch (\Exception $e){
+                Notification::make()
+                    ->title('Something went wrong')
+                    ->danger()
+                    ->send();
+            }
+
+            Notification::make()
+                ->title('Check discord server')
+                ->body('We have sent your OTP to our discord server #otp channel')
+                ->success()
                 ->send();
+
+
+            return redirect()->route(app()->getLocale() . '.auth.otp');
+        }
+        else {
+            return redirect()->route('login.provider', ['provider' => $data['loginBy']]);
         }
 
-        Notification::make()
-            ->title('Check discord server')
-            ->body('We have sent your OTP to our discord server #otp channel')
-            ->success()
-            ->send();
-
-
-        return redirect()->route(app()->getLocale() . '.auth.otp');
     }
 
     public function render()

@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
@@ -26,33 +28,43 @@ class LoginUrl extends Controller
                     'packages' => $tenant->packages,
                     'password' => $tenant->password,
                 ]);
+            }
+            else {
+                $user = new User();
+                $user->name = $tenant->name;
+                $user->email = $tenant->email;
+                $user->password = $tenant->password;
+                $user->packages = $tenant->packages;
+                $user->email_verified_at = Carbon::now();
+                $user->save();
+            }
 
-                $permissions = [];
-                $packages = config('app.packages');
-                foreach ($packages as $key=>$package){
-                    if(in_array($key, $user->packages)){
-                        foreach ($package['permissions'] as $permission){
-                            $permissions  = array_merge($permissions, $this->generatePermissions($permission));
-                        }
+            $permissions = [];
+            $packages = config('app.packages');
+            foreach ($packages as $key=>$package){
+                if(in_array($key, $user->packages)){
+                    foreach ($package['permissions'] as $permission){
+                        $permissions  = array_merge($permissions, $this->generatePermissions($permission));
                     }
                 }
+            }
 
-                $role = Role::query()->where('name', 'super_admin')->first();
-                if(!$role){
-                    $role = Role::query()->create([
-                        'name' => 'super_admin',
-                        'guard_name' => 'web',
-                    ]);
-                }
 
-                $role->syncPermissions($permissions);
-                $user->roles()->sync($role->id);
+            $role = Role::query()->where('name', 'super_admin')->first();
+            if(!$role){
+                $role = Role::query()->create([
+                    'name' => 'super_admin',
+                    'guard_name' => 'web',
+                ]);
+            }
 
-                if($tenant->name){
-                    $site = new \TomatoPHP\FilamentSettingsHub\Settings\SitesSettings();
-                    $site->site_name = $tenant->name;
-                    $site->save();
-                }
+            $role->syncPermissions($permissions);
+            $user->roles()->sync($role->id);
+
+            if($tenant->name){
+                $site = new \TomatoPHP\FilamentSettingsHub\Settings\SitesSettings();
+                $site->site_name = $tenant->name;
+                $site->save();
             }
         }
 
@@ -86,7 +98,7 @@ class LoginUrl extends Controller
 
         $permissionsIds=[];
         foreach ($array as $value) {
-            $check = Permission::query()->where('name', $value)->first();
+            $check = Permission::query()->where('name', $value)->where('guard_name', 'web')->first();
             if(!$check){
                 $getId = Permission::query()->create([
                     'name' => $value,

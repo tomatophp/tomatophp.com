@@ -2,6 +2,7 @@
 
 namespace App\Livewire;
 
+use App\Models\Tenant;
 use DanHarrin\LivewireRateLimiting\Exceptions\TooManyRequestsException;
 use DanHarrin\LivewireRateLimiting\WithRateLimiting;
 use Filament\Actions\Action;
@@ -92,8 +93,6 @@ class RegisterOtp extends Component implements HasActions, HasForms
 
         $data = $this->form->getState();
 
-
-
         if($data['otp'] != $this->otp){
             $this->throwFailureOtpException();
         }
@@ -109,6 +108,10 @@ class RegisterOtp extends Component implements HasActions, HasForms
 
         $record->domains()->create(['domain' => $this->user->domain]);
 
+        session()->forget('demo_user');
+        session()->forget('demo_otp');
+        $this->form->fill([]);
+
         session()->regenerate();
 
         $token = tenancy()->impersonate($record, 1, '/app', 'web');
@@ -120,6 +123,7 @@ class RegisterOtp extends Component implements HasActions, HasForms
     {
         return Action::make('getResendAction')
             ->requiresConfirmation()
+            ->fillForm(['email' => $this->user->email])
             ->form([
                 TextInput::make('email')
                     ->required()

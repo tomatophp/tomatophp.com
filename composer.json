@@ -40,7 +40,7 @@
         "tomatophp/filament-pos": "^1.0",
         "tomatophp/filament-pwa": "^1.0",
         "tomatophp/filament-settings-hub": "^1.0",
-        "tomatophp/filament-simple-theme": "*",
+        "tomatophp/filament-simple-theme": "^1.0",
         "tomatophp/filament-subscriptions": "^1.0",
         "tomatophp/filament-tenancy": "*",
         "tomatophp/filament-translations": "^1.0",

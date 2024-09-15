@@ -13,7 +13,6 @@ class Tenant extends \Stancl\Tenancy\Database\Models\Tenant implements TenantWit
 {
     use HasDatabase, HasDomains;
 
-
     protected $casts = [
         'packages' => 'json',
     ];

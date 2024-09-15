@@ -21,7 +21,7 @@ Route::middleware([
     \TomatoPHP\FilamentTenancy\FilamentTenancyServiceProvider::TENANCY_IDENTIFICATION,
 ])->group(function () {
     if(config('filament-tenancy.features.impersonation')) {
-        Route::get('/login/url', [\TomatoPHP\FilamentTenancy\Http\Controllers\LoginUrl::class, 'index']);
+        Route::get('/login/url', [\App\Http\Controllers\LoginUrl::class, 'index']);
     }
 
     // Your Tenant routes here

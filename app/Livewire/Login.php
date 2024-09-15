@@ -65,6 +65,7 @@ class Login extends Component implements HasForms, HasActions
 
         $data = $this->form->getState();
 
+
         try {
             $this->rateLimit(5);
         } catch (TooManyRequestsException $exception) {
@@ -90,6 +91,8 @@ class Login extends Component implements HasForms, HasActions
 
         if($record){
             if(Hash::check($data['password'], $record->password)){
+                $this->form->fill([]);
+
                 session()->regenerate();
 
                 $token = tenancy()->impersonate($record, 1, '/app', 'web');

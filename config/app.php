@@ -179,6 +179,7 @@ return [
                 'account',
                 'account::request',
                 'team',
+                'page_AccountTypes'
             ]
         ],
         'filament-wallet' => [
@@ -241,6 +242,7 @@ return [
                 'product',
                 'order',
                 'coupon',
+                'company',
                 'gift::card',
                 'referral::code',
                 'shipping::vendor',
@@ -286,6 +288,77 @@ return [
             'icon' => 'heroicon-o-bars-3',
             'permissions' => [
                 'menu'
+            ]
+        ],
+        'filament-withdrawals' => [
+            'description' => 'Manage your withdrawals in Filament',
+            'url' => 'https://github.com/tomatophp/filament-withdrawals',
+            'key' => 'filament-withdrawals',
+            'label' => 'Payment Manager',
+            'icon' => 'heroicon-o-credit-card',
+            'permissions' => [
+                'withdrawal::request',
+                'withdrawal::method'
+            ]
+        ],
+        'filament-payments' => [
+            'description' => 'Manage your payments inside FilamentPHP app with multi payment gateway integration',
+            'url' => 'https://github.com/tomatophp/filament-payments',
+            'key' => 'filament-payments',
+            'label' => 'Payment Manager',
+            'icon' => 'heroicon-o-credit-card',
+            'permissions' => [
+                'payment',
+                'page_PaymentGateway'
+            ]
+        ],
+        'filament-pos' => [
+            'description' => 'POS System for FilamentPHP with a lot of features and integration with Ecommerce Builder',
+            'url' => 'https://github.com/tomatophp/filament-pos',
+            'key' => 'filament-pos',
+            'label' => 'POS',
+            'icon' => 'heroicon-o-receipt-percent',
+            'permissions' => [
+                'page_Pos',
+                'widget_POSStateWidget'
+            ]
+        ],
+        'filament-invoices' => [
+            'description' => 'Generate and manage your invoices / payments using multi currencies and multi types in FilamentPHP',
+            'url' => 'https://github.com/tomatophp/filament-invoices',
+            'key' => 'filament-invoices',
+            'label' => 'Invoice Manager',
+            'icon' => 'heroicon-o-document-text',
+            'permissions' => [
+                'invoice',
+                'page_InvoiceStatus',
+            ]
+        ],
+        'filament-subscriptions' => [
+            'description' => 'Manage subscriptions and feature access with customizable plans in FilamentPHP',
+            'url' => 'https://github.com/tomatophp/filament-subscriptions',
+            'key' => 'filament-subscriptions',
+            'label' => 'Subscriptions Manager',
+            'icon' => 'heroicon-o-currency-dollar',
+            'permissions' => [
+                'subscription',
+                'plan',
+            ]
+        ],
+        'filament-employees' => [
+            'description' => 'Manage your employees with easy using Account builder and FilamentPHP',
+            'url' => 'https://github.com/tomatophp/filament-employees',
+            'key' => 'filament-employees',
+            'label' => 'Employees Manager',
+            'icon' => 'heroicon-o-user-circle',
+            'permissions' => [
+                'page_EmployeeApplyStatus',
+                'page_Departments',
+                'page_EmployeePaymentsType',
+                'page_EmployeePaymentsStatus',
+                'page_EmployeeRequestsStatus',
+                'employee::apply',
+                'attendance::shift',
             ]
         ],
     ]
