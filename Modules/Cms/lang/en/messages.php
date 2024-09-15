@@ -3,7 +3,7 @@
 return [
     "index" => [
         "title" => "TomatoPHP",
-        "description" => "a PHP community for TALL/VILT stacks.",
+        "description" => "A community where PHP developers can share their knowledge and experience.",
         "actions" => [
             "github" => "Github",
             "open-source" => "Docs",
