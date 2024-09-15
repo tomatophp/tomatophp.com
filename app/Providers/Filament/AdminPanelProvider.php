@@ -147,7 +147,6 @@ class AdminPanelProvider extends PanelProvider
             )
             ->plugin(
                 FilamentNotesPlugin::make()
-                    ->navigationIcon('heroicon-o-presentation-chart-line')
                     ->useStatus()
                     ->useGroups()
                     ->useUserAccess()
