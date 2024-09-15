@@ -15,6 +15,7 @@ class Tenant extends \Stancl\Tenancy\Database\Models\Tenant implements TenantWit
 
     protected $casts = [
         'packages' => 'json',
+        'is_active' => 'boolean',
     ];
 
     protected $hidden = [
@@ -30,6 +31,7 @@ class Tenant extends \Stancl\Tenancy\Database\Models\Tenant implements TenantWit
             'phone',
             'password',
             'packages',
+            'is_active',
         ];
     }
 
