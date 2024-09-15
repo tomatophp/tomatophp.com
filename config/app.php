@@ -294,8 +294,8 @@ return [
             'description' => 'Manage your withdrawals in Filament',
             'url' => 'https://github.com/tomatophp/filament-withdrawals',
             'key' => 'filament-withdrawals',
-            'label' => 'Payment Manager',
-            'icon' => 'heroicon-o-credit-card',
+            'label' => 'Wallet Withdrawals',
+            'icon' => 'heroicon-o-check-badge',
             'permissions' => [
                 'withdrawal::request',
                 'withdrawal::method'
