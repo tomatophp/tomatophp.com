@@ -12,6 +12,7 @@ use Laravel\Socialite\Facades\Socialite;
 use TomatoPHP\FilamentAccounts\Models\AccountsMeta;
 use TomatoPHP\FilamentAlerts\Services\SendNotification;
 use App\Models\Tenant;
+use TomatoPHP\FilamentDiscord\Jobs\NotifyDiscordJob;
 
 class AuthController extends Controller
 {
@@ -109,6 +110,25 @@ class AuthController extends Controller
             return redirect()->to('https://' . $record->domains[0]->domain . '.' . config('app.domain') . '/login/url?token=' . $token->token . '&email=' . $record->email);
         }
         catch (\Exception $exception){
+
+            if(config('filament-discord.error-webhook-active')){
+                try {
+                    dispatch(new NotifyDiscordJob([
+                        'webhook' => config('filament-discord.error-webhook'),
+                        'title' => $exception->getMessage(),
+                        'message' => collect([
+                            "File: ".$exception->getFile(),
+                            "Line: ".$exception->getLine(),
+                            "Time: ".\Carbon\Carbon::now()->toDateTimeString(),
+                            "Trace: ```".str($exception->getTraceAsString())->limit(2500) ."```",
+                        ])->implode("\n"),
+                        'url' => url()->current()
+                    ]));
+                }catch (\Exception $exception){
+                    // do nothing
+                }
+            }
+            
             Notification::make()
                 ->title('Error')
                 ->body('Something went wrong!')
