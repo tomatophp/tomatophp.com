@@ -60,32 +60,38 @@ class AuthController extends Controller
             if(session()->has('demo_user') && isset(json_decode(session()->get('demo_user'))->packages)){
                 $sessionData = json_decode(session()->get('demo_user'));
             }
+
+            if($sessionData){
+
+            }
             if(!$record){
-                $record = new Tenant();
-                $record->name = $socialUser->name;
-                $record->email = $socialUser->email;
-                $record->id = $id;
-                $record->packages = $sessionData->packages;
-                $record->password = bcrypt(Str::random(8));
-                $record->save();
+                if($sessionData){
+                    $record = new Tenant();
+                    $record->name = $socialUser->name;
+                    $record->email = $socialUser->email;
+                    $record->id = $id;
+                    $record->packages = $sessionData->packages;
+                    $record->password = bcrypt(Str::random(8));
+                    $record->save();
 
-                $record->social()->create([
-                    'provider' => $provider,
-                    'provider_id' => $socialUser->id
-                ]);
+                    $record->social()->create([
+                        'provider' => $provider,
+                        'provider_id' => $socialUser->id
+                    ]);
 
-                $record->domains()->create(['domain' => \Str::of($socialUser->name)->slug()->toString()]);
+                    $record->domains()->create(['domain' => \Str::of($socialUser->name)->slug()->toString()]);
 
-                Notification::make()
-                    ->title('New Demo User')
-                    ->body(collect([
-                        'NAME: '.$record->name,
-                        'EMAIL: '.$record->email,
-                        'USERNAME: '.$record->id,
-                        'PACKAGES: '.collect($sessionData->packages)->implode(','),
-                        'URL: '.'https://'.\Str::of($socialUser->name)->slug()->toString().'.'.config('app.domain'),
-                    ])->implode("\n"))
-                    ->sendToDiscord();
+                    Notification::make()
+                        ->title('New Demo User')
+                        ->body(collect([
+                            'NAME: '.$record->name,
+                            'EMAIL: '.$record->email,
+                            'USERNAME: '.$record->id,
+                            'PACKAGES: '.collect($sessionData->packages)->implode(','),
+                            'URL: '.'https://'.\Str::of($socialUser->name)->slug()->toString().'.'.config('app.domain'),
+                        ])->implode("\n"))
+                        ->sendToDiscord();
+                }
             }
             else {
                 if($sessionData){
@@ -101,13 +107,23 @@ class AuthController extends Controller
                             "packages" => json_encode($sessionData->packages),
                         ]);
                 }
+                else {
+                    Notification::make()
+                        ->title('Error')
+                        ->body('Something went wrong!')
+                        ->danger()
+                        ->send();
+                }
             }
 
-            session()->regenerate();
+            if($record){
+                session()->regenerate();
 
-            $token = tenancy()->impersonate($record, 1, '/app', 'web');
+                $token = tenancy()->impersonate($record, 1, '/app', 'web');
 
-            return redirect()->to('https://' . $record->domains[0]->domain . '.' . config('app.domain') . '/login/url?token=' . $token->token . '&email=' . $record->email);
+                return redirect()->to('https://' . $record->domains[0]->domain . '.' . config('app.domain') . '/login/url?token=' . $token->token . '&email=' . $record->email);
+            }
+
         }
         catch (\Exception $exception){
 
