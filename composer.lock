@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "693ad9a77b4f7cb3c6ec1178c28bb9fa",
+    "content-hash": "1fba71f634a7d7caac006ad764e056df",
     "packages": [
         {
             "name": "anourvalar/eloquent-serialize",
@@ -13946,16 +13946,16 @@
         },
         {
             "name": "tomatophp/filament-ecommerce",
-            "version": "v1.0.5",
+            "version": "v1.0.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/tomatophp/filament-ecommerce.git",
-                "reference": "a6b7b93c7830a7039dacdd41296f3981866381d5"
+                "reference": "c484003304b9f2fcaf729cc1e5f1f718ea9145a7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/tomatophp/filament-ecommerce/zipball/a6b7b93c7830a7039dacdd41296f3981866381d5",
-                "reference": "a6b7b93c7830a7039dacdd41296f3981866381d5",
+                "url": "https://api.github.com/repos/tomatophp/filament-ecommerce/zipball/c484003304b9f2fcaf729cc1e5f1f718ea9145a7",
+                "reference": "c484003304b9f2fcaf729cc1e5f1f718ea9145a7",
                 "shasum": ""
             },
             "require": {
@@ -13964,11 +13964,11 @@
                 "milon/barcode": "^11.0",
                 "php": "^8.1|^8.2",
                 "tomatophp/console-helpers": "^1.1",
-                "tomatophp/filament-accounts": "^2.0",
-                "tomatophp/filament-cms": "^1.0",
-                "tomatophp/filament-locations": "^1.0",
-                "tomatophp/filament-settings-hub": "^1.0",
-                "tomatophp/filament-types": "^1.0"
+                "tomatophp/filament-accounts": "^v2.0",
+                "tomatophp/filament-cms": "^v1.0",
+                "tomatophp/filament-locations": "^v1.0",
+                "tomatophp/filament-settings-hub": "^v1.0",
+                "tomatophp/filament-types": "^v1.0"
             },
             "type": "library",
             "extra": {
@@ -14007,7 +14007,7 @@
             ],
             "support": {
                 "issues": "https://github.com/tomatophp/filament-ecommerce/issues",
-                "source": "https://github.com/tomatophp/filament-ecommerce/tree/v1.0.5"
+                "source": "https://github.com/tomatophp/filament-ecommerce/tree/v1.0.6"
             },
             "funding": [
                 {
@@ -14015,25 +14015,28 @@
                     "type": "github"
                 }
             ],
-            "time": "2024-08-11T12:06:37+00:00"
+            "time": "2024-09-15T10:09:24+00:00"
         },
         {
             "name": "tomatophp/filament-employees",
-            "version": "0.0.1",
+            "version": "v0.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/tomatophp/filament-employees.git",
-                "reference": "e189855f406cb0212149a68210aff67bb95a7ae6"
+                "reference": "d58995f857dd0b250d7e5eda19b8510b4fee374f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/tomatophp/filament-employees/zipball/e189855f406cb0212149a68210aff67bb95a7ae6",
-                "reference": "e189855f406cb0212149a68210aff67bb95a7ae6",
+                "url": "https://api.github.com/repos/tomatophp/filament-employees/zipball/d58995f857dd0b250d7e5eda19b8510b4fee374f",
+                "reference": "d58995f857dd0b250d7e5eda19b8510b4fee374f",
                 "shasum": ""
             },
             "require": {
+                "filament/filament": "^3.2",
                 "php": "^8.1",
-                "tomatophp/console-helpers": "^1.1"
+                "tomatophp/console-helpers": "^1.1",
+                "tomatophp/filament-accounts": "^2.0",
+                "tomatophp/filament-types": "^1.0"
             },
             "type": "library",
             "extra": {
@@ -14071,7 +14074,7 @@
             ],
             "support": {
                 "issues": "https://github.com/tomatophp/filament-employees/issues",
-                "source": "https://github.com/tomatophp/filament-employees/tree/0.0.1"
+                "source": "https://github.com/tomatophp/filament-employees/tree/v0.0.1"
             },
             "funding": [
                 {
@@ -14079,7 +14082,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2024-09-04T09:12:50+00:00"
+            "time": "2024-09-15T10:15:10+00:00"
         },
         {
             "name": "tomatophp/filament-fcm",
