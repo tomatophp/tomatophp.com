@@ -14,6 +14,7 @@ class MenuItem extends Component
     public function __construct(
         public string $label,
         public ?string $url = null,
+        public ?string $target = null,
     )
     {
         //
