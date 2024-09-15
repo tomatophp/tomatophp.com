@@ -127,15 +127,15 @@ class AppServiceProvider extends ServiceProvider
                 ]);
         });
 
-        Event::listen(TenancyBootstrapped::class, function($event){
-            $permissionRegistrar = app(\Spatie\Permission\PermissionRegistrar::class);
-            $permissionRegistrar->cacheKey = 'spatie.permission.cache.tenant.' . $event->tenancy->tenant->getTenantKey();
-        });
-
-        Event::listen(TenancyEnded::class, function($event){
-            $permissionRegistrar = app(\Spatie\Permission\PermissionRegistrar::class);
-            $permissionRegistrar->cacheKey = 'spatie.permission.cache';
-        });
+//        Event::listen(TenancyBootstrapped::class, function($event){
+//            $permissionRegistrar = app(\Spatie\Permission\PermissionRegistrar::class);
+//            $permissionRegistrar->cacheKey = 'spatie.permission.cache.tenant.' . $event->tenancy->tenant->getTenantKey();
+//        });
+//
+//        Event::listen(TenancyEnded::class, function($event){
+//            $permissionRegistrar = app(\Spatie\Permission\PermissionRegistrar::class);
+//            $permissionRegistrar->cacheKey = 'spatie.permission.cache';
+//        });
 
         Gate::policy(Note::class, NotePolicy::class);
         Gate::policy(Translation::class, TranslationPolicy::class);
