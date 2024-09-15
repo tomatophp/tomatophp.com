@@ -128,7 +128,7 @@ class AuthController extends Controller
                     // do nothing
                 }
             }
-            
+
             Notification::make()
                 ->title('Error')
                 ->body('Something went wrong!')

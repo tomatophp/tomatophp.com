@@ -155,11 +155,13 @@ class Register extends Component implements HasForms, HasActions
 
             return null;
         }
+
+        session()->put('demo_user', json_encode($data));
+
         if($data['loginBy'] === 'register'){
             $otp = substr(number_format(time() * rand(), 0, '', ''), 0, 6);
             $data['id'] = \Str::of($data['name'])->slug('_')->toString();
             $data['domain'] =  \Str::of($data['name'])->slug()->toString();
-            session()->put('demo_user', json_encode($data));
             session()->put('demo_otp', $otp);
 
             Notification::make()
