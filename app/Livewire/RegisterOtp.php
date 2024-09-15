@@ -29,7 +29,7 @@ class RegisterOtp extends Component implements HasActions, HasForms
     use WithRateLimiting;
 
     public array $data;
-    public \stdClass $user;
+    public $user;
     public string $otp;
 
     public function mount(): void
