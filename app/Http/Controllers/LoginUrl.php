@@ -39,33 +39,36 @@ class LoginUrl extends Controller
                 $user->save();
             }
 
-            $permissions = [];
-            $packages = config('app.packages');
-            foreach ($packages as $key=>$package){
-                if(in_array($key, $user->packages)){
-                    foreach ($package['permissions'] as $permission){
-                        $permissions  = array_merge($permissions, $this->generatePermissions($permission));
+            if(is_array($user->packages)){
+                $permissions = [];
+                $packages = config('app.packages');
+                foreach ($packages as $key=>$package){
+                    if(in_array($key, $user->packages)){
+                        foreach ($package['permissions'] as $permission){
+                            $permissions  = array_merge($permissions, $this->generatePermissions($permission));
+                        }
                     }
+                }
+
+
+                $role = Role::query()->where('name', 'super_admin')->first();
+                if(!$role){
+                    $role = Role::query()->create([
+                        'name' => 'super_admin',
+                        'guard_name' => 'web',
+                    ]);
+                }
+
+                $role->syncPermissions($permissions);
+                $user->roles()->sync($role->id);
+
+                if($tenant->name){
+                    $site = new \TomatoPHP\FilamentSettingsHub\Settings\SitesSettings();
+                    $site->site_name = $tenant->name;
+                    $site->save();
                 }
             }
 
-
-            $role = Role::query()->where('name', 'super_admin')->first();
-            if(!$role){
-                $role = Role::query()->create([
-                    'name' => 'super_admin',
-                    'guard_name' => 'web',
-                ]);
-            }
-
-            $role->syncPermissions($permissions);
-            $user->roles()->sync($role->id);
-
-            if($tenant->name){
-                $site = new \TomatoPHP\FilamentSettingsHub\Settings\SitesSettings();
-                $site->site_name = $tenant->name;
-                $site->save();
-            }
         }
 
         return UserImpersonation::makeResponse($request->get('token'));
