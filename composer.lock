@@ -14023,12 +14023,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/tomatophp/filament-employees.git",
-                "reference": "d58995f857dd0b250d7e5eda19b8510b4fee374f"
+                "reference": "4c64df57f2adcd45a4c08b7b0f4240c15508746a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/tomatophp/filament-employees/zipball/d58995f857dd0b250d7e5eda19b8510b4fee374f",
-                "reference": "d58995f857dd0b250d7e5eda19b8510b4fee374f",
+                "url": "https://api.github.com/repos/tomatophp/filament-employees/zipball/4c64df57f2adcd45a4c08b7b0f4240c15508746a",
+                "reference": "4c64df57f2adcd45a4c08b7b0f4240c15508746a",
                 "shasum": ""
             },
             "require": {
@@ -14082,7 +14082,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2024-09-15T10:15:10+00:00"
+            "time": "2024-09-15T11:15:03+00:00"
         },
         {
             "name": "tomatophp/filament-fcm",

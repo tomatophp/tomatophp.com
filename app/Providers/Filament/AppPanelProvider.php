@@ -29,6 +29,7 @@ use TomatoPHP\FilamentAlerts\FilamentAlertsPlugin;
 use TomatoPHP\FilamentApi\FilamentAPIPlugin;
 use TomatoPHP\FilamentCms\FilamentCMSPlugin;
 use TomatoPHP\FilamentEcommerce\FilamentEcommercePlugin;
+use TomatoPHP\FilamentEmployees\FilamentEmployeesPlugin;
 use TomatoPHP\FilamentFcm\FilamentFcmPlugin;
 use TomatoPHP\FilamentInvoices\FilamentInvoicesPlugin;
 use TomatoPHP\FilamentLocations\FilamentLocationsPlugin;
@@ -101,11 +102,55 @@ class AppPanelProvider extends PanelProvider
                 DispatchServingFilamentEvent::class,
             ])
             ->plugins([
-                FilamentTranslationsSwitcherPlugin::make(),
                 FilamentAPIPlugin::make(),
-                FilamentSettingsHubPlugin::make(),
                 FilamentTypesPlugin::make(),
                 FilamentMenusPlugin::make(),
+                FilamentTranslationsSwitcherPlugin::make(),
+                FilamentEcommercePlugin::make()
+                    ->useWidgets(),
+                FilamentLocationsPlugin::make(),
+                FilamentUsersPlugin::make(),
+                FilamentShieldPlugin::make(),
+                FilamentWalletPlugin::make()
+                    ->useAccounts(),
+                FilamentFcmPlugin::make(),
+                FilamentPWAPlugin::make(),
+                FilamentWithdrawalsPlugin::make(),
+                FilamentPOSPlugin::make(),
+                FilamentInvoicesPlugin::make(),
+                FilamentPaymentsPlugin::make(),
+                FilamentSubscriptionsPlugin::make(),
+                FilamentEmployeesPlugin::make()
+            ])
+            ->plugin(
+                FilamentSettingsHubPlugin::make()
+                    ->allowShield(),
+            )
+            ->plugin(
+                FilamentMediaManagerPlugin::make()
+                    ->allowUserAccess()
+                    ->allowSubFolders(),
+            )
+            ->plugin(
+                FilamentTranslationsPlugin::make()
+                    ->allowGPTScan()
+                    ->allowGoogleTranslateScan()
+                    ->allowCreate()
+                    ->allowCreate(),
+            )
+            ->plugin(
+                FilamentAlertsPlugin::make()
+                    ->useDiscord()
+                    ->useDatabase()
+                    ->useSettingsHub(),
+            )
+            ->plugin(
+                FilamentCMSPlugin::make()
+                    ->useThemeManager()
+                    ->usePageBuilder()
+                    ->useFormBuilder(),
+            )
+            ->plugin(
                 FilamentNotesPlugin::make()
                     ->useStatus()
                     ->useGroups()
@@ -113,20 +158,8 @@ class AppPanelProvider extends PanelProvider
                     ->useCheckList()
                     ->useShareLink()
                     ->useNotification(),
-                FilamentMediaManagerPlugin::make()
-                    ->allowUserAccess()
-                    ->allowSubFolders(),
-                FilamentCMSPlugin::make()
-                    ->useThemeManager()
-                    ->usePageBuilder()
-                    ->useFormBuilder(),
-                FilamentTranslationsPlugin::make()
-                    ->allowGPTScan()
-                    ->allowGoogleTranslateScan()
-                    ->allowCreate()
-                    ->allowCreate(),
-                FilamentEcommercePlugin::make()
-                    ->useWidgets(),
+            )
+            ->plugin(
                 FilamentAccountsPlugin::make()
                     ->useTeams()
                     ->useTypes()
@@ -137,26 +170,9 @@ class AppPanelProvider extends PanelProvider
                     ->useLoginBy()
                     ->canLogin()
                     ->canBlocked(),
-                FilamentLocationsPlugin::make(),
-                FilamentAlertsPlugin::make()
-                    ->useDiscord()
-                    ->useDatabase()
-                    ->useSettingsHub(),
-                FilamentUsersPlugin::make(),
-                FilamentWalletPlugin::make()
-                    ->useAccounts(),
-                FilamentFcmPlugin::make(),
-                FilamentPWAPlugin::make(),
-                FilamentWithdrawalsPlugin::make(),
-                FilamentPOSPlugin::make(),
-                FilamentInvoicesPlugin::make(),
-                FilamentPaymentsPlugin::make(),
-            ])
-            ->plugin(
-                FilamentTenancyAppPlugin::make()
             )
             ->plugin(
-                FilamentSubscriptionsPlugin::make(),
+                FilamentTenancyAppPlugin::make()
             )
             ->plugin(FilamentSimpleThemePlugin::make())
             ->authMiddleware([
