@@ -53,6 +53,8 @@ use Laravelcm\Subscriptions\Models\Subscription;
 use Stancl\Tenancy\Events\DatabaseCreated;
 use Stancl\Tenancy\Events\DatabaseMigrated;
 use Stancl\Tenancy\Events\SyncedResourceChangedInForeignDatabase;
+use Stancl\Tenancy\Events\TenancyBootstrapped;
+use Stancl\Tenancy\Events\TenancyEnded;
 use Stancl\Tenancy\Events\TenancyInitialized;
 use Stancl\Tenancy\Events\TenantCreated;
 use TomatoPHP\FilamentAccounts\Models\AccountRequest;
@@ -125,6 +127,16 @@ class AppServiceProvider extends ServiceProvider
                 ]);
         });
 
+        Event::listen(TenancyBootstrapped::class, function($event){
+            $permissionRegistrar = app(\Spatie\Permission\PermissionRegistrar::class);
+            $permissionRegistrar->cacheKey = 'spatie.permission.cache.tenant.' . $event->tenancy->tenant->getTenantKey();
+        });
+
+        Event::listen(TenancyEnded::class, function($event){
+            $permissionRegistrar = app(\Spatie\Permission\PermissionRegistrar::class);
+            $permissionRegistrar->cacheKey = 'spatie.permission.cache';
+        });
+
         Gate::policy(Note::class, NotePolicy::class);
         Gate::policy(Translation::class, TranslationPolicy::class);
         Gate::policy(Type::class, TypePolicy::class);
@@ -178,5 +190,8 @@ class AppServiceProvider extends ServiceProvider
             InvoiceFrom::make(Account::class)
                 ->label('From Account')
         ]);
+
+
+
     }
 }
