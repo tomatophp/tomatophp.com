@@ -8,16 +8,16 @@
     "packages": [
         {
             "name": "anourvalar/eloquent-serialize",
-            "version": "1.2.24",
+            "version": "1.2.25",
             "source": {
                 "type": "git",
                 "url": "https://github.com/AnourValar/eloquent-serialize.git",
-                "reference": "77e3fc7da44fa96b6148a1613dd76fe954a5f279"
+                "reference": "6d7a868ae4218b9d7796334ff9a17e1539bad48a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/AnourValar/eloquent-serialize/zipball/77e3fc7da44fa96b6148a1613dd76fe954a5f279",
-                "reference": "77e3fc7da44fa96b6148a1613dd76fe954a5f279",
+                "url": "https://api.github.com/repos/AnourValar/eloquent-serialize/zipball/6d7a868ae4218b9d7796334ff9a17e1539bad48a",
+                "reference": "6d7a868ae4218b9d7796334ff9a17e1539bad48a",
                 "shasum": ""
             },
             "require": {
@@ -68,9 +68,9 @@
             ],
             "support": {
                 "issues": "https://github.com/AnourValar/eloquent-serialize/issues",
-                "source": "https://github.com/AnourValar/eloquent-serialize/tree/1.2.24"
+                "source": "https://github.com/AnourValar/eloquent-serialize/tree/1.2.25"
             },
-            "time": "2024-09-08T15:57:08+00:00"
+            "time": "2024-09-16T12:59:37+00:00"
         },
         {
             "name": "bacon/bacon-qr-code",
@@ -1774,16 +1774,16 @@
         },
         {
             "name": "filament/actions",
-            "version": "v3.2.112",
+            "version": "v3.2.113",
             "source": {
                 "type": "git",
                 "url": "https://github.com/filamentphp/actions.git",
-                "reference": "df3310607b49dad302b03516c558c93cb82c5164"
+                "reference": "4cf93bf9ff04a76a9256ce6df88216583aeccb15"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/filamentphp/actions/zipball/df3310607b49dad302b03516c558c93cb82c5164",
-                "reference": "df3310607b49dad302b03516c558c93cb82c5164",
+                "url": "https://api.github.com/repos/filamentphp/actions/zipball/4cf93bf9ff04a76a9256ce6df88216583aeccb15",
+                "reference": "4cf93bf9ff04a76a9256ce6df88216583aeccb15",
                 "shasum": ""
             },
             "require": {
@@ -1823,20 +1823,20 @@
                 "issues": "https://github.com/filamentphp/filament/issues",
                 "source": "https://github.com/filamentphp/filament"
             },
-            "time": "2024-09-11T08:25:31+00:00"
+            "time": "2024-09-17T08:30:20+00:00"
         },
         {
             "name": "filament/filament",
-            "version": "v3.2.112",
+            "version": "v3.2.113",
             "source": {
                 "type": "git",
                 "url": "https://github.com/filamentphp/panels.git",
-                "reference": "86aa182deceedce5970560c60ceae30c2c40632d"
+                "reference": "cea015f11b3d1b41bbf826e6f724e444e5fda3cb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/filamentphp/panels/zipball/86aa182deceedce5970560c60ceae30c2c40632d",
-                "reference": "86aa182deceedce5970560c60ceae30c2c40632d",
+                "url": "https://api.github.com/repos/filamentphp/panels/zipball/cea015f11b3d1b41bbf826e6f724e444e5fda3cb",
+                "reference": "cea015f11b3d1b41bbf826e6f724e444e5fda3cb",
                 "shasum": ""
             },
             "require": {
@@ -1888,20 +1888,20 @@
                 "issues": "https://github.com/filamentphp/filament/issues",
                 "source": "https://github.com/filamentphp/filament"
             },
-            "time": "2024-09-11T08:25:51+00:00"
+            "time": "2024-09-17T08:30:28+00:00"
         },
         {
             "name": "filament/forms",
-            "version": "v3.2.112",
+            "version": "v3.2.113",
             "source": {
                 "type": "git",
                 "url": "https://github.com/filamentphp/forms.git",
-                "reference": "99d72777f1e6dc5d42d936e7deb53148e4233ec3"
+                "reference": "46a42dbc18f9273a3a59c54e94222fa62855c702"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/filamentphp/forms/zipball/99d72777f1e6dc5d42d936e7deb53148e4233ec3",
-                "reference": "99d72777f1e6dc5d42d936e7deb53148e4233ec3",
+                "url": "https://api.github.com/repos/filamentphp/forms/zipball/46a42dbc18f9273a3a59c54e94222fa62855c702",
+                "reference": "46a42dbc18f9273a3a59c54e94222fa62855c702",
                 "shasum": ""
             },
             "require": {
@@ -1944,20 +1944,20 @@
                 "issues": "https://github.com/filamentphp/filament/issues",
                 "source": "https://github.com/filamentphp/filament"
             },
-            "time": "2024-09-12T12:27:13+00:00"
+            "time": "2024-09-17T08:30:15+00:00"
         },
         {
             "name": "filament/infolists",
-            "version": "v3.2.112",
+            "version": "v3.2.113",
             "source": {
                 "type": "git",
                 "url": "https://github.com/filamentphp/infolists.git",
-                "reference": "e50bd9a5fc623320bd79508e3bfb72ff9e309edf"
+                "reference": "dd6e2319aea92c5444c52792c750edfeb057f62a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/filamentphp/infolists/zipball/e50bd9a5fc623320bd79508e3bfb72ff9e309edf",
-                "reference": "e50bd9a5fc623320bd79508e3bfb72ff9e309edf",
+                "url": "https://api.github.com/repos/filamentphp/infolists/zipball/dd6e2319aea92c5444c52792c750edfeb057f62a",
+                "reference": "dd6e2319aea92c5444c52792c750edfeb057f62a",
                 "shasum": ""
             },
             "require": {
@@ -1995,11 +1995,11 @@
                 "issues": "https://github.com/filamentphp/filament/issues",
                 "source": "https://github.com/filamentphp/filament"
             },
-            "time": "2024-09-11T08:25:25+00:00"
+            "time": "2024-09-17T08:30:15+00:00"
         },
         {
             "name": "filament/notifications",
-            "version": "v3.2.112",
+            "version": "v3.2.113",
             "source": {
                 "type": "git",
                 "url": "https://github.com/filamentphp/notifications.git",
@@ -2051,7 +2051,7 @@
         },
         {
             "name": "filament/spatie-laravel-media-library-plugin",
-            "version": "v3.2.112",
+            "version": "v3.2.113",
             "source": {
                 "type": "git",
                 "url": "https://github.com/filamentphp/spatie-laravel-media-library-plugin.git",
@@ -2088,7 +2088,7 @@
         },
         {
             "name": "filament/spatie-laravel-settings-plugin",
-            "version": "v3.2.112",
+            "version": "v3.2.113",
             "source": {
                 "type": "git",
                 "url": "https://github.com/filamentphp/spatie-laravel-settings-plugin.git",
@@ -2135,7 +2135,7 @@
         },
         {
             "name": "filament/spatie-laravel-translatable-plugin",
-            "version": "v3.2.112",
+            "version": "v3.2.113",
             "source": {
                 "type": "git",
                 "url": "https://github.com/filamentphp/spatie-laravel-translatable-plugin.git",
@@ -2180,16 +2180,16 @@
         },
         {
             "name": "filament/support",
-            "version": "v3.2.112",
+            "version": "v3.2.113",
             "source": {
                 "type": "git",
                 "url": "https://github.com/filamentphp/support.git",
-                "reference": "d07086506d39f318398c13a0b8d689f75cbc14d6"
+                "reference": "d2825e1c116e50d440bb3e7ac56ebcb8d1ddf184"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/filamentphp/support/zipball/d07086506d39f318398c13a0b8d689f75cbc14d6",
-                "reference": "d07086506d39f318398c13a0b8d689f75cbc14d6",
+                "url": "https://api.github.com/repos/filamentphp/support/zipball/d2825e1c116e50d440bb3e7ac56ebcb8d1ddf184",
+                "reference": "d2825e1c116e50d440bb3e7ac56ebcb8d1ddf184",
                 "shasum": ""
             },
             "require": {
@@ -2235,20 +2235,20 @@
                 "issues": "https://github.com/filamentphp/filament/issues",
                 "source": "https://github.com/filamentphp/filament"
             },
-            "time": "2024-09-11T08:25:46+00:00"
+            "time": "2024-09-17T08:30:37+00:00"
         },
         {
             "name": "filament/tables",
-            "version": "v3.2.112",
+            "version": "v3.2.113",
             "source": {
                 "type": "git",
                 "url": "https://github.com/filamentphp/tables.git",
-                "reference": "4285a031dd36250a86710631a5b1fea1372097a1"
+                "reference": "75acf6f38a8ccfded57dc62bc3af0dd0bb04069d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/filamentphp/tables/zipball/4285a031dd36250a86710631a5b1fea1372097a1",
-                "reference": "4285a031dd36250a86710631a5b1fea1372097a1",
+                "url": "https://api.github.com/repos/filamentphp/tables/zipball/75acf6f38a8ccfded57dc62bc3af0dd0bb04069d",
+                "reference": "75acf6f38a8ccfded57dc62bc3af0dd0bb04069d",
                 "shasum": ""
             },
             "require": {
@@ -2287,20 +2287,20 @@
                 "issues": "https://github.com/filamentphp/filament/issues",
                 "source": "https://github.com/filamentphp/filament"
             },
-            "time": "2024-09-11T08:25:43+00:00"
+            "time": "2024-09-17T08:30:46+00:00"
         },
         {
             "name": "filament/widgets",
-            "version": "v3.2.112",
+            "version": "v3.2.113",
             "source": {
                 "type": "git",
                 "url": "https://github.com/filamentphp/widgets.git",
-                "reference": "909fc82bae2cf41d70b3cd7dda8982245b2ea723"
+                "reference": "d168a97f0861b7964437652e64fa5af83212d1f4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/filamentphp/widgets/zipball/909fc82bae2cf41d70b3cd7dda8982245b2ea723",
-                "reference": "909fc82bae2cf41d70b3cd7dda8982245b2ea723",
+                "url": "https://api.github.com/repos/filamentphp/widgets/zipball/d168a97f0861b7964437652e64fa5af83212d1f4",
+                "reference": "d168a97f0861b7964437652e64fa5af83212d1f4",
                 "shasum": ""
             },
             "require": {
@@ -2331,7 +2331,7 @@
                 "issues": "https://github.com/filamentphp/filament/issues",
                 "source": "https://github.com/filamentphp/filament"
             },
-            "time": "2024-07-31T11:53:30+00:00"
+            "time": "2024-09-17T08:30:51+00:00"
         },
         {
             "name": "firebase/php-jwt",
@@ -6681,16 +6681,16 @@
         },
         {
             "name": "nikic/php-parser",
-            "version": "v5.1.0",
+            "version": "v5.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nikic/PHP-Parser.git",
-                "reference": "683130c2ff8c2739f4822ff7ac5c873ec529abd1"
+                "reference": "23c79fbbfb725fb92af9bcf41065c8e9a0d49ddb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nikic/PHP-Parser/zipball/683130c2ff8c2739f4822ff7ac5c873ec529abd1",
-                "reference": "683130c2ff8c2739f4822ff7ac5c873ec529abd1",
+                "url": "https://api.github.com/repos/nikic/PHP-Parser/zipball/23c79fbbfb725fb92af9bcf41065c8e9a0d49ddb",
+                "reference": "23c79fbbfb725fb92af9bcf41065c8e9a0d49ddb",
                 "shasum": ""
             },
             "require": {
@@ -6733,9 +6733,9 @@
             ],
             "support": {
                 "issues": "https://github.com/nikic/PHP-Parser/issues",
-                "source": "https://github.com/nikic/PHP-Parser/tree/v5.1.0"
+                "source": "https://github.com/nikic/PHP-Parser/tree/v5.2.0"
             },
-            "time": "2024-07-01T20:03:41+00:00"
+            "time": "2024-09-15T16:40:33+00:00"
         },
         {
             "name": "nunomaduro/termwind",
@@ -6827,16 +6827,16 @@
         },
         {
             "name": "nwidart/laravel-modules",
-            "version": "v11.1.0",
+            "version": "v11.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nWidart/laravel-modules.git",
-                "reference": "2ae13812f055a85d7063e90366884cd327877821"
+                "reference": "d001c04c335e9f11df944b3da4c5cbaaca5d567d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nWidart/laravel-modules/zipball/2ae13812f055a85d7063e90366884cd327877821",
-                "reference": "2ae13812f055a85d7063e90366884cd327877821",
+                "url": "https://api.github.com/repos/nWidart/laravel-modules/zipball/d001c04c335e9f11df944b3da4c5cbaaca5d567d",
+                "reference": "d001c04c335e9f11df944b3da4c5cbaaca5d567d",
                 "shasum": ""
             },
             "require": {
@@ -6898,7 +6898,7 @@
             ],
             "support": {
                 "issues": "https://github.com/nWidart/laravel-modules/issues",
-                "source": "https://github.com/nWidart/laravel-modules/tree/v11.1.0"
+                "source": "https://github.com/nWidart/laravel-modules/tree/v11.1.1"
             },
             "funding": [
                 {
@@ -6910,7 +6910,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2024-09-13T19:24:08+00:00"
+            "time": "2024-09-17T07:38:27+00:00"
         },
         {
             "name": "openai-php/client",
@@ -7827,16 +7827,16 @@
         },
         {
             "name": "phpseclib/phpseclib",
-            "version": "3.0.41",
+            "version": "3.0.42",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpseclib/phpseclib.git",
-                "reference": "621c73f7dcb310b61de34d1da4c4204e8ace6ceb"
+                "reference": "db92f1b1987b12b13f248fe76c3a52cadb67bb98"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpseclib/phpseclib/zipball/621c73f7dcb310b61de34d1da4c4204e8ace6ceb",
-                "reference": "621c73f7dcb310b61de34d1da4c4204e8ace6ceb",
+                "url": "https://api.github.com/repos/phpseclib/phpseclib/zipball/db92f1b1987b12b13f248fe76c3a52cadb67bb98",
+                "reference": "db92f1b1987b12b13f248fe76c3a52cadb67bb98",
                 "shasum": ""
             },
             "require": {
@@ -7917,7 +7917,7 @@
             ],
             "support": {
                 "issues": "https://github.com/phpseclib/phpseclib/issues",
-                "source": "https://github.com/phpseclib/phpseclib/tree/3.0.41"
+                "source": "https://github.com/phpseclib/phpseclib/tree/3.0.42"
             },
             "funding": [
                 {
@@ -7933,7 +7933,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2024-08-12T00:13:54+00:00"
+            "time": "2024-09-16T03:06:04+00:00"
         },
         {
             "name": "phpstan/phpdoc-parser",
@@ -13529,16 +13529,16 @@
         },
         {
             "name": "tomatophp/filament-accounts",
-            "version": "v2.1.2",
+            "version": "v2.1.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/tomatophp/filament-accounts.git",
-                "reference": "961973a4d5f318f759816935f94f3cac5b9a41b1"
+                "reference": "44cffb7a8f41e15d6851c1c5713ac0b912eb3619"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/tomatophp/filament-accounts/zipball/961973a4d5f318f759816935f94f3cac5b9a41b1",
-                "reference": "961973a4d5f318f759816935f94f3cac5b9a41b1",
+                "url": "https://api.github.com/repos/tomatophp/filament-accounts/zipball/44cffb7a8f41e15d6851c1c5713ac0b912eb3619",
+                "reference": "44cffb7a8f41e15d6851c1c5713ac0b912eb3619",
                 "shasum": ""
             },
             "require": {
@@ -13587,7 +13587,7 @@
             ],
             "support": {
                 "issues": "https://github.com/tomatophp/filament-accounts/issues",
-                "source": "https://github.com/tomatophp/filament-accounts/tree/v2.1.2"
+                "source": "https://github.com/tomatophp/filament-accounts/tree/v2.1.4"
             },
             "funding": [
                 {
@@ -13595,20 +13595,20 @@
                     "type": "github"
                 }
             ],
-            "time": "2024-09-14T16:03:42+00:00"
+            "time": "2024-09-17T16:32:13+00:00"
         },
         {
             "name": "tomatophp/filament-alerts",
-            "version": "v2.0.2",
+            "version": "v2.0.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/tomatophp/filament-alerts.git",
-                "reference": "e25873c2674f8d584453f269078b69bd7d6dcc73"
+                "reference": "95430035362a5ace6107bc03e0df9bbec715793e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/tomatophp/filament-alerts/zipball/e25873c2674f8d584453f269078b69bd7d6dcc73",
-                "reference": "e25873c2674f8d584453f269078b69bd7d6dcc73",
+                "url": "https://api.github.com/repos/tomatophp/filament-alerts/zipball/95430035362a5ace6107bc03e0df9bbec715793e",
+                "reference": "95430035362a5ace6107bc03e0df9bbec715793e",
                 "shasum": ""
             },
             "require": {
@@ -13665,7 +13665,7 @@
             ],
             "support": {
                 "issues": "https://github.com/tomatophp/filament-alerts/issues",
-                "source": "https://github.com/tomatophp/filament-alerts/tree/v2.0.2"
+                "source": "https://github.com/tomatophp/filament-alerts/tree/v2.0.4"
             },
             "funding": [
                 {
@@ -13673,7 +13673,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2024-06-24T13:53:07+00:00"
+            "time": "2024-09-17T17:06:59+00:00"
         },
         {
             "name": "tomatophp/filament-api",
@@ -13743,16 +13743,16 @@
         },
         {
             "name": "tomatophp/filament-cms",
-            "version": "v1.0.17",
+            "version": "v1.0.19",
             "source": {
                 "type": "git",
                 "url": "https://github.com/tomatophp/filament-cms.git",
-                "reference": "ddfc8e9bed0c6a1d19c84569f82a05907c285c41"
+                "reference": "c535ac9a6acf6a269254842ff13ce697bcf5431a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/tomatophp/filament-cms/zipball/ddfc8e9bed0c6a1d19c84569f82a05907c285c41",
-                "reference": "ddfc8e9bed0c6a1d19c84569f82a05907c285c41",
+                "url": "https://api.github.com/repos/tomatophp/filament-cms/zipball/c535ac9a6acf6a269254842ff13ce697bcf5431a",
+                "reference": "c535ac9a6acf6a269254842ff13ce697bcf5431a",
                 "shasum": ""
             },
             "require": {
@@ -13802,7 +13802,7 @@
             ],
             "support": {
                 "issues": "https://github.com/tomatophp/filament-cms/issues",
-                "source": "https://github.com/tomatophp/filament-cms/tree/v1.0.17"
+                "source": "https://github.com/tomatophp/filament-cms/tree/v1.0.19"
             },
             "funding": [
                 {
@@ -13810,7 +13810,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2024-09-01T12:06:11+00:00"
+            "time": "2024-09-17T16:37:05+00:00"
         },
         {
             "name": "tomatophp/filament-developer-gate",
@@ -13946,16 +13946,16 @@
         },
         {
             "name": "tomatophp/filament-ecommerce",
-            "version": "v1.0.6",
+            "version": "v1.0.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/tomatophp/filament-ecommerce.git",
-                "reference": "c484003304b9f2fcaf729cc1e5f1f718ea9145a7"
+                "reference": "cec177a4a04e6369520d676a556445b10af98b0d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/tomatophp/filament-ecommerce/zipball/c484003304b9f2fcaf729cc1e5f1f718ea9145a7",
-                "reference": "c484003304b9f2fcaf729cc1e5f1f718ea9145a7",
+                "url": "https://api.github.com/repos/tomatophp/filament-ecommerce/zipball/cec177a4a04e6369520d676a556445b10af98b0d",
+                "reference": "cec177a4a04e6369520d676a556445b10af98b0d",
                 "shasum": ""
             },
             "require": {
@@ -14007,7 +14007,7 @@
             ],
             "support": {
                 "issues": "https://github.com/tomatophp/filament-ecommerce/issues",
-                "source": "https://github.com/tomatophp/filament-ecommerce/tree/v1.0.6"
+                "source": "https://github.com/tomatophp/filament-ecommerce/tree/v1.0.7"
             },
             "funding": [
                 {
@@ -14015,7 +14015,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2024-09-15T10:09:24+00:00"
+            "time": "2024-09-17T16:38:22+00:00"
         },
         {
             "name": "tomatophp/filament-employees",
@@ -14283,16 +14283,16 @@
         },
         {
             "name": "tomatophp/filament-invoices",
-            "version": "v1.0.2",
+            "version": "v1.0.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/tomatophp/filament-invoices.git",
-                "reference": "4b22687e0eb82c326afa06ff4edeba27ec9954dc"
+                "reference": "90b5f8048e8b111e1437ea0390d02aa1f84557e8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/tomatophp/filament-invoices/zipball/4b22687e0eb82c326afa06ff4edeba27ec9954dc",
-                "reference": "4b22687e0eb82c326afa06ff4edeba27ec9954dc",
+                "url": "https://api.github.com/repos/tomatophp/filament-invoices/zipball/90b5f8048e8b111e1437ea0390d02aa1f84557e8",
+                "reference": "90b5f8048e8b111e1437ea0390d02aa1f84557e8",
                 "shasum": ""
             },
             "require": {
@@ -14338,7 +14338,7 @@
             ],
             "support": {
                 "issues": "https://github.com/tomatophp/filament-invoices/issues",
-                "source": "https://github.com/tomatophp/filament-invoices/tree/v1.0.2"
+                "source": "https://github.com/tomatophp/filament-invoices/tree/v1.0.4"
             },
             "funding": [
                 {
@@ -14346,20 +14346,20 @@
                     "type": "github"
                 }
             ],
-            "time": "2024-08-30T23:34:23+00:00"
+            "time": "2024-09-17T16:39:29+00:00"
         },
         {
             "name": "tomatophp/filament-locations",
-            "version": "v1.0.3",
+            "version": "v1.0.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/tomatophp/filament-locations.git",
-                "reference": "be4aad880ebc98fa79b90419a49e7690a3b9ba9c"
+                "reference": "b9a7a454abaf5131db4f8a33e2a340262afd1714"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/tomatophp/filament-locations/zipball/be4aad880ebc98fa79b90419a49e7690a3b9ba9c",
-                "reference": "be4aad880ebc98fa79b90419a49e7690a3b9ba9c",
+                "url": "https://api.github.com/repos/tomatophp/filament-locations/zipball/b9a7a454abaf5131db4f8a33e2a340262afd1714",
+                "reference": "b9a7a454abaf5131db4f8a33e2a340262afd1714",
                 "shasum": ""
             },
             "require": {
@@ -14403,7 +14403,7 @@
             ],
             "support": {
                 "issues": "https://github.com/tomatophp/filament-locations/issues",
-                "source": "https://github.com/tomatophp/filament-locations/tree/v1.0.3"
+                "source": "https://github.com/tomatophp/filament-locations/tree/v1.0.5"
             },
             "funding": [
                 {
@@ -14411,20 +14411,20 @@
                     "type": "github"
                 }
             ],
-            "time": "2024-09-03T20:39:45+00:00"
+            "time": "2024-09-17T16:40:52+00:00"
         },
         {
             "name": "tomatophp/filament-media-manager",
-            "version": "v1.1.1",
+            "version": "v1.1.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/tomatophp/filament-media-manager.git",
-                "reference": "b52dc979b1901a739365e156fd6d501969e00719"
+                "reference": "357de7e0ee1beaf11a7b591232114b68f716db76"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/tomatophp/filament-media-manager/zipball/b52dc979b1901a739365e156fd6d501969e00719",
-                "reference": "b52dc979b1901a739365e156fd6d501969e00719",
+                "url": "https://api.github.com/repos/tomatophp/filament-media-manager/zipball/357de7e0ee1beaf11a7b591232114b68f716db76",
+                "reference": "357de7e0ee1beaf11a7b591232114b68f716db76",
                 "shasum": ""
             },
             "require": {
@@ -14470,7 +14470,7 @@
             ],
             "support": {
                 "issues": "https://github.com/tomatophp/filament-media-manager/issues",
-                "source": "https://github.com/tomatophp/filament-media-manager/tree/v1.1.1"
+                "source": "https://github.com/tomatophp/filament-media-manager/tree/v1.1.3"
             },
             "funding": [
                 {
@@ -14478,20 +14478,20 @@
                     "type": "github"
                 }
             ],
-            "time": "2024-08-12T08:53:27+00:00"
+            "time": "2024-09-17T16:51:09+00:00"
         },
         {
             "name": "tomatophp/filament-menus",
-            "version": "v1.0.5",
+            "version": "v1.0.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/tomatophp/filament-menus.git",
-                "reference": "089a1b3c22c34aec2776dca8877bd4581deb2635"
+                "reference": "e4e265e2e37df4d462a0e91c0495cec8a4d61f25"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/tomatophp/filament-menus/zipball/089a1b3c22c34aec2776dca8877bd4581deb2635",
-                "reference": "089a1b3c22c34aec2776dca8877bd4581deb2635",
+                "url": "https://api.github.com/repos/tomatophp/filament-menus/zipball/e4e265e2e37df4d462a0e91c0495cec8a4d61f25",
+                "reference": "e4e265e2e37df4d462a0e91c0495cec8a4d61f25",
                 "shasum": ""
             },
             "require": {
@@ -14538,7 +14538,7 @@
             ],
             "support": {
                 "issues": "https://github.com/tomatophp/filament-menus/issues",
-                "source": "https://github.com/tomatophp/filament-menus/tree/v1.0.5"
+                "source": "https://github.com/tomatophp/filament-menus/tree/v1.0.7"
             },
             "funding": [
                 {
@@ -14546,20 +14546,20 @@
                     "type": "github"
                 }
             ],
-            "time": "2024-07-18T11:56:31+00:00"
+            "time": "2024-09-17T16:41:52+00:00"
         },
         {
             "name": "tomatophp/filament-notes",
-            "version": "v1.0.16",
+            "version": "v1.0.18",
             "source": {
                 "type": "git",
                 "url": "https://github.com/tomatophp/filament-notes.git",
-                "reference": "f6979cf80b9e8dd75dcdd91c86d58ebfe81093ad"
+                "reference": "4faa61de6bda419f5339d7012d76de7b7d86e747"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/tomatophp/filament-notes/zipball/f6979cf80b9e8dd75dcdd91c86d58ebfe81093ad",
-                "reference": "f6979cf80b9e8dd75dcdd91c86d58ebfe81093ad",
+                "url": "https://api.github.com/repos/tomatophp/filament-notes/zipball/4faa61de6bda419f5339d7012d76de7b7d86e747",
+                "reference": "4faa61de6bda419f5339d7012d76de7b7d86e747",
                 "shasum": ""
             },
             "require": {
@@ -14603,7 +14603,7 @@
             ],
             "support": {
                 "issues": "https://github.com/tomatophp/filament-notes/issues",
-                "source": "https://github.com/tomatophp/filament-notes/tree/v1.0.16"
+                "source": "https://github.com/tomatophp/filament-notes/tree/v1.0.18"
             },
             "funding": [
                 {
@@ -14611,20 +14611,20 @@
                     "type": "github"
                 }
             ],
-            "time": "2024-09-11T10:52:54+00:00"
+            "time": "2024-09-17T16:52:36+00:00"
         },
         {
             "name": "tomatophp/filament-payments",
-            "version": "v1.0.8",
+            "version": "v1.0.11",
             "source": {
                 "type": "git",
                 "url": "https://github.com/tomatophp/filament-payments.git",
-                "reference": "1334647ac6d894d6d1832b641f09918ee600c465"
+                "reference": "f060e533c66a81bfc3b0944da4a1cfba5c5f032a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/tomatophp/filament-payments/zipball/1334647ac6d894d6d1832b641f09918ee600c465",
-                "reference": "1334647ac6d894d6d1832b641f09918ee600c465",
+                "url": "https://api.github.com/repos/tomatophp/filament-payments/zipball/f060e533c66a81bfc3b0944da4a1cfba5c5f032a",
+                "reference": "f060e533c66a81bfc3b0944da4a1cfba5c5f032a",
                 "shasum": ""
             },
             "require": {
@@ -14675,7 +14675,7 @@
             ],
             "support": {
                 "issues": "https://github.com/tomatophp/filament-payments/issues",
-                "source": "https://github.com/tomatophp/filament-payments/tree/v1.0.8"
+                "source": "https://github.com/tomatophp/filament-payments/tree/v1.0.11"
             },
             "funding": [
                 {
@@ -14683,7 +14683,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2024-09-08T13:57:39+00:00"
+            "time": "2024-09-17T16:53:55+00:00"
         },
         {
             "name": "tomatophp/filament-pos",
@@ -14819,16 +14819,16 @@
         },
         {
             "name": "tomatophp/filament-settings-hub",
-            "version": "v1.0.7",
+            "version": "v1.0.9",
             "source": {
                 "type": "git",
                 "url": "https://github.com/tomatophp/filament-settings-hub.git",
-                "reference": "a661e3159d9fb84c55bd8c1cd0b2562d971e13ae"
+                "reference": "9b9d450379561dfad492e1d95ee478ead86b12d0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/tomatophp/filament-settings-hub/zipball/a661e3159d9fb84c55bd8c1cd0b2562d971e13ae",
-                "reference": "a661e3159d9fb84c55bd8c1cd0b2562d971e13ae",
+                "url": "https://api.github.com/repos/tomatophp/filament-settings-hub/zipball/9b9d450379561dfad492e1d95ee478ead86b12d0",
+                "reference": "9b9d450379561dfad492e1d95ee478ead86b12d0",
                 "shasum": ""
             },
             "require": {
@@ -14873,7 +14873,7 @@
             ],
             "support": {
                 "issues": "https://github.com/tomatophp/filament-settings-hub/issues",
-                "source": "https://github.com/tomatophp/filament-settings-hub/tree/v1.0.7"
+                "source": "https://github.com/tomatophp/filament-settings-hub/tree/v1.0.9"
             },
             "funding": [
                 {
@@ -14881,7 +14881,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2024-09-11T12:50:31+00:00"
+            "time": "2024-09-17T16:42:59+00:00"
         },
         {
             "name": "tomatophp/filament-simple-theme",
@@ -15081,16 +15081,16 @@
         },
         {
             "name": "tomatophp/filament-translation-component",
-            "version": "v1.0.2",
+            "version": "v1.0.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/tomatophp/filament-translation-component.git",
-                "reference": "30d5bef80fb2fb81d8186b6bdb49a9bdc63b6b41"
+                "reference": "6b7ea29bb772ebbe4d2acde6883c67f2b7a8071f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/tomatophp/filament-translation-component/zipball/30d5bef80fb2fb81d8186b6bdb49a9bdc63b6b41",
-                "reference": "30d5bef80fb2fb81d8186b6bdb49a9bdc63b6b41",
+                "url": "https://api.github.com/repos/tomatophp/filament-translation-component/zipball/6b7ea29bb772ebbe4d2acde6883c67f2b7a8071f",
+                "reference": "6b7ea29bb772ebbe4d2acde6883c67f2b7a8071f",
                 "shasum": ""
             },
             "require": {
@@ -15130,7 +15130,7 @@
             ],
             "support": {
                 "issues": "https://github.com/tomatophp/filament-translation-component/issues",
-                "source": "https://github.com/tomatophp/filament-translation-component/tree/v1.0.2"
+                "source": "https://github.com/tomatophp/filament-translation-component/tree/v1.0.3"
             },
             "funding": [
                 {
@@ -15138,20 +15138,20 @@
                     "type": "github"
                 }
             ],
-            "time": "2024-07-29T09:10:27+00:00"
+            "time": "2024-09-16T13:51:53+00:00"
         },
         {
             "name": "tomatophp/filament-translations",
-            "version": "v1.0.24",
+            "version": "v1.0.28",
             "source": {
                 "type": "git",
                 "url": "https://github.com/tomatophp/filament-translations.git",
-                "reference": "6d3bc55f62b4b637e5d7b7ef1140fe27ed11f087"
+                "reference": "060058df9471247d0514e687f2eb97356d02da48"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/tomatophp/filament-translations/zipball/6d3bc55f62b4b637e5d7b7ef1140fe27ed11f087",
-                "reference": "6d3bc55f62b4b637e5d7b7ef1140fe27ed11f087",
+                "url": "https://api.github.com/repos/tomatophp/filament-translations/zipball/060058df9471247d0514e687f2eb97356d02da48",
+                "reference": "060058df9471247d0514e687f2eb97356d02da48",
                 "shasum": ""
             },
             "require": {
@@ -15195,7 +15195,7 @@
             ],
             "support": {
                 "issues": "https://github.com/tomatophp/filament-translations/issues",
-                "source": "https://github.com/tomatophp/filament-translations/tree/v1.0.24"
+                "source": "https://github.com/tomatophp/filament-translations/tree/v1.0.28"
             },
             "funding": [
                 {
@@ -15203,7 +15203,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2024-08-12T09:00:01+00:00"
+            "time": "2024-09-17T17:02:37+00:00"
         },
         {
             "name": "tomatophp/filament-types",
@@ -15274,16 +15274,16 @@
         },
         {
             "name": "tomatophp/filament-users",
-            "version": "v1.0.9",
+            "version": "v1.0.12",
             "source": {
                 "type": "git",
                 "url": "https://github.com/tomatophp/filament-users.git",
-                "reference": "6e40ce34f4e1567867fa7e5cb3cbd702681d824a"
+                "reference": "22c445457602c754bdabdaf91366a09b166efdb1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/tomatophp/filament-users/zipball/6e40ce34f4e1567867fa7e5cb3cbd702681d824a",
-                "reference": "6e40ce34f4e1567867fa7e5cb3cbd702681d824a",
+                "url": "https://api.github.com/repos/tomatophp/filament-users/zipball/22c445457602c754bdabdaf91366a09b166efdb1",
+                "reference": "22c445457602c754bdabdaf91366a09b166efdb1",
                 "shasum": ""
             },
             "require": {
@@ -15328,7 +15328,7 @@
             ],
             "support": {
                 "issues": "https://github.com/tomatophp/filament-users/issues",
-                "source": "https://github.com/tomatophp/filament-users/tree/v1.0.9"
+                "source": "https://github.com/tomatophp/filament-users/tree/v1.0.12"
             },
             "funding": [
                 {
@@ -15336,7 +15336,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2024-09-02T08:00:58+00:00"
+            "time": "2024-09-17T16:47:27+00:00"
         },
         {
             "name": "tomatophp/filament-wallet",
