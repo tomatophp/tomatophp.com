@@ -41,11 +41,13 @@ use App\Policies\WithdrawalMethodPolicy;
 use App\Policies\WithdrawalRequestPolicy;
 use Filament\Support\Facades\FilamentView;
 use Filament\View\PanelsRenderHook;
+use Illuminate\Cache\RateLimiting\Limit;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\ServiceProvider;
 use Laravelcm\Subscriptions\Models\Plan;
@@ -191,6 +193,9 @@ class AppServiceProvider extends ServiceProvider
                 ->label('From Account')
         ]);
 
+        RateLimiter::for('twitter', function ($job) {
+            return Limit::perHour(1);
+        });
 
 
     }

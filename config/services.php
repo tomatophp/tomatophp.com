@@ -49,6 +49,19 @@ return [
         'client_id' => env('GITHUB_CLIENT_ID'),
         'client_secret' => env('GITHUB_CLIENT_SECRET'),
         'redirect' => env('GITHUB_URL'),
+        'username' => env('GITHUB_USERNAME'),
+        'token' => env('GITHUB_TOKEN'),
     ],
 
+
+    'ohdear' => [
+        'ping_url' => env('OHDEAR_PING_URL'),
+    ],
+
+    'twitter' => [
+        'consumer_key' => env('TWITTER_CONSUMER_KEY'),
+        'consumer_secret' => env('TWITTER_CONSUMER_SECRET'),
+        'access_token' => env('TWITTER_ACCESS_TOKEN'),
+        'access_token_secret' => env('TWITTER_ACCESS_TOKEN_SECRET'),
+    ],
 ];

@@ -127,4 +127,8 @@ return [
             ],
         ]
     ],
+    "issues" => [
+        "title" => "Issues",
+        "description" => "A list of issues from the repositories",
+    ]
 ];

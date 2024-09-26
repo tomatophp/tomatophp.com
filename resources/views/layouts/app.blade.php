@@ -77,6 +77,25 @@
                 'fi-panel-' . filament()->getId(),
                 'min-h-screen bg-gray-50 font-normal text-gray-950 antialiased dark:bg-gray-950 dark:text-white',
             ]) }}
+
+    x-data="{
+            isDark: false,
+            toggleDarkMode(enabled) {
+                this.isDark = enabled;
+                document.documentElement.classList.toggle('dark', enabled)
+                localStorage.setItem('theme', enabled ? 'dark' : 'light');
+            },
+            shouldUseDarkMode() {
+                const theme = localStorage.getItem('theme');
+
+                return theme === 'dark'
+                    || (theme === null && window.matchMedia('(prefers-color-scheme: dark)').matches);
+            },
+            darkModeIcon() {
+                return this.isDark ? '☀️' : '🌙';
+            }
+        }"
+    x-init="shouldUseDarkMode() ? toggleDarkMode(true) : toggleDarkMode(false)"
 >
 
 @livewire(Filament\Livewire\Notifications::class)

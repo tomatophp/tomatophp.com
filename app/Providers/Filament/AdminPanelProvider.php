@@ -28,6 +28,7 @@ use TomatoPHP\FilamentEmployees\FilamentEmployeesPlugin;
 use TomatoPHP\FilamentFcm\FilamentFcmPlugin;
 use TomatoPHP\FilamentInvoices\FilamentInvoicesPlugin;
 use TomatoPHP\FilamentLocations\FilamentLocationsPlugin;
+use TomatoPHP\FilamentLogger\FilamentLoggerPlugin;
 use TomatoPHP\FilamentMediaManager\FilamentMediaManagerPlugin;
 use TomatoPHP\FilamentMenus\FilamentMenusPlugin;
 use TomatoPHP\FilamentNotes\FilamentNotesPlugin;
@@ -165,6 +166,9 @@ class AdminPanelProvider extends PanelProvider
                     ->useLoginBy()
                     ->canLogin()
                     ->canBlocked(),
+            )
+            ->plugin(
+                FilamentLoggerPlugin::make()
             )
             ->plugin(
                 FilamentTenancyPlugin::make()->panel('app')->allowImpersonate()

@@ -9,7 +9,10 @@
     "license": "MIT",
     "require": {
         "php": "^8.2",
+        "abraham/twitteroauth": "*",
+        "ashallendesign/laravel-config-validator": "^2.2",
         "bezhansalleh/filament-shield": "^3.2",
+        "bugsnag/bugsnag-laravel": "^2.26.0",
         "filament/filament": "^3.2",
         "laravel/framework": "^11.9",
         "laravel/jetstream": "^5.1",
@@ -33,6 +36,7 @@
         "tomatophp/filament-employees": "^0.0.1",
         "tomatophp/filament-fcm": "^1.0",
         "tomatophp/filament-invoices": "^1.0",
+        "tomatophp/filament-logger": "^1.0",
         "tomatophp/filament-media-manager": "^1.1",
         "tomatophp/filament-menus": "^1.0",
         "tomatophp/filament-notes": "^1.0",

@@ -161,6 +161,11 @@ class HomeController extends Controller
         return view('cms::contact');
     }
 
+    public function issues()
+    {
+        return view('cms::issues');
+    }
+
     public function page($page)
     {
         $page = Post::query()->where('type', 'page')->where('slug', $page)->first();
