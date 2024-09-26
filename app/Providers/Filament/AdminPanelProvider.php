@@ -168,9 +168,6 @@ class AdminPanelProvider extends PanelProvider
                     ->canBlocked(),
             )
             ->plugin(
-                FilamentLoggerPlugin::make()
-            )
-            ->plugin(
                 FilamentTenancyPlugin::make()->panel('app')->allowImpersonate()
             )
             ->plugin(FilamentSimpleThemePlugin::make())
