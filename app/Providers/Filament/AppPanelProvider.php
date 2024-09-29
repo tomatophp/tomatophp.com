@@ -92,13 +92,12 @@ class AppPanelProvider extends PanelProvider
             ->plugin(
                 FilamentTenancyAppPlugin::make()
             )
+
             ->plugins([
                 FilamentAPIPlugin::make(),
                 FilamentTypesPlugin::make(),
                 FilamentMenusPlugin::make(),
                 FilamentTranslationsSwitcherPlugin::make(),
-                FilamentEcommercePlugin::make()
-                    ->useWidgets(),
                 FilamentLocationsPlugin::make(),
                 FilamentUsersPlugin::make(),
                 FilamentShieldPlugin::make(),
@@ -175,6 +174,15 @@ class AppPanelProvider extends PanelProvider
                 DisableBladeIconComponents::class,
                 DispatchServingFilamentEvent::class,
             ])
+            ->plugin(
+                FilamentEcommercePlugin::make()
+                    ->useCoupon()
+                    ->useGiftCard()
+                    ->useReferralCode()
+                    ->allowOrderExport()
+                    ->allowOrderImport()
+                    ->useWidgets(),
+            )
             ->authMiddleware([
                 Authenticate::class,
             ]);

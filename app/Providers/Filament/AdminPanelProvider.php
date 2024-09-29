@@ -94,6 +94,11 @@ class AdminPanelProvider extends PanelProvider
                 FilamentMenusPlugin::make(),
                 FilamentTranslationsSwitcherPlugin::make(),
                 FilamentEcommercePlugin::make()
+                    ->useCoupon()
+                    ->useGiftCard()
+                    ->useReferralCode()
+                    ->allowOrderExport()
+                    ->allowOrderImport()
                     ->useWidgets(),
                 FilamentLocationsPlugin::make(),
                 FilamentUsersPlugin::make(),
