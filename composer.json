@@ -47,6 +47,7 @@
         "tomatophp/filament-subscriptions": "^1.0",
         "tomatophp/filament-tenancy": "^1.0",
         "tomatophp/filament-translations": "^1.0",
+        "tomatophp/filament-types": "*",
         "tomatophp/filament-users": "^1.0",
         "tomatophp/filament-wallet": "^1.0",
         "tomatophp/filament-withdrawals": "^1.0",

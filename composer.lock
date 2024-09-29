@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "51239be1209acbfe859b9911ae1a76f0",
+    "content-hash": "c0fd19563964d85a1d807702c9c0557d",
     "packages": [
         {
             "name": "abraham/twitteroauth",
@@ -15515,16 +15515,16 @@
         },
         {
             "name": "tomatophp/filament-translation-component",
-            "version": "v1.0.3",
+            "version": "v1.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/tomatophp/filament-translation-component.git",
-                "reference": "6b7ea29bb772ebbe4d2acde6883c67f2b7a8071f"
+                "reference": "41ceb636c4f675464a5a377fe00b0a4142f6a76e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/tomatophp/filament-translation-component/zipball/6b7ea29bb772ebbe4d2acde6883c67f2b7a8071f",
-                "reference": "6b7ea29bb772ebbe4d2acde6883c67f2b7a8071f",
+                "url": "https://api.github.com/repos/tomatophp/filament-translation-component/zipball/41ceb636c4f675464a5a377fe00b0a4142f6a76e",
+                "reference": "41ceb636c4f675464a5a377fe00b0a4142f6a76e",
                 "shasum": ""
             },
             "require": {
@@ -15564,7 +15564,7 @@
             ],
             "support": {
                 "issues": "https://github.com/tomatophp/filament-translation-component/issues",
-                "source": "https://github.com/tomatophp/filament-translation-component/tree/v1.0.3"
+                "source": "https://github.com/tomatophp/filament-translation-component/tree/v1.0.0"
             },
             "funding": [
                 {
@@ -15572,7 +15572,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2024-09-16T13:51:53+00:00"
+            "time": "2024-07-10T15:43:06+00:00"
         },
         {
             "name": "tomatophp/filament-translations",
@@ -15641,16 +15641,16 @@
         },
         {
             "name": "tomatophp/filament-types",
-            "version": "v1.0.27",
+            "version": "v1.0.26",
             "source": {
                 "type": "git",
                 "url": "https://github.com/tomatophp/filament-types.git",
-                "reference": "1a3f616f2883a0ae4ee0effbd120748ff8688f7e"
+                "reference": "857b3d3c4f2100b58621b1d92a7f35b1b521ab2d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/tomatophp/filament-types/zipball/1a3f616f2883a0ae4ee0effbd120748ff8688f7e",
-                "reference": "1a3f616f2883a0ae4ee0effbd120748ff8688f7e",
+                "url": "https://api.github.com/repos/tomatophp/filament-types/zipball/857b3d3c4f2100b58621b1d92a7f35b1b521ab2d",
+                "reference": "857b3d3c4f2100b58621b1d92a7f35b1b521ab2d",
                 "shasum": ""
             },
             "require": {
@@ -15661,7 +15661,7 @@
                 "php": "^8.1|^8.2",
                 "tomatophp/console-helpers": "^1.1",
                 "tomatophp/filament-icons": "^1.1",
-                "tomatophp/filament-translation-component": "^v1.0"
+                "tomatophp/filament-translation-component": "v1.0"
             },
             "type": "library",
             "extra": {
@@ -15697,7 +15697,7 @@
             ],
             "support": {
                 "issues": "https://github.com/tomatophp/filament-types/issues",
-                "source": "https://github.com/tomatophp/filament-types/tree/v1.0.27"
+                "source": "https://github.com/tomatophp/filament-types/tree/v1.0.26"
             },
             "funding": [
                 {
@@ -15705,7 +15705,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2024-09-23T15:16:31+00:00"
+            "time": "2024-09-17T16:45:33+00:00"
         },
         {
             "name": "tomatophp/filament-users",
