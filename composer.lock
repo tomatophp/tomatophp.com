@@ -14379,16 +14379,16 @@
         },
         {
             "name": "tomatophp/filament-ecommerce",
-            "version": "v1.0.10",
+            "version": "v1.0.11",
             "source": {
                 "type": "git",
                 "url": "https://github.com/tomatophp/filament-ecommerce.git",
-                "reference": "ff7939ed8e37826641912986970a7dd1f6ba1f3b"
+                "reference": "4f6aa801f8f49f7d71f375ff1d81c643329e280b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/tomatophp/filament-ecommerce/zipball/ff7939ed8e37826641912986970a7dd1f6ba1f3b",
-                "reference": "ff7939ed8e37826641912986970a7dd1f6ba1f3b",
+                "url": "https://api.github.com/repos/tomatophp/filament-ecommerce/zipball/4f6aa801f8f49f7d71f375ff1d81c643329e280b",
+                "reference": "4f6aa801f8f49f7d71f375ff1d81c643329e280b",
                 "shasum": ""
             },
             "require": {
@@ -14440,7 +14440,7 @@
             ],
             "support": {
                 "issues": "https://github.com/tomatophp/filament-ecommerce/issues",
-                "source": "https://github.com/tomatophp/filament-ecommerce/tree/v1.0.10"
+                "source": "https://github.com/tomatophp/filament-ecommerce/tree/v1.0.11"
             },
             "funding": [
                 {
@@ -14448,7 +14448,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2024-09-29T21:18:52+00:00"
+            "time": "2024-09-29T21:34:31+00:00"
         },
         {
             "name": "tomatophp/filament-employees",
