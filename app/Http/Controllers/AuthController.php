@@ -36,11 +36,21 @@ class AuthController extends Controller
     {
         try {
             $providerHasToken = config('services.'.$provider.'.client_token');
-            if($providerHasToken){
-                $socialUser = Socialite::driver($provider)->userFromToken($providerHasToken);
-            }
-            else {
-                $socialUser = Socialite::driver($provider)->user();
+            try {
+                if($providerHasToken){
+                    $socialUser = Socialite::driver($provider)->userFromToken($providerHasToken);
+                }
+                else {
+                    $socialUser = Socialite::driver($provider)->user();
+                }
+            }catch (\Exception $exception){
+                Notification::make()
+                    ->title('Oh No!')
+                    ->body("You don't have any account please register first!")
+                    ->danger()
+                    ->send();
+
+                return redirect()->to(app()->getLocale() . '/register');
             }
 
             if(isset($socialUser->attributes['nickname'])){
