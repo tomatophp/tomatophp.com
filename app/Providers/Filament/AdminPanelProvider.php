@@ -85,6 +85,9 @@ class AdminPanelProvider extends PanelProvider
                 Widgets\AccountWidget::class,
                 Widgets\FilamentInfoWidget::class,
             ])
+            ->plugin(
+                FilamentTenancyPlugin::make()->panel('app')->allowImpersonate()
+            )
             ->plugins([
                 FilamentAPIPlugin::make(),
                 FilamentTypesPlugin::make(),
@@ -155,9 +158,7 @@ class AdminPanelProvider extends PanelProvider
                     ->canLogin()
                     ->canBlocked(),
             )
-            ->plugin(
-                FilamentTenancyPlugin::make()->panel('app')->allowImpersonate()
-            )
+
             ->plugin(FilamentSimpleThemePlugin::make())
             ->middleware([
                 EncryptCookies::class,

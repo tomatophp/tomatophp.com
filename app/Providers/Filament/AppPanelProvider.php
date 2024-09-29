@@ -89,6 +89,9 @@ class AppPanelProvider extends PanelProvider
                 Widgets\AccountWidget::class,
                 Widgets\FilamentInfoWidget::class,
             ])
+            ->plugin(
+                FilamentTenancyAppPlugin::make()
+            )
             ->plugins([
                 FilamentAPIPlugin::make(),
                 FilamentTypesPlugin::make(),
@@ -158,9 +161,6 @@ class AppPanelProvider extends PanelProvider
                     ->useLoginBy()
                     ->canLogin()
                     ->canBlocked(),
-            )
-            ->plugin(
-                FilamentTenancyAppPlugin::make()
             )
             ->plugin(FilamentSimpleThemePlugin::make())
             ->middleware([
