@@ -153,8 +153,6 @@ class AppPanelProvider extends PanelProvider
                 FilamentAccountsPlugin::make()
                     ->useContactUs()
                     ->useAPIs()
-                    ->useImpersonate()
-                    ->impersonateRedirect('apps')
                     ->showAddressField()
                     ->showTypeField()
                     ->useTeams()
