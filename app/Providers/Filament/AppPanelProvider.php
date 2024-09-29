@@ -89,18 +89,6 @@ class AppPanelProvider extends PanelProvider
                 Widgets\AccountWidget::class,
                 Widgets\FilamentInfoWidget::class,
             ])
-            ->middleware([
-                PreventAccessFromCentralDomains::class,
-                EncryptCookies::class,
-                AddQueuedCookiesToResponse::class,
-                StartSession::class,
-                AuthenticateSession::class,
-                ShareErrorsFromSession::class,
-                VerifyCsrfToken::class,
-                SubstituteBindings::class,
-                DisableBladeIconComponents::class,
-                DispatchServingFilamentEvent::class,
-            ])
             ->plugins([
                 FilamentAPIPlugin::make(),
                 FilamentTypesPlugin::make(),
@@ -175,13 +163,21 @@ class AppPanelProvider extends PanelProvider
                 FilamentTenancyAppPlugin::make()
             )
             ->plugin(FilamentSimpleThemePlugin::make())
+            ->middleware([
+                PreventAccessFromCentralDomains::class,
+                EncryptCookies::class,
+                AddQueuedCookiesToResponse::class,
+                StartSession::class,
+                AuthenticateSession::class,
+                ShareErrorsFromSession::class,
+                VerifyCsrfToken::class,
+                SubstituteBindings::class,
+                DisableBladeIconComponents::class,
+                DispatchServingFilamentEvent::class,
+            ])
             ->authMiddleware([
                 Authenticate::class,
             ]);
-
-        $domains = tenant()?->domains()->pluck('domain') ?? [];
-        $panel->domains($domains);
-
 
         return $panel;
     }
