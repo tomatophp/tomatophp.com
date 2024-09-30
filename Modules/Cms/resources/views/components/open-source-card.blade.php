@@ -33,6 +33,18 @@
                 {{ $post->meta('github_starts')??0 }}
             </div>
         </div>
+        @if($post->meta('downloads_total'))
+            <div class="font-bold text-2xl" style="line-height: 0.5;">.</div>
+            <div class="font-sm flex justify-start gap-2">
+                <div class="flex flex-col justify-center items-center">
+                    <x-icon name="bxs-download" class="w-4 h-4 text-success-500"/>
+                </div>
+                <div>
+                    {{ $post->meta('downloads_total')??0 }}
+                </div>
+            </div>
+        @endif
+
     </div>
     @if(count($post->categories))
         <div class="flex flex-wrap gap-2 my-4">
