@@ -1,8 +1,7 @@
 @livewireScripts
-@livewire(\App\Livewire\FcmToken::class)
-
 @livewire('notifications')
 @filamentScripts
+
 <script src="{{ asset('/js/jquery-3.7.1.min.js') }}"></script>
 <script>
     $(function(){  // $(document).ready shorthand

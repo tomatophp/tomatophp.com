@@ -16,12 +16,16 @@
                         <x-icon name="heroicon-s-language" class="w-5 h-5" />
                     </a>
                     <a href="{{ url(app()->getLocale() . '/contact') }}" aria-label="Contact" class="text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-2.5 inline-flex items-center">
-                        <svg viewBox="0 0 24 24" class="w-5 h-5" astro-icon="tabler:mail">
-                            <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
-                                <path d="M3 7a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
-                                <path d="m3 7 9 6 9-6"></path>
-                            </g>
-                        </svg>
+                        <x-icon name="bxs-envelope" class="w-5 h-5" />
+                    </a>
+                    <a  href="https://discord.gg/vKV9U7gD3c" target="_blank"  class="text-gray-500  hover:bg-gray-100  dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-2.5 inline-flex items-center">
+                        <x-icon name="bxl-discord" class="w-5 h-5" />
+                    </a>
+                    <a  href="https://wa.me/{{setting('site_phone')}}" target="_blank"  class="text-gray-500  hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-2.5 inline-flex items-center">
+                        <x-icon name="bxl-whatsapp" class="w-5 h-5" />
+                    </a>
+                    <a  href="https://github.com/sponsors/3x1io" target="_blank"  class="text-danger-500 dark:text-danger-400 hover:bg-danger-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-2.5 inline-flex items-center">
+                        <x-icon name="heroicon-o-heart" class="w-5 h-5" />
                     </a>
                     <button type="button" class="ml-1.5 text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-2.5 inline-flex items-center transition" aria-label="Toggle Menu" data-toggle-menu="">
                         <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 24 24" class="w-6 h-6" astro-icon="tabler:menu">
@@ -45,13 +49,22 @@
                     <a href="{{ app()->getLocale() === 'en' ? str(url()->current())->replaceFirst('/en', '/ar') : str(url()->current())->replaceFirst('/ar', '/en') }}" aria-label="Switch Language" class="text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-2.5 inline-flex items-center">
                         <x-icon name="heroicon-s-language" class="w-5 h-5" />
                     </a>
-                    <a href="{{ url(app()->getLocale() . '/contact') }}" aria-label="Contact" class="text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-2.5 inline-flex items-center">
+                    <a href="{{ url(app()->getLocale() . '/contact') }}" aria-label="Contact" class="text-gray-500  hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-2.5 inline-flex items-center">
                         <svg viewBox="0 0 24 24" class="w-5 h-5" astro-icon="tabler:mail">
                             <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
                                 <path d="M3 7a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
                                 <path d="m3 7 9 6 9-6"></path>
                             </g>
                         </svg>
+                    </a>
+                    <a  href="https://discord.gg/vKV9U7gD3c" target="_blank"  class="text-gray-500  hover:bg-gray-100  dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-2.5 inline-flex items-center">
+                        <x-icon name="bxl-discord" class="w-5 h-5" />
+                    </a>
+                    <a  href="https://wa.me/{{setting('site_phone')}}" target="_blank"  class="text-gray-500  hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-2.5 inline-flex items-center">
+                        <x-icon name="bxl-whatsapp" class="w-5 h-5" />
+                    </a>
+                    <a  href="https://github.com/sponsors/3x1io" target="_blank"  class="text-danger-500 dark:text-danger-400 hover:bg-danger-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-2.5 inline-flex items-center">
+                        <x-icon name="heroicon-o-heart" class="w-5 h-5" />
                     </a>
                 </div>
             </div>
