@@ -44,6 +44,8 @@ return [
     "footer" => [
         "copyright" => "To change the world, you need to believe in change.",
         "open-source" => "this website is open-source project you can use it under",
+        "made" => "Made With Love",
+        "in" => "In Egypt",
         "mit" => "MIT LICENSE",
         "for" => ", from this",
         "link" => "link",

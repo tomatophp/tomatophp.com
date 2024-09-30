@@ -15,6 +15,9 @@
                 <div>
                     <p>©{{ trans('cms::messages.footer.open-source') }} <a class="text-main" href="https://github.com/tomatophp/tomatophp.com/blob/master/LICENSE.md" target="_blank">{{ trans('cms::messages.footer.mit') }}</a> {{ trans('cms::messages.footer.for') }} <a href="https://github.com/tomatophp/tomatophp.com" target="_blank" class="text-main">{{ trans('cms::messages.footer.link') }}</a> </p>
                 </div>
+                <div>
+                    <p>{{ trans('cms::messages.footer.made') }} ❤️ {{ trans('cms::messages.footer.in') }} 🇪🇬</p>
+                </div>
             </div>
         </div>
     </div>
