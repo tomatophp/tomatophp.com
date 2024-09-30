@@ -67,7 +67,6 @@ return [
         "sort-select" => [
             "popular" => "شائع",
             "recent" => "حديث",
-            "downloads" => "التحميلات",
             "alphabetical" => "أبجدي",
         ]
     ],
