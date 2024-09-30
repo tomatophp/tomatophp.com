@@ -115,6 +115,10 @@ class AdminPanelProvider extends PanelProvider
             )
             ->plugin(
                 FilamentAlertsPlugin::make()
+                    ->models([
+                        \App\Models\User::class => 'Admins',
+                        \App\Models\Account::class => 'Accounts',
+                    ])
                     ->useDiscord()
                     ->useDatabase()
                     ->useSettingsHub(),
