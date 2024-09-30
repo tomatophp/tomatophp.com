@@ -21,7 +21,7 @@
                 <x-icon name="bx-git-repo-forked" class="w-4 h-4 text-success-500"/>
             </div>
             <div>
-                {{ $post->meta('github_forks') ?? 0 }}
+                {{ number_format($post->meta('github_forks')) ?? 0 }}
             </div>
         </div>
         <div class="font-bold text-2xl" style="line-height: 0.5;">.</div>
@@ -30,7 +30,7 @@
                 <x-icon name="bxs-star" class="w-4 h-4 text-warning-500"/>
             </div>
             <div>
-                {{ $post->meta('github_starts')??0 }}
+                {{ number_format($post->meta('github_starts'))??0 }}
             </div>
         </div>
         @if($post->meta('downloads_total'))
@@ -40,7 +40,7 @@
                     <x-icon name="bxs-download" class="w-4 h-4 text-success-500"/>
                 </div>
                 <div>
-                    {{ $post->meta('downloads_total')??0 }}
+                    {{ number_format($post->meta('downloads_total'))??0 }}
                 </div>
             </div>
         @endif
