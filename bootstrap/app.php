@@ -17,7 +17,8 @@ return Application::configure(basePath: dirname(__DIR__))
     ->withCommands([
         \App\Console\Commands\EnsureCrawlableRepos::class,
         \App\Console\Commands\PreloadRepoData::class,
-        \App\Console\Commands\TweetAboutNewIssues::class
+        \App\Console\Commands\TweetAboutNewIssues::class,
+        \App\Console\Commands\UpdateOpenSource::class,
     ])
     ->withMiddleware(function (Middleware $middleware) {
         $middleware->group('universal', [
