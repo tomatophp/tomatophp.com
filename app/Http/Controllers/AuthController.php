@@ -76,6 +76,16 @@ class AuthController extends Controller
                     ]);
 
                     $user->meta($provider, $socialUser->id);
+
+                    Notification::make()
+                        ->title('New TomatoPHP User')
+                        ->body(collect([
+                            'NAME: '.$user->name,
+                            'EMAIL: '.$user->email,
+                            'PHONE: '.$user->phone,
+                            'USERNAME: '.$user->username,
+                        ])->implode("\n"))
+                        ->sendToDiscord();
                 }
                 else {
                     $user->update([
@@ -88,15 +98,6 @@ class AuthController extends Controller
                 }
             }
 
-            Notification::make()
-                ->title('New TomatoPHP User')
-                ->body(collect([
-                    'NAME: '.$user->name,
-                    'EMAIL: '.$user->email,
-                    'PHONE: '.$user->phone,
-                    'USERNAME: '.$user->username,
-                ])->implode("\n"))
-                ->sendToDiscord();
 
             auth('accounts')->login($user);
 
