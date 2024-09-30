@@ -43,3 +43,14 @@
 
 @vite('resources/js/app.js')
 @stack('js')
+
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-LBY5VLXL0V"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-LBY5VLXL0V');
+</script>
