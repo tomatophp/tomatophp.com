@@ -67,6 +67,7 @@ return [
         "sort-select" => [
             "popular" => "Popular",
             "recent" => "Recent",
+            "downloads" => "Total Downloads",
             "alphabetical" => "Alphabetical",
         ]
     ],

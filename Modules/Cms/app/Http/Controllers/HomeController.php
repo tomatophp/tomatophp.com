@@ -51,6 +51,11 @@ class HomeController extends Controller
             elseif (request()->get('sort') === 'alphabetical'){
                 $query->orderBy('title');
             }
+            elseif(request()->get('sort') === 'downloads'){
+                $query->with('postMeta', function ($query){
+                    $query->where('key', 'downloads_total')->orderBy('value', 'desc');
+                });
+            }
             else {
                 $query->inRandomOrder();
             }

@@ -30,6 +30,12 @@
                             <option value="popular">{{ trans('cms::messages.filters.sort-select.popular') }}</option>
                         @endif
 
+                        @if(request()->get('sort') === 'downloads' && str(url()->current())->contains('open-source'))
+                            <option value="downloads" selected>{{ trans('cms::messages.filters.sort-select.downloads') }}</option>
+                        @elseif(str(url()->current())->contains('open-source'))
+                            <option value="downloads">{{ trans('cms::messages.filters.sort-select.downloads') }}</option>
+                        @endif
+
                         @if(request()->get('sort') === 'recent')
                             <option value="recent" selected>{{ trans('cms::messages.filters.sort-select.recent') }}</option>
                         @else
@@ -43,6 +49,9 @@
                         @endif
                     @else
                         <option value="popular" selected>{{ trans('cms::messages.filters.sort-select.popular') }}</option>
+                        @if(str(url()->current())->contains('open-source'))
+                            <option value="downloads">{{ trans('cms::messages.filters.sort-select.downloads') }}</option>
+                        @endif
                         <option value="recent">{{ trans('cms::messages.filters.sort-select.recent') }}</option>
                         <option value="alphabetical">{{ trans('cms::messages.filters.sort-select.alphabetical') }}</option>
                     @endif
