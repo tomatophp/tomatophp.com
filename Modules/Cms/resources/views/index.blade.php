@@ -22,7 +22,7 @@
                         </p>
                         <div class="max-w-none px-6 my-2 flex flex-nowrap flex-col sm:flex-row sm:justify-center gap-6" >
                             <div class="flex w-full sm:w-auto" >
-                                <x-cms-main-button url="{{ url(app()->getLocale().'/open-source') }}"  label="{{ trans('cms::messages.index.actions.open-source') }}" icon="heroicon-s-document-text" />
+                                <x-cms-main-button url="open-source"  label="{{ trans('cms::messages.index.actions.open-source') }}" icon="heroicon-s-document-text" />
                             </div>
                             <div class="flex w-full sm:w-auto" >
                                 <x-cms-sub-button url="https://www.github.com/tomatophp" :away="true" label="{{ trans('cms::messages.index.actions.github') }}" icon="bxl-github"/>
