@@ -14176,16 +14176,16 @@
         },
         {
             "name": "tomatophp/filament-cms",
-            "version": "v1.0.24",
+            "version": "v1.0.25",
             "source": {
                 "type": "git",
                 "url": "https://github.com/tomatophp/filament-cms.git",
-                "reference": "864a2fd9af06ee8297f4de0d45ca7127a6ae9a9d"
+                "reference": "33365901987630b18643328a6e4ae54b718bd16e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/tomatophp/filament-cms/zipball/864a2fd9af06ee8297f4de0d45ca7127a6ae9a9d",
-                "reference": "864a2fd9af06ee8297f4de0d45ca7127a6ae9a9d",
+                "url": "https://api.github.com/repos/tomatophp/filament-cms/zipball/33365901987630b18643328a6e4ae54b718bd16e",
+                "reference": "33365901987630b18643328a6e4ae54b718bd16e",
                 "shasum": ""
             },
             "require": {
@@ -14235,7 +14235,7 @@
             ],
             "support": {
                 "issues": "https://github.com/tomatophp/filament-cms/issues",
-                "source": "https://github.com/tomatophp/filament-cms/tree/v1.0.24"
+                "source": "https://github.com/tomatophp/filament-cms/tree/v1.0.25"
             },
             "funding": [
                 {
@@ -14243,7 +14243,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2024-09-30T10:50:37+00:00"
+            "time": "2024-09-30T11:36:53+00:00"
         },
         {
             "name": "tomatophp/filament-developer-gate",
