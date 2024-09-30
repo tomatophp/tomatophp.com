@@ -89,30 +89,13 @@ class AdminPanelProvider extends PanelProvider
                 FilamentTenancyPlugin::make()->panel('app')->allowImpersonate()
             )
             ->plugins([
-                FilamentAPIPlugin::make(),
                 FilamentTypesPlugin::make(),
                 FilamentMenusPlugin::make(),
                 FilamentTranslationsSwitcherPlugin::make(),
-                FilamentEcommercePlugin::make()
-                    ->useCoupon()
-                    ->useGiftCard()
-                    ->useReferralCode()
-                    ->allowOrderExport()
-                    ->allowOrderImport()
-                    ->useWidgets(),
-                FilamentLocationsPlugin::make(),
                 FilamentUsersPlugin::make(),
                 FilamentShieldPlugin::make(),
-                FilamentWalletPlugin::make()
-                    ->useAccounts(),
                 FilamentFcmPlugin::make(),
                 FilamentPWAPlugin::make(),
-                FilamentWithdrawalsPlugin::make(),
-                FilamentPOSPlugin::make(),
-                FilamentInvoicesPlugin::make(),
-                FilamentPaymentsPlugin::make(),
-                FilamentSubscriptionsPlugin::make(),
-                FilamentEmployeesPlugin::make()
             ])
             ->plugin(
                 FilamentSettingsHubPlugin::make()
@@ -153,22 +136,17 @@ class AdminPanelProvider extends PanelProvider
             )
             ->plugin(
                 FilamentAccountsPlugin::make()
+                    ->useImpersonate()
+                    ->impersonateRedirect('user')
                     ->useContactUs()
-                    ->useAPIs()
-                    ->showAddressField()
-                    ->showTypeField()
-                    ->useTeams()
                     ->useTypes()
-                    ->useRequests()
+                    ->showTypeField()
                     ->useAvatar()
                     ->useNotifications()
-                    ->useLocations()
-                    ->useLoginBy()
                     ->canLogin()
                     ->canBlocked(),
             )
 
-            ->plugin(FilamentSimpleThemePlugin::make())
             ->middleware([
                 EncryptCookies::class,
                 AddQueuedCookiesToResponse::class,

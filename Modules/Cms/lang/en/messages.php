@@ -87,7 +87,7 @@ return [
                 'discord' => 'Discord Account',
                 'register' => 'Discord Username',
             ],
-            'name' => 'Discord username',
+            'name' => 'Username',
             'id' => 'Unique ID',
             'domain' => 'Sub-Domain',
             'email' => 'Email',

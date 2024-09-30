@@ -2,6 +2,7 @@
 
 namespace App\Providers\Filament;
 
+use App\Http\Middleware\ActiveMiddleware;
 use App\Providers\TenancyServiceProvider;
 use BezhanSalleh\FilamentShield\FilamentShieldPlugin;
 use Filament\Facades\Filament;
@@ -165,7 +166,6 @@ class AppPanelProvider extends PanelProvider
                     ->canLogin()
                     ->canBlocked(),
             )
-            ->plugin(FilamentSimpleThemePlugin::make())
             ->middleware([
                 PreventAccessFromCentralDomains::class,
                 EncryptCookies::class,
@@ -177,6 +177,7 @@ class AppPanelProvider extends PanelProvider
                 SubstituteBindings::class,
                 DisableBladeIconComponents::class,
                 DispatchServingFilamentEvent::class,
+                ActiveMiddleware::class
             ])
             ->plugin(
                 FilamentEcommercePlugin::make()

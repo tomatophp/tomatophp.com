@@ -2,17 +2,20 @@
 
 namespace App\Livewire;
 
+use App\Models\Account;
 use App\Models\Tenant;
 use DanHarrin\LivewireRateLimiting\Exceptions\TooManyRequestsException;
 use DanHarrin\LivewireRateLimiting\WithRateLimiting;
 use Filament\Actions\Action;
 use Filament\Actions\Concerns\InteractsWithActions;
 use Filament\Actions\Contracts\HasActions;
+use Filament\Events\Auth\Registered;
 use Filament\Facades\Filament;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Concerns\InteractsWithForms;
 use Filament\Forms\Contracts\HasForms;
 use Filament\Forms\Form;
+use Filament\Http\Responses\Auth\Contracts\RegistrationResponse;
 use Filament\Notifications\Notification;
 use Filament\Pages\Concerns\InteractsWithFormActions;
 use Filament\Pages\SimplePage;
@@ -34,12 +37,11 @@ class RegisterOtp extends Component implements HasActions, HasForms
 
     public function mount(): void
     {
-        if(!session()->has('demo_user') || !session()->has('demo_otp')){
+        if(!session()->has('demo_user')){
             abort(404);
         }
         else {
-            $this->user = json_decode(session()->get('demo_user'));
-            $this->otp = session()->get('demo_otp');
+            $this->user = Account::query()->find(session('demo_user'));
         }
     }
 
@@ -92,31 +94,25 @@ class RegisterOtp extends Component implements HasActions, HasForms
         }
 
         $data = $this->form->getState();
+        $user = $this->user;
 
-        if($data['otp'] != $this->otp){
+
+        if($data['otp'] != $user->otp_code){
             $this->throwFailureOtpException();
         }
 
-        $record = Tenant::create([
-            'name' => $this->user->name,
-            'id' => $this->user->id,
-            'email' => $this->user->email,
-            'phone' => $this->user->phone,
-            'packages'=> $this->user->packages,
-            'password'=> $this->user->password,
-        ]);
+        $user->is_active = true;
+        $user->otp_code = true;
+        $user->otp_activated_at = now();
+        $user->save();
 
-        $record->domains()->create(['domain' => $this->user->domain]);
+        event(new Registered($user));
 
-        session()->forget('demo_user');
-        session()->forget('demo_otp');
-        $this->form->fill([]);
+        Filament::auth()->login($user);
 
         session()->regenerate();
 
-        $token = tenancy()->impersonate($record, 1, '/app', 'web');
-
-        return redirect()->to('https://'.$record->domains[0]->domain.'.'. config('app.domain') . '/login/url?token='.$token->token .'&email='. $record->email);
+        return redirect()->to('/user');
     }
 
     protected function getResendAction(): Action

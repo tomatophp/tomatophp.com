@@ -60,80 +60,53 @@ class AuthController extends Controller
                 $id = \Str::of($socialUser->name)->slug('_')->toString();
             }
 
-            $record = Tenant::query()->whereHas('social', function ($query) use ($socialUser, $provider) {
-                $query->where('provider', $provider);
-                $query->where('provider_id', $socialUser->id);
+            $user = Account::query()->whereHas('accountsMetas', function ($query) use ($socialUser, $provider) {
+                $query->where('key', $provider)->where('value', $socialUser->id);
             })->first();
 
-
-            $sessionData = null;
-            if(session()->has('demo_user') && isset(json_decode(session()->get('demo_user'))->packages)){
-                $sessionData = json_decode(session()->get('demo_user'));
-            }
-
-            if($sessionData){
-
-            }
-            if(!$record){
-                if($sessionData){
-                    $record = new Tenant();
-                    $record->name = $socialUser->name;
-                    $record->email = $socialUser->email;
-                    $record->id = $id;
-                    $record->packages = $sessionData->packages;
-                    $record->password = bcrypt(Str::random(8));
-                    $record->save();
-
-                    $record->social()->create([
-                        'provider' => $provider,
-                        'provider_id' => $socialUser->id
+            if(!$user){
+                $user = Account::query()->where('email', $socialUser->email)->first();
+                if(!$user){
+                    $user = Account::create([
+                        'email' => $socialUser->email,
+                        'name' => $socialUser->name,
+                        'username' => $id,
+                        'otp_activated_at' => Carbon::now(),
+                        'is_active' => true,
                     ]);
 
-                    $record->domains()->create(['domain' => \Str::of($socialUser->name)->slug()->toString()]);
-
-                    Notification::make()
-                        ->title('New Demo User')
-                        ->body(collect([
-                            'NAME: '.$record->name,
-                            'EMAIL: '.$record->email,
-                            'USERNAME: '.$record->id,
-                            'PACKAGES: '.collect($sessionData->packages)->implode(','),
-                            'URL: '.'https://'.\Str::of($socialUser->name)->slug()->toString().'.'.config('app.domain'),
-                        ])->implode("\n"))
-                        ->sendToDiscord();
-                }
-            }
-            else {
-                if($sessionData){
-                    $record->packages = $sessionData->packages;
-                    $record->save();
-
-
-                    config(['database.connections.dynamic.database' => config('tenancy.database.prefix').$record->id. config('tenancy.database.suffix')]);
-                    DB::connection('dynamic')
-                        ->table('users')
-                        ->where('email', $record->email)
-                        ->update([
-                            "packages" => json_encode($sessionData->packages),
-                        ]);
+                    $user->meta($provider, $socialUser->id);
                 }
                 else {
-                    Notification::make()
-                        ->title('Error')
-                        ->body('Something went wrong!')
-                        ->danger()
-                        ->send();
+                    $user->update([
+                        'name' => $socialUser->name,
+                        'otp_activated_at' => Carbon::now(),
+                        'is_active' => true,
+                    ]);
+
+                    $user->meta($provider, $socialUser->id);
                 }
             }
 
-            if($record){
-                session()->regenerate();
+            Notification::make()
+                ->title('New TomatoPHP User')
+                ->body(collect([
+                    'NAME: '.$user->name,
+                    'EMAIL: '.$user->email,
+                    'PHONE: '.$user->phone,
+                    'USERNAME: '.$user->username,
+                ])->implode("\n"))
+                ->sendToDiscord();
 
-                $token = tenancy()->impersonate($record, 1, '/app', 'web');
+            auth('accounts')->login($user);
 
-                return redirect()->to('https://' . $record->domains[0]->domain . '.' . config('app.domain') . '/login/url?token=' . $token->token . '&email=' . $record->email);
-            }
+            Notification::make()
+                ->title('Welcome '. $user->name)
+                ->body('You have successfully registered')
+                ->success()
+                ->send();
 
+            return redirect()->to('/user');
         }
         catch (\Exception $exception){
 

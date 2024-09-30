@@ -2,8 +2,9 @@
 
 namespace App\Policies;
 
+use App\Models\Account;
 use App\Models\User;
-use TomatoPHP\FilamentTenancy\Models\Tenant;
+use App\Models\Tenant;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
 class TenantPolicy
@@ -13,96 +14,96 @@ class TenantPolicy
     /**
      * Determine whether the user can view any models.
      */
-    public function viewAny(User $user): bool
+    public function viewAny(User|Account $user): bool
     {
-        return $user->can('view_any_tenant');
+        return  $user instanceof  Account ?:  $user->can('view_any_tenant');
     }
 
     /**
      * Determine whether the user can view the model.
      */
-    public function view(User $user, Tenant $tenant): bool
+    public function view(User|Account $user, Tenant $tenant): bool
     {
-        return $user->can('view_tenant');
+        return $user instanceof  Account ?:  $user->can('view_tenant');
     }
 
     /**
      * Determine whether the user can create models.
      */
-    public function create(User $user): bool
+    public function create(User|Account $user): bool
     {
-        return $user->can('create_tenant');
+        return $user instanceof  Account ?:  $user->can('create_tenant');
     }
 
     /**
      * Determine whether the user can update the model.
      */
-    public function update(User $user, Tenant $tenant): bool
+    public function update(User|Account $user, Tenant $tenant): bool
     {
-        return $user->can('update_tenant');
+        return $user instanceof  Account ?:  $user->can('update_tenant');
     }
 
     /**
      * Determine whether the user can delete the model.
      */
-    public function delete(User $user, Tenant $tenant): bool
+    public function delete(User|Account $user, Tenant $tenant): bool
     {
-        return $user->can('delete_tenant');
+        return $user instanceof  Account ?:  $user->can('delete_tenant');
     }
 
     /**
      * Determine whether the user can bulk delete.
      */
-    public function deleteAny(User $user): bool
+    public function deleteAny(User|Account $user): bool
     {
-        return $user->can('delete_any_tenant');
+        return $user instanceof  Account ?:  $user->can('delete_any_tenant');
     }
 
     /**
      * Determine whether the user can permanently delete.
      */
-    public function forceDelete(User $user, Tenant $tenant): bool
+    public function forceDelete(User|Account $user, Tenant $tenant): bool
     {
-        return $user->can('force_delete_tenant');
+        return $user instanceof  Account ?:  $user->can('force_delete_tenant');
     }
 
     /**
      * Determine whether the user can permanently bulk delete.
      */
-    public function forceDeleteAny(User $user): bool
+    public function forceDeleteAny(User|Account $user): bool
     {
-        return $user->can('force_delete_any_tenant');
+        return $user instanceof  Account ?:  $user->can('force_delete_any_tenant');
     }
 
     /**
      * Determine whether the user can restore.
      */
-    public function restore(User $user, Tenant $tenant): bool
+    public function restore(User|Account $user, Tenant $tenant): bool
     {
-        return $user->can('restore_tenant');
+        return $user instanceof  Account ?:  $user->can('restore_tenant');
     }
 
     /**
      * Determine whether the user can bulk restore.
      */
-    public function restoreAny(User $user): bool
+    public function restoreAny(User|Account $user): bool
     {
-        return $user->can('restore_any_tenant');
+        return $user instanceof  Account ?:  $user->can('restore_any_tenant');
     }
 
     /**
      * Determine whether the user can replicate.
      */
-    public function replicate(User $user, Tenant $tenant): bool
+    public function replicate(User|Account $user, Tenant $tenant): bool
     {
-        return $user->can('replicate_tenant');
+        return $user instanceof  Account ?:  $user->can('replicate_tenant');
     }
 
     /**
      * Determine whether the user can reorder.
      */
-    public function reorder(User $user): bool
+    public function reorder(User|Account $user): bool
     {
-        return $user->can('reorder_tenant');
+        return $user instanceof  Account ?:  $user->can('reorder_tenant');
     }
 }

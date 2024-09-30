@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Models\Account;
+use App\Models\Tenant;
 use App\Policies\AccountPolicy;
 use App\Policies\AccountRequestPolicy;
 use App\Policies\APIResourcePolicy;
@@ -29,9 +30,11 @@ use App\Policies\PlanPolicy;
 use App\Policies\PostPolicy;
 use App\Policies\ProductPolicy;
 use App\Policies\ReferralCodePolicy;
+use App\Policies\RolePolicy;
 use App\Policies\ShippingVendorPolicy;
 use App\Policies\SubscriptionPolicy;
 use App\Policies\TeamPolicy;
+use App\Policies\TenantPolicy;
 use App\Policies\TransactionPolicy;
 use App\Policies\TranslationPolicy;
 use App\Policies\TypePolicy;
@@ -52,6 +55,7 @@ use Illuminate\Support\Facades\URL;
 use Illuminate\Support\ServiceProvider;
 use Laravelcm\Subscriptions\Models\Plan;
 use Laravelcm\Subscriptions\Models\Subscription;
+use Spatie\Permission\Models\Role;
 use Stancl\Tenancy\Events\DatabaseCreated;
 use Stancl\Tenancy\Events\DatabaseMigrated;
 use Stancl\Tenancy\Events\SyncedResourceChangedInForeignDatabase;
@@ -139,6 +143,8 @@ class AppServiceProvider extends ServiceProvider
             $permissionRegistrar->cacheKey = 'spatie.permission.cache';
         });
 
+        Gate::policy(Role::class, RolePolicy::class);
+        Gate::policy(Tenant::class, TenantPolicy::class);
         Gate::policy(Note::class, NotePolicy::class);
         Gate::policy(Translation::class, TranslationPolicy::class);
         Gate::policy(Type::class, TypePolicy::class);
@@ -180,6 +186,11 @@ class AppServiceProvider extends ServiceProvider
         FilamentView::registerRenderHook(
             PanelsRenderHook::USER_MENU_AFTER,
             fn (): string => Blade::render('@livewire(\'quick-menu\')')
+        );
+
+        FilamentView::registerRenderHook(
+            PanelsRenderHook::FOOTER,
+            fn (): string => view('layouts.js')->render()
         );
 
 

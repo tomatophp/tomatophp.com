@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
 use Stancl\Tenancy\Features\UserImpersonation;
@@ -18,57 +19,56 @@ class LoginUrl extends Controller
             'email' => "required|string|email|max:255",
         ]);
 
-        $tenant = \App\Models\Tenant::query()->where('email', $request->get('email'))->first();
-        if($tenant){
-            $user =  \App\Models\User::query()->where('email', $tenant->email)->first();
-            if($user){
-                $user->update([
-                    'name' => $tenant->name,
-                    'email' => $tenant->email,
-                    'packages' => $tenant->packages,
-                    'password' => $tenant->password,
-                ]);
-            }
-            else {
-                $user = new User();
-                $user->name = $tenant->name;
-                $user->email = $tenant->email;
-                $user->password = $tenant->password;
-                $user->packages = $tenant->packages;
-                $user->email_verified_at = Carbon::now();
-                $user->save();
-            }
+        $tenant = tenancy()->tenant;
+        $user =  \App\Models\User::query()->where('email', $tenant->email)->first();
+        if($user){
+            $user->update([
+                'name' => $tenant->name,
+                'email' => $tenant->email,
+                'packages' => $tenant->packages,
+                'password' => $tenant->password,
+            ]);
+        }
+        else {
+            $user = new User();
+            $user->name = $tenant->name;
+            $user->email = $tenant->email;
+            $user->password = $tenant->password;
+            $user->packages = $tenant->packages;
+            $user->email_verified_at = Carbon::now();
+            $user->save();
+        }
 
-            if(is_array($user->packages)){
-                $permissions = [];
-                $packages = config('app.packages');
-                foreach ($packages as $key=>$package){
-                    if(in_array($key, $user->packages)){
-                        foreach ($package['permissions'] as $permission){
-                            $permissions  = array_merge($permissions, $this->generatePermissions($permission));
-                        }
+
+        $getUserPackages = json_decode($user->packages);
+        if(is_array($getUserPackages)){
+            $permissions = [];
+            $packages = config('app.packages');
+            foreach ($packages as $key=>$package){
+                if(in_array($key, $getUserPackages)){
+                    foreach ($package['permissions'] as $permission){
+                        $permissions  = array_merge($permissions, $this->generatePermissions($permission));
                     }
                 }
-
-
-                $role = Role::query()->where('name', 'super_admin')->first();
-                if(!$role){
-                    $role = Role::query()->create([
-                        'name' => 'super_admin',
-                        'guard_name' => 'web',
-                    ]);
-                }
-
-                $role->syncPermissions($permissions);
-                $user->roles()->sync($role->id);
-
-                if($tenant->name){
-                    $site = new \TomatoPHP\FilamentSettingsHub\Settings\SitesSettings();
-                    $site->site_name = $tenant->name;
-                    $site->save();
-                }
             }
 
+
+            $role = Role::query()->where('name', 'super_admin')->first();
+            if(!$role){
+                $role = Role::query()->create([
+                    'name' => 'super_admin',
+                    'guard_name' => 'web',
+                ]);
+            }
+
+            $role->syncPermissions($permissions);
+            $user->roles()->sync($role->id);
+
+            if($tenant->name){
+                $site = new \TomatoPHP\FilamentSettingsHub\Settings\SitesSettings();
+                $site->site_name = $tenant->name;
+                $site->save();
+            }
         }
 
         return UserImpersonation::makeResponse($request->get('token'));

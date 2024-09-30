@@ -14,7 +14,7 @@ class QuickMenu extends Component
             [
                 'label' => 'Docs',
                 'icon' => 'bxs-file-doc',
-                'url' => 'https://docs.tomatophp.com'
+                'url' => 'https://tomatophp.com/en/open-source'
             ],
             [
                 'label' => 'Github',

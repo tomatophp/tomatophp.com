@@ -2,6 +2,8 @@
 
 namespace App\Providers\Filament;
 
+use App\Filament\Apps\Pages\Login;
+use App\Filament\Apps\Pages\Register;
 use Filament\FontProviders\GoogleFontProvider;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\DisableBladeIconComponents;
@@ -19,15 +21,20 @@ use Illuminate\Session\Middleware\AuthenticateSession;
 use Illuminate\Session\Middleware\StartSession;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
 use TomatoPHP\FilamentAccounts\FilamentAccountsSaaSPlugin;
+use TomatoPHP\FilamentFcm\FilamentFcmPlugin;
 
 class AppsPanelProvider extends PanelProvider
 {
     public function panel(Panel $panel): Panel
     {
         return $panel
-            ->id('apps')
-            ->path('apps')
+            ->id('user')
+            ->path('user')
+            ->authGuard('accounts')
             ->databaseNotifications()
+            ->login(Login::class)
+            ->registration(Register::class)
+            ->profile()
             ->colors([
                 'danger' => Color::Red,
                 'gray' => Color::Slate,
@@ -36,6 +43,7 @@ class AppsPanelProvider extends PanelProvider
                 'success' => Color::Emerald,
                 'warning' => Color::Orange,
             ])
+            ->domain(config('filament-tenancy.central_domain'))
             ->favicon(asset('favicon.ico'))
             ->brandName('TomatoPHP')
             ->brandLogo(asset('tomato.png'))
@@ -66,24 +74,11 @@ class AppsPanelProvider extends PanelProvider
                 DispatchServingFilamentEvent::class,
 
             ])
+            ->plugin(
+                FilamentFcmPlugin::make()
+            )
             ->authMiddleware([
                 Authenticate::class,
-            ])
-            ->plugin(
-                FilamentAccountsSaaSPlugin::make()
-                    ->databaseNotifications()
-                    ->checkAccountStatusInLogin()
-                    ->APITokenManager()
-                    ->editTeam()
-                    ->deleteTeam()
-                    ->teamInvitation()
-                    ->showTeamMembers()
-                    ->editProfile()
-                    ->editPassword()
-                    ->browserSesstionManager()
-                    ->deleteAccount()
-                    ->editProfileMenu()
-                    ->registration(),
-            );
+            ]);
     }
 }

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "c0fd19563964d85a1d807702c9c0557d",
+    "content-hash": "ec897d43da7ac2e3316fd85cc948f6b2",
     "packages": [
         {
             "name": "abraham/twitteroauth",
@@ -15316,68 +15316,6 @@
                 }
             ],
             "time": "2024-09-17T16:42:59+00:00"
-        },
-        {
-            "name": "tomatophp/filament-simple-theme",
-            "version": "v1.0.1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/tomatophp/filament-simple-theme.git",
-                "reference": "171c486e0462996ad4d4a90635f2bb6218ca5cca"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/tomatophp/filament-simple-theme/zipball/171c486e0462996ad4d4a90635f2bb6218ca5cca",
-                "reference": "171c486e0462996ad4d4a90635f2bb6218ca5cca",
-                "shasum": ""
-            },
-            "require": {
-                "filament/filament": "^3.0",
-                "php": "^8.1",
-                "tomatophp/console-helpers": "^1.1"
-            },
-            "type": "library",
-            "extra": {
-                "laravel": {
-                    "providers": [
-                        "TomatoPHP\\FilamentSimpleTheme\\FilamentSimpleThemeServiceProvider"
-                    ]
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "TomatoPHP\\FilamentSimpleTheme\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Fady Mondy",
-                    "email": "info@3x1.io"
-                }
-            ],
-            "description": "A simple theme for FilamentPHP with custom user menu in sidebar",
-            "keywords": [
-                "filament",
-                "filament-theme",
-                "filament-theme-simple",
-                "laravel",
-                "php"
-            ],
-            "support": {
-                "issues": "https://github.com/tomatophp/filament-simple-theme/issues",
-                "source": "https://github.com/tomatophp/filament-simple-theme/tree/v1.0.1"
-            },
-            "funding": [
-                {
-                    "url": "https://github.com/3x1io",
-                    "type": "github"
-                }
-            ],
-            "time": "2024-09-12T14:46:42+00:00"
         },
         {
             "name": "tomatophp/filament-subscriptions",

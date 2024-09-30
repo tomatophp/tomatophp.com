@@ -32,11 +32,17 @@ class Tenant extends \Stancl\Tenancy\Database\Models\Tenant implements TenantWit
             'password',
             'packages',
             'is_active',
+            'account_id',
         ];
     }
 
     public function social()
     {
         return $this->hasMany(SocialAuth::class, 'tenant_id', 'id');
+    }
+
+    public function account()
+    {
+        return $this->belongsTo(Account::class, 'account_id', 'id');
     }
 }
