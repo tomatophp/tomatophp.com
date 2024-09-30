@@ -15,10 +15,10 @@
                     {{ trans('cms::messages.issues.description') }}
                 </h2>
             </header>
-
-            <div class="flex flex-col justify-center items-center py-4">
+            <div class="mx-6">
                 @livewire(\App\Livewire\ListIssues::class)
             </div>
+
         </section>
     </div>
 @endsection

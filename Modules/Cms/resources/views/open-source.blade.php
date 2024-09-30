@@ -9,7 +9,7 @@
             <header>
                 <h1 class="text-center text-4xl md:text-6xl font-bold leading-tighter tracking-tighter mb-8 md:mb-16 font-heading">
                     {{ trans('cms::messages.open-source.title') }}
-                    <span class="bg-clip-text text-transparent bg-gradient-to-r from-main to-secondary pr-[0.025em] mr-[-0.025em]">
+                    <span class="bg-clip-text text-transparent bg-gradient-to-r from-success-500 to-danger-500 pr-[0.025em] mr-[-0.025em]">
                         {{ request()->has('category') ? \TomatoPHP\FilamentCms\Models\Category::query()->where('slug', request()->get('category'))->first()?->name : trans('cms::messages.open-source.sub') }}
                     </span>
                 </h1>
