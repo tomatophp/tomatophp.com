@@ -23,7 +23,7 @@
                 </div>
                 <div class="text-center flex flex-col mt-4 ">
                     <div class="flex justify-center gap-2 font-bold">
-                        <a href="{{ url(app()->getLocale() . '/' .$account->username) }}" class="text-2xl"> {{ $account->name }} </a>
+                        <a href="{{ url('/@' .$account->username) }}" class="text-2xl"> {{ $account->name }} </a>
                         <div class="flex flex-col justify-center items-center">
                             @if($account->type === 'verified')
                                 <x-filament::icon-button icon="bxs-badge-check" tooltip="Verified User" color="info">
