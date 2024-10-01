@@ -125,7 +125,7 @@ class AdminPanelProvider extends PanelProvider
             )
             ->plugin(
                 FilamentCMSPlugin::make()
-                    ->defaultLocales([''])
+                    ->defaultLocales(['ar', 'en'])
                     ->useThemeManager()
                     ->usePageBuilder()
                     ->useFormBuilder(),
