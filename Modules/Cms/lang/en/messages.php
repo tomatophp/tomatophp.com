@@ -132,5 +132,50 @@ return [
     "issues" => [
         "title" => "Issues",
         "description" => "A list of issues from the repositories",
+    ],
+    "demos" => [
+        "title" => "Demos",
+        "single" => "Demo"
+    ],
+    "likes" => [
+        "title" => "Likes",
+        "single" => "Like",
+        "post" => "Post",
+        "action" => "Like",
+        "notifications" => [
+            "title" => 'Login Required',
+            "body" => 'You need to login to like this post.'
+        ]
+    ],
+    "comments" => [
+        "title" => "Comments",
+        "single" => "Comment",
+        "post" => "Post",
+        "comment" => "Comment",
+        "active" => "Active",
+        "edit" => "Edit",
+        "delete" => "Delete",
+        "send" => "Send",
+        "login" => "Login",
+        "leave" => "To Leave a Comment",
+        "notifications" => [
+            "edit" => [
+                "title" => "Comment Updated",
+                "body" => "Your comment has been updated successfully"
+            ],
+            "delete" => [
+                "title" => "Comment Deleted",
+                "body" => "Your comment has been deleted successfully"
+            ],
+            "create" => [
+                "title" => "Comment Created",
+                "body" => "Your comment has been created successfully"
+            ]
+        ]
+    ],
+    "widgets" => [
+        "demos" => "Total Demos",
+        "likes" => "Total Likes",
+        "comments" => "Total Comments",
     ]
 ];

@@ -24,6 +24,8 @@ use Illuminate\View\Middleware\ShareErrorsFromSession;
 use TomatoPHP\FilamentAccounts\Filament\Pages\EditProfile;
 use TomatoPHP\FilamentAccounts\FilamentAccountsSaaSPlugin;
 use TomatoPHP\FilamentFcm\FilamentFcmPlugin;
+use TomatoPHP\FilamentTranslations\FilamentTranslationsSwitcherPlugin;
+use TomatoPHP\FilamentTranslations\Http\Middleware\LanguageMiddleware;
 
 class AppsPanelProvider extends PanelProvider
 {
@@ -45,11 +47,13 @@ class AppsPanelProvider extends PanelProvider
                 'success' => Color::Emerald,
                 'warning' => Color::Orange,
             ])
+            ->topNavigation()
             ->domain(config('filament-tenancy.central_domain'))
             ->favicon(asset('favicon.ico'))
             ->brandName('TomatoPHP')
             ->brandLogo(asset('tomato.png'))
             ->brandLogoHeight('80px')
+            ->homeUrl(url('/'))
             ->font(
                 'IBM Plex Sans Arabic',
                 provider: GoogleFontProvider::class,
@@ -60,10 +64,7 @@ class AppsPanelProvider extends PanelProvider
                 Pages\Dashboard::class
             ])
             ->discoverWidgets(in: app_path('Filament/Apps/Widgets'), for: 'App\\Filament\\Apps\\Widgets')
-            ->widgets([
-                Widgets\AccountWidget::class,
-                Widgets\FilamentInfoWidget::class,
-            ])
+            ->widgets([])
             ->middleware([
                 EncryptCookies::class,
                 AddQueuedCookiesToResponse::class,
@@ -74,6 +75,7 @@ class AppsPanelProvider extends PanelProvider
                 SubstituteBindings::class,
                 DisableBladeIconComponents::class,
                 DispatchServingFilamentEvent::class,
+                LanguageMiddleware::class
 
             ])
             ->plugin(

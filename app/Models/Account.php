@@ -7,6 +7,7 @@ use Bavix\Wallet\Traits\HasWallet;
 use Filament\Models\Contracts\FilamentUser;
 use Filament\Models\Contracts\HasAvatar;
 use Filament\Models\Contracts\HasTenants;
+use Filament\Notifications\Notification;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -20,6 +21,7 @@ use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 use TomatoPHP\FilamentAccounts\Traits\InteractsWithTenant;
 use TomatoPHP\FilamentAlerts\Traits\InteractsWithNotifications;
+use TomatoPHP\FilamentCms\Filament\Resources\PostResource;
 use TomatoPHP\FilamentCms\Models\Post;
 use TomatoPHP\FilamentEmployees\Traits\IsEmployee;
 use TomatoPHP\FilamentFcm\Traits\InteractsWithFCM;
@@ -75,6 +77,7 @@ class Account extends Authenticatable implements HasMedia, HasAvatar, HasTenants
         'username',
         'loginBy',
         'address',
+        'lang',
         'password',
         'otp_code',
         'otp_activated_at',
@@ -208,12 +211,34 @@ class Account extends Authenticatable implements HasMedia, HasAvatar, HasTenants
             $this->likes()->create(['post_id' => $post->id]);
             $post->likes +=1;
             $post->save();
+
+            Notification::make()
+                ->title("New Like")
+                ->body("{$this->post->author()->name} liked your post.")
+                ->actions([
+                    \Filament\Notifications\Actions\Action::make('viewComment')
+                        ->label('View Comment')
+                        ->url(PostResource::getUrl('show', ['record' => $this->post]))
+                ])
+                ->success()
+                ->sendToDatabase($this->post->author());
         }
         else {
             $exists->delete();
 
             $post->likes -=1;
             $post->save();
+
+            Notification::make()
+                ->title("New Dislike")
+                ->body("{$this->post->author()->name} disliked your post.")
+                ->actions([
+                    \Filament\Notifications\Actions\Action::make('viewComment')
+                        ->label('View Comment')
+                        ->url(PostResource::getUrl('show', ['record' => $this->post]))
+                ])
+                ->success()
+                ->sendToDatabase($this->post->author());
         }
     }
 

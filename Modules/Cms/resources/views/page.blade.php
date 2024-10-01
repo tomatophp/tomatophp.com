@@ -24,6 +24,11 @@
                     {!! str($page->body)->markdown() !!}
                 </section>
             </div>
+
+            <x-cms-social-share />
+            <div>
+                @livewire(\Modules\Cms\Livewire\LikePost::class, ['post' => $docs])
+            </div>
         </section>
     </div>
 @endsection

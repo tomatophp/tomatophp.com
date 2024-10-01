@@ -89,12 +89,18 @@ class HomeController extends Controller
             ->where('slug', $docs)
             ->first();
 
-        $docs->views += 1;
-        $docs->save();
+        if($docs){
+            $docs->views += 1;
+            $docs->save();
 
-        return view('cms::docs', [
-            "docs" => $docs
-        ]);
+            return view('cms::docs', [
+                "docs" => $docs
+            ]);
+        }
+        else {
+            abort(404);
+        }
+
     }
 
     public function portfolios()
@@ -163,12 +169,18 @@ class HomeController extends Controller
     {
         $post = Post::query()->where('slug', $post)->first();
 
-        $post->views += 1;
-        $post->save();
+        if($post){
+            $post->views += 1;
+            $post->save();
 
-        return view('cms::post', [
-            'post' => $post
-        ]);
+            return view('cms::post', [
+                'post' => $post
+            ]);
+        }
+        else {
+            abort(404);
+        }
+
     }
 
     public function contact()
@@ -185,10 +197,10 @@ class HomeController extends Controller
     {
         $page = Post::query()->where('type', 'page')->where('slug', $page)->first();
 
-        $page->views += 1;
-        $page->save();
-
         if($page){
+            $page->views += 1;
+            $page->save();
+
             return view('cms::page', [
                 'page' => $page
             ]);

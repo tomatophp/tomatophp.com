@@ -20,24 +20,29 @@ class LikeResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-heart';
 
-    public static function form(Form $form): Form
+
+    public static function getNavigationLabel(): string
     {
-        return $form
-            ->schema([
-                Forms\Components\TextInput::make('account_id')
-                    ->required()
-                    ->numeric(),
-                Forms\Components\TextInput::make('post_id')
-                    ->required()
-                    ->numeric(),
-            ]);
+        return trans('cms::messages.likes.title');
     }
+
+    public static function getPluralLabel(): ?string
+    {
+        return  trans('cms::messages.likes.title');
+    }
+
+    public static function getLabel(): ?string
+    {
+        return  trans('cms::messages.likes.single');
+    }
+
 
     public static function table(Table $table): Table
     {
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('post.title')
+                    ->label(trans('cms::messages.likes.post'))
                     ->numeric()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('created_at')

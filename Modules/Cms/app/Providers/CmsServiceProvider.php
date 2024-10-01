@@ -5,6 +5,7 @@ namespace Modules\Cms\Providers;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
 use Livewire\Livewire;
+use Modules\Cms\Livewire\CommentPost;
 use Modules\Cms\Livewire\LikePost;
 use Modules\Cms\View\Components\BlogCard;
 use Modules\Cms\View\Components\CategoryToolbar;
@@ -55,6 +56,7 @@ class CmsServiceProvider extends ServiceProvider
         ]);
 
         Livewire::component('like', LikePost::class);
+        Livewire::component('comment', CommentPost::class);
     }
 
     /**

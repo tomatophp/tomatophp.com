@@ -2,6 +2,7 @@
 
 namespace Modules\Cms\Http\Middlewares;
 
+use App\Models\Account;
 use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
@@ -19,6 +20,7 @@ class LangRoute
     {
         $checkLocationAR = Str::of($request->url())->contains('/ar');
         $checkLocationEN = Str::of($request->url())->contains('/en');
+
         if($checkLocationAR){
             app()->setLocale('ar');
             if(!isset($_COOKIE['lang'])){
@@ -26,6 +28,12 @@ class LangRoute
                     'id' => 'ar',
                     'name' => 'Arabic'
                 ]), time() + (86400 * 30), "/");
+            }
+
+            if(auth('accounts')->user()){
+                auth('accounts')->user()->update([
+                    'lang' => 'ar'
+                ]);
             }
         }
         if($checkLocationEN){
@@ -35,6 +43,12 @@ class LangRoute
                     'id' => 'en',
                     'name' => 'English'
                 ]), time() + (86400 * 30), "/");
+            }
+
+            if(auth('accounts')->user()){
+                auth('accounts')->user()->update([
+                    'lang' => 'en'
+                ]);
             }
         }
 

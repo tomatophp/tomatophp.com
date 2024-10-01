@@ -29,6 +29,9 @@
             </section>
 
             <x-cms-social-share />
+            <div>
+                @livewire(\Modules\Cms\Livewire\LikePost::class, ['post' => $docs])
+            </div>
         </div>
     </div>
 @endsection
