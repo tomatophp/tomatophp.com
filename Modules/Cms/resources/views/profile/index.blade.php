@@ -14,8 +14,7 @@
                 <img src="{{ $account->getFirstMediaUrl('cover') }}" class="w-full h-full bg-cover bg-center object-cover" alt="cover">
             </div>
         </div>
-        <div class="grid grid-cols-1 lg:grid-cols-3">
-            <div class="justify-start gap-4 mt-8 mx-16 hidden lg:flex"></div>
+        <div>
             <div>
                 <div class="flex justify-center flex-col items-center -mt-24">
                     <div class="w-32 h-32 rounded-full bg-slate-200 dark:bg-slate-800 border border-slate-200 dark:border-slate-700">
@@ -63,71 +62,66 @@
                     </h6>
                 </div>
             </div>
-            <div class="flex justify-center md:justify-start gap-4 mt-8 mx-16">
-                <h1>Last Activity</h1>
-            </div>
-            <div class="flex justify-center md:justify-end gap-4 md:mx-16">
-
-                <div class="flex items-center justify-center w-full">
-                    <div class="w-full lg:w-1/2 xl:w-1/3">
-                        @php $comments = \TomatoPHP\FilamentCms\Models\Comment::query()->where('user_id', $account->id)->where('user_type', \App\Models\Account::class)->paginate(10); @endphp
-                        @if(count($comments))
-                            <div class="grid grid-cols-1 gap-4 mx-8 md:mx-0 my-4">
-                                @foreach($comments as $comment)
-                                    <div class="w-full bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg shadow-sm mt-4 overflow-hidden">
-                                        <div class="flex justify-between w-full border-b border-slate-200 dark:border-slate-700 p-4">
-                                            <div class="w-full flex justify-between gap-2">
-                                                <div class="w-full flex justify-start gap-2">
-                                                    <a href="{{ url(app()->getLocale() . '/@' . $account->username) }}">
-                                                        <div class="w-8 h-8 rounded-full bg-slate-800 border border-slate-200 dark:border-slate-700">
-                                                            <x-filament-panels::avatar.user :user="$account" size="8"/>
-                                                        </div>
-                                                    </a>
-                                                    <a href="{{ url(app()->getLocale() . '/' . ($comment->content?->type === 'open-source' ? 'open-source' : 'blog') . '/' . $comment->content?->slug) }}" target="_blank" class="flex flex-col justify-center">
-                                                        <div class="flex justify-start gap-2">
-                                                            <div>
-                                                                <h1 class="font-bold text-md">{{ $comment->content?->title }}</h1>
-                                                            </div>
-                                                            <div class="flex flex-col justify-center items-center">
-                                                                <x-icon name="bx-link-external" class="w-4 h-4"/>
-                                                            </div>
-                                                        </div>
-                                                    </a>
-                                                </div>
-                                                <div>
-                                                    <div class="flex flex-col justify-center items-center">
-                                                        <x-icon name="heroicon-o-chat-bubble-left-right" class="w-5 h-5"/>
+            <div class="flex flex-col justify-center items-center mx-8  md:mx-16 mt-8 ">
+                <div>
+                    <div class="flex justify-start text-start">
+                        <h1>Last Activity</h1>
+                    </div>
+                    @php $comments = \TomatoPHP\FilamentCms\Models\Comment::query()->where('user_id', $account->id)->where('user_type', \App\Models\Account::class)->paginate(10); @endphp
+                    @if(count($comments))
+                        <div class="grid grid-cols-1 gap-4 my-4">
+                            @foreach($comments as $comment)
+                                <div class="w-full bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg shadow-sm mt-4 overflow-hidden">
+                                    <div class="flex justify-between w-full border-b border-slate-200 dark:border-slate-700 p-4">
+                                        <div class="w-full flex justify-between gap-2">
+                                            <div class="w-full flex justify-start gap-2">
+                                                <a href="{{ url(app()->getLocale() . '/@' . $account->username) }}">
+                                                    <div class="w-8 h-8 rounded-full bg-slate-800 border border-slate-200 dark:border-slate-700">
+                                                        <x-filament-panels::avatar.user :user="$account" size="8"/>
                                                     </div>
-                                                </div>
+                                                </a>
+                                                <a href="{{ url(app()->getLocale() . '/' . ($comment->content?->type === 'open-source' ? 'open-source' : 'blog') . '/' . $comment->content?->slug) }}" target="_blank" class="flex flex-col justify-center">
+                                                    <div class="flex justify-start gap-2">
+                                                        <div>
+                                                            <h1 class="font-bold text-md">{{ $comment->content?->title }}</h1>
+                                                        </div>
+                                                        <div class="flex flex-col justify-center items-center">
+                                                            <x-icon name="bx-link-external" class="w-4 h-4"/>
+                                                        </div>
+                                                    </div>
+                                                </a>
                                             </div>
-                                        </div>
-                                        <div class="flex justify-center">
-                                            <div class="flex flex-col justify-center w-full p-4">
-                                                <section data-theme="light" class="prose prose-lg lg:prose-xl dark:prose-invert dark:prose-headings:text-slate-300 prose-headings:font-heading prose-headings:leading-tighter prose-headings:tracking-tighter prose-headings:font-bold prose-img:rounded-md prose-img:shadow-lg prose-a:text-black/75 dark:prose-a:text-white/90 prose-a:underline prose-a:underline-offset-4 prose-a:decoration-primary-500 hover:prose-a:decoration-primary-600 prose-a:decoration-2 hover:prose-a:decoration-4 hover:prose-a:text-black dark:hover:prose-a:text-white break-words tracking-normal prose-h4:tracking-normal prose-h5:tracking-normal prose-h6:tracking-normal prose-code:before:hidden prose-code:after:hidden markdown-body">
-                                                    {!! str($comment->comment)->markdown() !!}
-                                                </section>
+                                            <div>
+                                                <div class="flex flex-col justify-center items-center">
+                                                    <x-icon name="heroicon-o-chat-bubble-left-right" class="w-5 h-5"/>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                @endforeach
-                            </div>
-                            <div class="mx-8 lg:mx-0 my-4">
-                                {{ $comments->links() }}
-                            </div>
-                        @else
-                            <div class="bg-slate-800 border border-slate-700 mx-8 md:mx-0 mt-6 mb-8 rounded-lg shadow-sm flex justify-center">
-                                <div class="p-8 md:p-16 text-center">
-                                    <i class="bx bx-x-circle bx-lg text-danger-500"></i>
-                                    <h1>This Profile is empty!</h1>
+                                    <div class="flex justify-center">
+                                        <div class="flex flex-col justify-center w-full p-4">
+                                            <section data-theme="light" class="prose prose-lg lg:prose-xl dark:prose-invert dark:prose-headings:text-slate-300 prose-headings:font-heading prose-headings:leading-tighter prose-headings:tracking-tighter prose-headings:font-bold prose-img:rounded-md prose-img:shadow-lg prose-a:text-black/75 dark:prose-a:text-white/90 prose-a:underline prose-a:underline-offset-4 prose-a:decoration-primary-500 hover:prose-a:decoration-primary-600 prose-a:decoration-2 hover:prose-a:decoration-4 hover:prose-a:text-black dark:hover:prose-a:text-white break-words tracking-normal prose-h4:tracking-normal prose-h5:tracking-normal prose-h6:tracking-normal prose-code:before:hidden prose-code:after:hidden markdown-body">
+                                                {!! str($comment->comment)->markdown() !!}
+                                            </section>
+                                        </div>
+                                    </div>
                                 </div>
+                            @endforeach
+                        </div>
+                        <div class="mx-8 lg:mx-0 my-4">
+                            {{ $comments->links() }}
+                        </div>
+                    @else
+                        <div class="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 mx-8 md:mx-0 mt-6 mb-8 rounded-lg shadow-sm flex justify-center">
+                            <div class="p-8 md:p-16 text-center">
+                                <i class="bx bx-x-circle bx-lg text-danger-500"></i>
+                                <h1>This Profile is empty!</h1>
                             </div>
-                        @endif
+                        </div>
+                    @endif
 
-                    </div>
                 </div>
             </div>
-
-            <x-cms-social-share />
         </div>
     </div>
 @endsection
