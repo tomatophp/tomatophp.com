@@ -4,6 +4,7 @@ namespace App\Filament\Apps\Resources;
 
 use App\Filament\Apps\Resources\LikeResource\Pages;
 use App\Filament\Apps\Resources\LikeResource\RelationManagers;
+use App\Models\Account;
 use App\Models\Like;
 use Filament\Forms;
 use Filament\Forms\Form;
@@ -40,6 +41,9 @@ class LikeResource extends Resource
     public static function table(Table $table): Table
     {
         return $table
+            ->modifyQueryUsing(function (Builder $query) {
+                $query->where('account_id', auth('accounts')->user()->id);
+            })
             ->columns([
                 Tables\Columns\TextColumn::make('post.title')
                     ->label(trans('cms::messages.likes.post'))

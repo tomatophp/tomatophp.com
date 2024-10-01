@@ -4,6 +4,7 @@ namespace App\Filament\Apps\Resources;
 
 use App\Filament\Apps\Resources\CommentResource\Pages;
 use App\Filament\Apps\Resources\CommentResource\RelationManagers;
+use App\Models\Account;
 use App\Models\Like;
 use Filament\Forms;
 use Filament\Forms\Components\MarkdownEditor;
@@ -51,6 +52,10 @@ class CommentResource extends Resource
     public static function table(Table $table): Table
     {
         return $table
+            ->modifyQueryUsing(function (Builder $query) {
+                $query->where('user_id', auth('accounts')->user()->id)
+                    ->where('user_type', Account::class);
+            })
             ->columns([
                 Tables\Columns\TextColumn::make('content.title')
                     ->label(trans('cms::messages.comments.post'))

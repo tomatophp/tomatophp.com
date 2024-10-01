@@ -8,6 +8,7 @@ use App\Models\Tenant;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Forms\Get;
+use Filament\Notifications\Notification;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
@@ -151,12 +152,6 @@ class DemosResource extends Resource
                     ->action(function (array $data, $record) {
                         $record->password = bcrypt($data['password']);
                         $record->save();
-
-                        Notification::make()
-                            ->title(trans('filament-tenancy::messages.actions.notificaitons.password.title'))
-                            ->body(trans('filament-tenancy::messages.actions.notificaitons.password.body'))
-                            ->success()
-                            ->send();
                     }),
                 Tables\Actions\DeleteAction::make()
                     ->label(trans('filament-tenancy::messages.actions.delete'))
