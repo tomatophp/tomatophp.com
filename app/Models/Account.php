@@ -212,16 +212,18 @@ class Account extends Authenticatable implements HasMedia, HasAvatar, HasTenants
             $post->likes +=1;
             $post->save();
 
-            Notification::make()
-                ->title("New Like")
-                ->body("{$this->post->author()->name} liked your post.")
-                ->actions([
-                    \Filament\Notifications\Actions\Action::make('viewComment')
-                        ->label('View Comment')
-                        ->url(PostResource::getUrl('show', ['record' => $this->post]))
-                ])
-                ->success()
-                ->sendToDatabase($this->post->author());
+            if($post->author){
+                Notification::make()
+                    ->title("New Like")
+                    ->body("{$this->name} liked your post.")
+                    ->actions([
+                        \Filament\Notifications\Actions\Action::make('viewComment')
+                            ->label('View Comment')
+                            ->url(PostResource::getUrl('show', ['record' => $post]))
+                    ])
+                    ->success()
+                    ->sendToDatabase($post->author);
+            }
         }
         else {
             $exists->delete();
@@ -229,16 +231,19 @@ class Account extends Authenticatable implements HasMedia, HasAvatar, HasTenants
             $post->likes -=1;
             $post->save();
 
-            Notification::make()
-                ->title("New Dislike")
-                ->body("{$this->post->author()->name} disliked your post.")
-                ->actions([
-                    \Filament\Notifications\Actions\Action::make('viewComment')
-                        ->label('View Comment')
-                        ->url(PostResource::getUrl('show', ['record' => $this->post]))
-                ])
-                ->success()
-                ->sendToDatabase($this->post->author());
+            if($post->author){
+                Notification::make()
+                    ->title("New Dislike")
+                    ->body("{$this->name} disliked your post.")
+                    ->actions([
+                        \Filament\Notifications\Actions\Action::make('viewComment')
+                            ->label('View Comment')
+                            ->url(PostResource::getUrl('show', ['record' => $post]))
+                    ])
+                    ->success()
+                    ->sendToDatabase($post->author);
+            }
+
         }
     }
 

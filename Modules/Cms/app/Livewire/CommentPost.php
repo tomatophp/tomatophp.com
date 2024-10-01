@@ -122,16 +122,18 @@ class CommentPost extends Component implements HasActions, HasForms
                     'comment' => ''
                 ]);
 
-                Notification::make()
-                    ->title("New Comment")
-                    ->body("A new comment has been added to your post")
-                    ->actions([
-                        \Filament\Notifications\Actions\Action::make('viewComment')
-                            ->label('View Comment')
-                            ->url(PostResource::getUrl('show', ['record' => $this->post]))
-                    ])
-                    ->success()
-                    ->sendToDatabase($this->post->author());
+                if($this->post->author){
+                    Notification::make()
+                        ->title("New Comment")
+                        ->body(auth('accounts')->user()->name . " add a new comment has been added to your post")
+                        ->actions([
+                            \Filament\Notifications\Actions\Action::make('viewComment')
+                                ->label('View Comment')
+                                ->url(PostResource::getUrl('show', ['record' => $this->post]))
+                        ])
+                        ->success()
+                        ->sendToDatabase($this->post->author);
+                }
 
                 Notification::make()
                     ->title(trans('cms::messages.comments.notifications.create.title'))
