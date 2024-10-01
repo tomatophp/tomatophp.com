@@ -8,12 +8,12 @@ class AuthController extends Controller
 {
     public function login()
     {
-        return view('cms::auth.login');
+        return redirect()->to('/user/login');
     }
 
     public function register()
     {
-        return view('cms::auth.register');
+        return redirect()->to('/user/register');
     }
 
     public function otp()

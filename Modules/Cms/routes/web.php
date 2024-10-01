@@ -21,8 +21,6 @@ Route::domain(config('app.domain'))->middleware(['web'])->group(function () {
 
     Route::prefix('ar')->middleware(['web', \Modules\Cms\Http\Middlewares\LangRoute::class])->group(function () {
         Route::name('ar.auth.')->group(function () {
-            Route::get('/login', [\Modules\Cms\Http\Controllers\AuthController::class, 'login'])->name('login');
-            Route::get('/register', [\Modules\Cms\Http\Controllers\AuthController::class, 'register'])->name('register');
             Route::get('/verify-otp', [\Modules\Cms\Http\Controllers\AuthController::class, 'otp'])->name('otp');
         });
 
