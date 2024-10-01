@@ -4,6 +4,8 @@ namespace Modules\Cms\Providers;
 
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
+use Livewire\Livewire;
+use Modules\Cms\Livewire\LikePost;
 use Modules\Cms\View\Components\BlogCard;
 use Modules\Cms\View\Components\CategoryToolbar;
 use Modules\Cms\View\Components\EmptyState;
@@ -16,6 +18,7 @@ use Modules\Cms\View\Components\ServiceCard;
 use Modules\Cms\View\Components\SocailIcon;
 use Modules\Cms\View\Components\SocialShare;
 use Modules\Cms\View\Components\SubButton;
+use Modules\Cms\View\Components\UserMenu;
 use TomatoPHP\FilamentCms\Facades\FilamentCMS;
 use TomatoPHP\FilamentCms\Services\Contracts\Section;
 
@@ -47,8 +50,11 @@ class CmsServiceProvider extends ServiceProvider
             SocialShare::class,
             ServiceCard::class,
             FilterToolbar::class,
-            EmptyState::class
+            EmptyState::class,
+            UserMenu::class
         ]);
+
+        Livewire::component('like', LikePost::class);
     }
 
     /**

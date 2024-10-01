@@ -22,6 +22,8 @@ class HomeController extends Controller
     public function about()
     {
         $page = load_page('/about');
+        $page->views += 1;
+        $page->save();
         return view('cms::about', [
             'page' => $page
         ]);
@@ -30,6 +32,8 @@ class HomeController extends Controller
     public function donate()
     {
         $page = load_page('/donate');
+        $page->views += 1;
+        $page->save();
         return view('cms::donate', [
             'page' => $page
         ]);
@@ -85,6 +89,9 @@ class HomeController extends Controller
             ->where('slug', $docs)
             ->first();
 
+        $docs->views += 1;
+        $docs->save();
+
         return view('cms::docs', [
             "docs" => $docs
         ]);
@@ -107,6 +114,8 @@ class HomeController extends Controller
     public function portfolio($portfolio)
     {
         $portfolio = Post::query()->where('slug', $portfolio)->first();
+        $portfolio->views += 1;
+        $portfolio->save();
         return view('cms::portfolio', [
             "portfolio" => $portfolio
         ]);
@@ -128,6 +137,8 @@ class HomeController extends Controller
     public function service($service)
     {
         $service = Post::query()->where('slug', $service)->first();
+        $service->views += 1;
+        $service->save();
         return view('cms::service', [
             "service" => $service
         ]);
@@ -151,6 +162,10 @@ class HomeController extends Controller
     public function post($post)
     {
         $post = Post::query()->where('slug', $post)->first();
+
+        $post->views += 1;
+        $post->save();
+
         return view('cms::post', [
             'post' => $post
         ]);
@@ -169,6 +184,10 @@ class HomeController extends Controller
     public function page($page)
     {
         $page = Post::query()->where('type', 'page')->where('slug', $page)->first();
+
+        $page->views += 1;
+        $page->save();
+
         if($page){
             return view('cms::page', [
                 'page' => $page

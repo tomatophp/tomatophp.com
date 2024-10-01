@@ -25,7 +25,7 @@
                     <x-cms-main-button icon="bxs-download" :away="true" label="{{ number_format($docs->meta('downloads_total'))??0 }}" url="{{ $docs->meta_url }}" />
                 </div>
                 <div class="relative">
-                    <x-cms-main-button icon="bxs-heart" :away="true" label="{{ number_format($docs->meta('github_starts'))??0 }}" url="{{ $docs->meta_url }}" />
+                    <x-cms-main-button icon="bxs-star" :away="true" label="{{ number_format($docs->meta('github_starts'))??0 }}" url="{{ $docs->meta_url }}" />
                 </div>
             </nav>
         </header>
@@ -36,6 +36,9 @@
             </section>
 
             <x-cms-social-share />
+            <div>
+                @livewire(\Modules\Cms\Livewire\LikePost::class, ['post' => $docs])
+            </div>
         </div>
     </div>
 @endsection

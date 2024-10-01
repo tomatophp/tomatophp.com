@@ -8,6 +8,7 @@ use Filament\FontProviders\GoogleFontProvider;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\DisableBladeIconComponents;
 use Filament\Http\Middleware\DispatchServingFilamentEvent;
+use Filament\Navigation\MenuItem;
 use Filament\Pages;
 use Filament\Panel;
 use Filament\PanelProvider;
@@ -20,6 +21,7 @@ use Illuminate\Routing\Middleware\SubstituteBindings;
 use Illuminate\Session\Middleware\AuthenticateSession;
 use Illuminate\Session\Middleware\StartSession;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
+use TomatoPHP\FilamentAccounts\Filament\Pages\EditProfile;
 use TomatoPHP\FilamentAccounts\FilamentAccountsSaaSPlugin;
 use TomatoPHP\FilamentFcm\FilamentFcmPlugin;
 
@@ -55,7 +57,7 @@ class AppsPanelProvider extends PanelProvider
             ->discoverResources(in: app_path('Filament/Apps/Resources'), for: 'App\\Filament\\Apps\\Resources')
             ->discoverPages(in: app_path('Filament/Apps/Pages'), for: 'App\\Filament\\Apps\\Pages')
             ->pages([
-                Pages\Dashboard::class,
+                Pages\Dashboard::class
             ])
             ->discoverWidgets(in: app_path('Filament/Apps/Widgets'), for: 'App\\Filament\\Apps\\Widgets')
             ->widgets([

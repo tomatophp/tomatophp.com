@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Bavix\Wallet\Interfaces\Wallet;
 use Bavix\Wallet\Traits\HasWallet;
+use Filament\Models\Contracts\FilamentUser;
 use Filament\Models\Contracts\HasAvatar;
 use Filament\Models\Contracts\HasTenants;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -19,6 +20,7 @@ use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 use TomatoPHP\FilamentAccounts\Traits\InteractsWithTenant;
 use TomatoPHP\FilamentAlerts\Traits\InteractsWithNotifications;
+use TomatoPHP\FilamentCms\Models\Post;
 use TomatoPHP\FilamentEmployees\Traits\IsEmployee;
 use TomatoPHP\FilamentFcm\Traits\InteractsWithFCM;
 use TomatoPHP\FilamentInvoices\Traits\BilledFor;
@@ -49,7 +51,7 @@ use TomatoPHP\FilamentLocations\Models\Location;
  * @property Model meta($key, $value)
  * @property Location[] $locations
  */
-class Account extends Authenticatable implements HasMedia, HasAvatar, HasTenants, Wallet
+class Account extends Authenticatable implements HasMedia, HasAvatar, HasTenants, Wallet, FilamentUser
 {
     use InteractsWithMedia;
     use HasApiTokens, HasFactory, Notifiable;
@@ -188,5 +190,40 @@ class Account extends Authenticatable implements HasMedia, HasAvatar, HasTenants
     public function requests(): HasMany
     {
         return $this->hasMany(AccountRequest::class, 'account_id', 'id');
+    }
+
+    /**
+     * @return HasMany
+     */
+    public function likes(): HasMany
+    {
+        return $this->hasMany(Like::class, 'account_id', 'id');
+    }
+
+    public function like(Post $post)
+    {
+        $exists = $this->likes()->where('post_id',$post->id)->first();
+
+        if(!$exists){
+            $this->likes()->create(['post_id' => $post->id]);
+            $post->likes +=1;
+            $post->save();
+        }
+        else {
+            $exists->delete();
+
+            $post->likes -=1;
+            $post->save();
+        }
+    }
+
+
+    /**
+     * @param Post $post
+     * @return bool
+     */
+    public function isLike(Post $post): bool
+    {
+        return (bool)$this->likes()->where('post_id', $post->id)->first();
     }
 }
