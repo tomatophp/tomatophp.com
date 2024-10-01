@@ -73,8 +73,8 @@
                     </h6>
                 </div>
             </div>
-            <div class="flex flex-col justify-center items-center mx-8  md:mx-16 mt-8 ">
-                <div>
+            <div class="flex flex-col justify-center items-center mx-8 md:mx-16 mt-8">
+                <div class="w-full md:w-3/4 lg:w-1/2">
                     <div class="flex justify-start text-start">
                         <h1>Last Activity</h1>
                     </div>
@@ -119,7 +119,7 @@
                                 </div>
                             @endforeach
                         </div>
-                        <div class="mx-8 lg:mx-0 my-4">
+                        <div class="mx-auto my-4">
                             {{ $comments->links() }}
                         </div>
                     @else
