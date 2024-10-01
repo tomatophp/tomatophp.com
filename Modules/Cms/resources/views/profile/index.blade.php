@@ -1,8 +1,8 @@
 @extends('cms::layouts.app')
 
 @section('title', (app()->getLocale() === 'en' ? str(setting('site_name'))->explode('|')[0]??setting('site_name') : str(setting('site_name'))->explode('|')[1]??setting('site_name')) . ' | '.$account->name)
-@section('description', $account->short_description)
-@section('keywords', $account->keywords)
+@section('description', $account->meta('bio'))
+@section('keywords', $account->meta('bio'))
 @if($account->getFirstMediaUrl('avatar'))
     @section('image', $account->getFirstMediaUrl('avatar'))
 @endif
@@ -122,6 +122,8 @@
 
                 </div>
             </div>
+
+            <x-cms-social-share />
         </div>
     </div>
 @endsection
