@@ -13,9 +13,12 @@
                             <x-icon name="heroicon-s-moon" class="w-5 h-5 hidden" id="dark-mode-moon-min" />
                             <x-icon name="heroicon-s-sun" class="w-5 h-5" id="dark-mode-sun-min" />
                         </button>
-                        <a href="{{ app()->getLocale() === 'en' ? str(url()->current())->replaceFirst('/en', '/ar') : str(url()->current())->replaceFirst('/ar', '/en') }}" aria-label="Switch Language" class="text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-2.5 inline-flex items-center">
-                            <x-icon name="heroicon-s-language" class="w-5 h-5" />
-                        </a>
+                        @if(str(url()->current())->contains(url('/en')) || str(url()->current())->contains(url('/ar')))
+                            <a href="{{ app()->getLocale() === 'en' ? str(url()->current())->replaceFirst('/en', '/ar') : str(url()->current())->replaceFirst('/ar', '/en') }}" aria-label="Switch Language" class="text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-2.5 inline-flex items-center">
+                                <x-icon name="heroicon-s-language" class="w-5 h-5" />
+                            </a>
+                        @endif
+
                         <a href="https://discord.gg/vKV9U7gD3c" target="_blank" aria-label="Discord" class="text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-2.5 inline-flex items-center">
                             <x-icon name="bxl-discord" class="w-5 h-5" />
                         </a>
@@ -41,9 +44,11 @@
                             <x-icon name="heroicon-s-moon" class="w-5 h-5 hidden" id="dark-mode-moon" />
                             <x-icon name="heroicon-s-sun" class="w-5 h-5" id="dark-mode-sun" />
                         </button>
-                        <a href="{{ app()->getLocale() === 'en' ? str(url()->current())->replaceFirst('/en', '/ar') : str(url()->current())->replaceFirst('/ar', '/en') }}" aria-label="Switch Language" class="text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-2.5 inline-flex items-center">
-                            <x-icon name="heroicon-s-language" class="w-5 h-5" />
-                        </a>
+                        @if(str(url()->current())->contains(url('/en')) || str(url()->current())->contains(url('/ar')))
+                            <a href="{{ app()->getLocale() === 'en' ? str(url()->current())->replaceFirst('/en', '/ar') : str(url()->current())->replaceFirst('/ar', '/en') }}" aria-label="Switch Language" class="text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-2.5 inline-flex items-center">
+                                <x-icon name="heroicon-s-language" class="w-5 h-5" />
+                            </a>
+                        @endif
                         <a href="https://discord.gg/vKV9U7gD3c" target="_blank" aria-label="Discord" class="text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-2.5 inline-flex items-center">
                             <x-icon name="bxl-discord" class="w-5 h-5" />
                         </a>

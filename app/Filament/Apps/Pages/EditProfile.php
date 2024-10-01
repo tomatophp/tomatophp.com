@@ -164,6 +164,9 @@ class EditProfile extends Page implements HasForms
         $this->editPasswordForm->fill();
         $this->editPublicProfile->fill([
             "is_public" => $this->getUser()->meta('is_public'),
+            "location" => $this->getUser()->meta('location'),
+            "bio" => $this->getUser()->meta('bio'),
+            "social" => $this->getUser()->meta('social'),
         ]);
     }
 
@@ -180,7 +183,45 @@ class EditProfile extends Page implements HasForms
                 ->schema([
                     Forms\Components\Toggle::make('is_public')
                         ->live()
-                        ->label("Allow Public Profile")
+                        ->label("Allow Public Profile"),
+                    Forms\Components\TextInput::make('location')
+                        ->visible(fn(Forms\Get $get) => $get('is_public'))
+                        ->label("Location")
+                        ->columnSpan(2),
+                    Forms\Components\Textarea::make('bio')
+                        ->visible(fn(Forms\Get $get) => $get('is_public'))
+                        ->label("Bio")
+                        ->rows(3)
+                        ->columnSpan(2),
+                    Forms\Components\Repeater::make('social')
+                        ->visible(fn(Forms\Get $get) => $get('is_public'))
+                        ->columns(2)
+                        ->schema([
+                            Forms\Components\Select::make('network')
+                                ->searchable()
+                                ->options([
+                                    "github" => "GitHub",
+                                    "twitter" => "Twitter",
+                                    "linkedin" => "LinkedIn",
+                                    "whatsapp" => "Whatsapp",
+                                    "facebook" => "Facebook",
+                                    "instagram" => "Instagram",
+                                    "youtube" => "Youtube",
+                                    "tiktok" => "Tiktok",
+                                    "snapchat" => "Snapchat",
+                                    "pinterest" => "Pinterest",
+                                    "twitch" => "Twitch",
+                                    "reddit" => "Reddit",
+                                    "behance" => "Behance",
+                                    "dribbble" => "Dribbble",
+                                    "link" => "Website"
+                                ])
+                                ->required(),
+                            Forms\Components\TextInput::make('url')
+                                ->suffixIcon('heroicon-o-link')
+                                ->url()
+                                ->required()
+                        ])
                 ]),
         ])
         ->statePath('publicProfileData');
@@ -194,6 +235,9 @@ class EditProfile extends Page implements HasForms
         $data = $this->editPublicProfile->getState();
 
         $this->getUser()->meta('is_public', $data['is_public']);
+        $this->getUser()->meta('location', $data['location']);
+        $this->getUser()->meta('bio', $data['bio']);
+        $this->getUser()->meta('social', $data['social']);
 
         $this->sendSuccessNotification();
     }

@@ -41,7 +41,7 @@ Route::domain(config('app.domain'))->middleware(['web'])->group(function () {
 //            Route::get('/services', [\Modules\Cms\Http\Controllers\HomeController::class, 'services'])->name('services');
 //            Route::get('/services/{service}', [\Modules\Cms\Http\Controllers\HomeController::class, 'service'])->name('service');
             Route::get('/{username}', [\Modules\Cms\Http\Controllers\ProfileController::class, 'index'])->name('profile');
-//            Route::get('/{page}', [\Modules\Cms\Http\Controllers\HomeController::class, 'page'])->name('page');
+            Route::get('/{page}', [\Modules\Cms\Http\Controllers\HomeController::class, 'page'])->name('page');
         });
 
     });
@@ -67,9 +67,10 @@ Route::domain(config('app.domain'))->middleware(['web'])->group(function () {
 //            Route::get('/portfolios/{portfolio}', [\Modules\Cms\Http\Controllers\HomeController::class, 'portfolio'])->name('portfolio');
 //            Route::get('/services', [\Modules\Cms\Http\Controllers\HomeController::class, 'services'])->name('services');
 //            Route::get('/services/{service}', [\Modules\Cms\Http\Controllers\HomeController::class, 'service'])->name('service');
-            Route::get('/{username}', [\Modules\Cms\Http\Controllers\ProfileController::class, 'index'])->name('profile');
-//            Route::get('/{page}', [\Modules\Cms\Http\Controllers\HomeController::class, 'page'])->name('page');
+            Route::get('/{page}', [\Modules\Cms\Http\Controllers\HomeController::class, 'page'])->name('page');
         });
 
     });
+
+    Route::get('/{username}', [\Modules\Cms\Http\Controllers\ProfileController::class, 'index'])->name('profile');
 });
