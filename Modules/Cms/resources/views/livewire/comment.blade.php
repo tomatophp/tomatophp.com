@@ -1,45 +1,48 @@
 <div class="flex flex-col gap-4  mx-8 sm:w-1/2 sm:mx-auto">
-    <h2 class="text-2xl font-bold">{{ trans('cms::messages.comments.title') }}</h2>
-    <div class="flex flex-col justify-start gap-4">
-        @php
-            $comments = $this->post->comments()->where('is_active', 1)->orderBy('created_at', 'desc')->paginate(20);
-        @endphp
-        @foreach($comments as $comment)
-            <div  class="flex flex-col bg-white dark:bg-slate-900 rounded-lg border border-gray-200 dark:border-slate-800 shadow-sm">
-                <div class="p-4">
-                    <section data-theme="light" class="prose prose-lg lg:prose-xl dark:prose-invert dark:prose-headings:text-slate-300 prose-headings:font-heading prose-headings:leading-tighter prose-headings:tracking-tighter prose-headings:font-bold prose-img:rounded-md prose-img:shadow-lg prose-a:text-black/75 dark:prose-a:text-white/90 prose-a:underline prose-a:underline-offset-4 prose-a:decoration-primary-500 hover:prose-a:decoration-primary-600 prose-a:decoration-2 hover:prose-a:decoration-4 hover:prose-a:text-black dark:hover:prose-a:text-white break-words tracking-normal prose-h4:tracking-normal prose-h5:tracking-normal prose-h6:tracking-normal prose-code:before:hidden prose-code:after:hidden markdown-body">
-                        {!! str($comment->comment)->markdown() !!}
-                    </section>
-                </div>
-                <div class="flex justify-between border-t border-gray-200 dark:border-slate-800  p-4">
-                    <div class="flex justify-start gap-4 w-full ">
-                        <div class="flex flex-col justify-center items-center">
-                            <x-filament-panels::avatar.user :user="$comment->user" class="w-10 h-10" />
-                        </div>
-
-                        <div>
-                            <div class="text-sm font-medium text-gray-900 dark:text-gray-200">{{ $comment->user?->name }}</div>
-                            <div class="text-sm text-gray-400">{{ $comment->created_at->diffForHumans() }}</div>
-                        </div>
+    @php
+        $comments = $this->post->comments()->where('is_active', 1)->orderBy('created_at', 'desc')->paginate(20);
+    @endphp
+    @if(count($comments))
+        <h2 class="text-2xl font-bold">{{ trans('cms::messages.comments.title') }}</h2>
+        <div class="flex flex-col justify-start gap-4">
+            @foreach($comments as $comment)
+                <div  class="flex flex-col bg-white dark:bg-slate-900 rounded-lg border border-gray-200 dark:border-slate-800 shadow-sm">
+                    <div class="p-4">
+                        <section data-theme="light" class="prose prose-lg lg:prose-xl dark:prose-invert dark:prose-headings:text-slate-300 prose-headings:font-heading prose-headings:leading-tighter prose-headings:tracking-tighter prose-headings:font-bold prose-img:rounded-md prose-img:shadow-lg prose-a:text-black/75 dark:prose-a:text-white/90 prose-a:underline prose-a:underline-offset-4 prose-a:decoration-primary-500 hover:prose-a:decoration-primary-600 prose-a:decoration-2 hover:prose-a:decoration-4 hover:prose-a:text-black dark:hover:prose-a:text-white break-words tracking-normal prose-h4:tracking-normal prose-h5:tracking-normal prose-h6:tracking-normal prose-code:before:hidden prose-code:after:hidden markdown-body">
+                            {!! str($comment->comment)->markdown() !!}
+                        </section>
                     </div>
-                    @if(auth('accounts')->user() && auth('accounts')->user()->id === $comment->user_id)
-                        <div class="flex flex-col justify-center items-center">
-                            <div class="flex justify-end gap-4">
-                                <div>
-                                    {{ ($this->editAction)(['comment' => $comment]) }}
-                                </div>
-                                <div>
-                                    {{ ($this->deleteAction)(['comment' => $comment]) }}
-                                </div>
+                    <div class="flex justify-between border-t border-gray-200 dark:border-slate-800  p-4">
+                        <div class="flex justify-start gap-4 w-full ">
+                            <div class="flex flex-col justify-center items-center">
+                                <x-filament-panels::avatar.user :user="$comment->user" class="w-10 h-10" />
+                            </div>
+
+                            <div>
+                                <div class="text-sm font-medium text-gray-900 dark:text-gray-200">{{ $comment->user?->name }}</div>
+                                <div class="text-sm text-gray-400">{{ $comment->created_at->diffForHumans() }}</div>
                             </div>
                         </div>
-                    @endif
+                        @if(auth('accounts')->user() && auth('accounts')->user()->id === $comment->user_id)
+                            <div class="flex flex-col justify-center items-center">
+                                <div class="flex justify-end gap-4">
+                                    <div>
+                                        {{ ($this->editAction)(['comment' => $comment]) }}
+                                    </div>
+                                    <div>
+                                        {{ ($this->deleteAction)(['comment' => $comment]) }}
+                                    </div>
+                                </div>
+                            </div>
+                        @endif
+                    </div>
                 </div>
-            </div>
-        @endforeach
+            @endforeach
 
-        {!! $comments->links() !!}
-    </div>
+            {!! $comments->links() !!}
+        </div>
+    @endif
+
 
 
     @if(auth('accounts')->user())
