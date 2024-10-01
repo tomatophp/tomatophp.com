@@ -58,6 +58,16 @@ class AppsPanelProvider extends PanelProvider
                 'IBM Plex Sans Arabic',
                 provider: GoogleFontProvider::class,
             )
+            ->userMenuItems([
+                "profile" => MenuItem::make()
+                    ->label('Profile')
+                    ->icon('heroicon-o-user')
+                    ->url(fn() => \App\Filament\Apps\Pages\EditProfile::getUrl()),
+                "public" => MenuItem::make()
+                    ->label('Public Profile')
+                    ->icon('heroicon-o-globe-alt')
+                    ->url(fn() => url(app()->getLocale() . '/' . auth('accounts')->user()->username)),
+            ])
             ->discoverResources(in: app_path('Filament/Apps/Resources'), for: 'App\\Filament\\Apps\\Resources')
             ->discoverPages(in: app_path('Filament/Apps/Pages'), for: 'App\\Filament\\Apps\\Pages')
             ->pages([
