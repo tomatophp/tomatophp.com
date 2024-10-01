@@ -219,7 +219,7 @@ class Account extends Authenticatable implements HasMedia, HasAvatar, HasTenants
                     ->actions([
                         \Filament\Notifications\Actions\Action::make('viewComment')
                             ->label('View Comment')
-                            ->url(PostResource::getUrl('show', ['record' => $post]))
+                            ->url(url('/admin/posts/' . $post->id . '/show'))
                     ])
                     ->success()
                     ->sendToDatabase($post->author);
@@ -238,7 +238,7 @@ class Account extends Authenticatable implements HasMedia, HasAvatar, HasTenants
                     ->actions([
                         \Filament\Notifications\Actions\Action::make('viewComment')
                             ->label('View Comment')
-                            ->url(PostResource::getUrl('show', ['record' => $post]))
+                            ->url(url('/admin/posts/' . $post->id . '/show'))
                     ])
                     ->success()
                     ->sendToDatabase($post->author);

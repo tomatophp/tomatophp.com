@@ -129,7 +129,7 @@ class CommentPost extends Component implements HasActions, HasForms
                         ->actions([
                             \Filament\Notifications\Actions\Action::make('viewComment')
                                 ->label('View Comment')
-                                ->url(PostResource::getUrl('show', ['record' => $this->post]))
+                                ->url(url('/admin/posts/' . $this->post->id . '/show'))
                         ])
                         ->success()
                         ->sendToDatabase($this->post->author);
