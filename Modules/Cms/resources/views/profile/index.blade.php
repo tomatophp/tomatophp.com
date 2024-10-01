@@ -24,6 +24,12 @@
                 <div class="text-center flex flex-col mt-4 ">
                     <div class="flex justify-center gap-2 font-bold">
                         <a href="{{ url(app()->getLocale() . '/' .$account->username) }}" class="text-2xl"> {{ $account->name }} </a>
+                        @if($account->type === 'verified')
+                            <div class="flex flex-col justify-center items-center mt-2">
+                                <x-icon name="bxs-badge-check" class="text-blue-400 text-xl" />
+                            </div>
+                        @endif
+
                     </div>
                     <div class="flex justify-center gap-2">
                         <h6 class="text-sm font-medium text-slate-500 dark:text-slate-300">{{ '@'.$account->username }}</h6>
