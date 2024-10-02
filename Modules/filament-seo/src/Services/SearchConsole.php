@@ -2,9 +2,13 @@
 
 namespace TomatoPHP\FilamentSeo\Services;
 
+use Google\Service\Exception;
+use Google\Service\Indexing\PublishUrlNotificationResponse;
+use Google\Service\Indexing\UrlNotificationMetadata;
 use Google_Service_Webmasters_ApiDimensionFilter;
 use Google_Service_Webmasters_ApiDimensionFilterGroup;
 use Google_Service_Webmasters_SearchAnalyticsQueryRequest;
+use GuzzleHttp\Psr7\Request;
 use Illuminate\Support\Collection;
 
 /**
@@ -122,6 +126,91 @@ class SearchConsole
         return $this->client->performQuery($siteUrl, $rows, $request);
     }
 
+
+    /**
+     * @param string $url
+     * @return UrlNotificationMetadata
+     * @throws Exception
+     */
+    public function indexUrl(string $url): UrlNotificationMetadata
+    {
+        $request = new \Google_Service_Indexing_UrlNotification();
+        $request->setUrl($url);
+        $request->setType('URL_UPDATED');
+
+        return $this->client->getIndexingService()->urlNotifications->publish($request)->getUrlNotificationMetadata();
+    }
+
+    /**
+     * @param string $url
+     * @param string $type
+     * @return UrlNotificationMetadata
+     * @throws Exception
+     */
+    public function getIndexStatus(string $url, string $type='URL_UPDATED'): UrlNotificationMetadata
+    {
+        $request = new \Google_Service_Indexing_UrlNotificationMetadata();
+        $request->setUrl($url);
+
+        return $this->client->getIndexingService()->urlNotifications->getMetadata(['url' => $request->getUrl()]);
+    }
+
+    /**
+     * @param string $url
+     * @return UrlNotificationMetadata
+     * @throws Exception
+     */
+    public function removeIndexedUrl(string $url): UrlNotificationMetadata
+    {
+        $request = new \Google_Service_Indexing_UrlNotification();
+        $request->setUrl($url);
+        $request->setType('URL_DELETED');
+
+        return $this->client->getIndexingService()->urlNotifications->publish($request)->getUrlNotificationMetadata();
+    }
+
+    /**
+     * @param array $urls
+     * @return array|null
+     */
+    public function batchIndex(array $urls): array|null
+    {
+        $urlMap = collect($urls)->map(function ($url) {
+            $request = new \Google_Service_Indexing_UrlNotification();
+            $request->setUrl($url);
+            $request->setType('URL_UPDATED');
+
+            return $request;
+        });
+
+        $batch = $this->client->getIndexingService()->createBatch();
+
+        $urlMap->each(fn($request) => $batch->add($request));
+
+        return $batch->execute();
+    }
+
+    /**
+     * @param array $urls
+     * @return array|null
+     */
+    public function batchRemove(array $urls): array|null
+    {
+        $urlMap = collect($urls)->map(function ($url) {
+            $request = new \Google_Service_Indexing_UrlNotification();
+            $request->setUrl($url);
+            $request->setType('URL_DELETED');
+
+            return $request;
+        });
+
+        $batch = $this->client->getIndexingService()->createBatch();
+
+        $urlMap->each(fn($request) => $batch->add($request));
+
+        return $batch->execute();
+    }
+
     public function isAccessTokenExpired()
     {
         $googleClient = $this->client->getGoogleClient();
@@ -146,6 +235,12 @@ class SearchConsole
         return $this->client->getWebmastersService();
     }
 
+    public function getIndexingService(): \Google_Service_Indexing
+    {
+        return $this->client->getIndexingService();
+    }
+
+
     private function applyFilters(Google_Service_Webmasters_SearchAnalyticsQueryRequest $request, $filters)
     {
         $filterArray = [];
@@ -168,4 +263,6 @@ class SearchConsole
 
         return $request;
     }
+
+
 }

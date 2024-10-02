@@ -11,7 +11,7 @@
     <div class="h-full min-h-screen">
         <div class="h-[150px] lg:h-[350px] bg-slate-300 dark:bg-slate-700 bg-cover border-b border-slate-200 dark:border-slate-700">
             <div class="flex flex-col justify-center items-center text-center h-full">
-                <img src="{{ $account->getFirstMediaUrl('cover') }}" class="w-full h-full bg-cover bg-center object-cover" alt="cover">
+                <img src="{{ $account->getFirstMediaUrl('cover') ?? url('cover.png') }}" class="w-full h-full bg-cover bg-center object-cover" alt="cover">
             </div>
         </div>
         <div>
@@ -54,10 +54,10 @@
                             </div>
                         </div>
                     @endif
-                    @if(!empty($account->meta('social')))
+                    @if($account->meta('social') && !empty($account->meta('social')))
                     <div class="flex flex-wrap justify-center items-center my-4 gap-4">
                         @foreach($account->meta('social') as $item)
-                            <a href="{{ $item['url'] }}" target="_blank">
+                            <a href="{{  $item['url'] }}" target="_blank">
                                 @if($item['network'] === 'link')
                                     <x-icon name="heroicon-s-link" class="w-5 h-5" />
                                 @else

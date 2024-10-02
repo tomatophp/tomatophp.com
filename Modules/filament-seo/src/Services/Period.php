@@ -2,7 +2,7 @@
 
 namespace TomatoPHP\FilamentSeo\Services;
 use Carbon\Carbon;
-use SchulzeFelix\SearchConsole\Exceptions\InvalidPeriod;
+use TomatoPHP\FilamentSeo\Exceptions\InvalidPeriod;
 
 class Period
 {

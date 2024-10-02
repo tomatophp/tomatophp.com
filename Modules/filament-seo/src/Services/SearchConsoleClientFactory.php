@@ -3,6 +3,7 @@
 namespace TomatoPHP\FilamentSeo\Services;
 
 use Google_Client;
+use Google_Service_Indexing;
 use Google_Service_Webmasters;
 use GuzzleHttp\Client;
 use Symfony\Component\Cache\Adapter\Psr16Adapter;
@@ -31,6 +32,7 @@ class SearchConsoleClientFactory
         self::configureAuthentication($client, $config);
 
         $client->addScope(Google_Service_Webmasters::WEBMASTERS);
+        $client->addScope(Google_Service_Indexing::INDEXING);
         $client->setAccessType('offline');
 
         self::configureGzip($client, $config['application_name']);
@@ -82,7 +84,7 @@ class SearchConsoleClientFactory
      * @param  Google_Client  $client
      * @param $config
      */
-    private static function configureAuthentication(Google_Client $client, $config)
+    private static function configureAuthentication(Google_Client &$client, $config)
     {
         switch ($config['auth_type']) {
             case 'oauth':
@@ -93,7 +95,7 @@ class SearchConsoleClientFactory
                 $client->setAuthConfig($config['connections']['oauth_json']['auth_config']);
                 break;
             case 'service_account':
-                $client->useApplicationDefaultCredentials($config['connections']['service_account']['application_credentials']);
+                $client->setAuthConfig($config['connections']['service_account']['application_credentials']);
                 break;
         }
     }

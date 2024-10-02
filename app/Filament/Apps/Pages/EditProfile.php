@@ -141,8 +141,6 @@ class EditProfile extends Page implements HasForms
     public function mount(): void
     {
         $this->fillForms();
-
-
     }
 
     protected function getForms(): array
@@ -163,10 +161,10 @@ class EditProfile extends Page implements HasForms
         $this->editProfileForm->fill($data);
         $this->editPasswordForm->fill();
         $this->editPublicProfile->fill([
-            "is_public" => $this->getUser()->meta('is_public'),
-            "location" => $this->getUser()->meta('location'),
-            "bio" => $this->getUser()->meta('bio'),
-            "social" => $this->getUser()->meta('social'),
+            "is_public" => $this->getUser()->meta('is_public')??false,
+            "location" => $this->getUser()->meta('location')??null,
+            "bio" => $this->getUser()->meta('bio')??null,
+            "social" => $this->getUser()->meta('social')??null,
         ]);
     }
 
@@ -207,17 +205,50 @@ class EditProfile extends Page implements HasForms
                                     "facebook" => "Facebook",
                                     "instagram" => "Instagram",
                                     "youtube" => "Youtube",
-                                    "tiktok" => "Tiktok",
-                                    "snapchat" => "Snapchat",
-                                    "pinterest" => "Pinterest",
                                     "twitch" => "Twitch",
                                     "reddit" => "Reddit",
                                     "behance" => "Behance",
                                     "dribbble" => "Dribbble",
                                     "link" => "Website"
                                 ])
+                                ->live()
                                 ->required(),
-                            Forms\Components\TextInput::make('url')
+                            Forms\Components\Hidden::make('url'),
+                            Forms\Components\TextInput::make('username')
+                                ->lazy()
+                                ->prefix(function(Forms\Get $get){
+                                    return match($get('network')){
+                                        "github" => "https://www.gitHub.com/",
+                                        "twitter" => "https://twitter.com/",
+                                        "linkedin" => "https://www.linkedin.com/in/",
+                                        "whatsapp" => "https://wa.me/",
+                                        "facebook" => "https://www.facebook.com/",
+                                        "instagram" => "https://www.instagram.com/",
+                                        "youtube" => "https://www.youtube.com/",
+                                        "twitch" => "https://www.twitch.tv/",
+                                        "reddit" => "https://www.reddit.com/user/",
+                                        "behance" => "https://be.net/",
+                                        "dribbble" => "https://dribbble.com/",
+                                        "link" => "https://"
+                                    };
+                                })
+                                ->afterStateUpdated(function(Forms\Get $get, Forms\Set $set){
+                                    $networkURl = match($get('network')){
+                                        "github" => "https://www.gitHub.com/",
+                                        "twitter" => "https://twitter.com/",
+                                        "linkedin" => "https://www.linkedin.com/in/",
+                                        "whatsapp" => "https://wa.me/",
+                                        "facebook" => "https://www.facebook.com/",
+                                        "instagram" => "https://www.instagram.com/",
+                                        "youtube" => "https://www.youtube.com/",
+                                        "twitch" => "https://www.twitch.tv/",
+                                        "reddit" => "https://www.reddit.com/user/",
+                                        "behance" => "https://be.net/",
+                                        "dribbble" => "https://dribbble.com/",
+                                        "link" => "https://"
+                                    };
+                                    $set('url',$networkURl . $get('username'));
+                                })
                                 ->suffixIcon('heroicon-o-link')
                                 ->url()
                                 ->required()

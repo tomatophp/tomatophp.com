@@ -143,6 +143,11 @@ class SearchConsoleClient
         return new Google_Service_Webmasters($this->googleClient);
     }
 
+    public function getIndexingService(): \Google_Service_Indexing
+    {
+        return new \Google_Service_Indexing($this->googleClient);
+    }
+
     /**
      * @param $row
      * @param $request

@@ -28,35 +28,41 @@ class MoveOldTenantsToAccounts extends Command
      */
     public function handle()
     {
-        $tenants = Tenant::query()->get();
+        $accounts = Account::query()->where('is_active', 1)->get();
 
-        foreach ($tenants as $tenant){
-            echo "Move tenant: {$tenant->name}\n";
-            $account = Account::query()->where('email', $tenant->email)->first();
-            if(!$account){
-                $account = new Account();
-                $account->name = $tenant->name;
-                $account->email = $tenant->email;
-                $account->username =  $tenant->email;
-                $account->phone = $tenant->phone;
-                $account->password = $tenant->password;
-                $account->is_active = true;
-                $account->otp_activated_at = Carbon::now();
-                $account->save();
-            }
+        foreach ($accounts as $account){
+            if($account->meta('social') && !empty($account->meta('social'))){
+                echo "Move account: {$account->name}\n";
+                $social = [];
 
-            echo "Link To account: {$account->email}\n";
+                foreach ($account->meta('social') as $item){
+                    $networkURl = match($item['network']){
+                        "github" => "https://www.github.com/",
+                        "twitter" => "https://twitter.com/",
+                        "linkedin" => "https://www.linkedin.com/in/",
+                        "whatsapp" => "https://wa.me/",
+                        "facebook" => "https://www.facebook.com/",
+                        "instagram" => "https://www.instagram.com/",
+                        "youtube" => "https://www.youtube.com/",
+                        "twitch" => "https://www.twitch.tv/",
+                        "reddit" => "https://www.reddit.com/user/",
+                        "behance" => "https://be.net/",
+                        "dribbble" => "https://dribbble.com/",
+                        "link" => "https://"
+                    };
 
-            $tenant->account_id = $account->id;
-            $tenant->save();
-
-            if($tenant->social()->count() > 0){
-                $socials = $tenant->social()->get();
-                foreach ($socials as $social){
-                    echo "Link To social: {$social->provider}\n";
-                    $account->meta($social->provider, $social->provider_id);
+                    $social[] = [
+                        "network" => $item['network'],
+                        "url" => $item['url'],
+                        "username" => str($item['url'])->replace($networkURl, '')->toString()
+                    ];
                 }
+
+                $account->meta('social', $social);
             }
+
+
+
         }
     }
 }

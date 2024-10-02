@@ -19,16 +19,8 @@ class AuthController extends Controller
     public function provider($provider)
     {
         try {
-            if($provider === 'google'){
-                return Socialite::driver($provider)
-                    ->setScopes(['openid', 'profile', 'email', 'https://www.googleapis.com/auth/webmasters'])
-                    ->redirect();
-            }
-            else {
-                return Socialite::driver($provider)
-                    ->redirect();
-            }
-
+            return Socialite::driver($provider)
+                ->redirect();
         }catch (\Exception $exception){
             Notification::make()
                 ->title('Error')
@@ -50,10 +42,6 @@ class AuthController extends Controller
                 }
                 else {
                     $socialUser = Socialite::driver($provider)->user();
-                }
-
-                if($provider === 'google'){
-                    dd($socialUser);
                 }
             }catch (\Exception $exception){
                 Notification::make()

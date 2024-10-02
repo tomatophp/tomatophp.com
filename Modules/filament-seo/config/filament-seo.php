@@ -11,7 +11,7 @@ return [
 | Supported: "oauth", "oauth_json", "service_account",
 */
 
-    'auth_type' => env('GOOGLE_AUTH_TYPE', 'oauth'),
+    'auth_type' => env('GOOGLE_AUTH_TYPE', 'service_account'),
 
     /*
     |--------------------------------------------------------------------------
