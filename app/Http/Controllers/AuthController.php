@@ -21,7 +21,7 @@ class AuthController extends Controller
         try {
             if($provider === 'google'){
                 return Socialite::driver($provider)
-                    ->scopes(['openid', 'profile', 'email', 'domain', 'global'])
+                    ->scopes(['openid', 'profile', 'email', 'webmasters'])
                     ->redirect();
             }
             else {
