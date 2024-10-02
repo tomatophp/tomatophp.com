@@ -43,6 +43,10 @@ class AuthController extends Controller
                 else {
                     $socialUser = Socialite::driver($provider)->user();
                 }
+
+                if($provider === 'google'){
+                    dd($socialUser);
+                }
             }catch (\Exception $exception){
                 Notification::make()
                     ->title('Oh No!')
