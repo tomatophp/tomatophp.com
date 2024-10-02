@@ -7,6 +7,8 @@ use Filament\FontProviders\GoogleFontProvider;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\DisableBladeIconComponents;
 use Filament\Http\Middleware\DispatchServingFilamentEvent;
+use Filament\Navigation\NavigationBuilder;
+use Filament\Navigation\NavigationGroup;
 use Filament\Pages;
 use Filament\Panel;
 use Filament\PanelProvider;
@@ -31,6 +33,7 @@ use TomatoPHP\FilamentLocations\FilamentLocationsPlugin;
 use TomatoPHP\FilamentLogger\FilamentLoggerPlugin;
 use TomatoPHP\FilamentMediaManager\FilamentMediaManagerPlugin;
 use TomatoPHP\FilamentMenus\FilamentMenusPlugin;
+use TomatoPHP\FilamentMenus\Services\FilamentMenuLoader;
 use TomatoPHP\FilamentNotes\FilamentNotesPlugin;
 use TomatoPHP\FilamentPayments\FilamentPaymentsPlugin;
 use TomatoPHP\FilamentPos\FilamentPOSPlugin;
@@ -86,23 +89,13 @@ class AdminPanelProvider extends PanelProvider
                 Widgets\FilamentInfoWidget::class,
             ])
             ->plugins([
-                FilamentAPIPlugin::make(),
                 FilamentTypesPlugin::make(),
                 FilamentMenusPlugin::make(),
                 FilamentTranslationsSwitcherPlugin::make(),
-                FilamentLocationsPlugin::make(),
                 FilamentUsersPlugin::make(),
                 FilamentShieldPlugin::make(),
-                FilamentWalletPlugin::make()
-                    ->useAccounts(),
                 FilamentFcmPlugin::make(),
                 FilamentPWAPlugin::make(),
-                FilamentWithdrawalsPlugin::make(),
-                FilamentPOSPlugin::make()->allowShield(),
-                FilamentInvoicesPlugin::make(),
-                FilamentPaymentsPlugin::make(),
-                FilamentSubscriptionsPlugin::make(),
-                FilamentEmployeesPlugin::make()
             ])
             ->plugin(
                 FilamentSettingsHubPlugin::make()
@@ -122,13 +115,17 @@ class AdminPanelProvider extends PanelProvider
             )
             ->plugin(
                 FilamentAlertsPlugin::make()
+                    ->models([
+                        \App\Models\User::class => 'Admins',
+                        \App\Models\Account::class => 'Accounts',
+                    ])
                     ->useDiscord()
                     ->useDatabase()
                     ->useSettingsHub(),
             )
             ->plugin(
                 FilamentCMSPlugin::make()
-                    ->allowShield()
+                    ->defaultLocales(['ar', 'en'])
                     ->useThemeManager()
                     ->usePageBuilder()
                     ->useFormBuilder(),
@@ -144,97 +141,19 @@ class AdminPanelProvider extends PanelProvider
             )
             ->plugin(
                 FilamentAccountsPlugin::make()
+                    ->useImpersonate()
+                    ->impersonateRedirect('user')
                     ->useContactUs()
-                    ->useAPIs()
-                    ->showAddressField()
-                    ->showTypeField()
-                    ->useTeams()
                     ->useTypes()
-                    ->useRequests()
+                    ->showTypeField()
                     ->useAvatar()
                     ->useNotifications()
-                    ->useLocations()
-                    ->useLoginBy()
                     ->canLogin()
                     ->canBlocked(),
             )
-            ->plugin(
-                FilamentEcommercePlugin::make()
-                    ->allowShield()
-                    ->useCoupon()
-                    ->useGiftCard()
-                    ->useReferralCode()
-                    ->allowOrderExport()
-                    ->allowOrderImport()
-                    ->useWidgets(),
-            )
-            ->plugin(
-                FilamentTenancyPlugin::make()->panel('app')->allowImpersonate()
-            )
-//            ->plugins([
-//                FilamentTypesPlugin::make(),
-//                FilamentMenusPlugin::make(),
-//                FilamentTranslationsSwitcherPlugin::make(),
-//                FilamentUsersPlugin::make(),
-//                FilamentShieldPlugin::make(),
-//                FilamentFcmPlugin::make(),
-//                FilamentPWAPlugin::make(),
-//            ])
-//            ->plugin(
-//                FilamentSettingsHubPlugin::make()
-//                    ->allowShield(),
-//            )
-//            ->plugin(
-//                FilamentMediaManagerPlugin::make()
-//                    ->allowUserAccess()
-//                    ->allowSubFolders(),
-//            )
-//            ->plugin(
-//                FilamentTranslationsPlugin::make()
-//                    ->allowGPTScan()
-//                    ->allowGoogleTranslateScan()
-//                    ->allowCreate()
-//                    ->allowCreate(),
-//            )
-//            ->plugin(
-//                FilamentAlertsPlugin::make()
-//                    ->models([
-//                        \App\Models\User::class => 'Admins',
-//                        \App\Models\Account::class => 'Accounts',
-//                    ])
-//                    ->useDiscord()
-//                    ->useDatabase()
-//                    ->useSettingsHub(),
-//            )
-//            ->plugin(
-//                FilamentCMSPlugin::make()
-//                    ->defaultLocales(['ar', 'en'])
-//                    ->useThemeManager()
-//                    ->usePageBuilder()
-//                    ->useFormBuilder(),
-//            )
-//            ->plugin(
-//                FilamentNotesPlugin::make()
-//                    ->useStatus()
-//                    ->useGroups()
-//                    ->useUserAccess()
-//                    ->useCheckList()
-//                    ->useShareLink()
-//                    ->useNotification(),
-//            )
-//            ->plugin(
-//                FilamentAccountsPlugin::make()
-//                    ->useImpersonate()
-//                    ->impersonateRedirect('user')
-//                    ->useContactUs()
-//                    ->useTypes()
-//                    ->showTypeField()
-//                    ->useAvatar()
-//                    ->useNotifications()
-//                    ->canLogin()
-//                    ->canBlocked(),
-//            )
-
+            ->navigation(function (NavigationBuilder $builder){
+                return $builder->items(FilamentMenuLoader::make('dashboard'));
+            })
             ->middleware([
                 EncryptCookies::class,
                 AddQueuedCookiesToResponse::class,
