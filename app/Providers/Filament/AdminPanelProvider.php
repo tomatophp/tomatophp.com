@@ -85,7 +85,6 @@ class AdminPanelProvider extends PanelProvider
             ->globalSearchKeyBindings(['command+k', 'ctrl+k'])
             ->discoverWidgets(in: app_path('Filament/Widgets'), for: 'App\\Filament\\Widgets')
             ->widgets([
-                Widgets\AccountWidget::class,
                 \BezhanSalleh\FilamentGoogleAnalytics\Widgets\PageViewsWidget::class,
                 \BezhanSalleh\FilamentGoogleAnalytics\Widgets\VisitorsWidget::class,
                 \BezhanSalleh\FilamentGoogleAnalytics\Widgets\ActiveUsersOneDayWidget::class,
