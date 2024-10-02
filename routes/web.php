@@ -5,6 +5,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 
+Route::get('test', function (){
+   return config('analytics.service_account_credentials_json');
+});
 
 
 Route::domain(config('app.domain'))->middleware(['web'])->group(function () {
