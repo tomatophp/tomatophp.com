@@ -107,7 +107,7 @@ class AppPanelProvider extends PanelProvider
                 FilamentFcmPlugin::make(),
                 FilamentPWAPlugin::make(),
                 FilamentWithdrawalsPlugin::make(),
-                FilamentPOSPlugin::make(),
+                FilamentPOSPlugin::make()->allowShield(),
                 FilamentInvoicesPlugin::make(),
                 FilamentPaymentsPlugin::make(),
                 FilamentSubscriptionsPlugin::make(),
@@ -137,6 +137,7 @@ class AppPanelProvider extends PanelProvider
             )
             ->plugin(
                 FilamentCMSPlugin::make()
+                    ->allowShield()
                     ->useThemeManager()
                     ->usePageBuilder()
                     ->useFormBuilder(),
@@ -168,6 +169,7 @@ class AppPanelProvider extends PanelProvider
             )
             ->plugin(
                 FilamentEcommercePlugin::make()
+                    ->allowShield()
                     ->useCoupon()
                     ->useGiftCard()
                     ->useReferralCode()
