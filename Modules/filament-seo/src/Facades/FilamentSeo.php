@@ -3,9 +3,10 @@
 namespace TomatoPHP\FilamentSeo\Facades;
 
 use Illuminate\Support\Facades\Facade;
+use TomatoPHP\FilamentSeo\Services\SearchConsole;
 
 /**
- * @method static \TomatoPHP\FilamentSeo\Services\FilamentSeoServices google()
+ * @method SearchConsole google()
  */
 class FilamentSeo extends Facade
 {

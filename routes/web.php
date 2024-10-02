@@ -6,15 +6,11 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::get('test', function (){
-   return response()->json([
-       "data" =>  $sites = \TomatoPHP\FilamentSeo\Facades\FilamentSeo::google()->getWebmastersService()
-   ]);
-});
+    $token = "ya29.a0AcM612wcApY_dtW85Lyqz8n8SuXZ3JgaIasGKfCkhAbVXHf00uxNBIoe6koMCOPeoILl768Vs__D_e1csiyoHRz-CJc4uacJHcRG7lCpmLzQpAfdWskcCZHcpHuj0QFc4texMl5fg76OJLvjzcO2SstDzJdEPuxkCQaCgYKAWQSARMSFQHGX2Mias3da1KHXEDs-xydqk0Qww0169";
 
-Route::get('data', function (){
     return response()->json([
-        "data" =>  $sites = \TomatoPHP\FilamentSeo\Facades\FilamentSeo::google()->getWebmastersService()
-    ]);
+       "data" =>  $sites = \TomatoPHP\FilamentSeo\Facades\FilamentSeo::google()->setAccessToken($token)->listSites()
+   ]);
 });
 
 

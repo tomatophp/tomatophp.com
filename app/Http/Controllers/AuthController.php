@@ -19,8 +19,16 @@ class AuthController extends Controller
     public function provider($provider)
     {
         try {
-            return Socialite::driver($provider)
-                ->redirect();
+            if($provider === 'google'){
+                return Socialite::driver($provider)
+                    ->scopes(['openid', 'profile', 'email', 'domain', 'global'])
+                    ->redirect();
+            }
+            else {
+                return Socialite::driver($provider)
+                    ->redirect();
+            }
+
         }catch (\Exception $exception){
             Notification::make()
                 ->title('Error')
