@@ -48,7 +48,8 @@ class MoveOldTenantsToAccounts extends Command
                         "reddit" => "https://www.reddit.com/user/",
                         "behance" => "https://be.net/",
                         "dribbble" => "https://dribbble.com/",
-                        "link" => "https://"
+                        "link" => "https://",
+                        default => null
                     };
 
                     $social[] = [
