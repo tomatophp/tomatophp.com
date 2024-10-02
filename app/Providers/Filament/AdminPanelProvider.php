@@ -88,6 +88,9 @@ class AdminPanelProvider extends PanelProvider
                 Widgets\AccountWidget::class,
                 Widgets\FilamentInfoWidget::class,
             ])
+            ->plugin(
+                FilamentTenancyPlugin::make()->allowImpersonate()->panel('app')
+            )
             ->plugins([
                 FilamentTypesPlugin::make(),
                 FilamentMenusPlugin::make(),
