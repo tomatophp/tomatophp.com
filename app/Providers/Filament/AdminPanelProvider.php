@@ -85,17 +85,24 @@ class AdminPanelProvider extends PanelProvider
                 Widgets\AccountWidget::class,
                 Widgets\FilamentInfoWidget::class,
             ])
-            ->plugin(
-                FilamentTenancyPlugin::make()->panel('app')->allowImpersonate()
-            )
             ->plugins([
+                FilamentAPIPlugin::make(),
                 FilamentTypesPlugin::make(),
                 FilamentMenusPlugin::make(),
                 FilamentTranslationsSwitcherPlugin::make(),
+                FilamentLocationsPlugin::make(),
                 FilamentUsersPlugin::make(),
                 FilamentShieldPlugin::make(),
+                FilamentWalletPlugin::make()
+                    ->useAccounts(),
                 FilamentFcmPlugin::make(),
                 FilamentPWAPlugin::make(),
+                FilamentWithdrawalsPlugin::make(),
+                FilamentPOSPlugin::make()->allowShield(),
+                FilamentInvoicesPlugin::make(),
+                FilamentPaymentsPlugin::make(),
+                FilamentSubscriptionsPlugin::make(),
+                FilamentEmployeesPlugin::make()
             ])
             ->plugin(
                 FilamentSettingsHubPlugin::make()
@@ -115,17 +122,13 @@ class AdminPanelProvider extends PanelProvider
             )
             ->plugin(
                 FilamentAlertsPlugin::make()
-                    ->models([
-                        \App\Models\User::class => 'Admins',
-                        \App\Models\Account::class => 'Accounts',
-                    ])
                     ->useDiscord()
                     ->useDatabase()
                     ->useSettingsHub(),
             )
             ->plugin(
                 FilamentCMSPlugin::make()
-                    ->defaultLocales(['ar', 'en'])
+                    ->allowShield()
                     ->useThemeManager()
                     ->usePageBuilder()
                     ->useFormBuilder(),
@@ -141,16 +144,96 @@ class AdminPanelProvider extends PanelProvider
             )
             ->plugin(
                 FilamentAccountsPlugin::make()
-                    ->useImpersonate()
-                    ->impersonateRedirect('user')
                     ->useContactUs()
-                    ->useTypes()
+                    ->useAPIs()
+                    ->showAddressField()
                     ->showTypeField()
+                    ->useTeams()
+                    ->useTypes()
+                    ->useRequests()
                     ->useAvatar()
                     ->useNotifications()
+                    ->useLocations()
+                    ->useLoginBy()
                     ->canLogin()
                     ->canBlocked(),
             )
+            ->plugin(
+                FilamentEcommercePlugin::make()
+                    ->allowShield()
+                    ->useCoupon()
+                    ->useGiftCard()
+                    ->useReferralCode()
+                    ->allowOrderExport()
+                    ->allowOrderImport()
+                    ->useWidgets(),
+            )
+            ->plugin(
+                FilamentTenancyPlugin::make()->panel('app')->allowImpersonate()
+            )
+//            ->plugins([
+//                FilamentTypesPlugin::make(),
+//                FilamentMenusPlugin::make(),
+//                FilamentTranslationsSwitcherPlugin::make(),
+//                FilamentUsersPlugin::make(),
+//                FilamentShieldPlugin::make(),
+//                FilamentFcmPlugin::make(),
+//                FilamentPWAPlugin::make(),
+//            ])
+//            ->plugin(
+//                FilamentSettingsHubPlugin::make()
+//                    ->allowShield(),
+//            )
+//            ->plugin(
+//                FilamentMediaManagerPlugin::make()
+//                    ->allowUserAccess()
+//                    ->allowSubFolders(),
+//            )
+//            ->plugin(
+//                FilamentTranslationsPlugin::make()
+//                    ->allowGPTScan()
+//                    ->allowGoogleTranslateScan()
+//                    ->allowCreate()
+//                    ->allowCreate(),
+//            )
+//            ->plugin(
+//                FilamentAlertsPlugin::make()
+//                    ->models([
+//                        \App\Models\User::class => 'Admins',
+//                        \App\Models\Account::class => 'Accounts',
+//                    ])
+//                    ->useDiscord()
+//                    ->useDatabase()
+//                    ->useSettingsHub(),
+//            )
+//            ->plugin(
+//                FilamentCMSPlugin::make()
+//                    ->defaultLocales(['ar', 'en'])
+//                    ->useThemeManager()
+//                    ->usePageBuilder()
+//                    ->useFormBuilder(),
+//            )
+//            ->plugin(
+//                FilamentNotesPlugin::make()
+//                    ->useStatus()
+//                    ->useGroups()
+//                    ->useUserAccess()
+//                    ->useCheckList()
+//                    ->useShareLink()
+//                    ->useNotification(),
+//            )
+//            ->plugin(
+//                FilamentAccountsPlugin::make()
+//                    ->useImpersonate()
+//                    ->impersonateRedirect('user')
+//                    ->useContactUs()
+//                    ->useTypes()
+//                    ->showTypeField()
+//                    ->useAvatar()
+//                    ->useNotifications()
+//                    ->canLogin()
+//                    ->canBlocked(),
+//            )
 
             ->middleware([
                 EncryptCookies::class,

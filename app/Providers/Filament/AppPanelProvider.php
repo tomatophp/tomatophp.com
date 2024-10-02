@@ -166,6 +166,15 @@ class AppPanelProvider extends PanelProvider
                     ->canLogin()
                     ->canBlocked(),
             )
+            ->plugin(
+                FilamentEcommercePlugin::make()
+                    ->useCoupon()
+                    ->useGiftCard()
+                    ->useReferralCode()
+                    ->allowOrderExport()
+                    ->allowOrderImport()
+                    ->useWidgets(),
+            )
             ->middleware([
                 PreventAccessFromCentralDomains::class,
                 EncryptCookies::class,
@@ -179,15 +188,6 @@ class AppPanelProvider extends PanelProvider
                 DispatchServingFilamentEvent::class,
                 ActiveMiddleware::class
             ])
-            ->plugin(
-                FilamentEcommercePlugin::make()
-                    ->useCoupon()
-                    ->useGiftCard()
-                    ->useReferralCode()
-                    ->allowOrderExport()
-                    ->allowOrderImport()
-                    ->useWidgets(),
-            )
             ->authMiddleware([
                 Authenticate::class,
             ]);

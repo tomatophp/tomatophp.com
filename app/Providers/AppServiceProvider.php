@@ -7,12 +7,15 @@ use App\Models\Tenant;
 use App\Policies\AccountPolicy;
 use App\Policies\AccountRequestPolicy;
 use App\Policies\APIResourcePolicy;
+use App\Policies\AttendanceShiftPolicy;
 use App\Policies\CategoryPolicy;
 use App\Policies\CityPolicy;
 use App\Policies\CompanyPolicy;
+use App\Policies\ContactPolicy;
 use App\Policies\CountryPolicy;
 use App\Policies\CouponPolicy;
 use App\Policies\CurrencyPolicy;
+use App\Policies\EmployeeApplyPolicy;
 use App\Policies\FolderPolicy;
 use App\Policies\FormPolicy;
 use App\Policies\GiftCardPolicy;
@@ -64,6 +67,7 @@ use Stancl\Tenancy\Events\TenancyEnded;
 use Stancl\Tenancy\Events\TenancyInitialized;
 use Stancl\Tenancy\Events\TenantCreated;
 use TomatoPHP\FilamentAccounts\Models\AccountRequest;
+use TomatoPHP\FilamentAccounts\Models\Contact;
 use TomatoPHP\FilamentAccounts\Models\Team;
 use TomatoPHP\FilamentAlerts\Models\NotificationsLogs;
 use TomatoPHP\FilamentAlerts\Models\NotificationsTemplate;
@@ -81,6 +85,8 @@ use TomatoPHP\FilamentEcommerce\Models\Order;
 use TomatoPHP\FilamentEcommerce\Models\Product;
 use TomatoPHP\FilamentEcommerce\Models\ReferralCode;
 use TomatoPHP\FilamentEcommerce\Models\ShippingVendor;
+use TomatoPHP\FilamentEmployees\Models\AttendanceShift;
+use TomatoPHP\FilamentEmployees\Models\EmployeeApply;
 use TomatoPHP\FilamentInvoices\Facades\FilamentInvoices;
 use TomatoPHP\FilamentInvoices\Models\Invoice;
 use TomatoPHP\FilamentInvoices\Services\Contracts\InvoiceFor;
@@ -177,10 +183,13 @@ class AppServiceProvider extends ServiceProvider
         Gate::policy(NotificationsLogs::class, NotificationsLogsPolicy::class);
         Gate::policy(Invoice::class, InvoicePolicy::class);
         Gate::policy(Payment::class, PaymentPolicy::class);
-        Gate::policy(Plan::class, PlanPolicy::class);
-        Gate::policy(Subscription::class, SubscriptionPolicy::class);
+        Gate::policy(\TomatoPHP\FilamentSubscriptions\Models\Plan::class, PlanPolicy::class);
+        Gate::policy(\TomatoPHP\FilamentSubscriptions\Models\Subscription::class, SubscriptionPolicy::class);
         Gate::policy(WithdrawalMethod::class, WithdrawalMethodPolicy::class);
         Gate::policy(WithdrawalRequest::class, WithdrawalRequestPolicy::class);
+        Gate::policy(Contact::class, ContactPolicy::class);
+        Gate::policy(AttendanceShift::class, AttendanceShiftPolicy::class);
+        Gate::policy(EmployeeApply::class, EmployeeApplyPolicy::class);
 
 
         FilamentView::registerRenderHook(

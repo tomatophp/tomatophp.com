@@ -211,16 +211,16 @@
         },
         {
             "name": "bacon/bacon-qr-code",
-            "version": "v3.0.0",
+            "version": "v3.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Bacon/BaconQrCode.git",
-                "reference": "510de6eca6248d77d31b339d62437cc995e2fb41"
+                "reference": "f9cc1f52b5a463062251d666761178dbdb6b544f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Bacon/BaconQrCode/zipball/510de6eca6248d77d31b339d62437cc995e2fb41",
-                "reference": "510de6eca6248d77d31b339d62437cc995e2fb41",
+                "url": "https://api.github.com/repos/Bacon/BaconQrCode/zipball/f9cc1f52b5a463062251d666761178dbdb6b544f",
+                "reference": "f9cc1f52b5a463062251d666761178dbdb6b544f",
                 "shasum": ""
             },
             "require": {
@@ -259,9 +259,9 @@
             "homepage": "https://github.com/Bacon/BaconQrCode",
             "support": {
                 "issues": "https://github.com/Bacon/BaconQrCode/issues",
-                "source": "https://github.com/Bacon/BaconQrCode/tree/v3.0.0"
+                "source": "https://github.com/Bacon/BaconQrCode/tree/v3.0.1"
             },
-            "time": "2024-04-18T11:16:25+00:00"
+            "time": "2024-10-01T13:55:55+00:00"
         },
         {
             "name": "bavix/laravel-wallet",
@@ -4414,16 +4414,16 @@
         },
         {
             "name": "laravel/framework",
-            "version": "v11.25.0",
+            "version": "v11.26.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "b487a9089c0b1c71ac63bb6bc44fb4b00dc6da2e"
+                "reference": "b8cb8998701d5b3cfe68539d3c3da1fc59ddd82b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/b487a9089c0b1c71ac63bb6bc44fb4b00dc6da2e",
-                "reference": "b487a9089c0b1c71ac63bb6bc44fb4b00dc6da2e",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/b8cb8998701d5b3cfe68539d3c3da1fc59ddd82b",
+                "reference": "b8cb8998701d5b3cfe68539d3c3da1fc59ddd82b",
                 "shasum": ""
             },
             "require": {
@@ -4442,7 +4442,7 @@
                 "fruitcake/php-cors": "^1.3",
                 "guzzlehttp/guzzle": "^7.8",
                 "guzzlehttp/uri-template": "^1.0",
-                "laravel/prompts": "^0.1.18|^0.2.0",
+                "laravel/prompts": "^0.1.18|^0.2.0|^0.3.0",
                 "laravel/serializable-closure": "^1.3",
                 "league/commonmark": "^2.2.1",
                 "league/flysystem": "^3.8.0",
@@ -4619,7 +4619,7 @@
                 "issues": "https://github.com/laravel/framework/issues",
                 "source": "https://github.com/laravel/framework"
             },
-            "time": "2024-09-26T11:21:58+00:00"
+            "time": "2024-10-01T14:29:34+00:00"
         },
         {
             "name": "laravel/jetstream",
@@ -4748,16 +4748,16 @@
         },
         {
             "name": "laravel/sanctum",
-            "version": "v4.0.2",
+            "version": "v4.0.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/sanctum.git",
-                "reference": "9cfc0ce80cabad5334efff73ec856339e8ec1ac1"
+                "reference": "54aea9d13743ae8a6cdd3c28dbef128a17adecab"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/sanctum/zipball/9cfc0ce80cabad5334efff73ec856339e8ec1ac1",
-                "reference": "9cfc0ce80cabad5334efff73ec856339e8ec1ac1",
+                "url": "https://api.github.com/repos/laravel/sanctum/zipball/54aea9d13743ae8a6cdd3c28dbef128a17adecab",
+                "reference": "54aea9d13743ae8a6cdd3c28dbef128a17adecab",
                 "shasum": ""
             },
             "require": {
@@ -4808,7 +4808,7 @@
                 "issues": "https://github.com/laravel/sanctum/issues",
                 "source": "https://github.com/laravel/sanctum"
             },
-            "time": "2024-04-10T19:39:58+00:00"
+            "time": "2024-09-27T14:55:41+00:00"
         },
         {
             "name": "laravel/serializable-closure",
@@ -9324,16 +9324,16 @@
         },
         {
             "name": "revolution/socialite-discord",
-            "version": "1.4.2",
+            "version": "1.4.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/kawax/socialite-discord.git",
-                "reference": "44dfb820c3ff1e0fecb896f73980089e0d75d7f2"
+                "reference": "2d1609486899745a450c30300b8efb558e79e943"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/kawax/socialite-discord/zipball/44dfb820c3ff1e0fecb896f73980089e0d75d7f2",
-                "reference": "44dfb820c3ff1e0fecb896f73980089e0d75d7f2",
+                "url": "https://api.github.com/repos/kawax/socialite-discord/zipball/2d1609486899745a450c30300b8efb558e79e943",
+                "reference": "2d1609486899745a450c30300b8efb558e79e943",
                 "shasum": ""
             },
             "require": {
@@ -9375,9 +9375,9 @@
             ],
             "support": {
                 "issues": "https://github.com/kawax/socialite-discord/issues",
-                "source": "https://github.com/kawax/socialite-discord/tree/1.4.2"
+                "source": "https://github.com/kawax/socialite-discord/tree/1.4.3"
             },
-            "time": "2024-04-05T02:28:06+00:00"
+            "time": "2024-10-02T08:26:53+00:00"
         },
         {
             "name": "rize/uri-template",
@@ -14176,16 +14176,16 @@
         },
         {
             "name": "tomatophp/filament-cms",
-            "version": "v1.0.25",
+            "version": "v1.0.26",
             "source": {
                 "type": "git",
                 "url": "https://github.com/tomatophp/filament-cms.git",
-                "reference": "33365901987630b18643328a6e4ae54b718bd16e"
+                "reference": "8352ef539f21f3c991f392193c042223b3adf0e4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/tomatophp/filament-cms/zipball/33365901987630b18643328a6e4ae54b718bd16e",
-                "reference": "33365901987630b18643328a6e4ae54b718bd16e",
+                "url": "https://api.github.com/repos/tomatophp/filament-cms/zipball/8352ef539f21f3c991f392193c042223b3adf0e4",
+                "reference": "8352ef539f21f3c991f392193c042223b3adf0e4",
                 "shasum": ""
             },
             "require": {
@@ -14235,7 +14235,7 @@
             ],
             "support": {
                 "issues": "https://github.com/tomatophp/filament-cms/issues",
-                "source": "https://github.com/tomatophp/filament-cms/tree/v1.0.25"
+                "source": "https://github.com/tomatophp/filament-cms/tree/v1.0.26"
             },
             "funding": [
                 {
@@ -14243,7 +14243,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2024-09-30T11:36:53+00:00"
+            "time": "2024-10-02T10:59:44+00:00"
         },
         {
             "name": "tomatophp/filament-developer-gate",
@@ -14379,16 +14379,16 @@
         },
         {
             "name": "tomatophp/filament-ecommerce",
-            "version": "v1.0.11",
+            "version": "v1.0.12",
             "source": {
                 "type": "git",
                 "url": "https://github.com/tomatophp/filament-ecommerce.git",
-                "reference": "4f6aa801f8f49f7d71f375ff1d81c643329e280b"
+                "reference": "b124030bdb94959f17eafe84ceccdebddcfdefa2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/tomatophp/filament-ecommerce/zipball/4f6aa801f8f49f7d71f375ff1d81c643329e280b",
-                "reference": "4f6aa801f8f49f7d71f375ff1d81c643329e280b",
+                "url": "https://api.github.com/repos/tomatophp/filament-ecommerce/zipball/b124030bdb94959f17eafe84ceccdebddcfdefa2",
+                "reference": "b124030bdb94959f17eafe84ceccdebddcfdefa2",
                 "shasum": ""
             },
             "require": {
@@ -14440,7 +14440,7 @@
             ],
             "support": {
                 "issues": "https://github.com/tomatophp/filament-ecommerce/issues",
-                "source": "https://github.com/tomatophp/filament-ecommerce/tree/v1.0.11"
+                "source": "https://github.com/tomatophp/filament-ecommerce/tree/v1.0.12"
             },
             "funding": [
                 {
@@ -14448,7 +14448,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2024-09-29T21:34:31+00:00"
+            "time": "2024-10-02T11:04:57+00:00"
         },
         {
             "name": "tomatophp/filament-employees",
@@ -15121,16 +15121,16 @@
         },
         {
             "name": "tomatophp/filament-pos",
-            "version": "v1.0.3",
+            "version": "v1.0.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/tomatophp/filament-pos.git",
-                "reference": "3c47e1ac063b38d804bd7e1e3ee541f07df5db92"
+                "reference": "26963dcdd048d901eaa24f8e1b864f62bf6c0c49"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/tomatophp/filament-pos/zipball/3c47e1ac063b38d804bd7e1e3ee541f07df5db92",
-                "reference": "3c47e1ac063b38d804bd7e1e3ee541f07df5db92",
+                "url": "https://api.github.com/repos/tomatophp/filament-pos/zipball/26963dcdd048d901eaa24f8e1b864f62bf6c0c49",
+                "reference": "26963dcdd048d901eaa24f8e1b864f62bf6c0c49",
                 "shasum": ""
             },
             "require": {
@@ -15175,7 +15175,7 @@
             ],
             "support": {
                 "issues": "https://github.com/tomatophp/filament-pos/issues",
-                "source": "https://github.com/tomatophp/filament-pos/tree/v1.0.3"
+                "source": "https://github.com/tomatophp/filament-pos/tree/v1.0.4"
             },
             "funding": [
                 {
@@ -15183,7 +15183,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2024-09-23T15:35:22+00:00"
+            "time": "2024-10-02T10:51:42+00:00"
         },
         {
             "name": "tomatophp/filament-pwa",
@@ -16846,16 +16846,16 @@
         },
         {
             "name": "laravel/sail",
-            "version": "v1.33.0",
+            "version": "v1.34.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/sail.git",
-                "reference": "d54af9d5745e3680d8a6463ffd9f314aa53eb2d1"
+                "reference": "511e9c95b0f3ee778dc9e11e242bcd2af8e002cd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/sail/zipball/d54af9d5745e3680d8a6463ffd9f314aa53eb2d1",
-                "reference": "d54af9d5745e3680d8a6463ffd9f314aa53eb2d1",
+                "url": "https://api.github.com/repos/laravel/sail/zipball/511e9c95b0f3ee778dc9e11e242bcd2af8e002cd",
+                "reference": "511e9c95b0f3ee778dc9e11e242bcd2af8e002cd",
                 "shasum": ""
             },
             "require": {
@@ -16905,7 +16905,7 @@
                 "issues": "https://github.com/laravel/sail/issues",
                 "source": "https://github.com/laravel/sail"
             },
-            "time": "2024-09-22T19:04:21+00:00"
+            "time": "2024-09-27T14:58:09+00:00"
         },
         {
             "name": "mockery/mockery",
