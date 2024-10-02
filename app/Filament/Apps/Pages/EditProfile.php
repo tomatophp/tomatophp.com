@@ -250,7 +250,6 @@ class EditProfile extends Page implements HasForms
                                     $set('url',$networkURl . $get('username'));
                                 })
                                 ->suffixIcon('heroicon-o-link')
-                                ->url()
                                 ->required()
                         ])
                 ]),
