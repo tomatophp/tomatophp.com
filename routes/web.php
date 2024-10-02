@@ -6,7 +6,15 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::get('test', function (){
-   return config('analytics.service_account_credentials_json');
+   return response()->json([
+       "data" =>  $sites = \TomatoPHP\FilamentSeo\Facades\FilamentSeo::google()->getWebmastersService()
+   ]);
+});
+
+Route::get('data', function (){
+    return response()->json([
+        "data" =>  $sites = \TomatoPHP\FilamentSeo\Facades\FilamentSeo::google()->getWebmastersService()
+    ]);
 });
 
 
