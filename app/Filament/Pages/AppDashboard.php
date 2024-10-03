@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Filament\Apps\Pages;
+namespace App\Filament\Pages;
 
 use App\Jobs\PreloadIssuesForRepos;
 use App\Services\RepoService;

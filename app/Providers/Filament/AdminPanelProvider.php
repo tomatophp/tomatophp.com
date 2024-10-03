@@ -2,19 +2,16 @@
 
 namespace App\Providers\Filament;
 
-use App\Filament\Apps\Pages\AppDashboard;
+use App\Filament\Pages\AppDashboard;
 use BezhanSalleh\FilamentShield\FilamentShieldPlugin;
 use Filament\FontProviders\GoogleFontProvider;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\DisableBladeIconComponents;
 use Filament\Http\Middleware\DispatchServingFilamentEvent;
 use Filament\Navigation\NavigationBuilder;
-use Filament\Navigation\NavigationGroup;
-use Filament\Pages;
 use Filament\Panel;
 use Filament\PanelProvider;
 use Filament\Support\Colors\Color;
-use Filament\Widgets;
 use Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse;
 use Illuminate\Cookie\Middleware\EncryptCookies;
 use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken;
@@ -24,32 +21,20 @@ use Illuminate\Session\Middleware\StartSession;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
 use TomatoPHP\FilamentAccounts\FilamentAccountsPlugin;
 use TomatoPHP\FilamentAlerts\FilamentAlertsPlugin;
-use TomatoPHP\FilamentApi\FilamentAPIPlugin;
 use TomatoPHP\FilamentCms\FilamentCMSPlugin;
-use TomatoPHP\FilamentEcommerce\FilamentEcommercePlugin;
-use TomatoPHP\FilamentEmployees\FilamentEmployeesPlugin;
 use TomatoPHP\FilamentFcm\FilamentFcmPlugin;
-use TomatoPHP\FilamentInvoices\FilamentInvoicesPlugin;
-use TomatoPHP\FilamentLocations\FilamentLocationsPlugin;
-use TomatoPHP\FilamentLogger\FilamentLoggerPlugin;
 use TomatoPHP\FilamentMediaManager\FilamentMediaManagerPlugin;
 use TomatoPHP\FilamentMenus\FilamentMenusPlugin;
 use TomatoPHP\FilamentMenus\Services\FilamentMenuLoader;
 use TomatoPHP\FilamentNotes\FilamentNotesPlugin;
-use TomatoPHP\FilamentPayments\FilamentPaymentsPlugin;
-use TomatoPHP\FilamentPos\FilamentPOSPlugin;
 use TomatoPHP\FilamentPWA\FilamentPWAPlugin;
 use TomatoPHP\FilamentSettingsHub\FilamentSettingsHubPlugin;
-use TomatoPHP\FilamentSimpleTheme\FilamentSimpleThemePlugin;
-use TomatoPHP\FilamentSubscriptions\FilamentSubscriptionsPlugin;
 use TomatoPHP\FilamentSubscriptions\FilamentSubscriptionsProvider;
 use TomatoPHP\FilamentTenancy\FilamentTenancyPlugin;
 use TomatoPHP\FilamentTranslations\FilamentTranslationsPlugin;
 use TomatoPHP\FilamentTranslations\FilamentTranslationsSwitcherPlugin;
 use TomatoPHP\FilamentTypes\FilamentTypesPlugin;
 use TomatoPHP\FilamentUsers\FilamentUsersPlugin;
-use TomatoPHP\FilamentWallet\FilamentWalletPlugin;
-use TomatoPHP\FilamentWithdrawals\FilamentWithdrawalsPlugin;
 
 class AdminPanelProvider extends PanelProvider
 {
