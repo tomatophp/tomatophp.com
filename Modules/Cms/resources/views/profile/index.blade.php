@@ -54,7 +54,7 @@
                             </div>
                         </div>
                     @endif
-                    @if($account->meta('social') && !empty($account->meta('social')))
+                    @if($account->meta('social') && is_array($account->meta('social')))
                     <div class="flex flex-wrap justify-center items-center my-4 gap-4">
                         @foreach($account->meta('social') as $item)
                             <a href="{{  $item['url'] }}" target="_blank">
