@@ -20,7 +20,7 @@
                 </div>
             </div>
             @if(count($accounts))
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div class="grid grid-cols-1 mx-8 md:grid-cols-3 gap-4">
                     @foreach ($accounts as $account)
                         <li class="flex flex-col gap-4">
                             <x-cms-profile-card :account="$account"/>
