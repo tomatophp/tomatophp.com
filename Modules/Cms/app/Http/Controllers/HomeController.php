@@ -101,7 +101,9 @@ class HomeController extends Controller
 
     public function openSource(Request $request)
     {
-        $openSources = Post::query();
+        $openSources = Post::query()
+            ->where('type', 'open-source')
+            ->where('is_published', 1);
 
         $openSources = $this->applyFilter($openSources);
 
