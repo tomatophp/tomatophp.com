@@ -43,7 +43,9 @@ class HomeController extends Controller
     private function applyFilter(Builder $query,string $key='category'): Builder
     {
         if(request()->has('search') && !empty('search')){
-            $query->where('title', 'like', '%'.request()->search.'%');
+            $query
+                ->where('title', 'like', '%'.request()->search.'%')
+                ->orWhere('slug', 'like', '%'.request()->search.'%');
         }
 
         if(request()->has('sort') && !empty('sort')){
@@ -73,7 +75,10 @@ class HomeController extends Controller
     private function applyAccountFilter(Builder $query): Builder
     {
         if(request()->has('search') && !empty('search')){
-            $query->where('name', 'like', '%'.request()->search.'%');
+            $query
+                ->where('name', 'like', '%'.request()->search.'%')
+                ->orWhere('email', 'like', '%'.request()->search.'%')
+                ->orWhere('phone', 'like', '%'.request()->search.'%');
         }
 
         if(request()->has('sort') && !empty('sort')){
