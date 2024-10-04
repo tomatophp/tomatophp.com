@@ -180,7 +180,7 @@ return [
     ],
     "community"=>[
         "title" => "Hi, Community",
-        "label" => "Profile",
+        "label" => "Community",
         "description" => "Connect with TomatoPHP community, and developers that can help you with your projects.",
         "sub" => "Let's Connect",
         "single" => "Community",
