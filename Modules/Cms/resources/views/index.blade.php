@@ -25,7 +25,7 @@
                                 <x-cms-main-button class="w-full" url="open-source"  label="{{ trans('cms::messages.index.actions.open-source') }}" icon="heroicon-s-document-text" />
                             </div>
                             <div class="flex w-auto" >
-                                <x-cms-sub-button url="https://www.github.com/tomatophp" :away="true" label="{{ trans('cms::messages.index.actions.github') }}" icon="bxl-github"/>
+                                <x-cms-sub-button url="{{ url('/user') }}" label="{{ trans('cms::messages.index.actions.register') }}" icon="bxs-user-plus"/>
                             </div>
                         </div>
                     </div>

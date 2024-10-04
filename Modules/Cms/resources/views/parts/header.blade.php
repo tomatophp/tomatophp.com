@@ -22,6 +22,9 @@
                         <a href="https://discord.gg/vKV9U7gD3c" target="_blank" aria-label="Discord" class="text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-2.5 inline-flex items-center">
                             <x-icon name="bxl-discord" class="w-5 h-5" />
                         </a>
+                        <a href="https://github.com/tomatophp" target="_blank" aria-label="Discord" class="text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-2.5 inline-flex items-center">
+                            <x-icon name="bxl-github" class="w-5 h-5" />
+                        </a>
                         @if(auth('accounts')->user())
                             <div class="text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-2.5 inline-flex items-center transition">
                                 <x-cms-user-menu />
@@ -51,6 +54,9 @@
                         @endif
                         <a href="https://discord.gg/vKV9U7gD3c" target="_blank" aria-label="Discord" class="text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-2.5 inline-flex items-center">
                             <x-icon name="bxl-discord" class="w-5 h-5" />
+                        </a>
+                        <a href="https://github.com/tomatophp" target="_blank" aria-label="Discord" class="text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-2.5 inline-flex items-center">
+                            <x-icon name="bxl-github" class="w-5 h-5" />
                         </a>
                         @if(auth('accounts')->user())
                             <div class="text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-2.5 inline-flex items-center">

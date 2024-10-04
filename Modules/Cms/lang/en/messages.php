@@ -5,7 +5,7 @@ return [
         "title" => "TomatoPHP",
         "description" => "A community where PHP developers can share their knowledge and experience.",
         "actions" => [
-            "github" => "Github",
+            "register" => "Register",
             "open-source" => "Docs",
         ]
     ],
