@@ -3,6 +3,7 @@
 namespace Modules\Cms\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Models\Account;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
@@ -208,5 +209,16 @@ class HomeController extends Controller
         else {
             abort(404);
         }
+    }
+
+    public function community()
+    {
+        $accounts = Account::query()->whereHas('accountsMetas', function (Builder $q){
+            $q->where('key', 'is_public')->where('value', "1");
+        })->paginate(10);
+
+        return view('cms::community', [
+            "accounts" => $accounts
+        ]);
     }
 }

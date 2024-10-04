@@ -105,7 +105,8 @@ class Account extends Authenticatable implements HasMedia, HasAvatar, HasTenants
 
     protected $appends = [
         'birthday',
-        'gender'
+        'gender',
+        'is_public'
     ];
 
     protected $hidden = [
@@ -123,6 +124,11 @@ class Account extends Authenticatable implements HasMedia, HasAvatar, HasTenants
     public function getFilamentAvatarUrl(): ?string
     {
         return  $this->getFirstMediaUrl('avatar')?? null;
+    }
+
+    public function getIsPublicAttribute(): Model|string|null|bool
+    {
+        return $this->meta('is_public') ?: null;
     }
 
     /**

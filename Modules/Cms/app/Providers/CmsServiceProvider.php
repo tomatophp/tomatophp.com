@@ -15,6 +15,7 @@ use Modules\Cms\View\Components\MainButton;
 use Modules\Cms\View\Components\MenuItem;
 use Modules\Cms\View\Components\OpenSourceCard;
 use Modules\Cms\View\Components\PortfolioCard;
+use Modules\Cms\View\Components\ProfileCard;
 use Modules\Cms\View\Components\ServiceCard;
 use Modules\Cms\View\Components\SocailIcon;
 use Modules\Cms\View\Components\SocialShare;
@@ -52,7 +53,8 @@ class CmsServiceProvider extends ServiceProvider
             ServiceCard::class,
             FilterToolbar::class,
             EmptyState::class,
-            UserMenu::class
+            UserMenu::class,
+            ProfileCard::class
         ]);
 
         Livewire::component('like', LikePost::class);

@@ -32,6 +32,7 @@ Route::domain(config('app.domain'))->middleware(['web'])->group(function () {
             Route::get('/open-source/{docs}', [\Modules\Cms\Http\Controllers\HomeController::class, 'docs'])->name('open-source-docs');
             Route::get('/contact', [\Modules\Cms\Http\Controllers\HomeController::class, 'contact'])->name('contact');
             Route::get('/issues', [\Modules\Cms\Http\Controllers\HomeController::class, 'issues'])->name('issues');
+            Route::get('/community', [\Modules\Cms\Http\Controllers\HomeController::class, 'community'])->name('community');
             Route::get('/about', [\Modules\Cms\Http\Controllers\HomeController::class, 'about'])->name('about');
             Route::get('/donate', [\Modules\Cms\Http\Controllers\HomeController::class, 'donate'])->name('donate');
             Route::get('/blog', [\Modules\Cms\Http\Controllers\HomeController::class, 'blog'])->name('blog');
@@ -59,6 +60,7 @@ Route::domain(config('app.domain'))->middleware(['web'])->group(function () {
             Route::get('/open-source/{docs}', [\Modules\Cms\Http\Controllers\HomeController::class, 'docs'])->name('open-source-docs');
             Route::get('/contact', [\Modules\Cms\Http\Controllers\HomeController::class, 'contact'])->name('contact');
             Route::get('/issues', [\Modules\Cms\Http\Controllers\HomeController::class, 'issues'])->name('issues');
+            Route::get('/community', [\Modules\Cms\Http\Controllers\HomeController::class, 'community'])->name('community');
             Route::get('/about', [\Modules\Cms\Http\Controllers\HomeController::class, 'about'])->name('about');
             Route::get('/donate', [\Modules\Cms\Http\Controllers\HomeController::class, 'donate'])->name('donate');
             Route::get('/blog', [\Modules\Cms\Http\Controllers\HomeController::class, 'blog'])->name('blog');
