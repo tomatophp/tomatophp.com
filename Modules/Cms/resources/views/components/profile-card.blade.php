@@ -1,7 +1,7 @@
 <div class="bg-white dark:bg-slate-800 rounded-lg overflow-hidden shadow-md border border-slate-200 dark:border-slate-700 p-4 min-w-64">
     <div class="flex flex-col items-center justify-center">
         <div class="my-4">
-            <x-filament-panels::avatar.user :user="$account" size="24" class="rounded-full  bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700"/>
+            <x-filament-panels::avatar.user :user="$account" size="24" class="rounded-full w-24 h-24 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700"/>
         </div>
         <a href="{{ url('@'. $account->username) }}" class="flex justify-center gap-2 font-bold w-full">
             <h1 class="text-xl truncate">{{ $account->name }}</h1>
