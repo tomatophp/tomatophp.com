@@ -13,7 +13,7 @@
                         </section>
                     </div>
                     <div class="flex justify-between border-t border-gray-200 dark:border-slate-800  p-4">
-                        <div class="flex justify-start gap-4 w-full ">
+                        <a href="{{ url('@' . $comment->user?->username) }}"  class="flex justify-start gap-4 w-full ">
                             <div class="flex flex-col justify-center items-center">
                                 <x-filament-panels::avatar.user :user="$comment->user" class="w-10 h-10" />
                             </div>
@@ -22,7 +22,7 @@
                                 <div class="text-sm font-medium text-gray-900 dark:text-gray-200">{{ $comment->user?->name }}</div>
                                 <div class="text-sm text-gray-400">{{ $comment->created_at->diffForHumans() }}</div>
                             </div>
-                        </div>
+                        </a>
                         @if(auth('accounts')->user() && auth('accounts')->user()->id === $comment->user_id)
                             <div class="flex flex-col justify-center items-center">
                                 <div class="flex justify-end gap-4">
