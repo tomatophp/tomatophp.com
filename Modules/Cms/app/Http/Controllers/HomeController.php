@@ -70,6 +70,31 @@ class HomeController extends Controller
         return $query;
     }
 
+    private function applyAccountFilter(Builder $query): Builder
+    {
+        if(request()->has('search') && !empty('search')){
+            $query->where('name', 'like', '%'.request()->search.'%');
+        }
+
+        if(request()->has('sort') && !empty('sort')){
+            if(request()->get('sort') === 'popular'){
+                $query->inRandomOrder();
+            }
+            elseif (request()->get('sort') === 'recent'){
+                $query->orderBy('created_at', 'desc');
+            }
+            elseif (request()->get('sort') === 'alphabetical'){
+                $query->orderBy('name');
+            }
+            else {
+                $query->inRandomOrder();
+            }
+        }
+
+        return $query;
+    }
+
+
     public function openSource(Request $request)
     {
         $openSources = Post::query()
@@ -215,7 +240,11 @@ class HomeController extends Controller
     {
         $accounts = Account::query()->whereHas('accountsMetas', function (Builder $q){
             $q->where('key', 'is_public')->where('value', "1");
-        })->paginate(10);
+        });
+
+        $accounts = $this->applyAccountFilter($accounts);
+
+        $accounts = $accounts->paginate(12);
 
         return view('cms::community', [
             "accounts" => $accounts
