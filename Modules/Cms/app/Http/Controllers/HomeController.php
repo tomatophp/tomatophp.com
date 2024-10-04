@@ -76,14 +76,13 @@ class HomeController extends Controller
     {
         if(request()->has('search') && !empty('search')){
             $query
-                ->where('name', 'like', '%'.request()->search.'%')
-                ->orWhere('email', 'like', '%'.request()->search.'%')
-                ->orWhere('phone', 'like', '%'.request()->search.'%');
+                ->where('username', 'like', '%'.request()->search.'%');
         }
 
         if(request()->has('sort') && !empty('sort')){
             if(request()->get('sort') === 'popular'){
-                $query->inRandomOrder();
+                //Order By Type where type is 'verified', 'public'
+                $query->orderByRaw("case when type = 'verified' then 1 when type = 'public' then 2 else 3 end");
             }
             elseif (request()->get('sort') === 'recent'){
                 $query->orderBy('created_at', 'desc');
@@ -102,9 +101,7 @@ class HomeController extends Controller
 
     public function openSource(Request $request)
     {
-        $openSources = Post::query()
-            ->where('type', 'open-source')
-            ->where('is_published', 1);
+        $openSources = Post::query();
 
         $openSources = $this->applyFilter($openSources);
 
