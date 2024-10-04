@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Bavix\Wallet\Interfaces\Wallet;
 use Bavix\Wallet\Traits\HasWallet;
+use Bavix\Wallet\Traits\HasWalletFloat;
 use Filament\Models\Contracts\FilamentUser;
 use Filament\Models\Contracts\HasAvatar;
 use Filament\Models\Contracts\HasTenants;
@@ -59,7 +60,7 @@ class Account extends Authenticatable implements HasMedia, HasAvatar, HasTenants
     use HasApiTokens, HasFactory, Notifiable;
     use SoftDeletes;
     use InteractsWithTenant;
-    use HasWallet;
+    use HasWalletFloat;
     use InteractsWithNotifications;
     use InteractsWithFCM;
     use BilledFor;
