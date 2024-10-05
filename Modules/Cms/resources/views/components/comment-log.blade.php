@@ -9,7 +9,7 @@
                 </a>
                 <div class="flex flex-col justify-center">
                     <div class="flex justify-start gap-1">
-                        <a href="{{ url(app()->getLocale() . '/@' . $log->account->username) }}" >
+                        <a href="{{ url( '@' . $log->account->username) }}" >
                             <div class="flex justify-start gap-2">
                                 <div>
                                     <h1 class="font-bold text-md">{{ $log->account->name }}</h1>
