@@ -4,6 +4,7 @@ namespace Modules\Cms\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\Account;
+use Illuminate\Http\Request;
 
 class ProfileController extends Controller
 {

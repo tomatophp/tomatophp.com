@@ -9,8 +9,10 @@ use Modules\Cms\Livewire\CommentPost;
 use Modules\Cms\Livewire\LikePost;
 use Modules\Cms\View\Components\BlogCard;
 use Modules\Cms\View\Components\CategoryToolbar;
+use Modules\Cms\View\Components\CommentLog;
 use Modules\Cms\View\Components\EmptyState;
 use Modules\Cms\View\Components\FilterToolbar;
+use Modules\Cms\View\Components\LikeLog;
 use Modules\Cms\View\Components\MainButton;
 use Modules\Cms\View\Components\MenuItem;
 use Modules\Cms\View\Components\OpenSourceCard;
@@ -54,7 +56,9 @@ class CmsServiceProvider extends ServiceProvider
             FilterToolbar::class,
             EmptyState::class,
             UserMenu::class,
-            ProfileCard::class
+            ProfileCard::class,
+            CommentLog::class,
+            LikeLog::class
         ]);
 
         Livewire::component('like', LikePost::class);

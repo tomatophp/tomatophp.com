@@ -75,52 +75,44 @@
             </div>
             <div class="flex flex-col justify-center items-center mx-8 md:mx-16 mt-8">
                 <div class="w-full md:w-3/4 lg:w-1/2">
-                    <div class="flex justify-start text-start">
-                        <h1>Last Activity</h1>
+                    <div class="flex justify-between text-start">
+                        <div>
+                            <h1>Last Activity</h1>
+                        </div>
+                        <div class="flex justify-end gap-4">
+                            <a href="{{ url('@' . $account->username ) }}">
+                                <x-icon :name="!request()->has('filter') ? 'heroicon-s-rectangle-stack' : 'heroicon-o-rectangle-stack'" class="w-5 h-5 text-success-500"/>
+                            </a>
+                            <a href="{{ url('@' . $account->username . '?filter=comments' ) }}">
+                                <x-icon :name="(request()->has('filter') && request()->get('filter') === 'comments') ? 'heroicon-s-chat-bubble-left-right' : 'heroicon-o-chat-bubble-left-right'" class="w-5 h-5 text-info-500"/>
+                            </a>
+                            <a href="{{ url('@' . $account->username . '?filter=likes') }}">
+                                <x-icon :name="(request()->has('filter') && request()->get('filter') === 'likes') ? 'heroicon-s-heart' : 'heroicon-o-heart'" class="w-5 h-5 text-danger-500"/>
+                            </a>
+                        </div>
                     </div>
-                    @php $comments = \TomatoPHP\FilamentCms\Models\Comment::query()->where('user_id', $account->id)->where('user_type', \App\Models\Account::class)->paginate(10); @endphp
-                    @if(count($comments))
+                    @php
+                        $logs = \App\Models\AccountLog::query()->where('account_id', $account->id)->orderBy('created_at', 'desc');
+                        if(request()->has('filter') && request()->get('filter') === 'comments'){
+                            $logs = $logs->where('action', 'comment');
+                        }elseif(request()->has('filter') && request()->get('filter') === 'likes'){
+                            $logs = $logs->where('action', 'like');
+                        }
+
+                        $logs = $logs->paginate(10);
+                    @endphp
+                    @if(count($logs))
                         <div class="grid grid-cols-1 gap-4 my-4">
-                            @foreach($comments as $comment)
-                                <div class="w-full bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg shadow-sm mt-4 overflow-hidden">
-                                    <div class="flex justify-between w-full border-b border-slate-200 dark:border-slate-700 p-4">
-                                        <div class="w-full flex justify-between gap-2">
-                                            <div class="w-full flex justify-start gap-2">
-                                                <a href="{{ url(app()->getLocale() . '/@' . $account->username) }}">
-                                                    <div class="w-8 h-8 rounded-full bg-slate-800 border border-slate-200 dark:border-slate-700">
-                                                        <x-filament-panels::avatar.user :user="$account" size="8"/>
-                                                    </div>
-                                                </a>
-                                                <a href="{{ url(app()->getLocale() . '/' . ($comment->content?->type === 'open-source' ? 'open-source' : 'blog') . '/' . $comment->content?->slug) }}" target="_blank" class="flex flex-col justify-center">
-                                                    <div class="flex justify-start gap-2">
-                                                        <div>
-                                                            <h1 class="font-bold text-md">{{ $comment->content?->title }}</h1>
-                                                        </div>
-                                                        <div class="flex flex-col justify-center items-center">
-                                                            <x-icon name="bx-link-external" class="w-4 h-4"/>
-                                                        </div>
-                                                    </div>
-                                                </a>
-                                            </div>
-                                            <div>
-                                                <div class="flex flex-col justify-center items-center">
-                                                    <x-icon name="heroicon-o-chat-bubble-left-right" class="w-5 h-5"/>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="flex justify-center">
-                                        <div class="flex flex-col justify-center w-full p-4">
-                                            <section data-theme="light" class="prose prose-lg lg:prose-xl dark:prose-invert dark:prose-headings:text-slate-300 prose-headings:font-heading prose-headings:leading-tighter prose-headings:tracking-tighter prose-headings:font-bold prose-img:rounded-md prose-img:shadow-lg prose-a:text-black/75 dark:prose-a:text-white/90 prose-a:underline prose-a:underline-offset-4 prose-a:decoration-primary-500 hover:prose-a:decoration-primary-600 prose-a:decoration-2 hover:prose-a:decoration-4 hover:prose-a:text-black dark:hover:prose-a:text-white break-words tracking-normal prose-h4:tracking-normal prose-h5:tracking-normal prose-h6:tracking-normal prose-code:before:hidden prose-code:after:hidden markdown-body">
-                                                {!! str($comment->comment)->markdown() !!}
-                                            </section>
-                                        </div>
-                                    </div>
-                                </div>
+                            @foreach($logs as $log)
+                                @if($log->action === 'comment')
+                                    <x-cms-comment-log :log="$log" />
+                                @elseif($log->action === 'like')
+                                    <x-cms-like-log :log="$log" />
+                                @endif
                             @endforeach
                         </div>
                         <div class="mx-auto my-4">
-                            {{ $comments->links() }}
+                            {{ $logs->links() }}
                         </div>
                     @else
                         <div class="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 mx-8 md:mx-0 mt-6 mb-8 rounded-lg shadow-sm flex justify-center">

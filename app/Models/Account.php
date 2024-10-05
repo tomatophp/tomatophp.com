@@ -23,6 +23,7 @@ use Spatie\MediaLibrary\InteractsWithMedia;
 use TomatoPHP\FilamentAccounts\Traits\InteractsWithTenant;
 use TomatoPHP\FilamentAlerts\Traits\InteractsWithNotifications;
 use TomatoPHP\FilamentCms\Filament\Resources\PostResource;
+use TomatoPHP\FilamentCms\Models\Comment;
 use TomatoPHP\FilamentCms\Models\Post;
 use TomatoPHP\FilamentEmployees\Traits\IsEmployee;
 use TomatoPHP\FilamentFcm\Traits\InteractsWithFCM;
@@ -219,6 +220,7 @@ class Account extends Authenticatable implements HasMedia, HasAvatar, HasTenants
             $post->likes +=1;
             $post->save();
 
+            $this->log($post, 'like', 'liked post');
             if($post->author){
                 Notification::make()
                     ->title("New Like")
@@ -254,6 +256,14 @@ class Account extends Authenticatable implements HasMedia, HasAvatar, HasTenants
         }
     }
 
+    /**
+     * @return MorphMany
+     */
+    public function comments(): MorphMany
+    {
+        return $this->morphMany(Comment::class, 'user');
+    }
+
 
     /**
      * @param Post $post
@@ -262,5 +272,37 @@ class Account extends Authenticatable implements HasMedia, HasAvatar, HasTenants
     public function isLike(Post $post): bool
     {
         return (bool)$this->likes()->where('post_id', $post->id)->first();
+    }
+
+    /**
+     * @return HasMany
+     */
+    public function logs(): HasMany
+    {
+        return $this->hasMany(AccountLog::class);
+    }
+
+
+    /**
+     * @param Model $model
+     * @param string $action
+     * @param string|null $log
+     * @param string|null $date
+     * @return Model
+     */
+    public function log(Model $model, string $action='comment', string $log =null, string $date=null): Model
+    {
+        $data = [
+            'action' => $action,
+            'log' => $log,
+            'model_type' => $model ? get_class($model) : null,
+            'model_id' => $model ? $model->id : null,
+        ];
+
+        if($date){
+            $data['created_at'] = $date;
+        }
+
+       return $this->logs()->create($data);
     }
 }

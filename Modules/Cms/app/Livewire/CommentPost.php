@@ -118,6 +118,8 @@ class CommentPost extends Component implements HasActions, HasForms
                     'is_active' => 1
                 ]);
 
+                auth('accounts')->user()->log($this->post, 'comment', $data['comment']);
+
                 $this->form->fill([
                     'comment' => ''
                 ]);

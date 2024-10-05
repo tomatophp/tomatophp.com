@@ -31,39 +31,19 @@ class MoveOldTenantsToAccounts extends Command
         $accounts = Account::query()->where('is_active', 1)->get();
 
         foreach ($accounts as $account){
-            if($account->meta('social') && !empty($account->meta('social'))){
-                echo "Move account: {$account->name}\n";
-                $social = [];
+            $account->logs()->delete();
 
-                foreach ($account->meta('social') as $item){
-                    $networkURl = match($item['network']){
-                        "github" => "https://www.github.com/",
-                        "twitter" => "https://twitter.com/",
-                        "linkedin" => "https://www.linkedin.com/in/",
-                        "whatsapp" => "https://wa.me/",
-                        "facebook" => "https://www.facebook.com/",
-                        "instagram" => "https://www.instagram.com/",
-                        "youtube" => "https://www.youtube.com/",
-                        "twitch" => "https://www.twitch.tv/",
-                        "reddit" => "https://www.reddit.com/user/",
-                        "behance" => "https://be.net/",
-                        "dribbble" => "https://dribbble.com/",
-                        "link" => "https://",
-                        default => null
-                    };
-
-                    $social[] = [
-                        "network" => $item['network'],
-                        "url" => $item['url'],
-                        "username" => str($item['url'])->replace($networkURl, '')->toString()
-                    ];
-                }
-
-                $account->meta('social', $social);
+            if($account->comments()->count()>0){
+               foreach ($account->comments as $comment){
+                   $account->log($comment->content, 'comment', $comment->comment, $comment->created_at);
+               }
             }
 
-
-
+            if($account->likes()->count()>0){
+                foreach ($account->likes as $like){
+                    $account->log($like->post, 'like', 'liked', $like->created_at);
+                }
+            }
         }
     }
 }
