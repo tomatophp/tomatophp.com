@@ -81,6 +81,7 @@ return [
          */
 
         'guards' => [
+            'panel:user',
             'panel:admin'
         ],
 
