@@ -1,6 +1,7 @@
 <?php
 
 use TomatoPHP\FilamentSeo\FilamentSeoServiceProvider;
+use TomatoPHP\FilamentIssues\FilamentIssuesServiceProvider;
 
 return [
     App\Providers\AppServiceProvider::class,
@@ -8,5 +9,6 @@ return [
     App\Providers\Filament\AppPanelProvider::class,
     App\Providers\Filament\AppsPanelProvider::class,
     \App\Providers\TwitterServiceProvider::class,
-    FilamentSeoServiceProvider::class
+    FilamentSeoServiceProvider::class,
+    FilamentIssuesServiceProvider::class
 ];

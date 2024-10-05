@@ -1,11 +1,11 @@
 <?php
 
-namespace TomatoPHP\FilamentSeo\Console;
+namespace TomatoPHP\FilamentIssues\Console;
 
 use Illuminate\Console\Command;
 use TomatoPHP\ConsoleHelpers\Traits\RunCommand;
 
-class FilamentSeoInstall extends Command
+class FilamentIssuesInstall extends Command
 {
     use RunCommand;
 
@@ -14,7 +14,7 @@ class FilamentSeoInstall extends Command
      *
      * @var string
      */
-    protected $name = 'filament-seo:install';
+    protected $name = 'filament-issues:install';
 
     /**
      * The console command description.
@@ -39,6 +39,6 @@ class FilamentSeoInstall extends Command
         $this->info('Publish Vendor Assets');
         $this->artisanCommand(["migrate"]);
         $this->artisanCommand(["optimize:clear"]);
-        $this->info('Filament SEO installed successfully.');
+        $this->info('Filament Issues installed successfully.');
     }
 }

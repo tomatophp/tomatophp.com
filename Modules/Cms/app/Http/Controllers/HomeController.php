@@ -44,8 +44,7 @@ class HomeController extends Controller
     {
         if(request()->has('search') && !empty('search')){
             $query
-                ->where('title', 'like', '%'.request()->search.'%')
-                ->orWhere('slug', 'like', '%'.request()->search.'%');
+                ->where('slug', 'like', '%'.request()->search.'%');
         }
 
         if(request()->has('sort') && !empty('sort')){
