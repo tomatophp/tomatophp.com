@@ -187,7 +187,7 @@ class HomeController extends Controller
 
         $posts = $this->applyFilter($posts);
 
-        $posts = $posts->paginate(12);
+        $posts = $posts->orderBy('created_at', 'desc')->paginate(12);
 
         return view('cms::blog', [
             "posts" => $posts
