@@ -197,6 +197,7 @@ class EditProfile extends Page implements HasForms
                         ->schema([
                             Forms\Components\Select::make('network')
                                 ->searchable()
+                                ->default('link')
                                 ->options([
                                     "github" => "GitHub",
                                     "twitter" => "Twitter",
