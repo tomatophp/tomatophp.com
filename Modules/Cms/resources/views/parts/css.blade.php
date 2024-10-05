@@ -2,7 +2,6 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Edu+AU+VIC+WA+NT+Hand:wght@400..700&family=IBM+Plex+Sans+Arabic:wght@100;200;300;400;500;600;700&display=swap" rel="stylesheet">
 
-<link href="{{ asset('css/style.css') }}" rel="stylesheet" type="text/css">
 <style>
     .ibm-plex-sans-arabic-thin {
         font-family: "IBM Plex Sans Arabic", sans-serif;
