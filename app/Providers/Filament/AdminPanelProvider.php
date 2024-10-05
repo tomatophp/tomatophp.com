@@ -23,6 +23,7 @@ use TomatoPHP\FilamentAccounts\FilamentAccountsPlugin;
 use TomatoPHP\FilamentAlerts\FilamentAlertsPlugin;
 use TomatoPHP\FilamentCms\FilamentCMSPlugin;
 use TomatoPHP\FilamentFcm\FilamentFcmPlugin;
+use TomatoPHP\FilamentLogger\FilamentLoggerPlugin;
 use TomatoPHP\FilamentMediaManager\FilamentMediaManagerPlugin;
 use TomatoPHP\FilamentMenus\FilamentMenusPlugin;
 use TomatoPHP\FilamentMenus\Services\FilamentMenuLoader;
@@ -147,6 +148,9 @@ class AdminPanelProvider extends PanelProvider
                     ->useNotifications()
                     ->canLogin()
                     ->canBlocked(),
+            )
+            ->plugin(
+                FilamentLoggerPlugin::make()
             )
             ->navigation(function (NavigationBuilder $builder){
                 return $builder->items(FilamentMenuLoader::make('dashboard'));

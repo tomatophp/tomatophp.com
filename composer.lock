@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "0fed1604c77fc186087b844f37d781e8",
+    "content-hash": "5570ae3f42e25690ae75071d740e18c4",
     "packages": [
         {
             "name": "abraham/twitteroauth",
@@ -3468,16 +3468,16 @@
         },
         {
             "name": "google/cloud-storage",
-            "version": "v1.43.0",
+            "version": "v1.43.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/googleapis/google-cloud-php-storage.git",
-                "reference": "e6f5f0d9cad317291aedea238af693a4e1a26801"
+                "reference": "e4a071bd5efaecd14fe82b0f4f7748d1acfb1cfc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/googleapis/google-cloud-php-storage/zipball/e6f5f0d9cad317291aedea238af693a4e1a26801",
-                "reference": "e6f5f0d9cad317291aedea238af693a4e1a26801",
+                "url": "https://api.github.com/repos/googleapis/google-cloud-php-storage/zipball/e4a071bd5efaecd14fe82b0f4f7748d1acfb1cfc",
+                "reference": "e4a071bd5efaecd14fe82b0f4f7748d1acfb1cfc",
                 "shasum": ""
             },
             "require": {
@@ -3519,9 +3519,9 @@
             ],
             "description": "Cloud Storage Client for PHP",
             "support": {
-                "source": "https://github.com/googleapis/google-cloud-php-storage/tree/v1.43.0"
+                "source": "https://github.com/googleapis/google-cloud-php-storage/tree/v1.43.1"
             },
-            "time": "2024-09-28T04:24:22+00:00"
+            "time": "2024-10-05T04:59:14+00:00"
         },
         {
             "name": "google/common-protos",
@@ -7155,24 +7155,24 @@
         },
         {
             "name": "nette/schema",
-            "version": "v1.3.0",
+            "version": "v1.3.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nette/schema.git",
-                "reference": "a6d3a6d1f545f01ef38e60f375d1cf1f4de98188"
+                "reference": "9522dad6211c4d995a01a9ac529da88d0b0ba7b5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nette/schema/zipball/a6d3a6d1f545f01ef38e60f375d1cf1f4de98188",
-                "reference": "a6d3a6d1f545f01ef38e60f375d1cf1f4de98188",
+                "url": "https://api.github.com/repos/nette/schema/zipball/9522dad6211c4d995a01a9ac529da88d0b0ba7b5",
+                "reference": "9522dad6211c4d995a01a9ac529da88d0b0ba7b5",
                 "shasum": ""
             },
             "require": {
                 "nette/utils": "^4.0",
-                "php": "8.1 - 8.3"
+                "php": "8.1 - 8.4"
             },
             "require-dev": {
-                "nette/tester": "^2.4",
+                "nette/tester": "^2.5.2",
                 "phpstan/phpstan-nette": "^1.0",
                 "tracy/tracy": "^2.8"
             },
@@ -7211,9 +7211,9 @@
             ],
             "support": {
                 "issues": "https://github.com/nette/schema/issues",
-                "source": "https://github.com/nette/schema/tree/v1.3.0"
+                "source": "https://github.com/nette/schema/tree/v1.3.1"
             },
-            "time": "2023-12-11T11:54:22+00:00"
+            "time": "2024-10-05T03:01:50+00:00"
         },
         {
             "name": "nette/utils",
@@ -8079,16 +8079,16 @@
         },
         {
             "name": "php-http/discovery",
-            "version": "1.19.4",
+            "version": "1.20.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-http/discovery.git",
-                "reference": "0700efda8d7526335132360167315fdab3aeb599"
+                "reference": "82fe4c73ef3363caed49ff8dd1539ba06044910d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-http/discovery/zipball/0700efda8d7526335132360167315fdab3aeb599",
-                "reference": "0700efda8d7526335132360167315fdab3aeb599",
+                "url": "https://api.github.com/repos/php-http/discovery/zipball/82fe4c73ef3363caed49ff8dd1539ba06044910d",
+                "reference": "82fe4c73ef3363caed49ff8dd1539ba06044910d",
                 "shasum": ""
             },
             "require": {
@@ -8152,9 +8152,9 @@
             ],
             "support": {
                 "issues": "https://github.com/php-http/discovery/issues",
-                "source": "https://github.com/php-http/discovery/tree/1.19.4"
+                "source": "https://github.com/php-http/discovery/tree/1.20.0"
             },
-            "time": "2024-03-29T13:00:05+00:00"
+            "time": "2024-10-02T11:20:13+00:00"
         },
         {
             "name": "php-http/multipart-stream-builder",
@@ -11088,16 +11088,16 @@
         },
         {
             "name": "stancl/tenancy",
-            "version": "v3.8.4",
+            "version": "v3.8.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/archtechx/tenancy.git",
-                "reference": "8f9c7efa4584007f41048448d0a11f572a1d3239"
+                "reference": "30cdc9461e1a120834e8cdee39aef7a9ced9f863"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/archtechx/tenancy/zipball/8f9c7efa4584007f41048448d0a11f572a1d3239",
-                "reference": "8f9c7efa4584007f41048448d0a11f572a1d3239",
+                "url": "https://api.github.com/repos/archtechx/tenancy/zipball/30cdc9461e1a120834e8cdee39aef7a9ced9f863",
+                "reference": "30cdc9461e1a120834e8cdee39aef7a9ced9f863",
                 "shasum": ""
             },
             "require": {
@@ -11155,7 +11155,7 @@
             ],
             "support": {
                 "issues": "https://github.com/archtechx/tenancy/issues",
-                "source": "https://github.com/archtechx/tenancy/tree/v3.8.4"
+                "source": "https://github.com/archtechx/tenancy/tree/v3.8.5"
             },
             "funding": [
                 {
@@ -11167,7 +11167,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2024-05-22T17:57:48+00:00"
+            "time": "2024-10-02T21:44:08+00:00"
         },
         {
             "name": "stancl/virtualcolumn",
@@ -15168,6 +15168,72 @@
                 }
             ],
             "time": "2024-09-17T16:40:52+00:00"
+        },
+        {
+            "name": "tomatophp/filament-logger",
+            "version": "v1.0.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/tomatophp/filament-logger.git",
+                "reference": "c10350ebe4f11c4f2fcb1aa18cee94b82736cf62"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/tomatophp/filament-logger/zipball/c10350ebe4f11c4f2fcb1aa18cee94b82736cf62",
+                "reference": "c10350ebe4f11c4f2fcb1aa18cee94b82736cf62",
+                "shasum": ""
+            },
+            "require": {
+                "ext-json": "*",
+                "filament/filament": "^3.2",
+                "illuminate/http": "^9.0|^10.0|^11.0",
+                "illuminate/support": "^9.0|^10.0|^11.0",
+                "monolog/monolog": "^2.9|^3.6",
+                "php": "^8.1|^8.2",
+                "tomatophp/console-helpers": "^1.1"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "TomatoPHP\\FilamentLogger\\FilamentLoggerServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "TomatoPHP\\FilamentLogger\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Fady Mondy",
+                    "email": "info@3x1.io"
+                }
+            ],
+            "description": "Log all user activity to file or log driver and preview it on your FilamentPHP panel",
+            "keywords": [
+                "filament-plugin",
+                "filamentphp",
+                "laravel",
+                "logger",
+                "php"
+            ],
+            "support": {
+                "issues": "https://github.com/tomatophp/filament-logger/issues",
+                "source": "https://github.com/tomatophp/filament-logger/tree/v1.0.3"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/3x1io",
+                    "type": "github"
+                }
+            ],
+            "time": "2024-10-05T10:23:27+00:00"
         },
         {
             "name": "tomatophp/filament-media-manager",
