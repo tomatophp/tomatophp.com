@@ -64,6 +64,7 @@ class AppsPanelProvider extends PanelProvider
                     ->icon('heroicon-o-user')
                     ->url(fn() => \App\Filament\Apps\Pages\EditProfile::getUrl()),
                 "public" => MenuItem::make()
+                    ->visible(fn()=>(bool)auth('accounts')->user()->meta('is_public'))
                     ->label('Public Profile')
                     ->icon('heroicon-o-globe-alt')
                     ->url(fn() => url( '/@' . auth('accounts')->user()->username)),

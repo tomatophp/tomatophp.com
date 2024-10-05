@@ -265,9 +265,9 @@ class EditProfile extends Page implements HasForms
         $data = $this->editPublicProfile->getState();
 
         $this->getUser()->meta('is_public', $data['is_public']);
-        $this->getUser()->meta('location', $data['location']);
-        $this->getUser()->meta('bio', $data['bio']);
-        $this->getUser()->meta('social', $data['social']);
+        $this->getUser()->meta('location', $data['location']?? 'null');
+        $this->getUser()->meta('bio', $data['bio']?? 'null');
+        $this->getUser()->meta('social', $data['social']?? 'null');
 
         $this->sendSuccessNotification();
     }
