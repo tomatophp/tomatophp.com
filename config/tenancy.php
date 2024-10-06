@@ -194,6 +194,7 @@ return [
             base_path('vendor/tomatophp/filament-menus/database/migrations'),
             base_path('vendor/tomatophp/filament-locations/database/migrations'),
             base_path('vendor/tomatophp/filament-accounts/database/migrations'),
+            base_path('vendor/tomatophp/filament-logger/database/migrations'),
             base_path('vendor/tomatophp/filament-invoices/database/migrations'),
             base_path('vendor/tomatophp/filament-payments/database/migrations'),
             base_path('vendor/tomatophp/filament-pos/database/migrations'),
