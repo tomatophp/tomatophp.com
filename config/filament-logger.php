@@ -60,7 +60,7 @@ return [
          */
 
         'excluded-paths' => [
-            '/manifest.json'
+            'manifest.json'
         ],
 
         /*
