@@ -157,11 +157,6 @@ class AdminPanelProvider extends PanelProvider
             ->plugin(
                 FilamentSeoPlugin::make()
             )
-            ->plugin(
-                FilamentSocialPlugin::make()
-                    ->socialLogin()
-                    ->socialRegister()
-            )
             ->navigation(function (NavigationBuilder $builder){
                 return $builder->items(FilamentMenuLoader::make('dashboard'));
             })
