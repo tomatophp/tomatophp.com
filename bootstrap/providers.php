@@ -10,7 +10,5 @@ return [
     App\Providers\Filament\AppPanelProvider::class,
     App\Providers\Filament\AppsPanelProvider::class,
     \App\Providers\TwitterServiceProvider::class,
-    FilamentSeoServiceProvider::class,
     FilamentIssuesServiceProvider::class,
-    FilamentSocialServiceProvider::class
 ];

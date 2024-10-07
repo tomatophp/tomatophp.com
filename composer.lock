@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "e4750f0918e83743930598c342234df5",
+    "content-hash": "480e28d2c26b5445e214cdf9b61877be",
     "packages": [
         {
             "name": "abraham/twitteroauth",
@@ -16235,6 +16235,71 @@
             "time": "2024-09-11T13:00:37+00:00"
         },
         {
+            "name": "tomatophp/filament-seo",
+            "version": "v1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/tomatophp/filament-seo.git",
+                "reference": "59b88b0e67dcab4cb81416d09abda4ea2dc54521"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/tomatophp/filament-seo/zipball/59b88b0e67dcab4cb81416d09abda4ea2dc54521",
+                "reference": "59b88b0e67dcab4cb81416d09abda4ea2dc54521",
+                "shasum": ""
+            },
+            "require": {
+                "filament/filament": "^3.2",
+                "google/apiclient": "^2.0",
+                "php": "^8.1|^8.2",
+                "tomatophp/console-helpers": "^1.1",
+                "tomatophp/filament-settings-hub": "^1.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "TomatoPHP\\FilamentSeo\\FilamentSeoServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "TomatoPHP\\FilamentSeo\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Fady Mondy",
+                    "email": "info@3x1.io"
+                }
+            ],
+            "description": "Manage and generate SEO tags and integrate your website with Google SEO services",
+            "keywords": [
+                "google",
+                "google analytics",
+                "google search console",
+                "laravel",
+                "php",
+                "seo"
+            ],
+            "support": {
+                "issues": "https://github.com/tomatophp/filament-seo/issues",
+                "source": "https://github.com/tomatophp/filament-seo/tree/v1.0.0"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/3x1io",
+                    "type": "github"
+                }
+            ],
+            "time": "2024-10-07T12:28:58+00:00"
+        },
+        {
             "name": "tomatophp/filament-settings-hub",
             "version": "v1.0.10",
             "source": {
@@ -16300,6 +16365,73 @@
                 }
             ],
             "time": "2024-10-07T10:27:26+00:00"
+        },
+        {
+            "name": "tomatophp/filament-social",
+            "version": "v1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/tomatophp/filament-social.git",
+                "reference": "1645d2287006af82fa00fac6da75c8e1b16c176a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/tomatophp/filament-social/zipball/1645d2287006af82fa00fac6da75c8e1b16c176a",
+                "reference": "1645d2287006af82fa00fac6da75c8e1b16c176a",
+                "shasum": ""
+            },
+            "require": {
+                "filament/filament": "^3.2",
+                "laravel/socialite": "^5.15",
+                "mallardduck/blade-boxicons": "^2.4",
+                "php": "^8.1|^8.2",
+                "revolution/socialite-discord": "^1.4",
+                "socialiteproviders/apple": "^5.6",
+                "socialiteproviders/facebook": "^4.1",
+                "socialiteproviders/snapchat": "*",
+                "socialiteproviders/tiktok": "^5.2",
+                "tomatophp/console-helpers": "^1.1"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "TomatoPHP\\FilamentSocial\\FilamentSocialServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "TomatoPHP\\FilamentSocial\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Fady Mondy",
+                    "email": "info@3x1.io"
+                }
+            ],
+            "description": "Integration of social media platform actions and auth to your FilamentPHP panel",
+            "keywords": [
+                "laravel",
+                "php",
+                "template"
+            ],
+            "support": {
+                "issues": "https://github.com/tomatophp/filament-social/issues",
+                "source": "https://github.com/tomatophp/filament-social/tree/v1.0.0"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/3x1io",
+                    "type": "github"
+                }
+            ],
+            "time": "2024-10-07T18:31:55+00:00"
         },
         {
             "name": "tomatophp/filament-subscriptions",
