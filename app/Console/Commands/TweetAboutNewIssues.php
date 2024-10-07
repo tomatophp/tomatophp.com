@@ -5,12 +5,11 @@ declare(strict_types=1);
 namespace App\Console\Commands;
 
 use App\DataTransferObjects\Issue;
-use App\Jobs\TweetNewIssue;
 use App\Models\SocialPost;
 use App\Services\IssueService;
 use Illuminate\Console\Command;
 use Illuminate\Support\Collection;
-
+use TomatoPHP\FilamentSocial\Jobs\TweetNewIssue;
 use function Termwind\terminal;
 
 final class TweetAboutNewIssues extends Command

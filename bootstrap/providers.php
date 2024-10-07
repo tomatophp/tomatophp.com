@@ -2,6 +2,7 @@
 
 use TomatoPHP\FilamentSeo\FilamentSeoServiceProvider;
 use TomatoPHP\FilamentIssues\FilamentIssuesServiceProvider;
+use TomatoPHP\FilamentSocial\FilamentSocialServiceProvider;
 
 return [
     App\Providers\AppServiceProvider::class,
@@ -10,5 +11,6 @@ return [
     App\Providers\Filament\AppsPanelProvider::class,
     \App\Providers\TwitterServiceProvider::class,
     FilamentSeoServiceProvider::class,
-    FilamentIssuesServiceProvider::class
+    FilamentIssuesServiceProvider::class,
+    FilamentSocialServiceProvider::class
 ];

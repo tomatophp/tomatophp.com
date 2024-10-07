@@ -11,12 +11,24 @@ use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Bus;
 use TomatoPHP\FilamentCms\Jobs\GitHubMetaRefreshJob;
+use TomatoPHP\FilamentSocial\Filament\Actions\SocialShareAction;
 
 class AppDashboard extends Dashboard
 {
     protected function getHeaderActions(): array
     {
         return [
+            SocialShareAction::make()
+                ->facebook()
+                ->twitter()
+                ->whatsapp()
+                ->linkedin()
+                ->reddit()
+                ->pinterest()
+                ->telegram()
+                ->mail()
+                ->copy()
+                ->print(),
             Action::make('updateOpenSource')
                 ->requiresConfirmation()
                 ->color('info')

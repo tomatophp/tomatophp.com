@@ -23,12 +23,14 @@ use TomatoPHP\FilamentAccounts\FilamentAccountsPlugin;
 use TomatoPHP\FilamentAlerts\FilamentAlertsPlugin;
 use TomatoPHP\FilamentCms\FilamentCMSPlugin;
 use TomatoPHP\FilamentFcm\FilamentFcmPlugin;
+use TomatoPHP\FilamentSocial\FilamentSocialPlugin;
 use TomatoPHP\FilamentLogger\FilamentLoggerPlugin;
 use TomatoPHP\FilamentMediaManager\FilamentMediaManagerPlugin;
 use TomatoPHP\FilamentMenus\FilamentMenusPlugin;
 use TomatoPHP\FilamentMenus\Services\FilamentMenuLoader;
 use TomatoPHP\FilamentNotes\FilamentNotesPlugin;
 use TomatoPHP\FilamentPWA\FilamentPWAPlugin;
+use TomatoPHP\FilamentSeo\FilamentSeoPlugin;
 use TomatoPHP\FilamentSettingsHub\FilamentSettingsHubPlugin;
 use TomatoPHP\FilamentSubscriptions\FilamentSubscriptionsProvider;
 use TomatoPHP\FilamentTenancy\FilamentTenancyPlugin;
@@ -152,6 +154,14 @@ class AdminPanelProvider extends PanelProvider
             ->plugin(
                 FilamentLoggerPlugin::make()
             )
+            ->plugin(
+                FilamentSeoPlugin::make()
+            )
+            ->plugin(
+                FilamentSocialPlugin::make()
+                    ->socialLogin()
+                    ->socialRegister()
+            )
             ->navigation(function (NavigationBuilder $builder){
                 return $builder->items(FilamentMenuLoader::make('dashboard'));
             })
@@ -167,8 +177,6 @@ class AdminPanelProvider extends PanelProvider
                 DispatchServingFilamentEvent::class,
             ])
             ->databaseNotifications()
-            ->tenantBillingProvider(new FilamentSubscriptionsProvider())
-            ->requiresTenantSubscription()
             ->authMiddleware([
                 Authenticate::class,
             ]);

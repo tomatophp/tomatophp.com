@@ -1,0 +1,46 @@
+{
+    "name": "tomatophp/filament-social",
+    "type": "library",
+    "description": "Integration of social media platform actions and auth to your FilamentPHP panel",
+    "keywords": [
+        "php",
+        "laravel",
+        "template"
+    ],
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "TomatoPHP\\FilamentSocial\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "TomatoPHP\\FilamentSocial\\FilamentSocialServiceProvider"
+            ]
+        }
+    },
+    "authors": [
+        {
+            "name": "Fady Mondy",
+            "email": "info@3x1.io"
+        }
+    ],
+    "require": {
+        "php": "^8.1|^8.2",
+        "filament/filament": "^3.2",
+        "mallardduck/blade-boxicons": "^2.4",
+        "tomatophp/console-helpers": "^1.1",
+        "laravel/socialite": "^5.15",
+        "revolution/socialite-discord": "^1.4",
+        "socialiteproviders/facebook": "^4.1",
+        "socialiteproviders/tiktok": "^5.2",
+        "socialiteproviders/apple": "^5.6",
+        "socialiteproviders/snapchat": "*"
+    }
+}

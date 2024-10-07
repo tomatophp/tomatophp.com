@@ -2,6 +2,8 @@
 
 namespace TomatoPHP\FilamentIssues;
 
+use Illuminate\Cache\RateLimiting\Limit;
+use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\ServiceProvider;
 
 
@@ -52,6 +54,8 @@ class FilamentIssuesServiceProvider extends ServiceProvider
 
     public function boot(): void
     {
-        //you boot methods here
+        RateLimiter::for('twitter', function ($job) {
+            return Limit::perHour(1);
+        });
     }
 }

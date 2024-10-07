@@ -75,6 +75,7 @@ use TomatoPHP\FilamentAlerts\Models\UserNotification;
 use TomatoPHP\FilamentApi\Models\APIResource;
 use TomatoPHP\FilamentBookmarksMenu\Facades\FilamentBookmarksMenu;
 use TomatoPHP\FilamentBookmarksMenu\Services\Contracts\BookmarkType;
+use TomatoPHP\FilamentCms\Events\PostCreated;
 use TomatoPHP\FilamentCms\Models\Category;
 use TomatoPHP\FilamentCms\Models\Form;
 use TomatoPHP\FilamentCms\Models\Post;
@@ -216,7 +217,5 @@ class AppServiceProvider extends ServiceProvider
         RateLimiter::for('twitter', function ($job) {
             return Limit::perHour(1);
         });
-
-
     }
 }
