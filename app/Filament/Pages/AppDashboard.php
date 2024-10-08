@@ -18,17 +18,6 @@ class AppDashboard extends Dashboard
     protected function getHeaderActions(): array
     {
         return [
-            SocialShareAction::make()
-                ->facebook()
-                ->twitter()
-                ->whatsapp()
-                ->linkedin()
-                ->reddit()
-                ->pinterest()
-                ->telegram()
-                ->mail()
-                ->copy()
-                ->print(),
             Action::make('updateOpenSource')
                 ->requiresConfirmation()
                 ->color('info')
