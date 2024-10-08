@@ -5818,16 +5818,16 @@
         },
         {
             "name": "league/flysystem",
-            "version": "3.29.0",
+            "version": "3.29.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/thephpleague/flysystem.git",
-                "reference": "0adc0d9a51852e170e0028a60bd271726626d3f0"
+                "reference": "edc1bb7c86fab0776c3287dbd19b5fa278347319"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/thephpleague/flysystem/zipball/0adc0d9a51852e170e0028a60bd271726626d3f0",
-                "reference": "0adc0d9a51852e170e0028a60bd271726626d3f0",
+                "url": "https://api.github.com/repos/thephpleague/flysystem/zipball/edc1bb7c86fab0776c3287dbd19b5fa278347319",
+                "reference": "edc1bb7c86fab0776c3287dbd19b5fa278347319",
                 "shasum": ""
             },
             "require": {
@@ -5895,9 +5895,9 @@
             ],
             "support": {
                 "issues": "https://github.com/thephpleague/flysystem/issues",
-                "source": "https://github.com/thephpleague/flysystem/tree/3.29.0"
+                "source": "https://github.com/thephpleague/flysystem/tree/3.29.1"
             },
-            "time": "2024-09-29T11:59:11+00:00"
+            "time": "2024-10-08T08:58:34+00:00"
         },
         {
             "name": "league/flysystem-local",
@@ -16236,16 +16236,16 @@
         },
         {
             "name": "tomatophp/filament-seo",
-            "version": "v1.0.0",
+            "version": "v1.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/tomatophp/filament-seo.git",
-                "reference": "59b88b0e67dcab4cb81416d09abda4ea2dc54521"
+                "reference": "5ec177dfa462b0160f9f81eb0fd79ec839af85cf"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/tomatophp/filament-seo/zipball/59b88b0e67dcab4cb81416d09abda4ea2dc54521",
-                "reference": "59b88b0e67dcab4cb81416d09abda4ea2dc54521",
+                "url": "https://api.github.com/repos/tomatophp/filament-seo/zipball/5ec177dfa462b0160f9f81eb0fd79ec839af85cf",
+                "reference": "5ec177dfa462b0160f9f81eb0fd79ec839af85cf",
                 "shasum": ""
             },
             "require": {
@@ -16289,7 +16289,7 @@
             ],
             "support": {
                 "issues": "https://github.com/tomatophp/filament-seo/issues",
-                "source": "https://github.com/tomatophp/filament-seo/tree/v1.0.0"
+                "source": "https://github.com/tomatophp/filament-seo/tree/v1.0.1"
             },
             "funding": [
                 {
@@ -16297,7 +16297,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2024-10-07T12:28:58+00:00"
+            "time": "2024-10-08T13:14:25+00:00"
         },
         {
             "name": "tomatophp/filament-settings-hub",
