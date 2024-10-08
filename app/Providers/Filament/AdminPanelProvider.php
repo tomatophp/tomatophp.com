@@ -23,7 +23,6 @@ use TomatoPHP\FilamentAccounts\FilamentAccountsPlugin;
 use TomatoPHP\FilamentAlerts\FilamentAlertsPlugin;
 use TomatoPHP\FilamentCms\FilamentCMSPlugin;
 use TomatoPHP\FilamentFcm\FilamentFcmPlugin;
-use TomatoPHP\FilamentSocial\FilamentSocialPlugin;
 use TomatoPHP\FilamentLogger\FilamentLoggerPlugin;
 use TomatoPHP\FilamentMediaManager\FilamentMediaManagerPlugin;
 use TomatoPHP\FilamentMenus\FilamentMenusPlugin;

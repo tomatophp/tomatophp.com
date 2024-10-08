@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "480e28d2c26b5445e214cdf9b61877be",
+    "content-hash": "4b2e67fa06448c84988cdc3ba6d900b2",
     "packages": [
         {
             "name": "abraham/twitteroauth",
@@ -16365,73 +16365,6 @@
                 }
             ],
             "time": "2024-10-07T10:27:26+00:00"
-        },
-        {
-            "name": "tomatophp/filament-social",
-            "version": "v1.0.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/tomatophp/filament-social.git",
-                "reference": "1645d2287006af82fa00fac6da75c8e1b16c176a"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/tomatophp/filament-social/zipball/1645d2287006af82fa00fac6da75c8e1b16c176a",
-                "reference": "1645d2287006af82fa00fac6da75c8e1b16c176a",
-                "shasum": ""
-            },
-            "require": {
-                "filament/filament": "^3.2",
-                "laravel/socialite": "^5.15",
-                "mallardduck/blade-boxicons": "^2.4",
-                "php": "^8.1|^8.2",
-                "revolution/socialite-discord": "^1.4",
-                "socialiteproviders/apple": "^5.6",
-                "socialiteproviders/facebook": "^4.1",
-                "socialiteproviders/snapchat": "*",
-                "socialiteproviders/tiktok": "^5.2",
-                "tomatophp/console-helpers": "^1.1"
-            },
-            "type": "library",
-            "extra": {
-                "laravel": {
-                    "providers": [
-                        "TomatoPHP\\FilamentSocial\\FilamentSocialServiceProvider"
-                    ]
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "TomatoPHP\\FilamentSocial\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Fady Mondy",
-                    "email": "info@3x1.io"
-                }
-            ],
-            "description": "Integration of social media platform actions and auth to your FilamentPHP panel",
-            "keywords": [
-                "laravel",
-                "php",
-                "template"
-            ],
-            "support": {
-                "issues": "https://github.com/tomatophp/filament-social/issues",
-                "source": "https://github.com/tomatophp/filament-social/tree/v1.0.0"
-            },
-            "funding": [
-                {
-                    "url": "https://github.com/3x1io",
-                    "type": "github"
-                }
-            ],
-            "time": "2024-10-07T18:31:55+00:00"
         },
         {
             "name": "tomatophp/filament-subscriptions",
