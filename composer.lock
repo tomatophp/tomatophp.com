@@ -16236,16 +16236,16 @@
         },
         {
             "name": "tomatophp/filament-seo",
-            "version": "v1.0.1",
+            "version": "v1.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/tomatophp/filament-seo.git",
-                "reference": "5ec177dfa462b0160f9f81eb0fd79ec839af85cf"
+                "reference": "50adce90bc60b8d93d44c772ba8e51dd7e6d4931"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/tomatophp/filament-seo/zipball/5ec177dfa462b0160f9f81eb0fd79ec839af85cf",
-                "reference": "5ec177dfa462b0160f9f81eb0fd79ec839af85cf",
+                "url": "https://api.github.com/repos/tomatophp/filament-seo/zipball/50adce90bc60b8d93d44c772ba8e51dd7e6d4931",
+                "reference": "50adce90bc60b8d93d44c772ba8e51dd7e6d4931",
                 "shasum": ""
             },
             "require": {
@@ -16289,7 +16289,7 @@
             ],
             "support": {
                 "issues": "https://github.com/tomatophp/filament-seo/issues",
-                "source": "https://github.com/tomatophp/filament-seo/tree/v1.0.1"
+                "source": "https://github.com/tomatophp/filament-seo/tree/v1.0.2"
             },
             "funding": [
                 {
@@ -16297,7 +16297,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2024-10-08T13:14:25+00:00"
+            "time": "2024-10-08T13:49:00+00:00"
         },
         {
             "name": "tomatophp/filament-settings-hub",
