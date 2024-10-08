@@ -13,7 +13,6 @@ use Laravelcm\Subscriptions\Traits\HasPlanSubscriptions;
 use Spatie\Permission\Traits\HasRoles;
 use TomatoPHP\FilamentAlerts\Traits\InteractsWithNotifications;
 use TomatoPHP\FilamentFcm\Traits\InteractsWithFCM;
-use TomatoPHP\FilamentSocial\Traits\InteractsWithSocials;
 
 class User extends Authenticatable implements FilamentUser, HasAvatar
 {
@@ -22,7 +21,6 @@ class User extends Authenticatable implements FilamentUser, HasAvatar
     use InteractsWithNotifications;
     use InteractsWithFCM;
     use HasPlanSubscriptions;
-    use InteractsWithSocials;
 
     /**
      * The attributes that are mass assignable.
