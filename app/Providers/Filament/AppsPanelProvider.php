@@ -24,6 +24,8 @@ use Illuminate\View\Middleware\ShareErrorsFromSession;
 use TomatoPHP\FilamentAccounts\Filament\Pages\EditProfile;
 use TomatoPHP\FilamentAccounts\FilamentAccountsSaaSPlugin;
 use TomatoPHP\FilamentFcm\FilamentFcmPlugin;
+use TomatoPHP\FilamentNotes\Filament\Widgets\NotesWidget;
+use TomatoPHP\FilamentNotes\FilamentNotesPlugin;
 use TomatoPHP\FilamentTranslations\FilamentTranslationsSwitcherPlugin;
 use TomatoPHP\FilamentTranslations\Http\Middleware\LanguageMiddleware;
 
@@ -75,7 +77,12 @@ class AppsPanelProvider extends PanelProvider
                 Pages\Dashboard::class
             ])
             ->discoverWidgets(in: app_path('Filament/Apps/Widgets'), for: 'App\\Filament\\Apps\\Widgets')
-            ->widgets([])
+            ->plugin(
+                FilamentNotesPlugin::make()
+            )
+            ->widgets([
+                NotesWidget::class
+            ])
             ->middleware([
                 EncryptCookies::class,
                 AddQueuedCookiesToResponse::class,
