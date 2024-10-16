@@ -120,6 +120,7 @@ use TomatoPHP\FilamentWallet\Models\Wallet;
 use TomatoPHP\FilamentWithdrawals\Models\WithdrawalMethod;
 use TomatoPHP\FilamentWithdrawals\Models\WithdrawalRequest;
 use Ymigval\LaravelIndexnow\Facade\IndexNow;
+use Ymigval\LaravelIndexnow\IndexNowService;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -236,25 +237,71 @@ class AppServiceProvider extends ServiceProvider
         Event::listen(PostCreated::class, function ($event){
             $post = Post::query()->find($event->data['id']);
 
-            $url = url(($post->type === 'post' ? '/blog/' : '/open-source/') . $post->slug);
+            $urlAr = url('/ar'.($post->type === 'post' ? '/blog/' : '/open-source/') . $post->slug);
+            $urlEn = url('/en'.($post->type === 'post' ? '/blog/' : '/open-source/') . $post->slug);
 
             dispatch(new GoogleIndexURLJob(
-                url: $url,
+                url: $urlAr,
             ));
 
-            IndexNow::submit($url);
+            dispatch(new GoogleIndexURLJob(
+                url: $urlEn,
+            ));
+
+            $indexNow = new IndexNowService('indexnow');
+            $indexNow->submit($urlAr);
+            $indexNow->submit($urlEn);
+
+            $indexNow = new IndexNowService('microsoft_bing');
+            $indexNow->submit($urlAr);
+            $indexNow->submit($urlEn);
+
+            $indexNow = new IndexNowService('naver');
+            $indexNow->submit($urlAr);
+            $indexNow->submit($urlEn);
+
+            $indexNow = new IndexNowService('seznam');
+            $indexNow->submit($urlAr);
+            $indexNow->submit($urlEn);
+
+            $indexNow = new IndexNowService('yandex');
+            $indexNow->submit($urlAr);
+            $indexNow->submit($urlEn);
         });
 
         Event::listen(PostUpdated::class, function ($event){
             $post = Post::query()->find($event->data['id']);
 
-            $url = url(($post->type === 'post' ? '/blog/' : '/open-source/') . $post->slug);
+            $urlAr = url('/ar'.($post->type === 'post' ? '/blog/' : '/open-source/') . $post->slug);
+            $urlEn = url('/en'.($post->type === 'post' ? '/blog/' : '/open-source/') . $post->slug);
 
             dispatch(new GoogleIndexURLJob(
-                url: $url,
+                url: $urlAr,
             ));
 
-            IndexNow::submit($url);
+            dispatch(new GoogleIndexURLJob(
+                url: $urlEn,
+            ));
+
+            $indexNow = new IndexNowService('indexnow');
+            $indexNow->submit($urlAr);
+            $indexNow->submit($urlEn);
+
+            $indexNow = new IndexNowService('microsoft_bing');
+            $indexNow->submit($urlAr);
+            $indexNow->submit($urlEn);
+
+            $indexNow = new IndexNowService('naver');
+            $indexNow->submit($urlAr);
+            $indexNow->submit($urlEn);
+
+            $indexNow = new IndexNowService('seznam');
+            $indexNow->submit($urlAr);
+            $indexNow->submit($urlEn);
+
+            $indexNow = new IndexNowService('yandex');
+            $indexNow->submit($urlAr);
+            $indexNow->submit($urlEn);
         });
 
         Event::listen(PostDeleted::class, function ($event){
