@@ -39,8 +39,8 @@ class IndexNowIndex extends Command
             $ar = url('/ar'. ($post->type === 'post' ? '/blog/' : '/open-source/') . $post->slug);
             $en = url('/en'.($post->type === 'post' ? '/blog/' : '/open-source/') . $post->slug);
 
-            $links[] = $ar;
-            $links[] = $en;
+            $links[] = str($ar);
+            $links[] = str($en);
         }
 
         IndexNow::submit($links);
