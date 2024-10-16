@@ -164,9 +164,9 @@ class AdminPanelProvider extends PanelProvider
             ->plugin(
                 FilamentDocsPlugin::make()
             )
-//            ->navigation(function (NavigationBuilder $builder){
-//                return $builder->items(FilamentMenuLoader::make('dashboard'));
-//            })
+            ->navigation(function (NavigationBuilder $builder){
+                return $builder->items(FilamentMenuLoader::make('dashboard'));
+            })
             ->middleware([
                 EncryptCookies::class,
                 AddQueuedCookiesToResponse::class,
