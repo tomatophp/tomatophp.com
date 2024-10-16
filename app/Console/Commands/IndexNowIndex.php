@@ -10,6 +10,7 @@ use TomatoPHP\FilamentCms\Models\Post;
 use TomatoPHP\FilamentSeo\Facades\FilamentSeo;
 use TomatoPHP\FilamentSeo\Jobs\GoogleIndexURLJob;
 use Ymigval\LaravelIndexnow\Facade\IndexNow;
+use Ymigval\LaravelIndexnow\IndexNowService;
 
 class IndexNowIndex extends Command
 {
@@ -43,6 +44,24 @@ class IndexNowIndex extends Command
             $links[] = str($en);
         }
 
-        IndexNow::submit($links);
+        $this->info("Indexing: indexnow");
+        $indexNow = new IndexNowService('indexnow');
+        $indexNow->submit($links);
+
+        $this->info("Indexing: microsoft_bing");
+        $indexNow = new IndexNowService('microsoft_bing');
+        $indexNow->submit($links);
+
+        $this->info("Indexing: naver");
+        $indexNow = new IndexNowService('naver');
+        $indexNow->submit($links);
+
+        $this->info("Indexing: seznam");
+        $indexNow = new IndexNowService('seznam');
+        $indexNow->submit($links);
+
+        $this->info("Indexing: yandex");
+        $indexNow = new IndexNowService('yandex');
+        $indexNow->submit($links);
     }
 }
