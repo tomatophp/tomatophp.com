@@ -16,7 +16,7 @@
                 </h2>
             </header>
             <div class="mx-6">
-                @livewire(\App\Livewire\ListIssues::class)
+                <x-filament-issues />
             </div>
 
         </section>

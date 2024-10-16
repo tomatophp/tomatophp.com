@@ -2,7 +2,7 @@
 
 <div class="p-4 my-4 break-words bg-white border rounded-lg shadow dark:border-slate-600 sm:py-5 sm:px-8 dark:bg-slate-800" wire:loading.class="animate-pulse" x-data="{showMore: false}">
     <div class="flex flex-col items-start justify-start gap-2 sm:flex-row sm:justify-between">
-        <div class="w-full md:w-3/4">
+        <div class="w-1/2">
             <a href="{{ $issue->url }}" target="_blank"
                 class="inline-block w-full text-xl font-bold">{{ $issue->title }}
             </a>

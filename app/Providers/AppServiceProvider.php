@@ -66,6 +66,7 @@ use Stancl\Tenancy\Events\TenancyBootstrapped;
 use Stancl\Tenancy\Events\TenancyEnded;
 use Stancl\Tenancy\Events\TenancyInitialized;
 use Stancl\Tenancy\Events\TenantCreated;
+use TomatoPHP\FilamentAccounts\Facades\FilamentAccounts;
 use TomatoPHP\FilamentAccounts\Models\AccountRequest;
 use TomatoPHP\FilamentAccounts\Models\Contact;
 use TomatoPHP\FilamentAccounts\Models\Team;
@@ -76,9 +77,14 @@ use TomatoPHP\FilamentApi\Models\APIResource;
 use TomatoPHP\FilamentBookmarksMenu\Facades\FilamentBookmarksMenu;
 use TomatoPHP\FilamentBookmarksMenu\Services\Contracts\BookmarkType;
 use TomatoPHP\FilamentCms\Events\PostCreated;
+use TomatoPHP\FilamentCms\Filament\Resources\PostResource;
 use TomatoPHP\FilamentCms\Models\Category;
 use TomatoPHP\FilamentCms\Models\Form;
 use TomatoPHP\FilamentCms\Models\Post;
+use TomatoPHP\FilamentDocs\Facades\FilamentDocs;
+use TomatoPHP\FilamentDocs\Filament\Actions\DocumentAction;
+use TomatoPHP\FilamentDocs\Filament\RelationManager\DocumentRelationManager;
+use TomatoPHP\FilamentDocs\Services\Contracts\DocsVar;
 use TomatoPHP\FilamentEcommerce\Models\Company;
 use TomatoPHP\FilamentEcommerce\Models\Coupon;
 use TomatoPHP\FilamentEcommerce\Models\GiftCard;
@@ -92,6 +98,7 @@ use TomatoPHP\FilamentInvoices\Facades\FilamentInvoices;
 use TomatoPHP\FilamentInvoices\Models\Invoice;
 use TomatoPHP\FilamentInvoices\Services\Contracts\InvoiceFor;
 use TomatoPHP\FilamentInvoices\Services\Contracts\InvoiceFrom;
+use TomatoPHP\FilamentIssues\Facades\FilamentIssues;
 use TomatoPHP\FilamentLocations\Models\City;
 use TomatoPHP\FilamentLocations\Models\Country;
 use TomatoPHP\FilamentLocations\Models\Currency;
@@ -217,5 +224,7 @@ class AppServiceProvider extends ServiceProvider
         RateLimiter::for('twitter', function ($job) {
             return Limit::perHour(1);
         });
+
+        FilamentIssues::register(fn() => Post::query()->where('type', 'open-source')->pluck('meta_url')->map(fn($item) => str($item)->remove('https://github.com/')->remove('https://www.github.com/')->toString())->toArray());
     }
 }

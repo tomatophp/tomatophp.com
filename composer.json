@@ -11,6 +11,8 @@
         "php": "^8.2",
         "abraham/twitteroauth": "*",
         "ashallendesign/laravel-config-validator": "^2.2",
+        "awcodes/filament-tiptap-editor": "^3.4",
+        "baidouabdellah/laravel-arpdf": "dev-main",
         "bezhansalleh/filament-google-analytics": "^2.0",
         "bezhansalleh/filament-shield": "^3.2",
         "bugsnag/bugsnag-laravel": "^2.26.0",
@@ -41,10 +43,12 @@
         "tomatophp/filament-api": "^1.0",
         "tomatophp/filament-cms": "^1.0",
         "tomatophp/filament-discord": "^1.0",
+        "tomatophp/filament-docs": "^1.0",
         "tomatophp/filament-ecommerce": "^1.0",
         "tomatophp/filament-employees": "^0.0.1",
         "tomatophp/filament-fcm": "^1.0",
         "tomatophp/filament-invoices": "^1.0",
+        "tomatophp/filament-issues": "^1.0",
         "tomatophp/filament-logger": "^1.0",
         "tomatophp/filament-media-manager": "^1.1",
         "tomatophp/filament-menus": "^1.0",
@@ -61,7 +65,8 @@
         "tomatophp/filament-users": "^1.0",
         "tomatophp/filament-wallet": "^1.0",
         "tomatophp/filament-withdrawals": "^1.0",
-        "tomatophp/laravel-package-generator": "^1.0"
+        "tomatophp/laravel-package-generator": "^1.0",
+        "vormkracht10/laravel-seo-scanner": "^3.12"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.14",

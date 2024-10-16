@@ -7,7 +7,7 @@ export default {
         './Modules/**/resources/views/*.blade.php',
         './Modules/**/resources/views/**/*.blade.php',
         './resources/views/**/*.blade.php',
-        './resources/views/vendor/pagination/*.blade.php',
+        './resources/views/vendor/pagination/*.blade.php'
     ],
 
     darkMode: "class", // or 'media' or 'class'

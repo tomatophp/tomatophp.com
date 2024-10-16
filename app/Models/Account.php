@@ -25,6 +25,7 @@ use TomatoPHP\FilamentAlerts\Traits\InteractsWithNotifications;
 use TomatoPHP\FilamentCms\Filament\Resources\PostResource;
 use TomatoPHP\FilamentCms\Models\Comment;
 use TomatoPHP\FilamentCms\Models\Post;
+use TomatoPHP\FilamentDocs\Traits\InteractsWithDocs;
 use TomatoPHP\FilamentEmployees\Traits\IsEmployee;
 use TomatoPHP\FilamentFcm\Traits\InteractsWithFCM;
 use TomatoPHP\FilamentInvoices\Traits\BilledFor;

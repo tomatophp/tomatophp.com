@@ -30,13 +30,52 @@
             </nav>
         </header>
 
+
         <div class="flex flex-col justify-center items-center py-4">
-            <section data-theme="light" class="scroll-smooth focus:scroll-auto container mx-auto py-6 rounded-lg px-6 sm:px-6 max-w-3xl prose prose-lg lg:prose-xl dark:prose-invert dark:prose-headings:text-slate-300 prose-headings:font-heading prose-headings:leading-tighter prose-headings:tracking-tighter prose-headings:font-bold prose-img:rounded-md prose-img:shadow-lg mt-8 prose-a:text-black/75 dark:prose-a:text-white/90 prose-a:underline prose-a:underline-offset-4 prose-a:decoration-primary-500 hover:prose-a:decoration-primary-600 prose-a:decoration-2 hover:prose-a:decoration-4 hover:prose-a:text-black dark:hover:prose-a:text-white break-words tracking-normal prose-h4:tracking-normal prose-h5:tracking-normal prose-h6:tracking-normal prose-code:before:hidden prose-code:after:hidden markdown-body">
+            <section data-theme="light" class="scroll-smooth focus:scroll-auto mx-auto py-6 rounded-lg px-6 sm:px-6  prose prose-lg lg:prose-xl dark:prose-invert dark:prose-headings:text-slate-300 prose-headings:font-heading prose-headings:leading-tighter prose-headings:tracking-tighter prose-headings:font-bold prose-img:rounded-md prose-img:shadow-lg mt-8 prose-a:text-black/75 dark:prose-a:text-white/90 prose-a:underline prose-a:underline-offset-4 prose-a:decoration-primary-500 hover:prose-a:decoration-primary-600 prose-a:decoration-2 hover:prose-a:decoration-4 hover:prose-a:text-black dark:hover:prose-a:text-white break-words tracking-normal prose-h4:tracking-normal prose-h5:tracking-normal prose-h6:tracking-normal prose-code:before:hidden prose-code:after:hidden markdown-body">
                 <x-markdown theme="github-dark">
-                    {!!  $docs->body !!}
+                    {!! $docs->body !!}
                 </x-markdown>
             </section>
         </div>
+{{--            @php $sections = str($docs->body)->explode("##") @endphp--}}
+
+{{--            @if(count($sections))--}}
+{{--                <div class="grid grid-cols-1 md:grid-cols-12 gap-4 py-4 border-b dark:border-slate-800" x-data="{currentSection: 0}">--}}
+{{--                    <div class="md:flex md:flex-col justify-start gap-2 hidden border-r dark:border-slate-800 p-4 h-screen w-full col-span-3 stacked">--}}
+{{--                        @foreach($sections as $key=>$section)--}}
+{{--                            @if($key !== 0)--}}
+{{--                                <button @click.prevent="currentSection = {{ $key }}" class="px-6 py-2 text-start dark:bg-slate-800 dark:hover:bg-slate-600 rounded-lg" :class="{'dark:bg-slate-800': currentSection === {{$key}} }">--}}
+{{--                                    {{ str($section)->explode("\n")[0] }}--}}
+{{--                                </button>--}}
+{{--                            @endif--}}
+{{--                        @endforeach--}}
+{{--                    </div>--}}
+{{--                    <div class="col-span-9">--}}
+{{--                        <section data-theme="light" class="scroll-smooth focus:scroll-auto flex justify-start rounded-lg prose lg:prose-xl dark:prose-invert dark:prose-headings:text-slate-300 prose-headings:font-heading prose-headings:leading-tighter prose-headings:tracking-tighter prose-headings:font-bold prose-img:rounded-md prose-img:shadow-lg  prose-a:text-black/75 dark:prose-a:text-white/90 prose-a:underline prose-a:underline-offset-4 prose-a:decoration-primary-500 hover:prose-a:decoration-primary-600 prose-a:decoration-2 hover:prose-a:decoration-4 hover:prose-a:text-black dark:hover:prose-a:text-white break-words tracking-normal prose-h4:tracking-normal prose-h5:tracking-normal prose-h6:tracking-normal prose-code:before:hidden prose-code:after:hidden markdown-body">--}}
+{{--                            @foreach($sections as $key=>$section)--}}
+{{--                                @if($key === 0)--}}
+{{--                                    <div x-show="currentSection === {{ $key }}">--}}
+{{--                                        <x-markdown theme="github-dark">--}}
+{{--                                            {!!  $section !!}--}}
+{{--                                        </x-markdown>--}}
+{{--                                    </div>--}}
+{{--                                @else--}}
+{{--                                    <div x-show="currentSection === {{ $key }}" >--}}
+{{--                                        <x-markdown theme="github-dark">--}}
+{{--                                            {!!  '##'.$section !!}--}}
+{{--                                        </x-markdown>--}}
+{{--                                    </div>--}}
+{{--                                @endif--}}
+{{--                            @endforeach--}}
+{{--                        </section>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--            @else--}}
+
+{{--            @endif--}}
+
+
 
         <div class="flex flex-col sm:flex-row sm:justify-center gap-2">
             <div class="flex flex-col justify-center sm:justify-end items-center sm:items-end">
@@ -63,7 +102,13 @@
             const highlights = document.querySelectorAll("pre code");
 
             highlights.forEach((pre) => {
-                if(pre.classList.length >0){
+                let addNew = true;
+                pre.children.forEach((child) => {
+                    if(child.innerHTML === 'Copy'){
+                        addNew = false;
+                    }
+                });
+                if(pre.classList.length >0 && addNew){
                     // create the copy button
                     const copy = document.createElement("button");
                     copy.innerHTML = "Copy";

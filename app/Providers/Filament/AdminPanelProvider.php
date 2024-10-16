@@ -22,7 +22,9 @@ use Illuminate\View\Middleware\ShareErrorsFromSession;
 use TomatoPHP\FilamentAccounts\FilamentAccountsPlugin;
 use TomatoPHP\FilamentAlerts\FilamentAlertsPlugin;
 use TomatoPHP\FilamentCms\FilamentCMSPlugin;
+use TomatoPHP\FilamentDocs\FilamentDocsPlugin;
 use TomatoPHP\FilamentFcm\FilamentFcmPlugin;
+use TomatoPHP\FilamentIssues\FilamentIssuesPlugin;
 use TomatoPHP\FilamentLogger\FilamentLoggerPlugin;
 use TomatoPHP\FilamentMediaManager\FilamentMediaManagerPlugin;
 use TomatoPHP\FilamentMenus\FilamentMenusPlugin;
@@ -156,9 +158,15 @@ class AdminPanelProvider extends PanelProvider
             ->plugin(
                 FilamentSeoPlugin::make()
             )
-            ->navigation(function (NavigationBuilder $builder){
-                return $builder->items(FilamentMenuLoader::make('dashboard'));
-            })
+            ->plugin(
+                FilamentIssuesPlugin::make()
+            )
+            ->plugin(
+                FilamentDocsPlugin::make()
+            )
+//            ->navigation(function (NavigationBuilder $builder){
+//                return $builder->items(FilamentMenuLoader::make('dashboard'));
+//            })
             ->middleware([
                 EncryptCookies::class,
                 AddQueuedCookiesToResponse::class,

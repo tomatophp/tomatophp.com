@@ -17,6 +17,7 @@
         "vite": "^5.0"
     },
     "dependencies": {
+        "puppeteer": "^23.5.3",
         "shiki": "^1.21.0",
         "tailwind-scrollbar": "^3.1.0"
     }
