@@ -44,7 +44,6 @@ class IndexNowIndex extends Command
         }
 
         $this->info("IndexNow Indexing: " . json_encode($links));
-        IndexNow::keyFile('2af7cab10e3b43b08632b2a20f0d1372.txt');
-        IndexNow::submit($links);
+        IndexNow::keyFile(url('/2af7cab10e3b43b08632b2a20f0d1372.txt'))->submit($links);
     }
 }
