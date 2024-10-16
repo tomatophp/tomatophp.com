@@ -36,10 +36,12 @@ class MoveOldTenantsToAccounts extends Command
         foreach ($posts as $post){
             $url = url(($post->type === 'post' ? '/blog/' : '/open-source/') . $post->slug);
 
+            $this->info("Google Indexing: $url");
             dispatch(new GoogleIndexURLJob(
                 url: $url,
             ));
 
+            $this->info("IndexNow Indexing: $url");
             IndexNow::submit($url);
         }
     }
