@@ -43,7 +43,7 @@ class IndexNowIndex extends Command
             $links[] = $en;
         }
 
-        $this->info("IndexNow Indexing: " . json_encode($links));
+        $this->info("IndexNow Indexing: " . url('/bing.txt'));
         IndexNow::keyFile(url('/bing.txt'))->submit($links);
     }
 }
