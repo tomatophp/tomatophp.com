@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "68d652f9adb9579e09bb68170acf3ee2",
+    "content-hash": "6687cdd0692068d5d2a0573d17bcee65",
     "packages": [
         {
             "name": "abraham/twitteroauth",
@@ -18197,6 +18197,72 @@
                 "source": "https://github.com/wikimedia/composer-merge-plugin/tree/v2.1.0"
             },
             "time": "2023-04-15T19:07:00+00:00"
+        },
+        {
+            "name": "ymigval/laravel-indexnow",
+            "version": "v1.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ymigval/laravel-indexnow.git",
+                "reference": "9577b3776fdf01ccd971ee74a6d7fb48ab617b2d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ymigval/laravel-indexnow/zipball/9577b3776fdf01ccd971ee74a6d7fb48ab617b2d",
+                "reference": "9577b3776fdf01ccd971ee74a6d7fb48ab617b2d",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.4 || ^8.0"
+            },
+            "require-dev": {
+                "guzzlehttp/guzzle": "^7.7",
+                "laravel/pint": "^1.13",
+                "orchestra/testbench": "^8.9"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Ymigval\\LaravelIndexnow\\Providers\\IndexNowServiceProvider"
+                    ],
+                    "aliases": {
+                        "Debugbar": "Ymigval\\LaravelIndexnow\\Facade\\IndexNow"
+                    }
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Ymigval\\LaravelIndexnow\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Yordan",
+                    "email": "banatube@gmail.com"
+                }
+            ],
+            "description": "Laravel Service Library for notifying search engines about the latest content changes on their URLs using IndexNow.",
+            "homepage": "https://github.com/ymigval/laravel-indexnow",
+            "keywords": [
+                "bing",
+                "indexnow",
+                "laravel",
+                "search",
+                "search engine",
+                "seo",
+                "website",
+                "yandex"
+            ],
+            "support": {
+                "issues": "https://github.com/ymigval/laravel-indexnow/issues",
+                "source": "https://github.com/ymigval/laravel-indexnow/tree/v1.1.0"
+            },
+            "time": "2024-01-09T01:14:28+00:00"
         }
     ],
     "packages-dev": [

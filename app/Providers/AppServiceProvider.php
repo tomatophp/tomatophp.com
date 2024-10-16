@@ -77,6 +77,8 @@ use TomatoPHP\FilamentApi\Models\APIResource;
 use TomatoPHP\FilamentBookmarksMenu\Facades\FilamentBookmarksMenu;
 use TomatoPHP\FilamentBookmarksMenu\Services\Contracts\BookmarkType;
 use TomatoPHP\FilamentCms\Events\PostCreated;
+use TomatoPHP\FilamentCms\Events\PostDeleted;
+use TomatoPHP\FilamentCms\Events\PostUpdated;
 use TomatoPHP\FilamentCms\Filament\Resources\PostResource;
 use TomatoPHP\FilamentCms\Models\Category;
 use TomatoPHP\FilamentCms\Models\Form;
@@ -109,12 +111,15 @@ use TomatoPHP\FilamentMediaManager\Models\Media;
 use TomatoPHP\FilamentMenus\Models\Menu;
 use TomatoPHP\FilamentNotes\Models\Note;
 use TomatoPHP\FilamentPayments\Models\Payment;
+use TomatoPHP\FilamentSeo\Jobs\GoogleIndexURLJob;
+use TomatoPHP\FilamentSeo\Jobs\GoogleRemoveIndexURLJob;
 use TomatoPHP\FilamentTranslations\Models\Translation;
 use TomatoPHP\FilamentTypes\Models\Type;
 use TomatoPHP\FilamentWallet\Models\Transaction;
 use TomatoPHP\FilamentWallet\Models\Wallet;
 use TomatoPHP\FilamentWithdrawals\Models\WithdrawalMethod;
 use TomatoPHP\FilamentWithdrawals\Models\WithdrawalRequest;
+use Ymigval\LaravelIndexnow\Facade\IndexNow;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -226,5 +231,41 @@ class AppServiceProvider extends ServiceProvider
         });
 
         FilamentIssues::register(fn() => Post::query()->where('type', 'open-source')->pluck('meta_url')->map(fn($item) => str($item)->remove('https://github.com/')->remove('https://www.github.com/')->toString())->toArray());
+
+
+        Event::listen(PostCreated::class, function ($event){
+            $post = Post::query()->find($event->data['id']);
+
+            $url = url(($post->type === 'post' ? '/blog/' : '/open-source/') . $post->slug);
+
+            dispatch(new GoogleIndexURLJob(
+                url: $url,
+            ));
+
+            IndexNow::submit($url);
+        });
+
+        Event::listen(PostUpdated::class, function ($event){
+            $post = Post::query()->find($event->data['id']);
+
+            $url = url(($post->type === 'post' ? '/blog/' : '/open-source/') . $post->slug);
+
+            dispatch(new GoogleIndexURLJob(
+                url: $url,
+            ));
+
+            IndexNow::submit($url);
+        });
+
+        Event::listen(PostDeleted::class, function ($event){
+            $post = Post::query()->find($event->data['id']);
+
+            $url = url(($post->type === 'post' ? '/blog/' : '/open-source/') . $post->slug);
+
+            dispatch(new GoogleRemoveIndexURLJob(
+                url: $url,
+            ));
+        });
+
     }
 }

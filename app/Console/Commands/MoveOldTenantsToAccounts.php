@@ -6,6 +6,9 @@ use App\Models\Account;
 use App\Models\Tenant;
 use Illuminate\Console\Command;
 use Illuminate\Support\Carbon;
+use TomatoPHP\FilamentCms\Models\Post;
+use TomatoPHP\FilamentSeo\Jobs\GoogleIndexURLJob;
+use Ymigval\LaravelIndexnow\Facade\IndexNow;
 
 class MoveOldTenantsToAccounts extends Command
 {
@@ -14,7 +17,7 @@ class MoveOldTenantsToAccounts extends Command
      *
      * @var string
      */
-    protected $signature = 'app:move';
+    protected $signature = 'app:index';
 
     /**
      * The console command description.
@@ -28,22 +31,16 @@ class MoveOldTenantsToAccounts extends Command
      */
     public function handle()
     {
-        $accounts = Account::query()->where('is_active', 1)->get();
+        $posts = Post::query()->where('is_published', 1)->get();
 
-        foreach ($accounts as $account){
-            $account->logs()->delete();
+        foreach ($posts as $post){
+            $url = url(($post->type === 'post' ? '/blog/' : '/open-source/') . $post->slug);
 
-            if($account->comments()->count()>0){
-               foreach ($account->comments as $comment){
-                   $account->log($comment->content, 'comment', $comment->comment, $comment->created_at);
-               }
-            }
+            dispatch(new GoogleIndexURLJob(
+                url: $url,
+            ));
 
-            if($account->likes()->count()>0){
-                foreach ($account->likes as $like){
-                    $account->log($like->post, 'like', 'liked', $like->created_at);
-                }
-            }
+            IndexNow::submit($url);
         }
     }
 }
