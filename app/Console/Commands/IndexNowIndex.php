@@ -43,7 +43,6 @@ class IndexNowIndex extends Command
             $links[] = $en;
         }
 
-        $this->info("IndexNow Indexing: " . url('/bing.txt'));
-        IndexNow::keyFile(url('/bing.txt'))->submit($links);
+        IndexNow::submit($links);
     }
 }
