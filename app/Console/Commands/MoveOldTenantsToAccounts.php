@@ -34,8 +34,8 @@ class MoveOldTenantsToAccounts extends Command
         $posts = Post::query()->where('is_published', 1)->get();
 
         foreach ($posts as $post){
-            $ar = url(('/ar/'.$post->type === 'post' ? '/blog/' : '/open-source/') . $post->slug);
-            $en = url(('/eb/'.$post->type === 'post' ? '/blog/' : '/open-source/') . $post->slug);
+            $ar = url('/ar/'. ($post->type === 'post' ? '/blog/' : '/open-source/') . $post->slug);
+            $en = url('/en/'.($post->type === 'post' ? '/blog/' : '/open-source/') . $post->slug);
 
             $this->info("Google Indexing: $en");
             dispatch(new GoogleIndexURLJob(
