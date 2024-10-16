@@ -39,9 +39,18 @@ class MoveOldTenantsToAccounts extends Command
             $en = url('/en'.($post->type === 'post' ? '/blog/' : '/open-source/') . $post->slug);
 
             $this->info("Google Indexing: $en");
-            FilamentSeo::google()->indexUrl($en);
+            try {
+                FilamentSeo::google()->indexUrl($en);
+            }catch (\Exception $e){
+                $this->error($e->getMessage());
+            }
+
             $this->info("Google Indexing: $ar");
-            FilamentSeo::google()->indexUrl($ar);
+            try {
+                FilamentSeo::google()->indexUrl($ar);
+            }catch (\Exception $e){
+                $this->error($e->getMessage());
+            }
 
 
             $this->info("IndexNow Indexing: $en");
