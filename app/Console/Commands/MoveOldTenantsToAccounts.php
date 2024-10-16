@@ -7,6 +7,7 @@ use App\Models\Tenant;
 use Illuminate\Console\Command;
 use Illuminate\Support\Carbon;
 use TomatoPHP\FilamentCms\Models\Post;
+use TomatoPHP\FilamentSeo\Facades\FilamentSeo;
 use TomatoPHP\FilamentSeo\Jobs\GoogleIndexURLJob;
 use Ymigval\LaravelIndexnow\Facade\IndexNow;
 
@@ -38,13 +39,10 @@ class MoveOldTenantsToAccounts extends Command
             $en = url('/en'.($post->type === 'post' ? '/blog/' : '/open-source/') . $post->slug);
 
             $this->info("Google Indexing: $en");
-            dispatch(new GoogleIndexURLJob(
-                url: $en,
-            ));
+            FilamentSeo::google()->indexUrl($en);
             $this->info("Google Indexing: $ar");
-            dispatch(new GoogleIndexURLJob(
-                url: $ar,
-            ));
+            FilamentSeo::google()->indexUrl($ar);
+
 
             $this->info("IndexNow Indexing: $en");
             IndexNow::submit($en);
