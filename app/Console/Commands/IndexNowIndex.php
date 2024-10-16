@@ -44,6 +44,6 @@ class IndexNowIndex extends Command
         }
 
         $this->info("IndexNow Indexing: " . json_encode($links));
-        IndexNow::keyFile(url('/5553d780140345119e9a5d2e6165c41b.txt'))->submit($links);
+        IndexNow::keyFile(url('/bing.txt'))->submit($links);
     }
 }
