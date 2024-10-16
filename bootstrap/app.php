@@ -20,6 +20,8 @@ return Application::configure(basePath: dirname(__DIR__))
         \App\Console\Commands\TweetAboutNewIssues::class,
         \App\Console\Commands\UpdateOpenSource::class,
         \App\Console\Commands\MoveOldTenantsToAccounts::class,
+        \App\Console\Commands\GoogleIndex::class,
+        \App\Console\Commands\IndexNowIndex::class,
     ])
     ->withMiddleware(function (Middleware $middleware) {
         $middleware->group('universal', [
