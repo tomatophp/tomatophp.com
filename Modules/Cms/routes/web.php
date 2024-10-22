@@ -37,11 +37,6 @@ Route::domain(config('app.domain'))->middleware(['web'])->group(function () {
             Route::get('/donate', [\Modules\Cms\Http\Controllers\HomeController::class, 'donate'])->name('donate');
             Route::get('/blog', [\Modules\Cms\Http\Controllers\HomeController::class, 'blog'])->name('blog');
             Route::get('/blog/{post}', [\Modules\Cms\Http\Controllers\HomeController::class, 'post'])->name('post');
-//            Route::get('/portfolios', [\Modules\Cms\Http\Controllers\HomeController::class, 'portfolios'])->name('portfolios');
-//            Route::get('/portfolios/{portfolio}', [\Modules\Cms\Http\Controllers\HomeController::class, 'portfolio'])->name('portfolio');
-//            Route::get('/services', [\Modules\Cms\Http\Controllers\HomeController::class, 'services'])->name('services');
-//            Route::get('/services/{service}', [\Modules\Cms\Http\Controllers\HomeController::class, 'service'])->name('service');
-            Route::get('/{username}', [\Modules\Cms\Http\Controllers\ProfileController::class, 'index'])->name('profile');
             Route::get('/{page}', [\Modules\Cms\Http\Controllers\HomeController::class, 'page'])->name('page');
         });
 
@@ -65,10 +60,6 @@ Route::domain(config('app.domain'))->middleware(['web'])->group(function () {
             Route::get('/donate', [\Modules\Cms\Http\Controllers\HomeController::class, 'donate'])->name('donate');
             Route::get('/blog', [\Modules\Cms\Http\Controllers\HomeController::class, 'blog'])->name('blog');
             Route::get('/blog/{post}', [\Modules\Cms\Http\Controllers\HomeController::class, 'post'])->name('post');
-//            Route::get('/portfolios', [\Modules\Cms\Http\Controllers\HomeController::class, 'portfolios'])->name('portfolios');
-//            Route::get('/portfolios/{portfolio}', [\Modules\Cms\Http\Controllers\HomeController::class, 'portfolio'])->name('portfolio');
-//            Route::get('/services', [\Modules\Cms\Http\Controllers\HomeController::class, 'services'])->name('services');
-//            Route::get('/services/{service}', [\Modules\Cms\Http\Controllers\HomeController::class, 'service'])->name('service');
             Route::get('/{page}', [\Modules\Cms\Http\Controllers\HomeController::class, 'page'])->name('page');
         });
 
