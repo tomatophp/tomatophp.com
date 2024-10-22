@@ -15,7 +15,7 @@
     <div class="bg-slate-50 dark:bg-inherit">
         <div class="flex justify-between gap-2">
             <div class="justify-end gap-2 w-full hidden md:flex  px-4">
-                <div class="flex flex-col justify-start gap-1 py-16 fixed h-screen overflow-y-auto scrollbar-thumb-slate-400 dark:scrollbar-thumb-slate-700 scrollbar-track-transparent">
+                <div class="flex flex-col justify-start gap-1 py-16">
                     <form  method="GET" id="filter-form" action="{{ url(app()->getLocale() .'/open-source') }}" class="mb-4">
                         <label class="sr-only" for="search"> {{ trans('cms::messages.filters.search') }} </label>
                         <div class="relative group">
