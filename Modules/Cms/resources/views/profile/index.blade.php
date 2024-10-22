@@ -3,6 +3,11 @@
 @section('title', (app()->getLocale() === 'en' ? str(setting('site_name'))->explode('|')[0]??setting('site_name') : str(setting('site_name'))->explode('|')[1]??setting('site_name')) . ' | '. $account->name)
 @section('description', $account->meta('bio'))
 @section('keywords', $account->meta('bio'))
+
+@section('title', appTitle($account->name))
+@section('description', appDescription($account->meta('bio')))
+@section('keywords', appKeywords(collect(str($account->meta('bio'))->explode(' '))->implode(',')))
+
 @if($account->getFirstMediaUrl('avatar'))
     @section('image', $account->getFirstMediaUrl('avatar'))
 @endif
