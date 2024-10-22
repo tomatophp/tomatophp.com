@@ -12,7 +12,7 @@
 @endif
 
 @section('body')
-    <div class="bg-slate-50 dark:bg-inherit">
+    <div class="bg-slate-50 dark:bg-inherit h-full min-h-screen">
         <div class="flex justify-between gap-2">
             <div class="justify-end gap-2 w-full hidden md:flex  px-4">
                 <div class="flex flex-col justify-start gap-1 py-16">
