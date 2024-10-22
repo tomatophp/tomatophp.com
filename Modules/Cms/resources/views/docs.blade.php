@@ -12,10 +12,10 @@
 @endif
 
 @section('body')
-    <div class="bg-slate-50 dark:bg-inherit min-h-screen">
+    <div class="bg-slate-50 dark:bg-inherit">
         <div class="flex justify-between gap-2">
-            <div class="justify-end gap-2 w-full hidden md:flex h-screen overflow-y-auto px-4">
-                <div class="flex flex-col justify-start gap-1 py-16 fixed">
+            <div class="justify-end gap-2 w-full hidden md:flex px-4">
+                <div class="flex flex-col justify-start gap-1 py-16">
                     <form  method="GET" id="filter-form" action="{{ url(app()->getLocale() .'/open-source') }}" class="mb-4">
                         <label class="sr-only" for="search"> {{ trans('cms::messages.filters.search') }} </label>
                         <div class="relative group">
@@ -46,26 +46,32 @@
                     <x-cms-empty-state :name="trans('cms::messages.open-source.label')"/>
                 </div>
             @else
-                <div>
+                <div class="w-full">
                     @php
                         $docs = !isset($docs) ? $openSources[0] : $docs;
                     @endphp
-                    <div class="flex flex-col justify-center items-center">
-                        <section data-theme="light" class="scroll-smooth focus:scroll-auto mx-auto rounded-lg px-6 sm:px-6  prose prose-lg lg:prose-xl dark:prose-invert dark:prose-headings:text-slate-300 prose-headings:font-heading prose-headings:leading-tighter prose-headings:tracking-tighter prose-headings:font-bold prose-img:rounded-md prose-img:shadow-lg mt-8 prose-a:text-black/75 dark:prose-a:text-white/90 prose-a:underline prose-a:underline-offset-4 prose-a:decoration-primary-500 hover:prose-a:decoration-primary-600 prose-a:decoration-2 hover:prose-a:decoration-4 hover:prose-a:text-black dark:hover:prose-a:text-white break-words tracking-normal prose-h4:tracking-normal prose-h5:tracking-normal prose-h6:tracking-normal prose-code:before:hidden prose-code:after:hidden markdown-body">
+                    <div class="flex flex-col justify-center items-center   ">
+                        <section data-theme="light" class="h-screen overflow-y-auto scroll-smooth focus:scroll-auto mx-auto rounded-lg px-6 sm:px-6  prose prose-lg lg:prose-xl dark:prose-invert dark:prose-headings:text-slate-300 prose-headings:font-heading prose-headings:leading-tighter prose-headings:tracking-tighter prose-headings:font-bold prose-img:rounded-md prose-img:shadow-lg mt-8 prose-a:text-black/75 dark:prose-a:text-white/90 prose-a:underline prose-a:underline-offset-4 prose-a:decoration-primary-500 hover:prose-a:decoration-primary-600 prose-a:decoration-2 hover:prose-a:decoration-4 hover:prose-a:text-black dark:hover:prose-a:text-white break-words tracking-normal prose-h4:tracking-normal prose-h5:tracking-normal prose-h6:tracking-normal prose-code:before:hidden prose-code:after:hidden markdown-body">
                             <x-markdown theme="github-dark">
                                 {!! $docs->body !!}
                             </x-markdown>
 
-                            <div class="flex flex-col sm:flex-row sm:justify-center gap-2 border-t border-slate-200 dark:border-slate-800">
-                                <x-cms-social-share />
-                            </div>
+
                         </section>
+
+                        <div class="flex flex-col sm:flex-row sm:justify-center gap-2 border-t border-slate-200 dark:border-slate-800">
+                            <x-cms-social-share />
+                        </div>
+                        
+                        <div class="w-full px-8">
+                            @livewire(\Modules\Cms\Livewire\CommentPost::class, ['post' => $docs])
+                        </div>
+
                     </div>
 
-                    @livewire(\Modules\Cms\Livewire\CommentPost::class, ['post' => $docs])
                 </div>
                 <div class="justify-start gap-2 w-full hidden md:flex h-screen overflow-y-auto px-4">
-                    <div class="flex flex-col justify-start  py-16 fixed h-full ">
+                    <div class="flex flex-col justify-start  py-16 h-full">
                         @php $filterMenu = str($docs->body)->explode('##'); @endphp
                         @foreach($filterMenu as $key=>$filterItem)
                             @if($key > 1)
