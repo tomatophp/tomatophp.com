@@ -12,7 +12,7 @@
 @endif
 
 @section('body')
-    <div class="bg-slate-50 dark:bg-inherit h-full min-h-screen">
+    <div class="bg-slate-50 dark:bg-inherit h-screen overflow-hidden">
         <div class="flex justify-between gap-2">
             <div class="justify-end gap-2 w-full hidden md:flex  px-4">
                 <div class="flex flex-col justify-start gap-1 py-16">
@@ -70,11 +70,11 @@
                     </div>
 
                 </div>
-                <div class="justify-start gap-2 w-full hidden md:flex    px-4">
-                    <div class="flex flex-col justify-start py-16 overflow-y-auto h-screen fixed scrollbar-thumb-slate-400 dark:scrollbar-thumb-slate-700 scrollbar-track-transparent">
+                <div class="justify-start gap-2 w-full hidden md:flex px-4">
+                    <div class="flex flex-col justify-start py-16 overflow-y-auto h-3/4 fixed scrollbar scrollbar-thumb-slate-400 dark:scrollbar-thumb-slate-700 scrollbar-track-transparent">
                         @php $filterMenu = str($docs->body)->explode('##'); @endphp
                         @foreach($filterMenu as $key=>$filterItem)
-                            @if($key > 1)
+                            @if($key >= 1)
                                 @php $titleOfMenu = str($filterItem)->explode("\n")[0] @endphp
                                 <a href="#{{ str($titleOfMenu)->slug() }}" class="text-sm text-slate-400 border-l px-2 border-slate-200 dark:border-slate-800 py-1">
                                     {{ str($titleOfMenu)->remove('#') }}
