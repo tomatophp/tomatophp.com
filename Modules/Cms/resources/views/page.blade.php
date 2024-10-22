@@ -29,7 +29,7 @@
 
             <x-cms-social-share />
             <div>
-                @livewire(\Modules\Cms\Livewire\LikePost::class, ['post' => $docs])
+                @livewire(\Modules\Cms\Livewire\LikePost::class, ['post' => $page])
             </div>
         </section>
     </div>
