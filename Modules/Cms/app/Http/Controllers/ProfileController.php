@@ -5,6 +5,7 @@ namespace Modules\Cms\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Models\Account;
 use Illuminate\Http\Request;
+use TomatoPHP\FilamentCms\Models\Post;
 
 class ProfileController extends Controller
 {
@@ -15,7 +16,19 @@ class ProfileController extends Controller
             return view('cms::profile.index', compact('account'));
         }
         else {
-            abort(404);
+            $page = Post::query()->where('type', 'page')->where('slug', $username)->first();
+
+            if($page){
+                $page->views += 1;
+                $page->save();
+
+                return view('cms::page', [
+                    'page' => $page
+                ]);
+            }
+            else {
+                abort(404);
+            }
         }
 
     }
