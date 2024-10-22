@@ -1,8 +1,7 @@
 @extends('cms::layouts.app')
 
-@section('title', (app()->getLocale() === 'en' ? str(setting('site_name'))->explode('|')[0]??setting('site_name') : str(setting('site_name'))->explode('|')[1]??setting('site_name')) . ' | '. trans('cms::messages.issues.title'))
-@section('description', trans('cms::messages.issues.description'))
-@section('keywords','issues, tomatophp, cms, laravel')
+@section('title', appTitle(trans('cms::messages.issues.title')))
+@section('description', appDescription(trans('cms::messages.issues.description')))
 
 @section('body')
     <div class="bg-slate-50 dark:bg-inherit min-h-screen">

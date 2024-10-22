@@ -1,7 +1,7 @@
 @extends('cms::layouts.app')
 
-@section('title', (app()->getLocale() === 'en' ? str(setting('site_name'))->explode('|')[0]??setting('site_name') : str(setting('site_name'))->explode('|')[1]??setting('site_name')) . ' | '. trans('cms::messages.contact.label'))
-@section('description', trans('cms::messages.contact.support'))
+@section('title', appTitle(trans('cms::messages.contact.label')))
+@section('description', appDescription(trans('cms::messages.contact.support')))
 
 @section('body')
     <section class="md:min-h-screen sm:px-6 mb-20 mx-auto max-w-3xl md:py-8">

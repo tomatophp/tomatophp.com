@@ -122,6 +122,8 @@ use TomatoPHP\FilamentWithdrawals\Models\WithdrawalRequest;
 use Ymigval\LaravelIndexnow\Facade\IndexNow;
 use Ymigval\LaravelIndexnow\IndexNowService;
 
+require_once __DIR__ . '/helpers.php';
+
 class AppServiceProvider extends ServiceProvider
 {
 

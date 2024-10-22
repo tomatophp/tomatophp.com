@@ -1,12 +1,8 @@
 @extends('cms::layouts.app')
 
-@php
-    $title = (app()->getLocale() === 'en' ? str(setting('site_name'))->explode('|')[0]??setting('site_name') : str(setting('site_name'))->explode('|')[1]??setting('site_name')) . ' | '. trans('cms::messages.open-source.label');
-    $description = trans('cms::messages.open-source.title') . ' ' . trans('cms::messages.open-source.sub');
-@endphp
-@section('title', isset($docs) ? $docs->title : $title)
-@section('description', isset($docs) ? $docs->short_description : $description)
-@section('keywords', isset($docs) ? $docs->keywords : setting('site_keywords'))
+@section('title', appTitle($docs->title))
+@section('description', appDescription($docs->short_description))
+@section('keywords', appKeywords($docs->keywords))
 @if(isset($docs) && $docs->getFirstMediaUrl('feature_image'))
     @section('image', $docs->getFirstMediaUrl('feature_image'))
 @endif
