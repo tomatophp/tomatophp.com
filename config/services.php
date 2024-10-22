@@ -61,6 +61,8 @@ return [
     ],
 
     'facebook' => [
+        'app_id' => env('FACEBOOK_APP_ID'),
+        'pixel_id' => env('FACEBOOK_PIXEL_ID'),
         'client_id' => env('FACEBOOK_CLIENT_ID'),
         'client_secret' => env('FACEBOOK_CLIENT_SECRET'),
         'redirect' => env('FACEBOOK_CALLBACK'),

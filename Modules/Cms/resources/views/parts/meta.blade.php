@@ -19,6 +19,7 @@
 <meta property="og:image" content="@yield('image', url('storage/' . setting('site_profile')))" />
 <meta property="og:image:alt" content="@yield('title', appTitle())" />
 <meta property="og:url" content="{{url()->current()}}" />
+<meta property="fb:app_id" content="{{ config('services.facebook.app_id') }}" />
 
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="@yield('title', appTitle())">
