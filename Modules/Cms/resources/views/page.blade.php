@@ -28,7 +28,7 @@
             </div>
 
             <x-cms-social-share />
-            <div>
+            <div class="flex flex-col justify-center items-center my-2">
                 @livewire(\Modules\Cms\Livewire\LikePost::class, ['post' => $page])
             </div>
         </section>
