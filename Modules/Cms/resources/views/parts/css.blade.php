@@ -47,6 +47,7 @@
 </style>
 @livewireStyles
 @filamentStyles
-@vite('resources/css/app.css')
 @stack('css')
+
+@vite('resources/css/app.css')
 
