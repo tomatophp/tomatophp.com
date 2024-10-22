@@ -1,4 +1,4 @@
-<div class="flex flex-col gap-4  mx-8 sm:w-1/2 sm:mx-auto">
+<div class="flex flex-col gap-4  mx-8 sm:mx-auto">
     @php
         $comments = $this->post->comments()->where('is_active', 1)->orderBy('created_at', 'desc')->paginate(20);
     @endphp

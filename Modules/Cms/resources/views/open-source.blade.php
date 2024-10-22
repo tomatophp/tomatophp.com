@@ -18,19 +18,19 @@
                 <x-cms-filter-toolbar />
             </div>
             @if(count($openSources))
-            <section data-nosnippet="" class="grid grid-cols-1 mx-6 my-4 dark:text-white divide-y divide-gray-200 dark:divide-gray-900">
-                @foreach($openSources as $item)
-                    <x-cms-open-source-card
-                        :post="$item"
-                    />
-                @endforeach
-            </section>
+                <section data-nosnippet="" class="grid grid-cols-1 mx-6 my-4 dark:text-white divide-y divide-gray-200 dark:divide-gray-900">
+                    @foreach($openSources as $item)
+                        <x-cms-open-source-card
+                            :post="$item"
+                        />
+                    @endforeach
+                </section>
 
-            <div>
-                <div class="flex flex-col justify-center items-center my-4">
-                    {!! $openSources->links() !!}
+                <div>
+                    <div class="flex flex-col justify-center items-center my-4">
+                        {!! $openSources->links() !!}
+                    </div>
                 </div>
-            </div>
             @else
                 <x-cms-empty-state :name="trans('cms::messages.open-source.label')"/>
             @endif

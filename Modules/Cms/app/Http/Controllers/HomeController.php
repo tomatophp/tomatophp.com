@@ -106,7 +106,7 @@ class HomeController extends Controller
 
         $openSources = $this->applyFilter($openSources);
 
-        $openSources = $openSources->paginate(12);
+        $openSources = $openSources->paginate(10);
         return view('cms::open-source', [
             'openSources' => $openSources
         ]);
@@ -114,6 +114,14 @@ class HomeController extends Controller
 
     public function docs($docs)
     {
+        $openSources = Post::query()
+            ->where('type', 'open-source')
+            ->where('is_published', 1);
+
+        $openSources = $this->applyFilter($openSources);
+
+        $openSources = $openSources->orderBy('slug')->get();
+
         $docs = Post::query()
             ->where('slug', $docs)
             ->first();
@@ -123,7 +131,8 @@ class HomeController extends Controller
             $docs->save();
 
             return view('cms::docs', [
-                "docs" => $docs
+                "docs" => $docs,
+                "openSources" => $openSources
             ]);
         }
         else {

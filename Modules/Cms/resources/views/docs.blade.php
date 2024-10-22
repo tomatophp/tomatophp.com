@@ -1,99 +1,125 @@
 @extends('cms::layouts.app')
 
-@section('title', (app()->getLocale() === 'en' ? str(setting('site_name'))->explode('|')[0]??setting('site_name') : str(setting('site_name'))->explode('|')[1]??setting('site_name')) . ' | '. $docs->title)
-@section('description', $docs->short_description)
-@section('keywords', $docs->keywords)
-@if($docs->getFirstMediaUrl('feature_image'))
+@php
+    $title = (app()->getLocale() === 'en' ? str(setting('site_name'))->explode('|')[0]??setting('site_name') : str(setting('site_name'))->explode('|')[1]??setting('site_name')) . ' | '. trans('cms::messages.open-source.label');
+    $description = trans('cms::messages.open-source.title') . ' ' . trans('cms::messages.open-source.sub');
+@endphp
+@section('title', isset($docs) ? $docs->title : $title)
+@section('description', isset($docs) ? $docs->short_description : $description)
+@section('keywords', isset($docs) ? $docs->keywords : setting('site_keywords'))
+@if(isset($docs) && $docs->getFirstMediaUrl('feature_image'))
     @section('image', $docs->getFirstMediaUrl('feature_image'))
 @endif
 
 @section('body')
     <div class="bg-slate-50 dark:bg-inherit min-h-screen">
-        <header class="flex flex-col items-center text-center px-4 sm:px-6 mb-4">
-            <img src="{{ $docs->getFirstMediaUrl('feature_image') }}" width="224" height="224" class="p-[20px] mb-3">
-            <h1 class="text-5xl md:text-6xl font-bold leading-tighter tracking-tighter mb-4 font-heading">
-                {!! $docs->title !!}
-            </h1>
-            <h2 class="text-2xl md:text-3xl tracking-tight mb-8">
-                {!! $docs->short_description !!}
-            </h2>
-            <nav class="flex flex-col sm:flex-row gap-x-4 gap-y-8 mt-2 instapaper_ignore">
-                <div class="relative">
-                    <x-cms-sub-button icon="bxl-github" :away="true" label="Download" url="{{ $docs->meta_url }}" />
+        <div class="flex justify-between gap-2">
+            <div class="justify-end gap-2 w-full hidden md:flex h-screen overflow-y-auto px-4">
+                <div class="flex flex-col justify-start gap-1 py-16 fixed">
+                    <form  method="GET" id="filter-form" action="{{ url(app()->getLocale() .'/open-source') }}" class="mb-4">
+                        <label class="sr-only" for="search"> {{ trans('cms::messages.filters.search') }} </label>
+                        <div class="relative group">
+                      <span class="absolute inset-y-0 left-0 flex items-center justify-center w-10 h-10 text-gray-400 transition pointer-events-none group-focus-within:text-primary-600">
+                        <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
+                          <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                        </svg>
+                      </span>
+                            <input
+                                id="search"
+                                value="{{ request()->get('search') }}"
+                                placeholder="{{ trans('cms::messages.filters.search-placeholder') }}"
+                                name="search"
+                                type="search"
+                                class="block h-10 ltr:pl-8 placeholder-gray-400 dark:bg-gray-900 dark:border-gray-700 transition duration-75 border-gray-300 rounded-lg shadow-sm focus:border-primary-600 focus:ring-1 focus:ring-inset focus:ring-primary-600">
+                        </div>
+                    </form>
+                    @foreach($openSources as $item)
+                        @php $getUrl = url( app()->getLocale() .'/open-source/'. $item->slug) @endphp
+                        <a href="{{ $getUrl }}" class="px-3 py-1 rounded-lg @if(str(url()->current())->contains($getUrl)) bg-slate-100 dark:bg-slate-800 text-primary-500 @else hover:bg-slate-200 dark:hover:bg-slate-800 @endif">
+                            {{ $item->title }}
+                        </a>
+                    @endforeach
                 </div>
-                <div class="relative">
-                    <x-cms-main-button icon="bxs-download" :away="true" label="{{ number_format($docs->meta('downloads_total'))??0 }}" url="{{ $docs->meta_url }}" />
-                </div>
-                <div class="relative">
-                    <x-cms-main-button icon="bxs-star" :away="true" label="{{ number_format($docs->meta('github_starts'))??0 }}" url="{{ $docs->meta_url }}" />
-                </div>
-            </nav>
-        </header>
-
-
-        <div class="flex flex-col justify-center items-center py-4">
-            <section data-theme="light" class="scroll-smooth focus:scroll-auto mx-auto py-6 rounded-lg px-6 sm:px-6  prose prose-lg lg:prose-xl dark:prose-invert dark:prose-headings:text-slate-300 prose-headings:font-heading prose-headings:leading-tighter prose-headings:tracking-tighter prose-headings:font-bold prose-img:rounded-md prose-img:shadow-lg mt-8 prose-a:text-black/75 dark:prose-a:text-white/90 prose-a:underline prose-a:underline-offset-4 prose-a:decoration-primary-500 hover:prose-a:decoration-primary-600 prose-a:decoration-2 hover:prose-a:decoration-4 hover:prose-a:text-black dark:hover:prose-a:text-white break-words tracking-normal prose-h4:tracking-normal prose-h5:tracking-normal prose-h6:tracking-normal prose-code:before:hidden prose-code:after:hidden markdown-body">
-                <x-markdown theme="github-dark">
-                    {!! $docs->body !!}
-                </x-markdown>
-            </section>
-        </div>
-{{--            @php $sections = str($docs->body)->explode("##") @endphp--}}
-
-{{--            @if(count($sections))--}}
-{{--                <div class="grid grid-cols-1 md:grid-cols-12 gap-4 py-4 border-b dark:border-slate-800" x-data="{currentSection: 0}">--}}
-{{--                    <div class="md:flex md:flex-col justify-start gap-2 hidden border-r dark:border-slate-800 p-4 h-screen w-full col-span-3 stacked">--}}
-{{--                        @foreach($sections as $key=>$section)--}}
-{{--                            @if($key !== 0)--}}
-{{--                                <button @click.prevent="currentSection = {{ $key }}" class="px-6 py-2 text-start dark:bg-slate-800 dark:hover:bg-slate-600 rounded-lg" :class="{'dark:bg-slate-800': currentSection === {{$key}} }">--}}
-{{--                                    {{ str($section)->explode("\n")[0] }}--}}
-{{--                                </button>--}}
-{{--                            @endif--}}
-{{--                        @endforeach--}}
-{{--                    </div>--}}
-{{--                    <div class="col-span-9">--}}
-{{--                        <section data-theme="light" class="scroll-smooth focus:scroll-auto flex justify-start rounded-lg prose lg:prose-xl dark:prose-invert dark:prose-headings:text-slate-300 prose-headings:font-heading prose-headings:leading-tighter prose-headings:tracking-tighter prose-headings:font-bold prose-img:rounded-md prose-img:shadow-lg  prose-a:text-black/75 dark:prose-a:text-white/90 prose-a:underline prose-a:underline-offset-4 prose-a:decoration-primary-500 hover:prose-a:decoration-primary-600 prose-a:decoration-2 hover:prose-a:decoration-4 hover:prose-a:text-black dark:hover:prose-a:text-white break-words tracking-normal prose-h4:tracking-normal prose-h5:tracking-normal prose-h6:tracking-normal prose-code:before:hidden prose-code:after:hidden markdown-body">--}}
-{{--                            @foreach($sections as $key=>$section)--}}
-{{--                                @if($key === 0)--}}
-{{--                                    <div x-show="currentSection === {{ $key }}">--}}
-{{--                                        <x-markdown theme="github-dark">--}}
-{{--                                            {!!  $section !!}--}}
-{{--                                        </x-markdown>--}}
-{{--                                    </div>--}}
-{{--                                @else--}}
-{{--                                    <div x-show="currentSection === {{ $key }}" >--}}
-{{--                                        <x-markdown theme="github-dark">--}}
-{{--                                            {!!  '##'.$section !!}--}}
-{{--                                        </x-markdown>--}}
-{{--                                    </div>--}}
-{{--                                @endif--}}
-{{--                            @endforeach--}}
-{{--                        </section>--}}
-{{--                    </div>--}}
-{{--                </div>--}}
-{{--            @else--}}
-
-{{--            @endif--}}
-
-
-
-        <div class="flex flex-col sm:flex-row sm:justify-center gap-2">
-            <div class="flex flex-col justify-center sm:justify-end items-center sm:items-end">
-                @livewire(\Modules\Cms\Livewire\LikePost::class, ['post' => $docs])
             </div>
+            @if(!isset($docs) && count($openSources) === 0)
+                <div class="w-full">
+                    <x-cms-empty-state :name="trans('cms::messages.open-source.label')"/>
+                </div>
+            @else
+                <div>
+                    @php
+                        $docs = !isset($docs) ? $openSources[0] : $docs;
+                    @endphp
+                    <div class="flex flex-col justify-center items-center">
+                        <section data-theme="light" class="scroll-smooth focus:scroll-auto mx-auto rounded-lg px-6 sm:px-6  prose prose-lg lg:prose-xl dark:prose-invert dark:prose-headings:text-slate-300 prose-headings:font-heading prose-headings:leading-tighter prose-headings:tracking-tighter prose-headings:font-bold prose-img:rounded-md prose-img:shadow-lg mt-8 prose-a:text-black/75 dark:prose-a:text-white/90 prose-a:underline prose-a:underline-offset-4 prose-a:decoration-primary-500 hover:prose-a:decoration-primary-600 prose-a:decoration-2 hover:prose-a:decoration-4 hover:prose-a:text-black dark:hover:prose-a:text-white break-words tracking-normal prose-h4:tracking-normal prose-h5:tracking-normal prose-h6:tracking-normal prose-code:before:hidden prose-code:after:hidden markdown-body">
+                            <x-markdown theme="github-dark">
+                                {!! $docs->body !!}
+                            </x-markdown>
 
-            <x-cms-social-share />
+                            <div class="flex flex-col sm:flex-row sm:justify-center gap-2 border-t border-slate-200 dark:border-slate-800">
+                                <x-cms-social-share />
+                            </div>
+                        </section>
+                    </div>
+
+                    @livewire(\Modules\Cms\Livewire\CommentPost::class, ['post' => $docs])
+                </div>
+                <div class="justify-start gap-2 w-full hidden md:flex h-screen overflow-y-auto px-4">
+                    <div class="flex flex-col justify-start  py-16 fixed h-full ">
+                        @php $filterMenu = str($docs->body)->explode('##'); @endphp
+                        @foreach($filterMenu as $key=>$filterItem)
+                            @if($key > 1)
+                                @php $titleOfMenu = str($filterItem)->explode("\n")[0] @endphp
+                                <a href="#{{ str($titleOfMenu)->slug() }}" class="text-sm text-slate-400 border-l px-2 border-slate-200 dark:border-slate-800 py-1">
+                                    {{ str($titleOfMenu)->remove('#') }}
+                                </a>
+                            @endif
+                        @endforeach
+
+                        <div class="flex flex-col justify-start items-start">
+                            @livewire(\Modules\Cms\Livewire\LikePost::class, ['post' => $docs])
+                        </div>
+
+
+                        <a href="{{ $docs->meta_url . "/blob/master/README.md" }}" target="_blank" class="flex justify-start gap-2 text-sm text-slate-400 ">
+                            <div class="flex flex-col justify-center items-center">
+                                <x-icon name="bxl-github" class="w-5 h-5" />
+                            </div>
+                            <div>
+                                Edit this page on GitHub
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            @endif
+
         </div>
-
-        @livewire(\Modules\Cms\Livewire\CommentPost::class, ['post' => $docs])
     </div>
 @endsection
 
+
 @push('css')
     <link rel="stylesheet" href="{{ asset('css/code/github-dark.min.css') }}">
+    <style>
+        .hljs {
+            border: transparent;
+            border-radius: 10px;
+        }
+    </style>
 @endpush
 
 @push('js')
+    @if(!isset($docs))
+        <script>
+            const dropdown = document.getElementById("sort");
+
+            dropdown.addEventListener("change", function() {
+                document.getElementById("filter-form")?.submit();
+            });
+        </script>
+    @endif
+
+
     <script src="{{ asset('js/highlight.min.js') }}"></script>
     <script>hljs.highlightAll();</script>
     <script>
@@ -103,12 +129,12 @@
 
             highlights.forEach((pre) => {
                 let addNew = true;
-                pre.children.forEach((child) => {
-                    if(child.innerHTML === 'Copy'){
+                for(let i=0; i<pre.children.length; i++){
+                    if(pre.children[i].innerHTML === 'Copy'){
                         addNew = false;
                     }
-                });
-                if(pre.classList.length >0 && addNew){
+                }
+                if(addNew){
                     // create the copy button
                     const copy = document.createElement("button");
                     copy.innerHTML = "Copy";
@@ -170,3 +196,4 @@
         });
     </script>
 @endpush
+
