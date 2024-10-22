@@ -277,6 +277,11 @@ class AppServiceProvider extends ServiceProvider
             $urlAr = url('/ar'.($post->type === 'post' ? '/blog/' : '/open-source/') . $post->slug);
             $urlEn = url('/en'.($post->type === 'post' ? '/blog/' : '/open-source/') . $post->slug);
 
+            $links = [
+                str($urlAr),
+                str($urlEn),
+            ];
+
             dispatch(new GoogleIndexURLJob(
                 url: $urlAr,
             ));
@@ -286,24 +291,21 @@ class AppServiceProvider extends ServiceProvider
             ));
 
             $indexNow = new IndexNowService('indexnow');
-            $indexNow->submit($urlAr);
-            $indexNow->submit($urlEn);
+            $indexNow->submit($links);
 
             $indexNow = new IndexNowService('microsoft_bing');
-            $indexNow->submit($urlAr);
-            $indexNow->submit($urlEn);
+            $indexNow->submit($links);
+
 
             $indexNow = new IndexNowService('naver');
-            $indexNow->submit($urlAr);
-            $indexNow->submit($urlEn);
+            $indexNow->submit($links);
 
             $indexNow = new IndexNowService('seznam');
-            $indexNow->submit($urlAr);
-            $indexNow->submit($urlEn);
+            $indexNow->submit($links);
 
             $indexNow = new IndexNowService('yandex');
-            $indexNow->submit($urlAr);
-            $indexNow->submit($urlEn);
+            $indexNow->submit($links);
+
         });
 
         Event::listen(PostDeleted::class, function ($event){
