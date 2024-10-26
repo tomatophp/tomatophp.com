@@ -62,3 +62,7 @@
 <!-- End Meta Pixel Code -->
 
 @filamentSEO
+
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client={{ config('services.google.adsense') }}"
+        crossorigin="anonymous"></script>
