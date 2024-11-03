@@ -90,10 +90,6 @@ class AppPanelProvider extends PanelProvider
                 Widgets\AccountWidget::class,
                 Widgets\FilamentInfoWidget::class,
             ])
-            ->plugin(
-                FilamentTenancyAppPlugin::make()
-            )
-
             ->plugins([
                 FilamentAPIPlugin::make(),
                 FilamentTypesPlugin::make(),
@@ -192,7 +188,10 @@ class AppPanelProvider extends PanelProvider
             ])
             ->authMiddleware([
                 Authenticate::class,
-            ]);
+            ])
+            ->plugin(
+                FilamentTenancyAppPlugin::make()
+            );
 
         return $panel;
     }
