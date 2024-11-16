@@ -11,7 +11,7 @@
                         <x-icon name="bxs-badge-check" class="text-blue-400 text-xl w-5 h-5" />
                     </x-filament::icon-button>
                 @elseif($account->type === 'public')
-                    <x-filament::icon-button icon="bxs-badge-check" tooltip="Public User">
+                    <x-filament::icon-button icon="bxs-badge-check" tooltip="Core Member">
                         <x-icon name="bxs-badge-check" class="text-blue-400 text-xl w-5 h-5" />
                     </x-filament::icon-button>
                 @endif
