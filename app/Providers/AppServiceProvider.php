@@ -15,6 +15,8 @@ use App\Policies\ContactPolicy;
 use App\Policies\CountryPolicy;
 use App\Policies\CouponPolicy;
 use App\Policies\CurrencyPolicy;
+use App\Policies\DocumentPolicy;
+use App\Policies\DocumentTemplatePolicy;
 use App\Policies\EmployeeApplyPolicy;
 use App\Policies\FolderPolicy;
 use App\Policies\FormPolicy;
@@ -86,6 +88,8 @@ use TomatoPHP\FilamentCms\Models\Post;
 use TomatoPHP\FilamentDocs\Facades\FilamentDocs;
 use TomatoPHP\FilamentDocs\Filament\Actions\DocumentAction;
 use TomatoPHP\FilamentDocs\Filament\RelationManager\DocumentRelationManager;
+use TomatoPHP\FilamentDocs\Models\Document;
+use TomatoPHP\FilamentDocs\Models\DocumentTemplate;
 use TomatoPHP\FilamentDocs\Services\Contracts\DocsVar;
 use TomatoPHP\FilamentEcommerce\Models\Company;
 use TomatoPHP\FilamentEcommerce\Models\Coupon;
@@ -206,6 +210,8 @@ class AppServiceProvider extends ServiceProvider
         Gate::policy(Contact::class, ContactPolicy::class);
         Gate::policy(AttendanceShift::class, AttendanceShiftPolicy::class);
         Gate::policy(EmployeeApply::class, EmployeeApplyPolicy::class);
+        Gate::policy(Document::class, DocumentPolicy::class);
+        Gate::policy(DocumentTemplate::class, DocumentTemplatePolicy::class);
 
 
         FilamentView::registerRenderHook(

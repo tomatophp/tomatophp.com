@@ -361,5 +361,16 @@ return [
                 'attendance::shift',
             ]
         ],
+        'filament-docs' => [
+            'description' => 'Manage your documents and contracts all in one place with template builder',
+            'url' => 'https://github.com/tomatophp/filament-docs',
+            'key' => 'filament-docs',
+            'label' => 'Documents Editor',
+            'icon' => 'heroicon-o-document',
+            'permissions' => [
+                'document',
+                'document::template',
+            ]
+        ],
     ]
 ];

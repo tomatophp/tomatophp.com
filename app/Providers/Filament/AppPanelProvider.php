@@ -29,6 +29,7 @@ use TomatoPHP\FilamentAccounts\FilamentAccountsPlugin;
 use TomatoPHP\FilamentAlerts\FilamentAlertsPlugin;
 use TomatoPHP\FilamentApi\FilamentAPIPlugin;
 use TomatoPHP\FilamentCms\FilamentCMSPlugin;
+use TomatoPHP\FilamentDocs\FilamentDocsPlugin;
 use TomatoPHP\FilamentEcommerce\FilamentEcommercePlugin;
 use TomatoPHP\FilamentEmployees\FilamentEmployeesPlugin;
 use TomatoPHP\FilamentFcm\FilamentFcmPlugin;
@@ -172,6 +173,9 @@ class AppPanelProvider extends PanelProvider
                     ->allowOrderExport()
                     ->allowOrderImport()
                     ->useWidgets(),
+            )
+            ->plugin(
+                FilamentDocsPlugin::make(),
             )
             ->middleware([
                 PreventAccessFromCentralDomains::class,
