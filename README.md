@@ -3,7 +3,7 @@
 The live demo for every [TomatoPHP](https://tomatophp.com) Filament plugin, running on Laravel 13 and Filament 5
 with the [TomatoPHP theme](https://github.com/tomatophp/filament-tomatophp-theme).
 
-- Demo: https://tomatophp.fadymondy.com
+- Demo: https://demo.tomatophp.com
 - Account: `demo@tomatophp.com` / `demo1234` (prefilled on the login page)
 - Demo data resets every hour
 
