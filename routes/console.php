@@ -11,4 +11,6 @@ Artisan::command('inspire', function () {
 \Illuminate\Support\Facades\Schedule::command('migrate:fresh', ['--seed' => true, '--force' => true])
     ->hourly()
     ->when(fn (): bool => (bool) config('demo.enabled'))
-    ->withoutOverlapping();
+    ->withoutOverlapping()
+    // migrate:fresh empties the cache table that holds the icon list used by the icon picker.
+    ->after(fn () => \Illuminate\Support\Facades\Artisan::call("filament-icons:install"));

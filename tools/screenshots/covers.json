@@ -1,0 +1,14 @@
+{
+  "baseUrl": "https://tomato.fadymondy.com",
+  "outDir": "E:/Sites/tomatophp/tools/screenshots/out/covers",
+  "width": 1440, "height": 900, "scale": 2,
+  "shots": [
+    { "name": "users-list", "path": "/admin/users", "waitFor": "table tbody tr", "delay": 900 },
+    { "name": "users-create", "path": "/admin/users/create", "waitFor": "form", "delay": 900 },
+    { "name": "categories-list", "path": "/admin/categories", "waitFor": "table tbody tr", "delay": 1200 },
+    { "name": "categories-edit", "path": "/admin/categories", "click": "tbody tr:first-child ::-p-text(Edit)", "waitFor": ".fi-modal-window input", "delay": 1500 },
+    { "name": "settings-hub", "path": "/admin/settings-hub", "delay": 900 },
+    { "name": "site-settings", "path": "/admin/site-settings", "waitFor": "form", "delay": 1200 },
+    { "name": "developer-gate", "path": "/admin/developer-gate", "delay": 900 }
+  ]
+}

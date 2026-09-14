@@ -37,8 +37,12 @@ try {
     await page.setViewport({ width: config.width ?? 1440, height: config.height ?? 900, deviceScaleFactor: config.scale ?? 2 });
 
     await page.goto(`${config.baseUrl}/admin/login`, { waitUntil: 'networkidle2' });
-    await page.type('input[type=email]', email);
-    await page.type('input[type=password]', password);
+    // The demo login is prefilled; select the existing value so typing replaces it.
+    for (const [selector, value] of [['input[type=email]', email], ['input[type=password]', password]]) {
+        await page.click(selector, { count: 3 });
+        await page.keyboard.press('Backspace');
+        await page.type(selector, value);
+    }
     await Promise.all([
         page.waitForNavigation({ waitUntil: 'networkidle2' }),
         page.click('button[type=submit]'),
@@ -61,7 +65,11 @@ try {
             }
 
             if (shot.waitFor) {
-                await page.waitForSelector(shot.waitFor, { visible: true });
+                try {
+                    await page.waitForSelector(shot.waitFor, { visible: true, timeout: 15000 });
+                } catch {
+                    console.warn(`warn ${shot.name}-${mode}: "${shot.waitFor}" never appeared on ${page.url()}`);
+                }
             }
 
             await new Promise((resolve) => setTimeout(resolve, shot.delay ?? 600));
