@@ -21,6 +21,16 @@ return [
 
     'password' => env('DEMO_PASSWORD', 'demo1234'),
 
+    /*
+    | Pages that store credentials (SMTP, webhooks, API keys). In demo mode they redirect
+    | to the dashboard with a notice. Class strings, so a plugin that is not installed is fine.
+    */
+    'locked_pages' => [
+        'TomatoPHP\FilamentAlerts\Filament\Pages\EmailSettingsPage',
+        'TomatoPHP\FilamentDiscordDriver\Filament\Pages\DiscordSettingsPage',
+        'TomatoPHP\FilamentFcmDriver\Filament\Pages\FcmSettingsPage',
+    ],
+
     'admin' => [
         'name' => env('DEMO_ADMIN_NAME', 'TomatoPHP Admin'),
         'email' => env('DEMO_ADMIN_EMAIL'),

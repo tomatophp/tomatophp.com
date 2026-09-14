@@ -3,6 +3,7 @@
 namespace App\Providers\Filament;
 
 use App\Filament\Pages\Auth\Login;
+use App\Http\Middleware\LockDemoPages;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\AuthenticateSession;
 use Filament\Http\Middleware\DisableBladeIconComponents;
@@ -18,7 +19,9 @@ use Illuminate\Foundation\Http\Middleware\PreventRequestForgery;
 use Illuminate\Routing\Middleware\SubstituteBindings;
 use Illuminate\Session\Middleware\StartSession;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
+use TomatoPHP\FilamentAlerts\FilamentAlertsPlugin;
 use TomatoPHP\FilamentDeveloperGate\FilamentDeveloperGatePlugin;
+use TomatoPHP\FilamentDiscordDriver\FilamentDiscordDriverPlugin;
 use TomatoPHP\FilamentSettingsHub\FilamentSettingsHubPlugin;
 use TomatoPHP\FilamentTomatoPHPTheme\FilamentTomatoPHPThemePlugin;
 use TomatoPHP\FilamentUsers\FilamentUsersPlugin;
@@ -53,6 +56,7 @@ class AdminPanelProvider extends PanelProvider
                 SubstituteBindings::class,
                 DisableBladeIconComponents::class,
                 DispatchServingFilamentEvent::class,
+                LockDemoPages::class,
             ])
             ->authMiddleware([
                 Authenticate::class,
@@ -62,6 +66,8 @@ class AdminPanelProvider extends PanelProvider
                 FilamentUsersPlugin::make(),
                 FilamentSettingsHubPlugin::make()->allowColorSettings(),
                 FilamentDeveloperGatePlugin::make(),
+                FilamentAlertsPlugin::make()->useSettingsHub(),
+                FilamentDiscordDriverPlugin::make(),
             ]);
     }
 }

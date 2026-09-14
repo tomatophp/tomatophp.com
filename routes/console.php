@@ -14,3 +14,8 @@ Artisan::command('inspire', function () {
     ->withoutOverlapping()
     // migrate:fresh empties the cache table that holds the icon list used by the icon picker.
     ->after(fn () => \Illuminate\Support\Facades\Artisan::call("filament-icons:install"));
+
+// Public demo: process queued jobs (alert sends) without a long-running worker.
+\Illuminate\Support\Facades\Schedule::command('queue:work', ['--stop-when-empty' => true, '--max-time' => 50])
+    ->everyMinute()
+    ->withoutOverlapping();
