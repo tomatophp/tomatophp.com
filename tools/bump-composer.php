@@ -66,7 +66,8 @@ $devDefaults = [
 ];
 
 // The minimum toolchain every package must have so it can be tested.
-$devRequired = ['laravel/pint', 'orchestra/testbench', 'pestphp/pest', 'pestphp/pest-plugin-laravel', 'pestphp/pest-plugin-livewire'];
+// Larastan is what catches Filament classes removed or renamed by the upgrade (phpstan level 0).
+$devRequired = ['larastan/larastan', 'laravel/pint', 'orchestra/testbench', 'pestphp/pest', 'pestphp/pest-plugin-laravel', 'pestphp/pest-plugin-livewire'];
 
 $changes = [];
 $warnings = [];

@@ -30,3 +30,4 @@ Homestead.yaml
 Thumbs.db
 
 /packages
+tools/.cache/

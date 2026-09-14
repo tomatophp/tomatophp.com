@@ -3,13 +3,17 @@
     "name": "laravel/laravel",
     "type": "project",
     "description": "The skeleton application for the Laravel framework.",
-    "keywords": ["laravel", "framework"],
+    "keywords": [
+        "laravel",
+        "framework"
+    ],
     "license": "MIT",
     "require": {
-        "php": "^8.3",
-        "filament/filament": "5.8",
+        "filament/filament": "^5.8",
         "laravel/framework": "^13.17",
-        "laravel/tinker": "^3.0"
+        "laravel/tinker": "^3.0",
+        "php": "^8.3",
+        "tomatophp/filament-icons": "^5.0"
     },
     "require-dev": {
         "fakerphp/faker": "^1.23",
@@ -86,12 +90,14 @@
     },
     "minimum-stability": "stable",
     "prefer-stable": true,
-    "repositories": [{
-        "name": "tomatophp",
-        "type": "path",
-        "url": "packages/*",
-        "options": {
-            "symlink": true
+    "repositories": [
+        {
+            "type": "path",
+            "url": "packages/*",
+            "options": {
+                "symlink": true
+            },
+            "canonical": false
         }
-    }]
+    ]
 }
