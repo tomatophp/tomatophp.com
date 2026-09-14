@@ -16,7 +16,8 @@ log "commit $(git log -1 --format='%h %s')"
 php -r '
 $file = "composer.json";
 $json = json_decode(file_get_contents($file), true);
-$json["repositories"] = [["type" => "vcs", "url" => "https://github.com/tomatophp/filament-tomatophp-theme"]];
+// no-api: clone the public repo over HTTPS instead of the GitHub API (no token on the server).
+$json["repositories"] = [["type" => "vcs", "url" => "https://github.com/tomatophp/filament-tomatophp-theme.git", "no-api" => true]];
 file_put_contents($file, json_encode($json, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES) . "\n");'
 rm -f composer.lock
 COMPOSER_ALLOW_SUPERUSER=1 composer update --no-dev --optimize-autoloader --no-interaction --no-progress
