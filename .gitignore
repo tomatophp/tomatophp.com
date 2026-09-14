@@ -34,3 +34,5 @@ tools/.cache/
 tools/banner/.chrome/
 tools/banner/out/
 tools/banner/.chrome-*/
+tools/screenshots/node_modules/
+tools/screenshots/out/
