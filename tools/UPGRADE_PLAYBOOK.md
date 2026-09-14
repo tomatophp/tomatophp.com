@@ -97,3 +97,42 @@ gh release create v5.0.0 --repo tomatophp/<repo> --title "v5.0.0" --notes "<shor
 `curl -s https://repo.packagist.org/p2/tomatophp/<repo>.json | grep -o '"version":"v\?5.0.0"'` — poll every 30s, up to 10 minutes.
 
 **11. Report**: repo, old version → new tag, test count, phpstan status, manual changes worth knowing, anything left undone.
+
+## Release gate additions (required, added after the first releases)
+
+**A. Issues and PRs come first (before step 9).**
+- `gh issue list --repo tomatophp/<repo> --state open` and `gh pr list --repo tomatophp/<repo> --state open`.
+- Bugs and reasonable features: implement them with a regression test. Prove the test is real: `git stash push -- src`, run the test (it must FAIL), `git stash pop`, run it again (it must PASS).
+- Community PRs that are correct: merge them locally so the author keeps credit (`git fetch origin pull/<n>/head:pr-<n> && git merge --no-ff pr-<n>`), fix conflicts, add tests. The push marks the PR merged.
+- Superseded or incorrect PRs: close with a short, kind explanation (`gh pr close <n> --comment "..."`).
+- Fixed issues: reference them in the commit message (`Fixes #n`) and after the release comment on each with the release link.
+- Dependabot PRs: after your push run `bash /e/Sites/tomatophp/tools/pr-sweep.sh <repo> --apply`.
+- "Support Filament v5" style issues: close them with the release link.
+
+**B. Real-project verification (before step 9).** Testbench alone is not enough.
+```bash
+bash /e/Sites/tomatophp/tools/make-sandbox.sh <your-agent-letter>   # once; a copy of the demo app (Laravel 13 + Filament 5)
+cd /e/Sites/tomatophp-sandboxes/<letter>
+composer.bat require "tomatophp/<repo>:~5.0" -W --no-interaction    # resolves from the local packages/ clone
+php artisan <the package install command from its README>
+php artisan migrate --force
+# register the plugin in app/Providers/Filament/AdminPanelProvider.php as the README says
+php artisan test --filter=FilamentPanelSmokeTest                      # every panel page must render
+```
+Every page the package adds must show up as rendered in the smoke output, not skipped (add a factory or a seeder row if a record page is skipped).
+
+**C. Cover and screenshots (before step 9).** Replace the old-logo README cover `arts/fadymondy-tomato-*.jpg`
+(keep the same file name) with the new TomatoPHP style:
+```bash
+cd /e/Sites/tomatophp-sandboxes/<letter> && php artisan db:seed --force && php artisan serve --port=<8100 + agent number> &
+cd /e/Sites/tomatophp/tools/screenshots
+# write a config like covers.json with baseUrl http://127.0.0.1:<port> and the package's pages, then:
+SHOT_EMAIL=demo@tomatophp.com SHOT_PASSWORD=demo1234 node shoot.mjs <your-config>.json
+```
+Render the cover with `/e/Sites/tomatophp/tools/banner/template.html` (params `title`, `desc`, `pkg`, `badge`, `shot` = a dark screenshot)
+through headless Chrome at 2560x1440 (see how `filament-tomatophp-theme/arts/tomatophp-theme.jpg` was made), convert to JPG with PHP GD
+using forward-slash paths, and refresh the README screenshots with the new light/dark captures.
+
+**D. Demo safety notes.** In your report, list anything the public demo must lock down for this package: settings fields that hold
+secrets (API keys, SMTP, payment gateways), actions that run commands or touch files, impersonation, emails sent to real addresses.
+Never commit to `E:\Sites\tomatophp` itself; describe the plugin registration, install command and a suggested seeder instead.

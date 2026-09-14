@@ -60,7 +60,7 @@ class AdminPanelProvider extends PanelProvider
             ->plugins([
                 FilamentTomatoPHPThemePlugin::make(),
                 FilamentUsersPlugin::make(),
-                FilamentSettingsHubPlugin::make(),
+                FilamentSettingsHubPlugin::make()->allowColorSettings(),
                 FilamentDeveloperGatePlugin::make(),
             ]);
     }
