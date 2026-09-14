@@ -25,6 +25,48 @@ class User extends Authenticatable implements FilamentUser
     }
 
     /**
+     * The demo and admin accounts of the public demo cannot be changed from the panel.
+     */
+    public function isDemoProtected(): bool
+    {
+        if (! config('demo.enabled')) {
+            return false;
+        }
+
+        return in_array(
+            $this->getOriginal('email') ?? $this->email,
+            array_filter([config('demo.email'), config('demo.admin.email')]),
+            true,
+        );
+    }
+
+    /**
+     * Checked by tomatophp/filament-users before impersonating.
+     */
+    public function canBeImpersonated(): bool
+    {
+        return ! $this->isDemoProtected();
+    }
+
+    protected static function booted(): void
+    {
+        // Defense in depth for package actions that skip policies: a signed-in user can
+        // never change or delete a protected demo account. Seeders and the CLI run unauthenticated.
+        $guard = function (User $user, bool $deleting): void {
+            if (! auth()->check() || ! $user->isDemoProtected()) {
+                return;
+            }
+
+            $changesIdentity = $deleting || $user->isDirty(['name', 'email', 'password']);
+
+            abort_if($changesIdentity, 403, __('Demo accounts cannot be changed.'));
+        };
+
+        static::updating(fn (User $user) => $guard($user, false));
+        static::deleting(fn (User $user) => $guard($user, true));
+    }
+
+    /**
      * Get the attributes that should be cast.
      *
      * @return array<string, string>

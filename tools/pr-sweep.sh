@@ -11,6 +11,12 @@ set -uo pipefail
 repo=tomatophp/${1:?usage: pr-sweep.sh <repo-name> [--apply]}
 apply=${2:-}
 
+# GitHub computes mergeability lazily and reports UNKNOWN until a PR is requested; ask once, wait, then read.
+for n in $(gh pr list --repo "$repo" --state open --limit 100 --json number --jq '.[].number'); do
+    gh pr view "$n" --repo "$repo" --json mergeable >/dev/null 2>&1
+done
+sleep 8
+
 prs=$(gh pr list --repo "$repo" --state open --limit 100 --json number,title,author,mergeable,mergeStateStatus,files,isDraft)
 
 echo "$prs" | php -r '

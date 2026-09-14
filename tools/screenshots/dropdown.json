@@ -1,0 +1,8 @@
+{
+  "baseUrl": "https://tomato.fadymondy.com",
+  "outDir": "E:/Sites/tomatophp/tools/screenshots/out",
+  "width": 1440, "height": 900, "scale": 2,
+  "shots": [
+    { "name": "user-dropdown", "path": "/admin/users", "click": ".fi-user-menu-trigger", "waitFor": ".fi-dropdown-panel .fi-theme-switcher", "delay": 900 }
+  ]
+}

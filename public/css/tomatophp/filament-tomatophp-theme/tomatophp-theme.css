@@ -68,6 +68,41 @@
     color: currentColor;
 }
 
+/* Dropdowns (user menu, action groups, filters): surface ground with hairlines, no shadow. */
+.fi-dropdown-panel {
+    background-color: var(--tp-surface);
+    border: 1px solid var(--tp-border);
+    box-shadow: none;
+    --tw-ring-shadow: 0 0 #0000;
+}
+
+.fi-dropdown-panel,
+.fi-dropdown-panel * {
+    border-color: var(--tp-border);
+}
+
+.fi-dropdown-header,
+.fi-dropdown-list-item:not(.fi-disabled):hover,
+.fi-dropdown-list-item:not(.fi-disabled):focus-visible {
+    background-color: color-mix(in oklab, var(--tp-border) 45%, transparent);
+}
+
+.fi-theme-switcher {
+    background-image: repeating-linear-gradient(315deg, var(--tp-pattern) 0, var(--tp-pattern) 1px, transparent 0, transparent 50%);
+    background-size: 10px 10px;
+}
+
+.fi-theme-switcher-btn:hover {
+    background-color: color-mix(in oklab, var(--tp-border) 60%, transparent);
+}
+
+.fi-theme-switcher-btn.fi-active {
+    background-color: color-mix(in oklab, var(--tp-brand) 14%, var(--tp-surface));
+    color: var(--tp-brand);
+    outline: 1px solid color-mix(in oklab, var(--tp-brand) 45%, transparent);
+    outline-offset: -1px;
+}
+
 .fi-section,
 .fi-ta-ctn,
 .fi-wi-stats-overview-stat,

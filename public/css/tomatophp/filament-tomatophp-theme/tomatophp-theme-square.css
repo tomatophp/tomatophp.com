@@ -7,6 +7,8 @@
 .fi-btn,
 .fi-input-wrp,
 .fi-badge,
-.fi-dropdown-panel {
+.fi-dropdown-panel,
+.fi-dropdown-list-item,
+.fi-theme-switcher-btn {
     border-radius: 0;
 }
