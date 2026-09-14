@@ -75,7 +75,8 @@ php artisan optimize
 chown -R www-data:www-data "$REL" "$SHARED/storage" "$SHARED/database"
 
 log "health check on 127.0.0.1:$HEALTH_PORT"
-php -S "127.0.0.1:$HEALTH_PORT" -t public >/dev/null 2>&1 &
+# Run as www-data: files the check writes (compiled views, cache) must stay writable by php-fpm.
+runuser -u www-data -- php -S "127.0.0.1:$HEALTH_PORT" -t public >/dev/null 2>&1 &
 SERVER=$!
 trap 'kill $SERVER 2>/dev/null || true' EXIT
 STATUS=000
@@ -92,6 +93,7 @@ if [ "$STATUS" != "200" ]; then
     exit 1
 fi
 
+chown -R www-data:www-data "$SHARED/storage" "$SHARED/database"
 ln -sfn "$REL" "$ROOT/current.new" && mv -Tf "$ROOT/current.new" "$ROOT/current"
 systemctl reload php8.4-fpm
 log "live: $REL"
