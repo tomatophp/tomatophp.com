@@ -31,3 +31,5 @@ Thumbs.db
 
 /packages
 tools/.cache/
+tools/banner/.chrome/
+tools/banner/out/

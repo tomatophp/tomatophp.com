@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<!--
+  TomatoPHP package banner, 2560x1440.
+  Brand: https://tomatophp.com/en/brand (the mark stands alone, Brand #D64524, Accent #4E9A3E, Ink #0B1429, Paper #F0EBE1).
+  Lines: fadymondy.com screen lines (bordered column, edge-to-edge hairlines, 315deg hatch dividers, dashed guides).
+  Params: ?title=&desc=&pkg=&badge=&shot=<relative image path>
+-->
+<style>
+  @font-face { font-family: "Geist"; src: url("fonts/geist.woff2") format("woff2"); font-weight: 100 900; }
+  @font-face { font-family: "Geist Mono"; src: url("fonts/geist-mono.woff2") format("woff2"); font-weight: 100 900; }
+
+  :root {
+    --brand: #D64524;
+    --accent: #4E9A3E;
+    --ink: #0B1429;
+    --paper: #F0EBE1;
+    --border: #25355c;
+    --line: color-mix(in oklab, var(--border) 64%, var(--ink));
+    --pattern: color-mix(in oklab, var(--border) 56%, transparent);
+    --col: 2080px;               /* bordered content column */
+    --gutter: calc((2560px - var(--col)) / 2);
+  }
+
+  * { box-sizing: border-box; margin: 0; }
+
+  html, body { width: 2560px; height: 1440px; overflow: hidden; }
+
+  body {
+    background: var(--ink);
+    color: var(--paper);
+    font-family: "Geist", system-ui, sans-serif;
+    position: relative;
+  }
+
+  /* Column borders running the full height. */
+  .col-lines::before, .col-lines::after {
+    content: ""; position: absolute; top: 0; bottom: 0; width: 1px; background: var(--border);
+  }
+  .col-lines::before { left: var(--gutter); }
+  .col-lines::after { right: var(--gutter); }
+
+  /* Edge-to-edge horizontal hairlines. */
+  .hline { position: absolute; left: 0; right: 0; height: 1px; background: var(--border); }
+
+  /* Hatched divider band between two hairlines. */
+  .stripe {
+    position: absolute; left: 0; right: 0;
+    background-image: repeating-linear-gradient(315deg, var(--pattern) 0, var(--pattern) 1.5px, transparent 0, transparent 50%);
+    background-size: 16px 16px;
+  }
+
+  /* Dashed vertical guide. */
+  .guide { position: absolute; top: 0; bottom: 0; width: 0; border-left: 1px dashed var(--line); }
+
+  /* Accent cube markers on line intersections, echoing the mark's cubes. */
+  .cube { position: absolute; width: 14px; height: 14px; transform: translate(-50%, -50%); }
+  .cube.green { background: var(--accent); }
+  .cube.red { background: var(--brand); }
+
+  .header {
+    position: absolute; left: var(--gutter); width: var(--col); top: 96px; height: 440px;
+    display: grid; grid-template-columns: 360px 1fr; align-items: stretch;
+  }
+  .mark-cell { border-right: 1px solid var(--border); display: grid; place-items: center; }
+  .mark-cell img { width: 232px; height: 232px; }
+  .title-cell { padding: 56px 72px; display: flex; flex-direction: column; justify-content: center; gap: 22px; }
+  .eyebrow { font-family: "Geist Mono", monospace; font-size: 30px; letter-spacing: .18em; text-transform: uppercase; color: var(--brand); }
+  h1 { font-size: 124px; font-weight: 650; letter-spacing: -0.035em; line-height: 1; }
+  .desc { font-size: 44px; line-height: 1.25; color: color-mix(in oklab, var(--paper) 68%, var(--ink)); max-width: 1560px; }
+
+  .meta {
+    position: absolute; left: var(--gutter); width: var(--col); top: 608px; height: 112px;
+    display: flex; align-items: center; justify-content: space-between; padding: 0 56px;
+    font-family: "Geist Mono", monospace; font-size: 38px;
+  }
+  .cmd .prompt { color: var(--brand); margin-right: 22px; }
+  .cmd .pkg { color: var(--paper); }
+  .badges { display: flex; gap: 18px; }
+  .badge { border: 1px solid var(--border); padding: 12px 22px; font-size: 30px; color: color-mix(in oklab, var(--paper) 78%, var(--ink)); }
+  .badge b { color: var(--accent); font-weight: 600; }
+
+  .shot {
+    position: absolute; left: calc(var(--gutter) + 56px); width: calc(var(--col) - 112px); top: 792px; bottom: 0;
+    border: 1px solid var(--border); border-bottom: 0; overflow: hidden; background: #111a33;
+  }
+  .shot img { width: 100%; display: block; }
+  .shot.empty {
+    display: grid; place-items: center;
+    background-image: repeating-linear-gradient(315deg, var(--pattern) 0, var(--pattern) 1.5px, transparent 0, transparent 50%);
+    background-size: 16px 16px;
+  }
+  .shot.empty img { width: 360px; opacity: .9; }
+
+  .site { position: absolute; right: calc(var(--gutter) + 40px); bottom: 26px; font-family: "Geist Mono", monospace; font-size: 26px; color: color-mix(in oklab, var(--paper) 55%, var(--ink)); background: var(--ink); padding: 4px 12px; }
+</style>
+</head>
+<body class="col-lines">
+  <div class="hline" style="top:96px"></div>
+  <div class="hline" style="top:536px"></div>
+  <div class="stripe" style="top:537px;height:71px"></div>
+  <div class="hline" style="top:608px"></div>
+  <div class="hline" style="top:720px"></div>
+  <div class="stripe" style="top:721px;height:71px"></div>
+  <div class="hline" style="top:792px"></div>
+  <div class="guide" style="left:calc(var(--gutter) + 360px)"></div>
+
+  <div class="cube green" style="left:var(--gutter);top:96px"></div>
+  <div class="cube red" style="left:calc(2560px - var(--gutter));top:536px"></div>
+  <div class="cube green" style="left:calc(2560px - var(--gutter));top:792px"></div>
+
+  <section class="header">
+    <div class="mark-cell"><img src="../../public/brand/mark-transparent.svg" alt=""></div>
+    <div class="title-cell">
+      <div class="eyebrow" id="eyebrow">tomatophp · filament plugin</div>
+      <h1 id="title">Package</h1>
+      <div class="desc" id="desc"></div>
+    </div>
+  </section>
+
+  <section class="meta">
+    <div class="cmd"><span class="prompt">$</span><span>composer require </span><span class="pkg" id="pkg"></span></div>
+    <div class="badges" id="badges"></div>
+  </section>
+
+  <section class="shot" id="shot"></section>
+
+  <div class="site">tomatophp.com</div>
+
+<script>
+  const q = new URLSearchParams(location.search);
+  document.getElementById('title').textContent = q.get('title') || 'Package';
+  document.getElementById('desc').textContent = q.get('desc') || '';
+  document.getElementById('pkg').textContent = q.get('pkg') || 'tomatophp/package';
+  for (const b of (q.get('badge') || 'Filament|5,Laravel|13').split(',')) {
+    const [label, value] = b.split('|');
+    const el = document.createElement('span');
+    el.className = 'badge';
+    el.innerHTML = `${label} <b>${value}</b>`;
+    document.getElementById('badges').appendChild(el);
+  }
+  const shot = document.getElementById('shot');
+  const img = document.createElement('img');
+  if (q.get('shot')) { img.src = q.get('shot'); } else { shot.classList.add('empty'); img.src = '../../public/brand/mark-transparent.svg'; }
+  shot.appendChild(img);
+</script>
+</body>
+</html>
