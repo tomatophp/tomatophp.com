@@ -1,0 +1,61 @@
+/*
+ * TomatoPHP theme: fadymondy.com screen lines.
+ * The content column is framed by vertical hairlines; every page heading sits in its own
+ * row between edge-to-edge hairlines, under a full-width 315deg hatched band.
+ */
+html,
+body {
+    overflow-x: clip;
+}
+
+.fi-simple-layout {
+    background-image: repeating-linear-gradient(315deg, var(--tp-pattern) 0, var(--tp-pattern) 1px, transparent 0, transparent 50%);
+    background-size: 10px 10px;
+}
+
+.fi-main {
+    min-height: calc(100vh - 4rem);
+    border-inline: 1px solid var(--tp-border);
+}
+
+.fi-header {
+    position: relative;
+    padding-top: calc(2rem + 1rem);
+    padding-bottom: 0.875rem;
+}
+
+/* Hatched band above the heading row. */
+.fi-header::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 100vw;
+    height: 2rem;
+    transform: translateX(-50%);
+    border-block: 1px solid var(--tp-border);
+    background-image: repeating-linear-gradient(315deg, var(--tp-pattern) 0, var(--tp-pattern) 1px, transparent 0, transparent 50%);
+    background-size: 10px 10px;
+    pointer-events: none;
+}
+
+/* Hairline closing the heading row. */
+.fi-header::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 100vw;
+    transform: translateX(-50%);
+    border-bottom: 1px solid var(--tp-border);
+    pointer-events: none;
+}
+
+.fi-header-heading {
+    font-weight: 500;
+    letter-spacing: -0.02em;
+}
+
+.fi-header-subheading {
+    color: color-mix(in oklab, currentColor 70%, transparent);
+}

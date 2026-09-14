@@ -1,0 +1,12 @@
+/* TomatoPHP theme: square corners, matching the cube construction of the mark. */
+.fi-simple-main,
+.fi-section,
+.fi-ta-ctn,
+.fi-wi-stats-overview-stat,
+.fi-modal-window,
+.fi-btn,
+.fi-input-wrp,
+.fi-badge,
+.fi-dropdown-panel {
+    border-radius: 0;
+}

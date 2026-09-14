@@ -33,3 +33,4 @@ Thumbs.db
 tools/.cache/
 tools/banner/.chrome/
 tools/banner/out/
+tools/banner/.chrome-*/

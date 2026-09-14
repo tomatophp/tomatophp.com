@@ -1,7 +1,6 @@
 /*
- * TomatoPHP demo panel theme.
- * Brand palette from https://tomatophp.com/en/brand and the fadymondy.com screen-line style:
- * hairline borders instead of shadows, and a 315deg hatch on guest (login) pages.
+ * TomatoPHP theme for Filament: brand palette (https://tomatophp.com/en/brand)
+ * with screen-line styling: paper/ink grounds and hairline borders instead of shadows.
  */
 :root {
     --tp-brand: #d64524;
@@ -27,21 +26,13 @@
     background-color: var(--tp-ink);
 }
 
-/* Guest pages: hatched ground with a bordered, square card. */
-.fi-simple-layout {
-    background-image: repeating-linear-gradient(315deg, var(--tp-pattern) 0, var(--tp-pattern) 1px, transparent 0, transparent 50%);
-    background-size: 10px 10px;
-}
-
 .fi-simple-main {
     background-color: var(--tp-surface);
     border: 1px solid var(--tp-border);
-    border-radius: 0;
     box-shadow: none;
     --tw-ring-shadow: 0 0 #0000;
 }
 
-/* Panel chrome: hairlines, no shadows. */
 .fi-topbar > nav,
 .fi-topbar {
     background-color: var(--tp-surface);
@@ -61,38 +52,28 @@
     border-inline-end: 1px solid var(--tp-border);
 }
 
+/* Brand guide: Brand is the action color, so primary buttons use it exactly in both modes
+   instead of Filament's contrast-picked lighter shade. */
+.fi-btn.fi-color.fi-color-primary:not(.fi-outlined) {
+    background-color: var(--tp-brand);
+    color: #fff;
+}
+
+.fi-btn.fi-color.fi-color-primary:not(.fi-outlined):hover {
+    background-color: color-mix(in oklab, var(--tp-brand) 85%, var(--tp-ink));
+    color: #fff;
+}
+
+.fi-btn.fi-color.fi-color-primary:not(.fi-outlined) > .fi-icon {
+    color: currentColor;
+}
+
 .fi-section,
 .fi-ta-ctn,
 .fi-wi-stats-overview-stat,
 .fi-modal-window {
     background-color: var(--tp-surface);
     border: 1px solid var(--tp-border);
-    border-radius: 0;
     box-shadow: none;
     --tw-ring-shadow: 0 0 #0000;
-}
-
-/* Page header sits on a hatched divider band, like fadymondy.com section separators. */
-.fi-header {
-    padding-block: 0.75rem;
-    border-block: 1px solid var(--tp-border);
-    background-image: repeating-linear-gradient(315deg, var(--tp-pattern) 0, var(--tp-pattern) 1px, transparent 0, transparent 50%);
-    background-size: 10px 10px;
-}
-
-.fi-header-heading {
-    display: inline-block;
-    padding-inline: 0.5rem;
-    background-color: var(--tp-paper);
-}
-
-.dark .fi-header-heading {
-    background-color: var(--tp-ink);
-}
-
-.fi-btn,
-.fi-input-wrp,
-.fi-badge,
-.fi-dropdown-panel {
-    border-radius: 0;
 }

@@ -16,6 +16,7 @@
         "tomatophp/filament-developer-gate": "^5.0",
         "tomatophp/filament-icons": "^5.0",
         "tomatophp/filament-settings-hub": "^5.0",
+        "tomatophp/filament-tomatophp-theme": "^5.0",
         "tomatophp/filament-translation-component": "^5.0",
         "tomatophp/filament-users": "^5.0"
     },
