@@ -1,58 +1,65 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# TomatoPHP Demo
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+The live demo for every [TomatoPHP](https://tomatophp.com) Filament plugin, running on Laravel 13 and Filament 5
+with the [TomatoPHP theme](https://github.com/tomatophp/filament-tomatophp-theme).
 
-## About Laravel
+- Demo: https://tomatophp.fadymondy.com
+- Account: `demo@tomatophp.com` / `demo1234` (prefilled on the login page)
+- Demo data resets every hour
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+The previous version of this repository is kept on the `backup` branch.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## What's inside
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+| Plugin | Version |
+|--------|---------|
+| [tomatophp/filament-tomatophp-theme](https://github.com/tomatophp/filament-tomatophp-theme) | 5.x |
+| [tomatophp/filament-users](https://github.com/tomatophp/filament-users) | 5.x |
+| [tomatophp/filament-settings-hub](https://github.com/tomatophp/filament-settings-hub) | 5.x |
+| [tomatophp/filament-developer-gate](https://github.com/tomatophp/filament-developer-gate) | 5.x |
+| [tomatophp/filament-icons](https://github.com/tomatophp/filament-icons) | 5.x |
 
-## Learning Laravel
+More plugins are added here as each one is released for Filament 5.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
-
-In addition, [Laracasts](https://laracasts.com) contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
-
-You can also watch bite-sized lessons with real-world projects on [Laravel Learn](https://laravel.com/learn), where you will be guided through building a Laravel application from scratch while learning PHP fundamentals.
-
-## Agentic Development
-
-Laravel's predictable structure and conventions make it ideal for AI coding agents like Claude Code, Cursor, and GitHub Copilot. Install [Laravel Boost](https://laravel.com/docs/ai) to supercharge your AI workflow:
+## Run it locally
 
 ```bash
-composer require laravel/boost --dev
-
-php artisan boost:install
+git clone https://github.com/tomatophp/tomatophp.com.git
+cd tomatophp.com
+composer install
+cp .env.example .env
+php artisan key:generate
+touch database/database.sqlite
+php artisan migrate --seed
+php artisan filament:assets
+php artisan serve
 ```
 
-Boost provides your agent 15+ tools and skills that help agents build Laravel applications while following best practices.
+Open http://localhost:8000/admin and sign in with the demo account.
 
-## Contributing
+## Demo mode
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+Set `DEMO_MODE=true` in `.env` for a public deployment:
 
-## Code of Conduct
+- the login page is prefilled with `DEMO_EMAIL` / `DEMO_PASSWORD`
+- the demo and admin (`DEMO_ADMIN_EMAIL`) accounts cannot be edited, deleted, have their password changed or be impersonated from the panel
+- `php artisan schedule:work` (or a cron running `schedule:run`) rebuilds the database from the seeders every hour
+- command and file tools such as the artisan runner and file browser stay behind the developer gate
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+Every plugin added to the demo ships a seeder in `database/seeders` so a fresh `migrate --seed` shows it with data.
 
-## Security Vulnerabilities
+## Developing the plugins
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+The plugins are developed side by side in `packages/` (ignored by git) and resolved through a Composer path repository,
+so the demo always runs the working copy. Without a `packages/` folder, run `composer update "tomatophp/*"` once so Composer
+resolves the released versions from Packagist instead of the local path entries in `composer.lock`.
+
+```bash
+php artisan test
+```
+
+runs the panel smoke test (every page of every panel renders for a signed-in user), the demo-mode tests and the plugin integration tests.
 
 ## License
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+The MIT License (MIT).

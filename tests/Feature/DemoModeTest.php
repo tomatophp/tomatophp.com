@@ -5,6 +5,7 @@ namespace Tests\Feature;
 use App\Filament\Pages\Auth\Login;
 use App\Models\User;
 use Database\Seeders\DatabaseSeeder;
+use Filament\Actions\Testing\TestAction;
 use Filament\Facades\Filament;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Gate;
@@ -12,6 +13,7 @@ use Livewire\Livewire;
 use PHPUnit\Framework\Attributes\Test;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 use Tests\TestCase;
+use TomatoPHP\FilamentUsers\Filament\Resources\Users\Pages\ListUsers;
 
 class DemoModeTest extends TestCase
 {
@@ -74,6 +76,20 @@ class DemoModeTest extends TestCase
         $this->assertTrue(Gate::forUser($demo)->allows('update', $sample));
         $this->assertTrue(Gate::forUser($demo)->allows('delete', $sample));
         $this->assertTrue($sample->canBeImpersonated());
+    }
+
+    #[Test]
+    public function the_demo_user_cannot_change_the_admin_password_from_the_users_table(): void
+    {
+        $this->seed(DatabaseSeeder::class);
+
+        $admin = User::where('email', 'admin@tomatophp.test')->firstOrFail();
+        $sample = User::where('email', 'like', '%@example.com')->firstOrFail();
+        $this->actingAs(User::where('email', 'demo@tomatophp.com')->firstOrFail());
+
+        Livewire::test(ListUsers::class)
+            ->assertActionHidden(TestAction::make('changePassword')->table($admin))
+            ->assertActionVisible(TestAction::make('changePassword')->table($sample));
     }
 
     #[Test]
