@@ -22,8 +22,12 @@ use Illuminate\View\Middleware\ShareErrorsFromSession;
 use TomatoPHP\FilamentAlerts\FilamentAlertsPlugin;
 use TomatoPHP\FilamentDeveloperGate\FilamentDeveloperGatePlugin;
 use TomatoPHP\FilamentDiscordDriver\FilamentDiscordDriverPlugin;
+use TomatoPHP\FilamentLanguageSwitcher\FilamentLanguageSwitcherPlugin;
 use TomatoPHP\FilamentSettingsHub\FilamentSettingsHubPlugin;
 use TomatoPHP\FilamentTomatoPHPTheme\FilamentTomatoPHPThemePlugin;
+use TomatoPHP\FilamentTranslations\FilamentTranslationsPlugin;
+use TomatoPHP\FilamentTranslationsGoogle\FilamentTranslationsGooglePlugin;
+use TomatoPHP\FilamentTranslationsGpt\FilamentTranslationsGptPlugin;
 use TomatoPHP\FilamentUsers\FilamentUsersPlugin;
 
 class AdminPanelProvider extends PanelProvider
@@ -68,6 +72,10 @@ class AdminPanelProvider extends PanelProvider
                 FilamentDeveloperGatePlugin::make(),
                 FilamentAlertsPlugin::make()->useSettingsHub(),
                 FilamentDiscordDriverPlugin::make(),
+                FilamentTranslationsPlugin::make()->allowCreate(),
+                FilamentTranslationsGooglePlugin::make(),
+                FilamentTranslationsGptPlugin::make(),
+                FilamentLanguageSwitcherPlugin::make(),
             ]);
     }
 }

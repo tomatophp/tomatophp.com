@@ -17,9 +17,13 @@
         "tomatophp/filament-developer-gate": "^5.0",
         "tomatophp/filament-discord-driver": "^5.0",
         "tomatophp/filament-icons": "^5.0",
+        "tomatophp/filament-language-switcher": "^5.0",
         "tomatophp/filament-settings-hub": "^5.0",
         "tomatophp/filament-tomatophp-theme": "^5.0",
         "tomatophp/filament-translation-component": "^5.0",
+        "tomatophp/filament-translations": "^5.0",
+        "tomatophp/filament-translations-google": "^5.0",
+        "tomatophp/filament-translations-gpt": "^5.0",
         "tomatophp/filament-users": "^5.0"
     },
     "require-dev": {
