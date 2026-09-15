@@ -140,3 +140,7 @@ Never commit to `E:\Sites\tomatophp` itself; describe the plugin registration, i
 ## Testbench gotcha: provider order
 
 In a Testbench `TestCase`, register `Filament\Support\SupportServiceProvider` before `LivewireServiceProvider` (`sort()` the provider list as filament-alerts does). Otherwise Filament's `bind(DataStore)` replaces Livewire's shared store and every Livewire render fails with `ViewErrorBag::put(): null given`. Real apps are not affected.
+
+## Package views need their own CSS
+
+A Filament 5 panel compiles only Filament's own classes, so Tailwind utilities in a package's Blade views render unstyled in a real app (Testbench never shows this). Ship a small package stylesheet through `FilamentAsset::register([Css::make(...)])` or use inline styles. Do not wrap it in a CSS `@layer`: Filament's reset wins over layered rules. Always look at every custom view in the sandbox, light and dark.
