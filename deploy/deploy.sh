@@ -51,12 +51,15 @@ rm -rf storage && ln -sfn "$SHARED/storage" storage
 ln -sfn "$SHARED/database/database.sqlite" database/database.sqlite
 
 # Locally the plugins resolve from packages/; production installs the released versions.
-# The theme is read straight from GitHub until it is listed on Packagist.
+# Packages not yet listed on Packagist are read straight from GitHub.
 php -r '
 $file = "composer.json";
 $json = json_decode(file_get_contents($file), true);
 // no-api: clone the public repo over HTTPS instead of the GitHub API (no token on the server).
-$json["repositories"] = [["type" => "vcs", "url" => "https://github.com/tomatophp/filament-tomatophp-theme.git", "no-api" => true]];
+$json["repositories"] = array_map(
+    fn (string $name): array => ["type" => "vcs", "url" => "https://github.com/tomatophp/$name.git", "no-api" => true],
+    ["filament-tomatophp-theme", "filament-cms-api"],
+);
 file_put_contents($file, json_encode($json, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES) . "\n");'
 rm -f composer.lock
 # Fresh Packagist metadata: a just-released plugin version must not resolve to the previous one.
