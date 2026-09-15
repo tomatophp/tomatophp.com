@@ -18,6 +18,14 @@ The previous version of this repository is kept on the `backup` branch.
 | [tomatophp/filament-settings-hub](https://github.com/tomatophp/filament-settings-hub) | 5.x |
 | [tomatophp/filament-developer-gate](https://github.com/tomatophp/filament-developer-gate) | 5.x |
 | [tomatophp/filament-icons](https://github.com/tomatophp/filament-icons) | 5.x |
+| [tomatophp/filament-alerts](https://github.com/tomatophp/filament-alerts) | 5.x |
+| [tomatophp/filament-discord-driver](https://github.com/tomatophp/filament-discord-driver) | 5.x |
+| [tomatophp/filament-translation-component](https://github.com/tomatophp/filament-translation-component) | 5.x |
+| [tomatophp/filament-translations](https://github.com/tomatophp/filament-translations) | 5.x |
+| [tomatophp/filament-translations-google](https://github.com/tomatophp/filament-translations-google) | 5.x |
+| [tomatophp/filament-translations-gpt](https://github.com/tomatophp/filament-translations-gpt) | 5.x |
+| [tomatophp/filament-language-switcher](https://github.com/tomatophp/filament-language-switcher) | 5.x |
+| [tomatophp/filament-wallet](https://github.com/tomatophp/filament-wallet) | 5.x |
 
 More plugins are added here as each one is released for Filament 5.
 
