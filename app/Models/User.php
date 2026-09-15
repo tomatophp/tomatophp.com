@@ -13,14 +13,16 @@ use Illuminate\Database\Eloquent\Attributes\Hidden;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Laravelcm\Subscriptions\Traits\HasPlanSubscriptions;
 use TomatoPHP\FilamentLanguageSwitcher\Traits\InteractsWithLanguages;
+use TomatoPHP\FilamentMeta\Traits\HasMeta;
 
 #[Fillable(['name', 'email', 'password'])]
 #[Hidden(['password', 'remember_token'])]
 class User extends Authenticatable implements FilamentUser, Wallet
 {
     /** @use HasFactory<UserFactory> */
-    use HasFactory, HasWalletFloat, InteractsWithLanguages, Notifiable;
+    use HasFactory, HasMeta, HasPlanSubscriptions, HasWalletFloat, InteractsWithLanguages, Notifiable;
 
     public function canAccessPanel(Panel $panel): bool
     {

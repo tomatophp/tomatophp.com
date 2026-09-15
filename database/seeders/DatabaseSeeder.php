@@ -23,6 +23,15 @@ class DatabaseSeeder extends Seeder
             DemoCmsSeeder::class,
             DemoMenusSeeder::class,
             DemoMediaSeeder::class,
+            DemoAccountsSeeder::class,
+            DemoEmployeesSeeder::class,
+            DemoMetaSeeder::class,
+            DemoInvoicesSeeder::class,
+            DemoSubscriptionsSeeder::class,
+            DemoFormBuilderSeeder::class,
+            DemoIssuesSeeder::class,
+            DemoDocsSeeder::class,
+            DemoBookmarksSeeder::class,
         ]);
     }
 }

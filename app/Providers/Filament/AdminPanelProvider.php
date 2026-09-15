@@ -20,18 +20,31 @@ use Illuminate\Routing\Middleware\SubstituteBindings;
 use Illuminate\Session\Middleware\StartSession;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
 use LaraZeus\SpatieTranslatable\SpatieTranslatablePlugin;
+use TomatoPHP\FilamentAccounts\FilamentAccountsPlugin;
 use TomatoPHP\FilamentAlerts\FilamentAlertsPlugin;
+use TomatoPHP\FilamentBookmarksMenu\FilamentBookmarksMenuPlugin;
 use TomatoPHP\FilamentCms\FilamentCMSPlugin;
 use TomatoPHP\FilamentDeveloperGate\FilamentDeveloperGatePlugin;
 use TomatoPHP\FilamentDiscordDriver\FilamentDiscordDriverPlugin;
+use TomatoPHP\FilamentDocs\FilamentDocsPlugin;
+use TomatoPHP\FilamentEmployees\FilamentEmployeesPlugin;
+use TomatoPHP\FilamentFormBuilder\FilamentFormBuilderPlugin;
+use TomatoPHP\FilamentInvoices\FilamentInvoicesPlugin;
+use TomatoPHP\FilamentIssues\FilamentIssuesPlugin;
 use TomatoPHP\FilamentLanguageSwitcher\FilamentLanguageSwitcherPlugin;
+use TomatoPHP\FilamentLocations\FilamentLocationsPlugin;
 use TomatoPHP\FilamentMediaManager\FilamentMediaManagerPlugin;
 use TomatoPHP\FilamentMenus\FilamentMenusPlugin;
 use TomatoPHP\FilamentSettingsHub\FilamentSettingsHubPlugin;
+use TomatoPHP\FilamentSubscriptions\FilamentSubscriptionsPlugin;
 use TomatoPHP\FilamentTomatoPHPTheme\FilamentTomatoPHPThemePlugin;
 use TomatoPHP\FilamentTranslations\FilamentTranslationsPlugin;
 use TomatoPHP\FilamentTranslationsGoogle\FilamentTranslationsGooglePlugin;
 use TomatoPHP\FilamentTranslationsGpt\FilamentTranslationsGptPlugin;
+use TomatoPHP\FilamentTypes\FilamentTypesPlugin;
+use TomatoPHP\FilamentTypes\Services\Contracts\Type;
+use TomatoPHP\FilamentTypes\Services\Contracts\TypeFor;
+use TomatoPHP\FilamentTypes\Services\Contracts\TypeOf;
 use TomatoPHP\FilamentUsers\FilamentUsersPlugin;
 use TomatoPHP\FilamentWallet\FilamentWalletPlugin;
 
@@ -87,6 +100,57 @@ class AdminPanelProvider extends PanelProvider
                 FilamentCMSPlugin::make()->useCategory()->usePost(),
                 FilamentMenusPlugin::make(),
                 FilamentMediaManagerPlugin::make(),
+                FilamentTypesPlugin::make()->types($this->showcaseTypes()),
+                // Account import and export stay off on the public demo, like the CMS ones.
+                FilamentAccountsPlugin::make()
+                    ->useTypes()
+                    ->useAvatar()
+                    ->canLogin()
+                    ->canBlocked()
+                    ->showAddressField(),
+                FilamentEmployeesPlugin::make(),
+                FilamentLocationsPlugin::make(),
+                FilamentInvoicesPlugin::make(),
+                FilamentSubscriptionsPlugin::make(),
+                FilamentFormBuilderPlugin::make(),
+                FilamentIssuesPlugin::make(),
+                FilamentDocsPlugin::make(),
+                FilamentBookmarksMenuPlugin::make(),
             ]);
+    }
+
+    /**
+     * Sample type groups managed by tomatophp/filament-types.
+     *
+     * @return array<int, TypeFor>
+     */
+    protected function showcaseTypes(): array
+    {
+        return [
+            TypeFor::make('posts')
+                ->label('Posts')
+                ->types([
+                    TypeOf::make('categories')
+                        ->label('Categories')
+                        ->register([
+                            Type::make('news')->name('News')->icon('heroicon-o-newspaper')->color('#2563eb'),
+                            Type::make('tutorials')->name('Tutorials')->icon('heroicon-o-academic-cap')->color('#7c3aed'),
+                            Type::make('releases')->name('Releases')->icon('heroicon-o-rocket-launch')->color('#db2777'),
+                        ]),
+                ]),
+            TypeFor::make('orders')
+                ->label('Orders')
+                ->types([
+                    TypeOf::make('status')
+                        ->label('Status')
+                        ->register([
+                            Type::make('pending')->name('Pending')->icon('heroicon-o-clock')->color('#f59e0b'),
+                            Type::make('processing')->name('Processing')->icon('heroicon-o-arrow-path')->color('#0ea5e9'),
+                            Type::make('shipped')->name('Shipped')->icon('heroicon-o-truck')->color('#6366f1'),
+                            Type::make('delivered')->name('Delivered')->icon('heroicon-o-check-badge')->color('#16a34a'),
+                            Type::make('cancelled')->name('Cancelled')->icon('heroicon-o-x-circle')->color('#dc2626'),
+                        ]),
+                ]),
+        ];
     }
 }

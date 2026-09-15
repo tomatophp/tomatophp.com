@@ -9,6 +9,7 @@ use PHPUnit\Framework\Attributes\Test;
 use Tests\TestCase;
 use TomatoPHP\FilamentAlerts\Filament\Pages\EmailSettingsPage;
 use TomatoPHP\FilamentDiscordDriver\Filament\Pages\DiscordSettingsPage;
+use TomatoPHP\FilamentInvoices\Pages\InvoiceSettingsPage;
 
 /**
  * Pages that store credentials are unreachable in the public demo.
@@ -22,6 +23,7 @@ class DemoLockedPagesTest extends TestCase
         return [
             'alerts email settings' => [EmailSettingsPage::class],
             'discord settings' => [DiscordSettingsPage::class],
+            'invoices settings' => [InvoiceSettingsPage::class],
         ];
     }
 

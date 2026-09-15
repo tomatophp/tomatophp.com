@@ -11,6 +11,7 @@ use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
+use TomatoPHP\FilamentBookmarksMenu\Filament\Tables\BookmarkAction;
 use TomatoPHP\FilamentIcons\Components\IconColumn;
 use TomatoPHP\FilamentIcons\Components\IconPicker;
 use TomatoPHP\FilamentTranslationComponent\Components\Translation;
@@ -65,6 +66,8 @@ class CategoryResource extends Resource
                     ->sortable(),
             ])
             ->recordActions([
+                // The resource has no edit page, so bookmarks point at the list filtered to the record.
+                BookmarkAction::make()->page('index'),
                 EditAction::make(),
                 DeleteAction::make(),
             ]);

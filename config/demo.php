@@ -29,6 +29,8 @@ return [
         'TomatoPHP\FilamentAlerts\Filament\Pages\EmailSettingsPage',
         'TomatoPHP\FilamentDiscordDriver\Filament\Pages\DiscordSettingsPage',
         'TomatoPHP\FilamentFcmDriver\Filament\Pages\FcmSettingsPage',
+        // Invoice mail sender and templates.
+        'TomatoPHP\FilamentInvoices\Pages\InvoiceSettingsPage',
     ],
 
     'admin' => [

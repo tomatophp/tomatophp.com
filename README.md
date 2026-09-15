@@ -29,6 +29,17 @@ The previous version of this repository is kept on the `backup` branch.
 | [tomatophp/filament-cms](https://github.com/tomatophp/filament-cms) | 5.x |
 | [tomatophp/filament-menus](https://github.com/tomatophp/filament-menus) | 5.x |
 | [tomatophp/filament-media-manager](https://github.com/tomatophp/filament-media-manager) | 5.x |
+| [tomatophp/filament-types](https://github.com/tomatophp/filament-types) | 5.x |
+| [tomatophp/filament-accounts](https://github.com/tomatophp/filament-accounts) | 5.x |
+| [tomatophp/filament-meta](https://github.com/tomatophp/filament-meta) | 5.x |
+| [tomatophp/filament-employees](https://github.com/tomatophp/filament-employees) | 5.x |
+| [tomatophp/filament-locations](https://github.com/tomatophp/filament-locations) | 5.x |
+| [tomatophp/filament-invoices](https://github.com/tomatophp/filament-invoices) | 5.x |
+| [tomatophp/filament-subscriptions](https://github.com/tomatophp/filament-subscriptions) | 5.x |
+| [tomatophp/filament-form-builder](https://github.com/tomatophp/filament-form-builder) | 5.x |
+| [tomatophp/filament-issues](https://github.com/tomatophp/filament-issues) | 5.x |
+| [tomatophp/filament-docs](https://github.com/tomatophp/filament-docs) | 5.x |
+| [tomatophp/filament-bookmarks-menu](https://github.com/tomatophp/filament-bookmarks-menu) | 5.x |
 
 More plugins are added here as each one is released for Filament 5.
 
@@ -56,6 +67,8 @@ Set `DEMO_MODE=true` in `.env` for a public deployment:
 - the demo and admin (`DEMO_ADMIN_EMAIL`) accounts cannot be edited, deleted, have their password changed or be impersonated from the panel
 - `php artisan schedule:work` (or a cron running `schedule:run`) rebuilds the database from the seeders every hour
 - command and file tools such as the artisan runner and file browser stay behind the developer gate
+- pages that store credentials (mail, Discord, invoice settings) redirect to the dashboard, and actions that send mail
+  or call GitHub (invoice emails, issue refresh and clean) are hidden
 
 Every plugin added to the demo ships a seeder in `database/seeders` so a fresh `migrate --seed` shows it with data.
 
