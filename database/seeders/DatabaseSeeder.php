@@ -19,6 +19,7 @@ class DatabaseSeeder extends Seeder
             DemoCategoriesSeeder::class,
             DemoAlertsSeeder::class,
             DemoTranslationsSeeder::class,
+            DemoWalletsSeeder::class,
         ]);
     }
 }

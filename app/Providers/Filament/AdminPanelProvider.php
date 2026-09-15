@@ -29,6 +29,7 @@ use TomatoPHP\FilamentTranslations\FilamentTranslationsPlugin;
 use TomatoPHP\FilamentTranslationsGoogle\FilamentTranslationsGooglePlugin;
 use TomatoPHP\FilamentTranslationsGpt\FilamentTranslationsGptPlugin;
 use TomatoPHP\FilamentUsers\FilamentUsersPlugin;
+use TomatoPHP\FilamentWallet\FilamentWalletPlugin;
 
 class AdminPanelProvider extends PanelProvider
 {
@@ -76,6 +77,7 @@ class AdminPanelProvider extends PanelProvider
                 FilamentTranslationsGooglePlugin::make(),
                 FilamentTranslationsGptPlugin::make(),
                 FilamentLanguageSwitcherPlugin::make(),
+                FilamentWalletPlugin::make(),
             ]);
     }
 }

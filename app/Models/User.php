@@ -3,6 +3,8 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Bavix\Wallet\Interfaces\Wallet;
+use Bavix\Wallet\Traits\HasWalletFloat;
 use Database\Factories\UserFactory;
 use Filament\Models\Contracts\FilamentUser;
 use Filament\Panel;
@@ -15,10 +17,10 @@ use TomatoPHP\FilamentLanguageSwitcher\Traits\InteractsWithLanguages;
 
 #[Fillable(['name', 'email', 'password'])]
 #[Hidden(['password', 'remember_token'])]
-class User extends Authenticatable implements FilamentUser
+class User extends Authenticatable implements FilamentUser, Wallet
 {
     /** @use HasFactory<UserFactory> */
-    use HasFactory, InteractsWithLanguages, Notifiable;
+    use HasFactory, HasWalletFloat, InteractsWithLanguages, Notifiable;
 
     public function canAccessPanel(Panel $panel): bool
     {

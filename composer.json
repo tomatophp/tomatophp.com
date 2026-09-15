@@ -24,7 +24,8 @@
         "tomatophp/filament-translations": "^5.0",
         "tomatophp/filament-translations-google": "^5.0",
         "tomatophp/filament-translations-gpt": "^5.0",
-        "tomatophp/filament-users": "^5.0"
+        "tomatophp/filament-users": "^5.0",
+        "tomatophp/filament-wallet": "^5.0"
     },
     "require-dev": {
         "fakerphp/faker": "^1.23",
