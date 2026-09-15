@@ -136,3 +136,7 @@ using forward-slash paths, and refresh the README screenshots with the new light
 **D. Demo safety notes.** In your report, list anything the public demo must lock down for this package: settings fields that hold
 secrets (API keys, SMTP, payment gateways), actions that run commands or touch files, impersonation, emails sent to real addresses.
 Never commit to `E:\Sites\tomatophp` itself; describe the plugin registration, install command and a suggested seeder instead.
+
+## Testbench gotcha: provider order
+
+In a Testbench `TestCase`, register `Filament\Support\SupportServiceProvider` before `LivewireServiceProvider` (`sort()` the provider list as filament-alerts does). Otherwise Filament's `bind(DataStore)` replaces Livewire's shared store and every Livewire render fails with `ViewErrorBag::put(): null given`. Real apps are not affected.
