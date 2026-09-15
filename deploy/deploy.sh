@@ -65,8 +65,6 @@ rm -f composer.lock
 # Fresh Packagist metadata: a just-released plugin version must not resolve to the previous one.
 COMPOSER_ALLOW_SUPERUSER=1 composer clear-cache -q
 COMPOSER_ALLOW_SUPERUSER=1 composer update --no-dev --optimize-autoloader --no-interaction --no-progress
-# filament-form-builder 5.0.0 registers resources/views but ships without it; view:cache fails on the missing path.
-mkdir -p vendor/tomatophp/filament-form-builder/resources/views
 
 grep -q '^APP_KEY=base64:' .env || php artisan key:generate --force
 # FRESH=1 rebuilds the demo database from scratch, for deploys that add plugins or rename tables.
