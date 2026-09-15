@@ -58,7 +58,7 @@ $json = json_decode(file_get_contents($file), true);
 // no-api: clone the public repo over HTTPS instead of the GitHub API (no token on the server).
 $json["repositories"] = array_map(
     fn (string $name): array => ["type" => "vcs", "url" => "https://github.com/tomatophp/$name.git", "no-api" => true],
-    ["filament-tomatophp-theme", "filament-cms-api"],
+    ["filament-tomatophp-theme", "filament-cms-api", "filament-form-builder"],
 );
 file_put_contents($file, json_encode($json, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES) . "\n");'
 rm -f composer.lock
