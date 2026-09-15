@@ -19,10 +19,14 @@ use Illuminate\Foundation\Http\Middleware\PreventRequestForgery;
 use Illuminate\Routing\Middleware\SubstituteBindings;
 use Illuminate\Session\Middleware\StartSession;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
+use LaraZeus\SpatieTranslatable\SpatieTranslatablePlugin;
 use TomatoPHP\FilamentAlerts\FilamentAlertsPlugin;
+use TomatoPHP\FilamentCms\FilamentCMSPlugin;
 use TomatoPHP\FilamentDeveloperGate\FilamentDeveloperGatePlugin;
 use TomatoPHP\FilamentDiscordDriver\FilamentDiscordDriverPlugin;
 use TomatoPHP\FilamentLanguageSwitcher\FilamentLanguageSwitcherPlugin;
+use TomatoPHP\FilamentMediaManager\FilamentMediaManagerPlugin;
+use TomatoPHP\FilamentMenus\FilamentMenusPlugin;
 use TomatoPHP\FilamentSettingsHub\FilamentSettingsHubPlugin;
 use TomatoPHP\FilamentTomatoPHPTheme\FilamentTomatoPHPThemePlugin;
 use TomatoPHP\FilamentTranslations\FilamentTranslationsPlugin;
@@ -78,6 +82,11 @@ class AdminPanelProvider extends PanelProvider
                 FilamentTranslationsGptPlugin::make(),
                 FilamentLanguageSwitcherPlugin::make(),
                 FilamentWalletPlugin::make(),
+                SpatieTranslatablePlugin::make()->defaultLocales(['en', 'ar']),
+                // Import, export and content import stay off on the public demo.
+                FilamentCMSPlugin::make()->useCategory()->usePost(),
+                FilamentMenusPlugin::make(),
+                FilamentMediaManagerPlugin::make(),
             ]);
     }
 }

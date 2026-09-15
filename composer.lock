@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "a8e3a06d150cced76dcb9639e66a00d3",
+    "content-hash": "fa0a3c5e7a85dc8983881ae5f61a890c",
     "packages": [
         {
             "name": "anourvalar/eloquent-serialize",
@@ -10204,6 +10204,191 @@
             }
         },
         {
+            "name": "tomatophp/filament-cms",
+            "version": "5.0.0",
+            "dist": {
+                "type": "path",
+                "url": "packages/filament-cms",
+                "reference": "3022a7ca480d27d55776b7e58bc6c966d6e28d09"
+            },
+            "require": {
+                "filament/filament": "^5.0",
+                "filament/spatie-laravel-media-library-plugin": "^5.0",
+                "lara-zeus/spatie-translatable": "^2.0",
+                "php": "^8.2",
+                "tomatophp/console-helpers": "^1.1",
+                "tomatophp/filament-icons": "^5.0",
+                "tomatophp/filament-translation-component": "^5.0"
+            },
+            "require-dev": {
+                "larastan/larastan": "^3.0",
+                "laravel/pint": "^1.24",
+                "nunomaduro/collision": "^8.6",
+                "orchestra/testbench": "^10.0|^11.0",
+                "pestphp/pest": "^4.0|^5.0",
+                "pestphp/pest-plugin-arch": "^4.0|^5.0",
+                "pestphp/pest-plugin-laravel": "^4.0|^5.0",
+                "pestphp/pest-plugin-livewire": "^4.0|^5.0",
+                "pestphp/pest-plugin-type-coverage": "^4.0|^5.0",
+                "phpstan/extension-installer": "^1.4",
+                "phpstan/phpstan-deprecation-rules": "^2.0",
+                "phpstan/phpstan-phpunit": "^2.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "TomatoPHP\\FilamentCms\\FilamentCmsServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "TomatoPHP\\FilamentCms\\": "src/",
+                    "TomatoPHP\\FilamentCms\\Database\\Factories\\": "database/factories/"
+                }
+            },
+            "autoload-dev": {
+                "psr-4": {
+                    "TomatoPHP\\FilamentCms\\Tests\\": "tests/src/",
+                    "TomatoPHP\\FilamentCms\\Tests\\Database\\Factories\\": "tests/database/factories"
+                }
+            },
+            "scripts": {
+                "testbench": [
+                    "vendor/bin/testbench package:discover --ansi"
+                ],
+                "analyse": [
+                    "vendor/bin/phpstan analyse src tests"
+                ],
+                "test": [
+                    "vendor/bin/pest"
+                ],
+                "test-coverage": [
+                    "vendor/bin/pest --coverage"
+                ],
+                "format": [
+                    "vendor/bin/pint"
+                ],
+                "db": [
+                    "vendor/bin/testbench package:create-sqlite-db && vendor/bin/testbench migrate"
+                ]
+            },
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Fady Mondy",
+                    "email": "info@3x1.io"
+                }
+            ],
+            "description": "Full CMS System with support of importing integrations and multi meta functions",
+            "keywords": [
+                "blog",
+                "cms",
+                "filamentphp",
+                "laravel",
+                "page builder",
+                "pages",
+                "php",
+                "services",
+                "tomatophp"
+            ],
+            "transport-options": {
+                "symlink": true,
+                "relative": true
+            }
+        },
+        {
+            "name": "tomatophp/filament-cms-api",
+            "version": "5.0.0",
+            "dist": {
+                "type": "path",
+                "url": "packages/filament-cms-api",
+                "reference": "d8ab61004599cfd0ceec221aa3ad177d8182196a"
+            },
+            "require": {
+                "php": "^8.2",
+                "tomatophp/filament-cms": "^5.0"
+            },
+            "require-dev": {
+                "larastan/larastan": "^3.0",
+                "laravel/pint": "^1.24",
+                "nunomaduro/collision": "^8.6",
+                "orchestra/testbench": "^10.0|^11.0",
+                "pestphp/pest": "^4.0|^5.0",
+                "pestphp/pest-plugin-arch": "^4.0|^5.0",
+                "pestphp/pest-plugin-laravel": "^4.0|^5.0",
+                "pestphp/pest-plugin-livewire": "^4.0|^5.0",
+                "phpstan/extension-installer": "^1.4",
+                "phpstan/phpstan-deprecation-rules": "^2.0",
+                "phpstan/phpstan-phpunit": "^2.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "TomatoPHP\\FilamentCmsApi\\FilamentCmsApiServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "TomatoPHP\\FilamentCmsApi\\": "src/"
+                }
+            },
+            "autoload-dev": {
+                "psr-4": {
+                    "TomatoPHP\\FilamentCmsApi\\Tests\\": "tests/src/",
+                    "TomatoPHP\\FilamentCmsApi\\Tests\\Database\\Factories\\": "tests/database/factories"
+                }
+            },
+            "scripts": {
+                "testbench": [
+                    "vendor/bin/testbench package:discover --ansi"
+                ],
+                "db": [
+                    "vendor/bin/testbench package:create-sqlite-db && vendor/bin/testbench migrate"
+                ],
+                "analyse": [
+                    "vendor/bin/phpstan analyse src tests"
+                ],
+                "test": [
+                    "vendor/bin/pest"
+                ],
+                "test-coverage": [
+                    "vendor/bin/pest --coverage"
+                ],
+                "format": [
+                    "vendor/bin/pint"
+                ]
+            },
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Fady Mondy",
+                    "email": "info@3x1.io"
+                }
+            ],
+            "description": "Read-only JSON API for TomatoPHP Filament CMS posts and categories",
+            "keywords": [
+                "api",
+                "cms",
+                "filament-cms",
+                "filamentphp",
+                "laravel",
+                "php",
+                "tomatophp"
+            ],
+            "transport-options": {
+                "symlink": true,
+                "relative": true
+            }
+        },
+        {
             "name": "tomatophp/filament-developer-gate",
             "version": "5.0.0",
             "source": {
@@ -10557,6 +10742,194 @@
             }
         },
         {
+            "name": "tomatophp/filament-media-manager",
+            "version": "5.0.0",
+            "dist": {
+                "type": "path",
+                "url": "packages/filament-media-manager",
+                "reference": "d4444f49139d45474e7beb2b9fd709c3b9f4cfae"
+            },
+            "require": {
+                "filament/filament": "^5.0",
+                "filament/spatie-laravel-media-library-plugin": "^5.0",
+                "php": "^8.2",
+                "spatie/laravel-medialibrary": "^11.13",
+                "tomatophp/console-helpers": "^1.1",
+                "tomatophp/filament-icons": "^5.0"
+            },
+            "require-dev": {
+                "larastan/larastan": "^3.0",
+                "laravel/pint": "^1.24",
+                "nunomaduro/collision": "^8.6",
+                "orchestra/testbench": "^10.0|^11.0",
+                "pestphp/pest": "^4.0|^5.0",
+                "pestphp/pest-plugin-arch": "^4.0|^5.0",
+                "pestphp/pest-plugin-laravel": "^4.0|^5.0",
+                "pestphp/pest-plugin-livewire": "^4.0|^5.0",
+                "pestphp/pest-plugin-type-coverage": "^4.0|^5.0",
+                "phpstan/extension-installer": "^1.4",
+                "phpstan/phpstan": "^2.1",
+                "phpstan/phpstan-deprecation-rules": "^2.0",
+                "phpstan/phpstan-phpunit": "^2.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "TomatoPHP\\FilamentMediaManager\\FilamentMediaManagerServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "TomatoPHP\\FilamentMediaManager\\": "src/",
+                    "TomatoPHP\\FilamentMediaManager\\Database\\Factories\\": "database/factories/"
+                }
+            },
+            "autoload-dev": {
+                "psr-4": {
+                    "TomatoPHP\\FilamentMediaManager\\Tests\\": "tests/src",
+                    "TomatoPHP\\FilamentMediaManager\\Tests\\Database\\Factories\\": "tests/database/factories"
+                }
+            },
+            "scripts": {
+                "testbench": [
+                    "vendor/bin/testbench package:discover --ansi"
+                ],
+                "db": [
+                    "vendor/bin/testbench package:create-sqlite-db && vendor/bin/testbench migrate"
+                ],
+                "analyse": [
+                    "vendor/bin/phpstan analyse src tests"
+                ],
+                "test": [
+                    "vendor/bin/pest"
+                ],
+                "test-coverage": [
+                    "vendor/bin/pest --coverage"
+                ],
+                "format": [
+                    "vendor/bin/pint"
+                ]
+            },
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Fady Mondy",
+                    "email": "info@3x1.io"
+                }
+            ],
+            "description": "Manage your media files using spatie media library with easy to use GUI for FilamentPHP",
+            "keywords": [
+                "filament",
+                "laravel",
+                "manager",
+                "media",
+                "media-library",
+                "php",
+                "spatie"
+            ],
+            "transport-options": {
+                "symlink": true,
+                "relative": true
+            }
+        },
+        {
+            "name": "tomatophp/filament-menus",
+            "version": "5.0.0",
+            "dist": {
+                "type": "path",
+                "url": "packages/filament-menus",
+                "reference": "a299f4a9f6000925e8aa523fb61ec772daba73bb"
+            },
+            "require": {
+                "filament/filament": "^5.0",
+                "lara-zeus/spatie-translatable": "^2.0",
+                "php": "^8.2",
+                "tomatophp/console-helpers": "^1.1",
+                "tomatophp/filament-icons": "^5.0",
+                "tomatophp/filament-translation-component": "^5.0"
+            },
+            "require-dev": {
+                "larastan/larastan": "^3.0",
+                "laravel/pint": "^1.24",
+                "orchestra/testbench": "^10.0|^11.0",
+                "pestphp/pest": "^4.0|^5.0",
+                "pestphp/pest-plugin-laravel": "^4.0|^5.0",
+                "pestphp/pest-plugin-livewire": "^4.0|^5.0",
+                "phpstan/extension-installer": "^1.4",
+                "phpstan/phpstan-deprecation-rules": "^2.0",
+                "phpstan/phpstan-phpunit": "^2.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "TomatoPHP\\FilamentMenus\\FilamentMenusServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "TomatoPHP\\FilamentMenus\\": "src/",
+                    "TomatoPHP\\FilamentMenus\\Database\\Factories\\": "database/factories/"
+                }
+            },
+            "autoload-dev": {
+                "psr-4": {
+                    "TomatoPHP\\FilamentMenus\\Tests\\": "tests/src/",
+                    "TomatoPHP\\FilamentMenus\\Tests\\Database\\Factories\\": "tests/database/factories",
+                    "TomatoPHP\\FilamentMenus\\Tests\\Database\\Seeders\\": "tests/database/seeders"
+                }
+            },
+            "scripts": {
+                "testbench": [
+                    "vendor/bin/testbench package:discover --ansi"
+                ],
+                "db": [
+                    "vendor/bin/testbench package:create-sqlite-db && vendor/bin/testbench migrate"
+                ],
+                "analyse": [
+                    "vendor/bin/phpstan analyse src tests"
+                ],
+                "test": [
+                    "vendor/bin/pest"
+                ],
+                "test-coverage": [
+                    "vendor/bin/pest --coverage"
+                ],
+                "format": [
+                    "vendor/bin/pint"
+                ]
+            },
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Fady Mondy",
+                    "email": "info@3x1.io"
+                }
+            ],
+            "description": "Menu Database builder to use it as a navigation on Filament Panel or as a Livewire Component",
+            "keywords": [
+                "filamentphp",
+                "generator",
+                "laravel",
+                "menus",
+                "plugin",
+                "routes",
+                "url",
+                "views"
+            ],
+            "transport-options": {
+                "symlink": true,
+                "relative": true
+            }
+        },
+        {
             "name": "tomatophp/filament-settings-hub",
             "version": "5.0.1",
             "dist": {
@@ -10728,16 +11101,10 @@
         {
             "name": "tomatophp/filament-translation-component",
             "version": "5.0.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/tomatophp/filament-translation-component.git",
-                "reference": "f1cd7cc98fe9721355c1331de71b64240dc11039"
-            },
             "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/tomatophp/filament-translation-component/zipball/f1cd7cc98fe9721355c1331de71b64240dc11039",
-                "reference": "f1cd7cc98fe9721355c1331de71b64240dc11039",
-                "shasum": ""
+                "type": "path",
+                "url": "packages/filament-translation-component",
+                "reference": "ca211e6197bb728f4484d29d253afd80a40e9969"
             },
             "require": {
                 "filament/filament": "^5.0",
@@ -10772,7 +11139,32 @@
                     "TomatoPHP\\FilamentTranslationComponent\\": "src/"
                 }
             },
-            "notification-url": "https://packagist.org/downloads/",
+            "autoload-dev": {
+                "psr-4": {
+                    "TomatoPHP\\FilamentTranslationComponent\\Tests\\": "tests/src/",
+                    "TomatoPHP\\FilamentTranslationComponent\\Tests\\Database\\Factories\\": "tests/database/factories"
+                }
+            },
+            "scripts": {
+                "testbench": [
+                    "vendor/bin/testbench package:discover --ansi"
+                ],
+                "db": [
+                    "vendor/bin/testbench package:create-sqlite-db && vendor/bin/testbench migrate"
+                ],
+                "analyse": [
+                    "vendor/bin/phpstan analyse src tests"
+                ],
+                "test": [
+                    "vendor/bin/pest"
+                ],
+                "test-coverage": [
+                    "vendor/bin/pest --coverage"
+                ],
+                "format": [
+                    "vendor/bin/pint"
+                ]
+            },
             "license": [
                 "MIT"
             ],
@@ -10794,17 +11186,10 @@
                 "translation",
                 "value"
             ],
-            "support": {
-                "issues": "https://github.com/tomatophp/filament-translation-component/issues",
-                "source": "https://github.com/tomatophp/filament-translation-component/tree/v5.0.0"
-            },
-            "funding": [
-                {
-                    "url": "https://github.com/fadymondy",
-                    "type": "github"
-                }
-            ],
-            "time": "2026-09-14T12:16:24+00:00"
+            "transport-options": {
+                "symlink": true,
+                "relative": true
+            }
         },
         {
             "name": "tomatophp/filament-translations",

@@ -23,9 +23,11 @@ class CategoryResource extends Resource
 {
     protected static ?string $model = Category::class;
 
-    protected static string | BackedEnum | null $navigationIcon = 'heroicon-o-swatch';
+    protected static ?string $slug = 'showcase-categories';
 
-    protected static string | UnitEnum | null $navigationGroup = 'Showcase';
+    protected static string|BackedEnum|null $navigationIcon = 'heroicon-o-swatch';
+
+    protected static string|UnitEnum|null $navigationGroup = 'Showcase';
 
     public static function form(Schema $schema): Schema
     {

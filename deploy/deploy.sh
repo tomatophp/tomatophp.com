@@ -64,11 +64,18 @@ COMPOSER_ALLOW_SUPERUSER=1 composer clear-cache -q
 COMPOSER_ALLOW_SUPERUSER=1 composer update --no-dev --optimize-autoloader --no-interaction --no-progress
 
 grep -q '^APP_KEY=base64:' .env || php artisan key:generate --force
-php artisan migrate --force
-if [ "$(sqlite3 database/database.sqlite 'select count(*) from users;')" = "0" ]; then
-    log "empty database, seeding"
-    php artisan db:seed --force
+# FRESH=1 rebuilds the demo database from scratch, for deploys that add plugins or rename tables.
+if [ "${FRESH:-0}" = "1" ]; then
+    log "FRESH=1: rebuilding the database and seeding"
+    php artisan migrate:fresh --seed --force
+else
+    php artisan migrate --force
+    if [ "$(sqlite3 database/database.sqlite 'select count(*) from users;')" = "0" ]; then
+        log "empty database, seeding"
+        php artisan db:seed --force
+    fi
 fi
+php artisan storage:link --force
 php artisan filament-icons:install
 php artisan filament:assets
 php artisan optimize

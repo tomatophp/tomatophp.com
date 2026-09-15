@@ -20,6 +20,9 @@ class DatabaseSeeder extends Seeder
             DemoAlertsSeeder::class,
             DemoTranslationsSeeder::class,
             DemoWalletsSeeder::class,
+            DemoCmsSeeder::class,
+            DemoMenusSeeder::class,
+            DemoMediaSeeder::class,
         ]);
     }
 }

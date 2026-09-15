@@ -26,6 +26,9 @@ The previous version of this repository is kept on the `backup` branch.
 | [tomatophp/filament-translations-gpt](https://github.com/tomatophp/filament-translations-gpt) | 5.x |
 | [tomatophp/filament-language-switcher](https://github.com/tomatophp/filament-language-switcher) | 5.x |
 | [tomatophp/filament-wallet](https://github.com/tomatophp/filament-wallet) | 5.x |
+| [tomatophp/filament-cms](https://github.com/tomatophp/filament-cms) | 5.x |
+| [tomatophp/filament-menus](https://github.com/tomatophp/filament-menus) | 5.x |
+| [tomatophp/filament-media-manager](https://github.com/tomatophp/filament-media-manager) | 5.x |
 
 More plugins are added here as each one is released for Filament 5.
 

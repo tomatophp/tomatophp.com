@@ -6,7 +6,7 @@
   TomatoPHP package banner, 2560x1440.
   Brand: https://tomatophp.com/en/brand (the mark stands alone, Brand #D64524, Accent #4E9A3E, Ink #0B1429, Paper #F0EBE1).
   Lines: fadymondy.com screen lines (bordered column, edge-to-edge hairlines, 315deg hatch dividers, dashed guides).
-  Params: ?title=&desc=&pkg=&badge=&shot=<relative image path>
+  Params: ?title=&desc=&pkg=&badge=&shot=&eyebrow=<relative image path>
 -->
 <style>
   @font-face { font-family: "Geist"; src: url("fonts/geist.woff2") format("woff2"); font-weight: 100 900; }
@@ -131,6 +131,7 @@
 
 <script>
   const q = new URLSearchParams(location.search);
+  if (q.get('eyebrow')) { document.getElementById('eyebrow').textContent = q.get('eyebrow'); }
   document.getElementById('title').textContent = q.get('title') || 'Package';
   document.getElementById('desc').textContent = q.get('desc') || '';
   document.getElementById('pkg').textContent = q.get('pkg') || 'tomatophp/package';

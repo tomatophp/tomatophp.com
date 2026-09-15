@@ -11,6 +11,11 @@ use Illuminate\Database\Eloquent\Model;
 #[Fillable(['name', 'description', 'icon'])]
 class Category extends Model
 {
+    /**
+     * filament-cms owns the `categories` table in the demo.
+     */
+    protected $table = 'showcase_categories';
+
     protected function casts(): array
     {
         return [
