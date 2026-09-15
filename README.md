@@ -66,7 +66,8 @@ Set `DEMO_MODE=true` in `.env` for a public deployment:
 - the login page is prefilled with `DEMO_EMAIL` / `DEMO_PASSWORD`
 - the demo and admin (`DEMO_ADMIN_EMAIL`) accounts cannot be edited, deleted, have their password changed or be impersonated from the panel
 - `php artisan schedule:work` (or a cron running `schedule:run`) rebuilds the database from the seeders every hour
-- command and file tools such as the artisan runner and file browser stay behind the developer gate
+- command and file tools such as the artisan runner and file browser are not installed on the public demo, and the
+  developer gate uses a private `DEVELOPER_GATE_PASSWORD`
 - pages that store credentials (mail, Discord, invoice settings) redirect to the dashboard, and actions that send mail
   or call GitHub (invoice emails, issue refresh and clean) are hidden
 
