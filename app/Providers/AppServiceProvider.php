@@ -2,15 +2,12 @@
 
 namespace App\Providers;
 
-use App\Models\Category;
 use App\Models\User;
-use App\Workflows\NotifyAdmins;
 use Filament\Actions\Action;
 use Filament\Forms\Components\Toggle;
 use Illuminate\Support\ServiceProvider;
 use Livewire\Component;
 use Stichoza\GoogleTranslate\GoogleTranslate;
-use TomatoPHP\FilamentCms\Models\Post;
 use TomatoPHP\FilamentDocs\Facades\FilamentDocs;
 use TomatoPHP\FilamentDocs\Services\Contracts\DocsVar;
 use TomatoPHP\FilamentInvoices\Facades\FilamentInvoices;
@@ -21,9 +18,6 @@ use TomatoPHP\FilamentInvoices\Services\Contracts\InvoiceFrom;
 use TomatoPHP\FilamentIssues\Filament\Resources\IssueResource\Pages\ListIssues;
 use TomatoPHP\FilamentMeta\Filament\RelationManager\MetaRelationManager;
 use TomatoPHP\FilamentUsers\Facades\FilamentUser;
-use TomatoPHP\FilamentWorkflows\Facades\FilamentWorkflows;
-use TomatoPHP\FilamentWorkflows\Services\Contracts\WorkflowAction;
-use TomatoPHP\FilamentWorkflows\Services\Contracts\WorkflowModel;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -81,16 +75,6 @@ class AppServiceProvider extends ServiceProvider
                 ->label('User name')
                 ->model(User::class)
                 ->column('name'),
-        ]);
-
-        // tomatophp/filament-workflows: the models triggers can watch and the only registered action,
-        // a database notification that never sends mail or calls an external service.
-        FilamentWorkflows::model([
-            WorkflowModel::make('Categories')->model(Category::class),
-            WorkflowModel::make('Posts')->model(Post::class),
-        ]);
-        FilamentWorkflows::action([
-            WorkflowAction::make('Notify admins')->action(NotifyAdmins::class),
         ]);
 
         $this->lockDemoActions();

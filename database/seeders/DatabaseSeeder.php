@@ -34,7 +34,6 @@ class DatabaseSeeder extends Seeder
             DemoBookmarksSeeder::class,
             DemoNotesSeeder::class,
             DemoEcommerceSeeder::class,
-            DemoWorkflowsSeeder::class,
             DemoPluginsSeeder::class,
         ]);
     }

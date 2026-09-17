@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "d8311468e2ef4280a1289c3de27d74a3",
+    "content-hash": "1a7eb7e23357f64a43f38ff60df6d24d",
     "packages": [
         {
             "name": "anourvalar/eloquent-serialize",
@@ -11979,7 +11979,7 @@
             "dist": {
                 "type": "path",
                 "url": "packages/filament-ecommerce",
-                "reference": "a938e14d7b2c05797996196c43434690a51ae9ae"
+                "reference": "83d24b8466af59e9352b66c399f2d1b4a52c868c"
             },
             "require": {
                 "filament/filament": "^5.0",
@@ -12977,7 +12977,7 @@
             "dist": {
                 "type": "path",
                 "url": "packages/filament-notes",
-                "reference": "bdad6e8821f78cc76300b76b0fb941b0c6299bc9"
+                "reference": "f39d605bade996a235d796288ffe6bc7d0f96cfd"
             },
             "require": {
                 "filament/filament": "^5.0",
@@ -14113,94 +14113,6 @@
                 "laravel",
                 "php",
                 "template"
-            ],
-            "transport-options": {
-                "symlink": true,
-                "relative": true
-            }
-        },
-        {
-            "name": "tomatophp/filament-workflows",
-            "version": "5.0.0",
-            "dist": {
-                "type": "path",
-                "url": "packages/filament-workflows",
-                "reference": "bae939b6a6227937e7674e075a875fc57a567bce"
-            },
-            "require": {
-                "filament/filament": "^5.0",
-                "php": "^8.2",
-                "tomatophp/console-helpers": "^1.1",
-                "tomatophp/filament-icons": "^5.0"
-            },
-            "require-dev": {
-                "larastan/larastan": "^3.0",
-                "laravel/pint": "^1.24",
-                "orchestra/testbench": "^10.0|^11.0",
-                "pestphp/pest": "^4.0|^5.0",
-                "pestphp/pest-plugin-laravel": "^4.0|^5.0",
-                "pestphp/pest-plugin-livewire": "^4.0|^5.0",
-                "phpstan/extension-installer": "^1.4",
-                "phpstan/phpstan-deprecation-rules": "^2.0",
-                "phpstan/phpstan-phpunit": "^2.0"
-            },
-            "type": "library",
-            "extra": {
-                "laravel": {
-                    "providers": [
-                        "TomatoPHP\\FilamentWorkflows\\FilamentWorkflowsServiceProvider"
-                    ]
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "TomatoPHP\\FilamentWorkflows\\": "src/",
-                    "TomatoPHP\\FilamentWorkflows\\Database\\Factories\\": "database/factories/"
-                }
-            },
-            "autoload-dev": {
-                "psr-4": {
-                    "TomatoPHP\\FilamentWorkflows\\Tests\\": "tests/src/",
-                    "TomatoPHP\\FilamentWorkflows\\Tests\\Database\\Factories\\": "tests/database/factories"
-                }
-            },
-            "scripts": {
-                "testbench": [
-                    "vendor/bin/testbench package:discover --ansi"
-                ],
-                "analyse": [
-                    "vendor/bin/phpstan analyse src tests"
-                ],
-                "test": [
-                    "vendor/bin/pest"
-                ],
-                "test-coverage": [
-                    "vendor/bin/pest --coverage"
-                ],
-                "format": [
-                    "vendor/bin/pint"
-                ]
-            },
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Fady Mondy",
-                    "email": "info@3x1.io"
-                }
-            ],
-            "description": "Build workflows in FilamentPHP: model, event and webhook triggers that run registered actions and log every run",
-            "homepage": "https://tomatophp.com/en/plugins/filament-workflows",
-            "keywords": [
-                "automation",
-                "filament",
-                "filamentphp",
-                "laravel",
-                "php",
-                "triggers",
-                "webhooks",
-                "workflows"
             ],
             "transport-options": {
                 "symlink": true,
