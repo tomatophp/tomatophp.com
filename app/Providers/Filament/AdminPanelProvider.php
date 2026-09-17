@@ -27,6 +27,7 @@ use TomatoPHP\FilamentCms\FilamentCMSPlugin;
 use TomatoPHP\FilamentDeveloperGate\FilamentDeveloperGatePlugin;
 use TomatoPHP\FilamentDiscordDriver\FilamentDiscordDriverPlugin;
 use TomatoPHP\FilamentDocs\FilamentDocsPlugin;
+use TomatoPHP\FilamentEcommerce\FilamentEcommercePlugin;
 use TomatoPHP\FilamentEmployees\FilamentEmployeesPlugin;
 use TomatoPHP\FilamentFormBuilder\FilamentFormBuilderPlugin;
 use TomatoPHP\FilamentInvoices\FilamentInvoicesPlugin;
@@ -35,6 +36,10 @@ use TomatoPHP\FilamentLanguageSwitcher\FilamentLanguageSwitcherPlugin;
 use TomatoPHP\FilamentLocations\FilamentLocationsPlugin;
 use TomatoPHP\FilamentMediaManager\FilamentMediaManagerPlugin;
 use TomatoPHP\FilamentMenus\FilamentMenusPlugin;
+use TomatoPHP\FilamentNotes\Filament\Widgets\NotesWidget;
+use TomatoPHP\FilamentNotes\FilamentNotesPlugin;
+use TomatoPHP\FilamentPlugins\FilamentPluginsPlugin;
+use TomatoPHP\FilamentPos\FilamentPOSPlugin;
 use TomatoPHP\FilamentSettingsHub\FilamentSettingsHubPlugin;
 use TomatoPHP\FilamentSubscriptions\FilamentSubscriptionsPlugin;
 use TomatoPHP\FilamentTomatoPHPTheme\FilamentTomatoPHPThemePlugin;
@@ -47,6 +52,7 @@ use TomatoPHP\FilamentTypes\Services\Contracts\TypeFor;
 use TomatoPHP\FilamentTypes\Services\Contracts\TypeOf;
 use TomatoPHP\FilamentUsers\FilamentUsersPlugin;
 use TomatoPHP\FilamentWallet\FilamentWalletPlugin;
+use TomatoPHP\FilamentWorkflows\FilamentWorkflowsPlugin;
 
 class AdminPanelProvider extends PanelProvider
 {
@@ -67,6 +73,7 @@ class AdminPanelProvider extends PanelProvider
             ->widgets([
                 AccountWidget::class,
                 FilamentInfoWidget::class,
+                NotesWidget::class,
             ])
             ->middleware([
                 EncryptCookies::class,
@@ -116,11 +123,32 @@ class AdminPanelProvider extends PanelProvider
                 FilamentIssuesPlugin::make(),
                 FilamentDocsPlugin::make(),
                 FilamentBookmarksMenuPlugin::make(),
+                // Share links, notifications and per-user access stay off on the public demo.
+                FilamentNotesPlugin::make()
+                    ->useGroups()
+                    ->useStatus()
+                    ->useCheckList(),
+                // Order import and export stay off on the public demo.
+                FilamentEcommercePlugin::make()
+                    ->useCoupon()
+                    ->useGiftCard()
+                    ->useReferralCode()
+                    ->useWidgets(),
+                FilamentPOSPlugin::make(),
+                FilamentWorkflowsPlugin::make(),
+                // Read only on the public demo: nothing may write module files or generate code.
+                FilamentPluginsPlugin::make()
+                    ->allowCreate(false)
+                    ->allowImport(false)
+                    ->allowToggle(false)
+                    ->allowDestroy(false)
+                    ->allowGenerator(false),
             ]);
     }
 
     /**
-     * Sample type groups managed by tomatophp/filament-types.
+     * Sample type groups managed by tomatophp/filament-types. Order statuses, payment methods
+     * and sources are owned by tomatophp/filament-ecommerce and seeded by DemoEcommerceSeeder.
      *
      * @return array<int, TypeFor>
      */
@@ -136,19 +164,6 @@ class AdminPanelProvider extends PanelProvider
                             Type::make('news')->name('News')->icon('heroicon-o-newspaper')->color('#2563eb'),
                             Type::make('tutorials')->name('Tutorials')->icon('heroicon-o-academic-cap')->color('#7c3aed'),
                             Type::make('releases')->name('Releases')->icon('heroicon-o-rocket-launch')->color('#db2777'),
-                        ]),
-                ]),
-            TypeFor::make('orders')
-                ->label('Orders')
-                ->types([
-                    TypeOf::make('status')
-                        ->label('Status')
-                        ->register([
-                            Type::make('pending')->name('Pending')->icon('heroicon-o-clock')->color('#f59e0b'),
-                            Type::make('processing')->name('Processing')->icon('heroicon-o-arrow-path')->color('#0ea5e9'),
-                            Type::make('shipped')->name('Shipped')->icon('heroicon-o-truck')->color('#6366f1'),
-                            Type::make('delivered')->name('Delivered')->icon('heroicon-o-check-badge')->color('#16a34a'),
-                            Type::make('cancelled')->name('Cancelled')->icon('heroicon-o-x-circle')->color('#dc2626'),
                         ]),
                 ]),
         ];

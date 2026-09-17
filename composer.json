@@ -21,6 +21,7 @@
         "tomatophp/filament-developer-gate": "^5.0",
         "tomatophp/filament-discord-driver": "^5.0",
         "tomatophp/filament-docs": "^5.0",
+        "tomatophp/filament-ecommerce": "^5.0",
         "tomatophp/filament-employees": "^5.0",
         "tomatophp/filament-form-builder": "^5.0",
         "tomatophp/filament-icons": "^5.0",
@@ -31,6 +32,9 @@
         "tomatophp/filament-media-manager": "^5.0",
         "tomatophp/filament-menus": "^5.0",
         "tomatophp/filament-meta": "^5.0",
+        "tomatophp/filament-notes": "^5.0",
+        "tomatophp/filament-plugins": "^5.0",
+        "tomatophp/filament-pos": "^5.0",
         "tomatophp/filament-settings-hub": "^5.0",
         "tomatophp/filament-subscriptions": "^5.0",
         "tomatophp/filament-tomatophp-theme": "^5.0",
@@ -40,7 +44,8 @@
         "tomatophp/filament-translations-gpt": "^5.0",
         "tomatophp/filament-types": "^5.0",
         "tomatophp/filament-users": "^5.0",
-        "tomatophp/filament-wallet": "^5.0"
+        "tomatophp/filament-wallet": "^5.0",
+        "tomatophp/filament-workflows": "^5.0"
     },
     "require-dev": {
         "fakerphp/faker": "^1.23",
@@ -112,7 +117,8 @@
         "sort-packages": true,
         "allow-plugins": {
             "pestphp/pest-plugin": true,
-            "php-http/discovery": true
+            "php-http/discovery": true,
+            "wikimedia/composer-merge-plugin": true
         }
     },
     "minimum-stability": "stable",

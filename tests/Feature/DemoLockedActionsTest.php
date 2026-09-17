@@ -17,6 +17,8 @@ use TomatoPHP\FilamentInvoices\Filament\Resources\InvoiceResource\Pages\ListInvo
 use TomatoPHP\FilamentInvoices\Filament\Resources\InvoiceResource\Pages\ViewInvoice;
 use TomatoPHP\FilamentInvoices\Models\Invoice;
 use TomatoPHP\FilamentIssues\Filament\Resources\IssueResource\Pages\ListIssues;
+use TomatoPHP\FilamentPlugins\FilamentPluginsPlugin;
+use TomatoPHP\FilamentPlugins\Pages\Plugins;
 
 /**
  * Package actions that send mail or call GitHub are hidden in the public demo.
@@ -73,6 +75,26 @@ class DemoLockedActionsTest extends TestCase
         Livewire::test(ListIssues::class)
             ->{$assertion}('refresh')
             ->{$assertion}('clean');
+    }
+
+    /**
+     * filament-plugins may never write module files on the demo, so the Plugins page is read only.
+     * Unlike the mail actions this does not depend on demo mode: the plugin is always configured
+     * with allowCreate(false), allowImport(false), allowToggle(false) and allowDestroy(false).
+     */
+    #[Test]
+    public function the_plugins_page_cannot_create_import_toggle_or_delete_modules(): void
+    {
+        foreach (['create', 'import', 'toggle', 'destroy', 'generator'] as $feature) {
+            $this->assertFalse(
+                FilamentPluginsPlugin::allows($feature),
+                "filament-plugins still allows {$feature} on the demo panel.",
+            );
+        }
+
+        Livewire::test(Plugins::class)
+            ->assertActionHidden('create')
+            ->assertActionHidden('import');
     }
 
     #[Test]

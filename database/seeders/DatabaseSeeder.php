@@ -32,6 +32,10 @@ class DatabaseSeeder extends Seeder
             DemoIssuesSeeder::class,
             DemoDocsSeeder::class,
             DemoBookmarksSeeder::class,
+            DemoNotesSeeder::class,
+            DemoEcommerceSeeder::class,
+            DemoWorkflowsSeeder::class,
+            DemoPluginsSeeder::class,
         ]);
     }
 }

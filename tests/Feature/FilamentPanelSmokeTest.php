@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Route as Router;
 use PHPUnit\Framework\Attributes\Test;
 use RuntimeException;
 use Tests\TestCase;
+use TomatoPHP\FilamentAccounts\FilamentAccountsPlugin;
 
 /**
  * Real-project check for the tomatophp packages: every GET page registered on every
@@ -53,7 +54,7 @@ class FilamentPanelSmokeTest extends TestCase
 
                 if ($response->status() >= 400) {
                     $reason = $response->exception
-                        ? $response->exception::class . ': ' . $response->exception->getMessage()
+                        ? $response->exception::class.': '.$response->exception->getMessage()
                         : 'no exception captured';
 
                     $failures[] = "{$name} [{$response->status()}] {$reason}";
@@ -69,7 +70,24 @@ class FilamentPanelSmokeTest extends TestCase
         ));
 
         $this->assertNotEmpty($checked, 'No Filament panel pages were found.');
-        $this->assertSame([], $failures, "Pages that failed to render:\n" . implode("\n", $failures));
+        $this->assertSame([], $failures, "Pages that failed to render:\n".implode("\n", $failures));
+    }
+
+    /**
+     * filament-ecommerce registers filament-accounts itself when the panel has no accounts plugin.
+     * The demo registers its own first, so the demo's options must survive.
+     */
+    #[Test]
+    public function the_ecommerce_plugin_keeps_the_demo_accounts_configuration(): void
+    {
+        /** @var FilamentAccountsPlugin $accounts */
+        $accounts = Filament::getPanel('admin')->getPlugin('filament-accounts');
+
+        $this->assertTrue($accounts->useTypes);
+        $this->assertTrue($accounts->useAvatar);
+        $this->assertTrue($accounts->showAddressField);
+        $this->assertFalse($accounts->useImport);
+        $this->assertFalse($accounts->useExport);
     }
 
     /**

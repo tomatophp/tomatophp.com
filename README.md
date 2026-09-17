@@ -40,8 +40,16 @@ The previous version of this repository is kept on the `backup` branch.
 | [tomatophp/filament-issues](https://github.com/tomatophp/filament-issues) | 5.x |
 | [tomatophp/filament-docs](https://github.com/tomatophp/filament-docs) | 5.x |
 | [tomatophp/filament-bookmarks-menu](https://github.com/tomatophp/filament-bookmarks-menu) | 5.x |
+| [tomatophp/filament-notes](https://github.com/tomatophp/filament-notes) | 5.x |
+| [tomatophp/filament-ecommerce](https://github.com/tomatophp/filament-ecommerce) | 5.x |
+| [tomatophp/filament-pos](https://github.com/tomatophp/filament-pos) | 5.x |
+| [tomatophp/filament-workflows](https://github.com/tomatophp/filament-workflows) | 5.x |
+| [tomatophp/filament-plugins](https://github.com/tomatophp/filament-plugins) | 5.x |
 
-More plugins are added here as each one is released for Filament 5.
+More plugins are added here as each one is released for Filament 5. Plugins that cannot be made safe
+for a public demo are left out: `filament-payments` (its gateway settings page stores live API keys
+and checkout calls the real providers), and the command and file tools `filament-artisan` and
+`filament-browser`. `filament-blog` needs a second panel and a front-end build, so it is not here yet.
 
 ## Run it locally
 
@@ -70,6 +78,12 @@ Set `DEMO_MODE=true` in `.env` for a public deployment:
   developer gate uses a private `DEVELOPER_GATE_PASSWORD`
 - pages that store credentials (mail, Discord, invoice settings) redirect to the dashboard, and actions that send mail
   or call GitHub (invoice emails, issue refresh and clean) are hidden
+- features that write files or generate code are off: the plugin manager is read only
+  (`allowCreate(false)`, `allowImport(false)`, `allowToggle(false)`, `allowDestroy(false)`,
+  `allowGenerator(false)`) and `/admin/tables`, its table builder, is locked
+- imports and exports are off everywhere (CMS, accounts, ecommerce orders), notes are local only
+  (no share links, notifications or per-user access), and the only workflow action registered is
+  `App\Workflows\NotifyAdmins`, a database notification, with no workflow webhook token set
 
 Every plugin added to the demo ships a seeder in `database/seeders` so a fresh `migrate --seed` shows it with data.
 

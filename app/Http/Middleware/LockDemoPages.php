@@ -9,8 +9,9 @@ use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 /**
- * In the public demo, pages that store secrets (SMTP, webhooks, API keys) are not reachable:
- * visitors are sent back to the dashboard with an explanation instead.
+ * In the public demo, pages that store secrets (SMTP, webhooks, API keys) or write files to the
+ * server are not reachable: visitors are sent back to the dashboard with an explanation instead.
+ * Pages are matched by class (`demo.locked_pages`) or by panel path (`demo.locked_paths`).
  */
 class LockDemoPages
 {
@@ -22,10 +23,16 @@ class LockDemoPages
 
         $page = $request->route()?->getControllerClass();
 
-        if ($page && in_array(ltrim($page, '\\'), array_map(fn (string $class): string => ltrim($class, '\\'), config('demo.locked_pages', [])), true)) {
+        $isLockedPage = $page && in_array(
+            ltrim($page, '\\'),
+            array_map(fn (string $class): string => ltrim($class, '\\'), config('demo.locked_pages', [])),
+            true,
+        );
+
+        if ($isLockedPage || $request->is(...config('demo.locked_paths', []))) {
             Notification::make()
                 ->title(__('Locked in the public demo'))
-                ->body(__('This page stores credentials such as API keys or mail passwords, so it is disabled on demo.tomatophp.com. Install the plugin to try it.'))
+                ->body(__('This page stores credentials such as API keys or mail passwords, or writes files to the server, so it is disabled on demo.tomatophp.com. Install the plugin to try it.'))
                 ->warning()
                 ->send();
 

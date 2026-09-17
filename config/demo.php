@@ -33,6 +33,16 @@ return [
         'TomatoPHP\FilamentInvoices\Pages\InvoiceSettingsPage',
     ],
 
+    /*
+    | Panel paths that are never reachable in demo mode, whichever page happens to answer them.
+    | The filament-plugins table builder writes migrations and generates code, so /admin/tables
+    | stays closed even if the generator is ever turned back on.
+    */
+    'locked_paths' => [
+        'admin/tables',
+        'admin/tables/*',
+    ],
+
     'admin' => [
         'name' => env('DEMO_ADMIN_NAME', 'TomatoPHP Admin'),
         'email' => env('DEMO_ADMIN_EMAIL'),
