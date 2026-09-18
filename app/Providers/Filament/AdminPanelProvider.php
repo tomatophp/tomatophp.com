@@ -52,6 +52,7 @@ use TomatoPHP\FilamentTypes\Services\Contracts\TypeFor;
 use TomatoPHP\FilamentTypes\Services\Contracts\TypeOf;
 use TomatoPHP\FilamentUsers\FilamentUsersPlugin;
 use TomatoPHP\FilamentWallet\FilamentWalletPlugin;
+use TomatoPHP\FilamentWorkflows\FilamentWorkflowsPlugin;
 
 class AdminPanelProvider extends PanelProvider
 {
@@ -134,6 +135,7 @@ class AdminPanelProvider extends PanelProvider
                     ->useReferralCode()
                     ->useWidgets(),
                 FilamentPOSPlugin::make(),
+                FilamentWorkflowsPlugin::make(),
                 // Read only on the public demo: nothing may write module files or generate code.
                 FilamentPluginsPlugin::make()
                     ->allowCreate(false)

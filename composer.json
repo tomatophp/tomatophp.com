@@ -44,7 +44,8 @@
         "tomatophp/filament-translations-gpt": "^5.0",
         "tomatophp/filament-types": "^5.0",
         "tomatophp/filament-users": "^5.0",
-        "tomatophp/filament-wallet": "^5.0"
+        "tomatophp/filament-wallet": "^5.0",
+        "tomatophp/filament-workflows": "^5.0"
     },
     "require-dev": {
         "fakerphp/faker": "^1.23",
